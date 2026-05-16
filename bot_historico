@@ -1,0 +1,451 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+DJEN — Agente Jurídico v15.0
+Busca histórica: OAB 176629/RJ via API do PJe + SQLite
+Período: 01/01/2023 até hoje
+"""
+import requests
+import pandas as pd
+from datetime import datetime, timedelta, date
+import hashlib
+import os
+import time
+import logging
+from pathlib import Path
+import base64
+from typing import Optional, Dict, List, Any
+# 📧 SendGrid
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import (
+    Mail, Attachment, FileContent, FileName, FileType, Disposition
+)
+# 🔧 Variáveis de ambiente
+from dotenv import load_dotenv
+load_dotenv()
+# 🗄️ SQLite
+import sqlite3
+
+# =========================
+# CONFIGURAÇÃO
+# =========================
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%H:%M:%S"
+)
+logger = logging.getLogger(__name__)
+
+BASE_URL = "https://comunicaapi.pje.jus.br/api/v1/comunicacao"
+OAB_NUMERO = "176629"
+OAB_UF = "RJ"
+
+# 🗓️ Período de busca histórica
+DATA_INICIO = date(2023, 1, 1)
+DATA_FIM = date.today()
+
+# 🗄️ Banco de dados
+DB_PATH = "publicacoes.db"
+OUTPUT_FILE = "/home/rapha/agente_juridico/publicacoes.xlsx"
+
+SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
+EMAIL_FROM = "olvestag@outlook.com"
+EMAIL_TO = "rvao.adv@outlook.com"
+
+MAX_RETRIES = 3
+RETRY_DELAY = 2
+REQUEST_TIMEOUT = 30
+REQUEST_DELAY = 1.0
+PAGE_SIZE = 100
+
+# =========================
+# 🗄️ FUNÇÕES SQLITE
+# =========================
+def conectar_db():
+    """Conecta ao banco SQLite."""
+    return sqlite3.connect(DB_PATH)
+
+def criar_tabela():
+    """Cria a tabela de publicações se não existir."""
+    conn = conectar_db()
+    cursor = conn.cursor()
+    
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS publicacoes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        processo TEXT,
+        tribunal TEXT,
+        orgao_julgador TEXT,
+        tipo_ato TEXT,
+        data_publicacao TEXT,
+        inicio_prazo TEXT,
+        audiencia TEXT,
+        autor TEXT,
+        reu TEXT,
+        conteudo TEXT,
+        hash TEXT UNIQUE,
+        data_criacao TEXT DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+    
+    # Índices para performance
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_processo ON publicacoes(processo)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_data_pub ON publicacoes(data_publicacao)")
+    
+    conn.commit()
+    conn.close()
+
+def gerar_hash_registro(reg: Dict) -> str:
+    """Gera hash único baseado em processo + data + conteúdo."""
+    base = f"{reg['processo']}_{reg['data_publicacao']}_{reg['conteudo']}"
+    return hashlib.md5(base.encode("utf-8")).hexdigest()
+
+def salvar_no_sqlite(dados: List[Dict]) -> Dict[str, int]:
+    """Salva registros no SQLite com controle de duplicatas."""
+    conn = conectar_db()
+    cursor = conn.cursor()
+    
+    inseridos = 0
+    ignorados = 0
+    
+    for reg in dados:
+        try:
+            hash_reg = gerar_hash_registro(reg)
+            
+            cursor.execute("""
+            INSERT OR IGNORE INTO publicacoes (
+                processo, tribunal, orgao_julgador, tipo_ato,
+                data_publicacao, inicio_prazo, audiencia,
+                autor, reu, conteudo, hash
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (
+                reg["processo"], reg["tribunal"], reg["orgao_julgador"],
+                reg["tipo_ato"], reg["data_publicacao"], reg["inicio_prazo"],
+                reg["audiencia"], reg["autor"], reg["reu"], reg["conteudo"], hash_reg
+            ))
+            
+            if cursor.rowcount > 0:
+                inseridos += 1
+            else:
+                ignorados += 1
+        except Exception as e:
+            logger.warning(f"⚠️ Erro ao salvar: {e}")
+            continue
+    
+    conn.commit()
+    conn.close()
+    logger.info(f"💾 SQLite: {inseridos} novos | {ignorados} duplicados")
+    return {"inseridos": inseridos, "ignorados": ignorados}
+
+def exportar_sqlite_para_excel() -> Optional[str]:
+    """Exporta dados do SQLite para Excel."""
+    logger.info("📊 Exportando do SQLite para Excel...")
+    conn = conectar_db()
+    df = pd.read_sql_query("SELECT * FROM publicacoes ORDER BY data_publicacao DESC", conn)
+    conn.close()
+    
+    if df.empty:
+        return None
+    
+    colunas = [
+        "processo", "tribunal", "orgao_julgador", "tipo_ato",
+        "data_publicacao", "inicio_prazo", "audiencia",
+        "autor", "reu", "conteudo"
+    ]
+    df = df[[c for c in colunas if c in df.columns]]
+    
+    Path(OUTPUT_FILE).parent.mkdir(parents=True, exist_ok=True)
+    df.to_excel(OUTPUT_FILE, index=False)
+    logger.info(f"💾 {len(df)} registros exportados para: {OUTPUT_FILE}")
+    return OUTPUT_FILE
+
+def consultar_total_registros() -> int:
+    """Retorna total de registros no banco."""
+    conn = conectar_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT COUNT(*) FROM publicacoes")
+    total = cursor.fetchone()[0]
+    conn.close()
+    return total
+
+# =========================
+# FUNÇÕES AUXILIARES
+# =========================
+def proximo_dia_util(data: datetime) -> datetime:
+    """Calcula próximo dia útil (D+1)."""
+    data += timedelta(days=1)
+    while data.weekday() >= 5:
+        data += timedelta(days=1)
+    return data
+
+def fazer_requisicao(url: str, params: dict) -> Optional[requests.Response]:
+    """Requisição HTTP com retry."""
+    headers = {
+        "User-Agent": "Mozilla/5.0 (AgenteJuridico-DJEN/15.0)",
+        "Accept": "application/json",
+    }
+    for tentativa in range(MAX_RETRIES):
+        try:
+            resp = requests.get(url, params=params, headers=headers, timeout=REQUEST_TIMEOUT)
+            if resp.status_code == 200:
+                return resp
+            elif resp.status_code == 429:
+                wait = RETRY_DELAY * (2 ** tentativa)
+                logger.warning(f"⚠️ Rate limit. Aguardando {wait}s...")
+                time.sleep(wait)
+                continue
+            else:
+                logger.error(f"❌ HTTP {resp.status_code}: {resp.text[:200]}")
+                return None
+        except requests.exceptions.Timeout:
+            logger.warning(f"⚠️ Timeout (tentativa {tentativa + 1}/{MAX_RETRIES})")
+        except Exception as e:
+            logger.error(f"❌ Erro: {e}")
+            break
+        if tentativa < MAX_RETRIES - 1:
+            time.sleep(RETRY_DELAY * (2 ** tentativa))
+    return None
+
+# =========================
+# 🔍 BUSCA NA API (AJUSTADA PARA DATA DINÂMICA)
+# =========================
+def buscar_publicacoes(data_str: str) -> List[Dict]:
+    """
+    Busca publicações da OAB 176629/RJ na API do PJe para uma data específica.
+    """
+    logger.debug(f"🔎 Buscando em {data_str}...")
+    todas = []
+    page = 1
+    
+    while True:
+        params = {
+            "numeroOab": OAB_NUMERO,
+            "ufOab": OAB_UF,
+            "dataDisponibilizacaoInicio": data_str,
+            "dataDisponibilizacaoFim": data_str,
+            "size": PAGE_SIZE,
+            "page": page,
+        }
+        
+        response = fazer_requisicao(BASE_URL, params)
+        if not response:
+            logger.warning(f"⚠️ Falha ao buscar {data_str} (página {page})")
+            break
+            
+        try:
+            dados = response.json()
+        except ValueError as e:
+            logger.error(f"❌ JSON inválido em {data_str}: {e}")
+            break
+        
+        items = dados.get("items", [])
+        if not items:
+            break
+            
+        todas.extend(items)
+        
+        if len(items) < PAGE_SIZE:
+            break
+            
+        page += 1
+        time.sleep(REQUEST_DELAY)
+    
+    return todas
+
+# =========================
+# PROCESSAMENTO (mantido)
+# =========================
+def processar_publicacoes(publicacoes: List[Dict]) -> List[Dict]:
+    """Processa publicações extraindo dados relevantes."""
+    logger.debug(f"⚙️ Processando {len(publicacoes)} itens...")
+    dados = []
+    
+    for item in publicacoes:
+        try:
+            # Data
+            data_str = item.get("dataDisponibilizacao") or item.get("data_disponibilizacao")
+            if not data_str:
+                continue
+            if isinstance(data_str, (int, float)):
+                data_pub = datetime.fromtimestamp(data_str / 1000)
+            else:
+                data_pub = datetime.strptime(str(data_str)[:10], "%Y-%m-%d")
+            inicio_prazo = proximo_dia_util(data_pub)
+            
+            # Campos
+            processo = (item.get("numeroProcesso") or item.get("numero_processo") or item.get("npu") or "N/D")
+            tribunal = (item.get("siglaTribunal") or item.get("tribunal") or "N/D")
+            conteudo = (item.get("texto") or item.get("conteudo") or "")
+            
+            dados.append({
+                "processo": str(processo).strip(),
+                "tribunal": str(tribunal).strip(),
+                "orgao_julgador": extrair_orgao(conteudo),
+                "tipo_ato": extrair_tipo_ato(conteudo),
+                "data_publicacao": data_pub.strftime("%d/%m/%Y"),
+                "inicio_prazo": inicio_prazo.strftime("%d/%m/%Y"),
+                "audiencia": extrair_audiencia(conteudo),
+                "autor": extrair_partes(conteudo)[0],
+                "reu": extrair_partes(conteudo)[1],
+                "conteudo": str(conteudo).strip(),
+            })
+        except Exception:
+            continue
+    
+    return dados
+
+# Funções de extração (mantidas)
+def extrair_tipo_ato(texto: str) -> str:
+    t = texto.upper()
+    if "AUDIÊNCIA" in t or "AUDIENCIA" in t:
+        if "NÃO" not in t and "SEM" not in t:
+            return "AUDIÊNCIA"
+    if "SENTENÇA" in t or "SENTENCA" in t:
+        return "SENTENÇA"
+    if "ACÓRDÃO" in t or "ACORDAO" in t:
+        return "ACÓRDÃO"
+    if "DESPACHO" in t:
+        return "DESPACHO"
+    if "CITAÇÃO" in t or "CITACAO" in t:
+        return "CITAÇÃO"
+    if "INTIMAÇÃO" in t or "INTIMACAO" in t:
+        return "INTIMAÇÃO"
+    return "OUTROS"
+
+def extrair_audiencia(texto: str) -> str:
+    if "AUDIÊNCIA" not in texto.upper() and "AUDIENCIA" not in texto.upper():
+        return ""
+    import re
+    m = re.search(r"(\d{2}/\d{2}/\d{4})\s+(?:às\s+)?(\d{2}:\d{2})", texto)
+    if m:
+        return f"{m.group(1)} {m.group(2)}"
+    m = re.search(r"(\d{2}/\d{2}/\d{4})", texto)
+    if m:
+        return m.group(1)
+    return ""
+
+def extrair_partes(texto: str) -> tuple:
+    import re
+    autor, reu = "", ""
+    m = re.search(r"(?:AUTOR|AUTORA|RECTE|REQUERENTE):\s*(.+?)(?=\s+(?:REU|RÉU|REQUERIDO|ADV|OAB|$))", texto, re.IGNORECASE)
+    if m:
+        autor = re.sub(r"\s*(OAB|CPF|CNPJ).*", "", m.group(1).strip(), flags=re.IGNORECASE).strip()
+    m = re.search(r"(?:REU|RÉU|REQUERIDO|RECORRIDO):\s*(.+?)(?=\s+(?:AUTOR|ADV|OAB|$))", texto, re.IGNORECASE)
+    if m:
+        reu = re.sub(r"\s*(OAB|CPF|CNPJ).*", "", m.group(1).strip(), flags=re.IGNORECASE).strip()
+    return autor[:100] if autor else "", reu[:100] if reu else ""
+
+def extrair_orgao(texto: str) -> str:
+    import re
+    padroes = [
+        r"(\d+[ªa°]?\s+VARA\s+[^\n]+?)(?=\n|$)",
+        r"(JUÍZO\s+ESPECIAL\s+[^\n]+?)(?=\n|$)",
+        r"(TURMA\s+RECURSAL\s+[^\n]+?)(?=\n|$)",
+    ]
+    for padrao in padroes:
+        m = re.search(padrao, texto, re.IGNORECASE)
+        if m:
+            return m.group(1).strip()[:100]
+    return "N/D"
+
+# =========================
+# E-MAIL
+# =========================
+def enviar_email(arquivo: str, total: int):
+    """Envia planilha por e-mail."""
+    if not SENDGRID_API_KEY:
+        logger.warning("⚠️ SENDGRID_API_KEY não configurada - pulando envio.")
+        return False
+    try:
+        logger.info("📧 Enviando e-mail...")
+        with open(arquivo, "rb") as f:
+            encoded = base64.b64encode(f.read()).decode()
+        attachment = Attachment(
+            FileContent(encoded),
+            FileName(os.path.basename(arquivo)),
+            FileType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"),
+            Disposition("attachment"),
+        )
+        message = Mail(
+            from_email=EMAIL_FROM,
+            to_emails=EMAIL_TO,
+            subject=f"DJEN - Histórico OAB {OAB_NUMERO}/{OAB_UF}",
+            html_content=f"""
+            <p>Olá,</p>
+            <p>Segue planilha com <strong>{total} publicações</strong> da OAB {OAB_NUMERO}/{OAB_UF}.</p>
+            <p><strong>Período:</strong> {DATA_INICIO} até {DATA_FIM}</p>
+            <p style="color:#666;font-size:12px;"><em>Agente Jurídico DJEN v15.0</em></p>
+            """,
+        )
+        message.attachment = attachment
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
+        response = sg.send(message)
+        if response.status_code in (200, 202):
+            logger.info(f"✅ E-mail enviado.")
+            return True
+        return False
+    except Exception as e:
+        logger.error(f"❌ Erro ao enviar e-mail: {e}")
+        return False
+
+# =========================
+# 🔄 MAIN — LOOP HISTÓRICO
+# =========================
+def main():
+    logger.info("🚀 DJEN v15.0 — Modo Histórico")
+    logger.info(f"📍 OAB: {OAB_NUMERO}/{OAB_UF}")
+    logger.info(f"📅 Período: {DATA_INICIO} até {DATA_FIM}")
+    
+    try:
+        # 0. Preparar banco
+        criar_tabela()
+        
+        # 1. Loop por datas
+        data_atual = DATA_INICIO
+        total_dias = (DATA_FIM - DATA_INICIO).days + 1
+        dia_atual = 0
+        
+        while data_atual <= DATA_FIM:
+            dia_atual += 1
+            DATA_BUSCA = data_atual.strftime("%Y-%m-%d")
+            
+            logger.info(f"📅 [{dia_atual}/{total_dias}] Processando: {DATA_BUSCA}")
+            
+            # Buscar
+            publicacoes = buscar_publicacoes(DATA_BUSCA)
+            
+            if publicacoes:
+                # Processar
+                dados = processar_publicacoes(publicacoes)
+                # Salvar no SQLite
+                if dados:
+                    salvar_no_sqlite(dados)
+            else:
+                logger.debug(f"  📭 Sem publicações em {DATA_BUSCA}")
+            
+            # Próximo dia + delay para respeitar API
+            data_atual += timedelta(days=1)
+            time.sleep(1.2)
+        
+        # 2. Exportar Excel final
+        logger.info("📊 Gerando exportação final...")
+        arquivo = exportar_sqlite_para_excel()
+        
+        # 3. Enviar e-mail (opcional)
+        if arquivo:
+            total_db = consultar_total_registros()
+            enviar_email(arquivo, total_db)
+            logger.info(f"✅ Processo concluído! Total no banco: {total_db} registros.")
+        else:
+            logger.warning("⚠️ Nenhum dado para exportar.")
+        
+    except KeyboardInterrupt:
+        logger.warning("⚠️ Interrompido pelo usuário.")
+    except Exception as e:
+        logger.error(f"❌ Erro crítico: {e}", exc_info=True)
+    finally:
+        logger.info("🏁 DJEN encerrado.")
+
+if __name__ == "__main__":
+    main()

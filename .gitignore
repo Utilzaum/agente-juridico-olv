@@ -1,0 +1,33 @@
+# Ambiente virtual
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Variáveis sensíveis
+.env
+.env.save
+
+# Banco de dados
+*.db
+*.sqlite3
+
+# Logs
+logs/
+*.log
+nohup.out
+
+# Temporários
+temp/
+temp_email/
+exports/
+
+# Arquivos privados
+*.pdf
+*.xlsx
+backup_*.tar.gz
+backup_*.gpg
+
+PicoClaw/

@@ -1,0 +1,567 @@
+rapha-desktop
+    descrição: Computador desktop
+    produto: To be filled by O.E.M. (To be filled by O.E.M.)
+    fabricante: To be filled by O.E.M.
+    versão: To be filled by O.E.M.
+    serial: To be filled by O.E.M.
+    largura: 64 bits
+    capacidades: smbios-2.8 dmi-2.8 smp vsyscall32
+    configuração: administrator_password=disabled boot=normal chassis=desktop family=To be filled by O.E.M. frontpanel_password=disabled keyboard_password=disabled power-on_password=disabled sku=To be filled by O.E.M. uuid=03000200-0400-0500-0006-000700080009
+  *-core
+       descrição: Placa-mãe
+       produto: To be filled by O.E.M.
+       fabricante: To be filled by O.E.M.
+       ID físico: 0
+       versão: To be filled by O.E.M.
+       serial: To be filled by O.E.M.
+       slot: To be filled by O.E.M.
+     *-firmware
+          descrição: BIOS
+          fabricante: American Megatrends Inc.
+          ID físico: 0
+          versão: H81BN101
+          date: 02/26/2024
+          tamanho: 64KiB
+          capacidade: 8MiB
+          capacidades: pci upgrade shadowing cdboot bootselect socketedrom edd int13floppy1200 int13floppy720 int13floppy2880 int5printscreen int9keyboard int14serial int17printer acpi usb biosbootspecification uefi
+     *-cpu
+          descrição: CPU
+          produto: Intel(R) Core(TM) i5-4590 CPU @ 3.30GHz
+          fabricante: Intel Corp.
+          ID físico: 3e
+          informações do barramento: cpu@0
+          versão: 6.60.3
+          slot: SOCKET 0
+          tamanho: 3680MHz
+          capacidade: 3800MHz
+          largura: 64 bits
+          clock: 100MHz
+          capacidades: lm fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm cpuid_fault epb pti ssbd ibrs ibpb stibp tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts vnmi md_clear flush_l1d cpufreq
+          configuração: cores=4 enabledcores=4 microcode=40 threads=4
+        *-cache:0
+             descrição: L2 cache
+             ID físico: 3f
+             slot: CPU Internal L2
+             tamanho: 1MiB
+             capacidade: 1MiB
+             capacidades: internal write-back unified
+             configuração: level=2
+        *-cache:1
+             descrição: L1 cache
+             ID físico: 40
+             slot: CPU Internal L1
+             tamanho: 256KiB
+             capacidade: 256KiB
+             capacidades: internal write-back
+             configuração: level=1
+        *-cache:2
+             descrição: L3 cache
+             ID físico: 41
+             slot: CPU Internal L3
+             tamanho: 6MiB
+             capacidade: 6MiB
+             capacidades: internal write-back unified
+             configuração: level=3
+     *-memory
+          descrição: Memória do sistema
+          ID físico: 42
+          slot: Placa do sistema ou placa-mãe
+          tamanho: 16GiB
+        *-bank:0
+             descrição: DIMM DDR3 Síncrono 1600 MHz (0,6 ns)
+             fabricante: Kingston
+             ID físico: 0
+             serial: 678952E2
+             slot: ChannelA-DIMM0
+             tamanho: 8GiB
+             largura: 64 bits
+             clock: 1600MHz (0.6ns)
+        *-bank:1
+             descrição: DIMMProject-Id-Version: lshwReport-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>PO-Revision-Date: 2013-04-07 17:30+0000Last-Translator: Neliton Pereira Jr. <nelitonpjr@gmail.com>Language-Team: Brazilian Portuguese <pt_BR@li.org>MIME-Version: 1.0Content-Type: text/plain; charset=UTF-8Content-Transfer-Encoding: 8bitX-Launchpad-Export-Date: 2026-01-27 15:18+0000X-Generator: Launchpad (build 9fcfff1971229ac997140f06b41a902ac8ec69f4) [vazio]
+             produto: [Empty]
+             fabricante: [Empty]
+             ID físico: 1
+             serial: [Empty]
+             slot: ChannelA-DIMM1
+        *-bank:2
+             descrição: DIMM DDR3 Síncrono 1600 MHz (0,6 ns)
+             fabricante: Kingston
+             ID físico: 2
+             serial: 678952D2
+             slot: ChannelB-DIMM0
+             tamanho: 8GiB
+             largura: 64 bits
+             clock: 1600MHz (0.6ns)
+        *-bank:3
+             descrição: DIMMProject-Id-Version: lshwReport-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>PO-Revision-Date: 2013-04-07 17:30+0000Last-Translator: Neliton Pereira Jr. <nelitonpjr@gmail.com>Language-Team: Brazilian Portuguese <pt_BR@li.org>MIME-Version: 1.0Content-Type: text/plain; charset=UTF-8Content-Transfer-Encoding: 8bitX-Launchpad-Export-Date: 2026-01-27 15:18+0000X-Generator: Launchpad (build 9fcfff1971229ac997140f06b41a902ac8ec69f4) [vazio]
+             produto: [Empty]
+             fabricante: [Empty]
+             ID físico: 3
+             serial: [Empty]
+             slot: ChannelB-DIMM1
+     *-pci
+          descrição: Host bridge
+          produto: 4th Gen Core Processor DRAM Controller
+          fabricante: Intel Corporation
+          ID físico: 100
+          informações do barramento: pci@0000:00:00.0
+          versão: 06
+          largura: 32 bits
+          clock: 33MHz
+          configuração: driver=hsw_uncore
+          recursos: irq:0
+        *-pci:0
+             descrição: PCI bridge
+             produto: Xeon E3-1200 v3/4th Gen Core Processor PCI Express x16 Controller
+             fabricante: Intel Corporation
+             ID físico: 1
+             informações do barramento: pci@0000:00:01.0
+             versão: 06
+             largura: 32 bits
+             clock: 33MHz
+             capacidades: pci pm msi pciexpress normal_decode bus_master cap_list
+             configuração: driver=pcieport
+             recursos: irq:25 porta de E/S:e000(tamanho=4096) memória:f6000000-f70fffff porta de E/S:e0000000(tamanho=301989888)
+           *-display
+                descrição: VGA compatible controller
+                produto: GP107 [GeForce GTX 1050 Ti]
+                fabricante: NVIDIA Corporation
+                ID físico: 0
+                informações do barramento: pci@0000:01:00.0
+                nome lógico: /dev/fb0
+                versão: a1
+                largura: 64 bits
+                clock: 33MHz
+                capacidades: pm msi pciexpress vga_controller bus_master cap_list rom fb
+                configuração: depth=32 driver=nvidia latency=0 resolution=800,600
+                recursos: irq:37 memória:f6000000-f6ffffff memória:e0000000-efffffff memória:f0000000-f1ffffff porta de E/S:e000(tamanho=128) memória:c0000-dffff
+           *-multimedia
+                descrição: Audio device
+                produto: GP107GL High Definition Audio Controller
+                fabricante: NVIDIA Corporation
+                ID físico: 0.1
+                informações do barramento: pci@0000:01:00.1
+                nome lógico: card1
+                nome lógico: /dev/snd/controlC1
+                nome lógico: /dev/snd/hwC1D0
+                nome lógico: /dev/snd/pcmC1D3p
+                nome lógico: /dev/snd/pcmC1D7p
+                nome lógico: /dev/snd/pcmC1D8p
+                nome lógico: /dev/snd/pcmC1D9p
+                versão: a1
+                largura: 32 bits
+                clock: 33MHz
+                capacidades: pm msi pciexpress bus_master cap_list
+                configuração: driver=snd_hda_intel latency=0
+                recursos: irq:17 memória:f7080000-f7083fff
+              *-input:0
+                   produto: HDA NVidia HDMI/DP,pcm=7
+                   ID físico: 0
+                   nome lógico: input10
+                   nome lógico: /dev/input/event10
+              *-input:1
+                   produto: HDA NVidia HDMI/DP,pcm=8
+                   ID físico: 1
+                   nome lógico: input11
+                   nome lógico: /dev/input/event11
+              *-input:2
+                   produto: HDA NVidia HDMI/DP,pcm=9
+                   ID físico: 2
+                   nome lógico: input12
+                   nome lógico: /dev/input/event12
+              *-input:3
+                   produto: HDA NVidia HDMI/DP,pcm=3
+                   ID físico: 3
+                   nome lógico: input9
+                   nome lógico: /dev/input/event9
+        *-usb:0
+             descrição: USB controller
+             produto: 8 Series/C220 Series Chipset Family USB xHCI
+             fabricante: Intel Corporation
+             ID físico: 14
+             informações do barramento: pci@0000:00:14.0
+             versão: 05
+             largura: 64 bits
+             clock: 33MHz
+             capacidades: pm msi xhci bus_master cap_list
+             configuração: driver=xhci_hcd latency=0
+             recursos: irq:28 memória:f7200000-f720ffff
+           *-usbhost:0
+                produto: xHCI Host Controller
+                fabricante: Linux 6.17.0-19-generic xhci-hcd
+                ID físico: 0
+                informações do barramento: usb@1
+                nome lógico: usb1
+                versão: 6.17
+                capacidades: usb-2.00
+                configuração: driver=hub slots=12 speed=480Mbit/s
+              *-usb:0
+                   descrição: Dispositivo USB genérico
+                   produto: 802.11n
+                   fabricante: Realtek
+                   ID físico: 5
+                   informações do barramento: usb@1:5
+                   versão: 0.00
+                   serial: 00E027312E66
+                   capacidades: usb-2.00
+                   configuração: driver=rtl8xxxu maxpower=500mA speed=480Mbit/s
+              *-usb:1
+                   descrição: Mouse
+                   produto: Telink Wireless Receiver
+                   fabricante: Telink
+                   ID físico: 6
+                   informações do barramento: usb@1:6
+                   nome lógico: input2
+                   nome lógico: /dev/input/event2
+                   nome lógico: /dev/input/mouse0
+                   nome lógico: input3
+                   nome lógico: /dev/input/event3
+                   nome lógico: input4
+                   nome lógico: /dev/input/event4
+                   nome lógico: input5
+                   nome lógico: /dev/input/event5
+                   nome lógico: input5::capslock
+                   nome lógico: input5::compose
+                   nome lógico: input5::kana
+                   nome lógico: input5::numlock
+                   nome lógico: input5::scrolllock
+                   versão: 1.00
+                   capacidades: usb-1.10 usb
+                   configuração: driver=usbhid maxpower=50mA speed=12Mbit/s
+              *-usb:2
+                   descrição: Teclado
+                   produto: Usb KeyBoard Usb KeyBoard System Control
+                   fabricante: Usb KeyBoard
+                   ID físico: 9
+                   informações do barramento: usb@1:9
+                   nome lógico: input6
+                   nome lógico: /dev/input/event6
+                   nome lógico: input6::capslock
+                   nome lógico: input6::numlock
+                   nome lógico: input6::scrolllock
+                   nome lógico: input7
+                   nome lógico: /dev/input/event7
+                   nome lógico: input8
+                   nome lógico: /dev/input/event8
+                   versão: 1.10
+                   capacidades: usb-1.10 usb
+                   configuração: driver=usbhid maxpower=98mA speed=1Mbit/s
+           *-usbhost:1
+                produto: xHCI Host Controller
+                fabricante: Linux 6.17.0-19-generic xhci-hcd
+                ID físico: 1
+                informações do barramento: usb@3
+                nome lógico: usb3
+                versão: 6.17
+                capacidades: usb-3.00
+                configuração: driver=hub slots=6 speed=5000Mbit/s
+        *-communication
+             descrição: Communication controller
+             produto: 8 Series/C220 Series Chipset Family MEI Controller #1
+             fabricante: Intel Corporation
+             ID físico: 16
+             informações do barramento: pci@0000:00:16.0
+             versão: 04
+             largura: 64 bits
+             clock: 33MHz
+             capacidades: pm msi bus_master cap_list
+             configuração: driver=mei_me latency=0
+             recursos: irq:35 memória:f721a000-f721a00f
+        *-usb:1
+             descrição: USB controller
+             produto: 8 Series/C220 Series Chipset Family USB EHCI #2
+             fabricante: Intel Corporation
+             ID físico: 1a
+             informações do barramento: pci@0000:00:1a.0
+             versão: 05
+             largura: 32 bits
+             clock: 33MHz
+             capacidades: pm debug ehci bus_master cap_list
+             configuração: driver=ehci-pci latency=0
+             recursos: irq:16 memória:f7218000-f72183ff
+           *-usbhost
+                produto: EHCI Host Controller
+                fabricante: Linux 6.17.0-19-generic ehci_hcd
+                ID físico: 1
+                informações do barramento: usb@2
+                nome lógico: usb2
+                versão: 6.17
+                capacidades: usb-2.00
+                configuração: driver=hub slots=2 speed=480Mbit/s
+              *-usb
+                   descrição: hub USB
+                   produto: Integrated Rate Matching Hub
+                   fabricante: Intel Corp.
+                   ID físico: 1
+                   informações do barramento: usb@2:1
+                   versão: 0.05
+                   capacidades: usb-2.00
+                   configuração: driver=hub slots=6 speed=480Mbit/s
+        *-multimedia
+             descrição: Audio device
+             produto: 8 Series/C220 Series Chipset High Definition Audio Controller
+             fabricante: Intel Corporation
+             ID físico: 1b
+             informações do barramento: pci@0000:00:1b.0
+             nome lógico: card0
+             nome lógico: /dev/snd/controlC0
+             nome lógico: /dev/snd/hwC0D2
+             nome lógico: /dev/snd/pcmC0D0c
+             nome lógico: /dev/snd/pcmC0D0p
+             nome lógico: /dev/snd/pcmC0D2c
+             versão: 05
+             largura: 64 bits
+             clock: 33MHz
+             capacidades: pm msi pciexpress bus_master cap_list
+             configuração: driver=snd_hda_intel latency=0
+             recursos: irq:36 memória:f7210000-f7213fff
+           *-input:0
+                produto: HDA Intel PCH Rear Mic
+                ID físico: 0
+                nome lógico: input13
+                nome lógico: /dev/input/event13
+           *-input:1
+                produto: HDA Intel PCH Front Mic
+                ID físico: 1
+                nome lógico: input14
+                nome lógico: /dev/input/event14
+           *-input:2
+                produto: HDA Intel PCH Line
+                ID físico: 2
+                nome lógico: input15
+                nome lógico: /dev/input/event15
+           *-input:3
+                produto: HDA Intel PCH Line Out
+                ID físico: 3
+                nome lógico: input16
+                nome lógico: /dev/input/event16
+           *-input:4
+                produto: HDA Intel PCH Front Headphone
+                ID físico: 4
+                nome lógico: input17
+                nome lógico: /dev/input/event17
+        *-pci:1
+             descrição: PCI bridge
+             produto: 8 Series/C220 Series Chipset Family PCI Express Root Port #1
+             fabricante: Intel Corporation
+             ID físico: 1c
+             informações do barramento: pci@0000:00:1c.0
+             versão: d5
+             largura: 32 bits
+             clock: 33MHz
+             capacidades: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuração: driver=pcieport
+             recursos: irq:26 porta de E/S:2000(tamanho=4096) memória:f2200000-f23fffff porta de E/S:f2400000(tamanho=2097152)
+        *-pci:2
+             descrição: PCI bridge
+             produto: 8 Series/C220 Series Chipset Family PCI Express Root Port #5
+             fabricante: Intel Corporation
+             ID físico: 1c.4
+             informações do barramento: pci@0000:00:1c.4
+             versão: d5
+             largura: 32 bits
+             clock: 33MHz
+             capacidades: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuração: driver=pcieport
+             recursos: irq:27 porta de E/S:d000(tamanho=4096) memória:f7100000-f71fffff porta de E/S:f2100000(tamanho=1048576)
+           *-network
+                descrição: Ethernet interface
+                produto: RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller
+                fabricante: Realtek Semiconductor Co., Ltd.
+                ID físico: 0
+                informações do barramento: pci@0000:03:00.0
+                nome lógico: enp3s0
+                versão: 07
+                serial: 00:df:ec:f8:a5:74
+                capacidade: 1Gbit/s
+                largura: 64 bits
+                clock: 33MHz
+                capacidades: pm msi pciexpress msix vpd bus_master cap_list ethernet physical tp mii 10bt 10bt-fd 100bt 100bt-fd 1000bt 1000bt-fd autonegotiation
+                configuração: autonegotiation=on broadcast=yes driver=r8169 driverversion=6.17.0-19-generic firmware=rtl8168e-3_0.0.4 03/27/12 latency=0 link=no multicast=yes port=twisted pair
+                recursos: irq:16 porta de E/S:d000(tamanho=256) memória:f7100000-f7100fff memória:f2100000-f2103fff
+        *-usb:2
+             descrição: USB controller
+             produto: 8 Series/C220 Series Chipset Family USB EHCI #1
+             fabricante: Intel Corporation
+             ID físico: 1d
+             informações do barramento: pci@0000:00:1d.0
+             versão: 05
+             largura: 32 bits
+             clock: 33MHz
+             capacidades: pm debug ehci bus_master cap_list
+             configuração: driver=ehci-pci latency=0
+             recursos: irq:23 memória:f7217000-f72173ff
+           *-usbhost
+                produto: EHCI Host Controller
+                fabricante: Linux 6.17.0-19-generic ehci_hcd
+                ID físico: 1
+                informações do barramento: usb@4
+                nome lógico: usb4
+                versão: 6.17
+                capacidades: usb-2.00
+                configuração: driver=hub slots=2 speed=480Mbit/s
+              *-usb
+                   descrição: hub USB
+                   produto: Integrated Rate Matching Hub
+                   fabricante: Intel Corp.
+                   ID físico: 1
+                   informações do barramento: usb@4:1
+                   versão: 0.05
+                   capacidades: usb-2.00
+                   configuração: driver=hub slots=6 speed=480Mbit/s
+        *-isa
+             descrição: ISA bridge
+             produto: B85 Express LPC Controller
+             fabricante: Intel Corporation
+             ID físico: 1f
+             informações do barramento: pci@0000:00:1f.0
+             versão: 05
+             largura: 32 bits
+             clock: 33MHz
+             capacidades: isa bus_master cap_list
+             configuração: driver=lpc_ich latency=0
+             recursos: irq:0
+           *-pnp00:00
+                produto: PnP device PNP0c01
+                ID físico: 0
+                capacidades: pnp
+                configuração: driver=system
+           *-pnp00:01
+                produto: PnP device PNP0c02
+                ID físico: 1
+                capacidades: pnp
+                configuração: driver=system
+           *-pnp00:02
+                produto: PnP device PNP0b00
+                ID físico: 2
+                capacidades: pnp
+                configuração: driver=rtc_cmos
+           *-pnp00:03
+                produto: PnP device PNP0c02
+                ID físico: 3
+                capacidades: pnp
+                configuração: driver=system
+           *-pnp00:04
+                produto: PnP device PNP0c02
+                ID físico: 4
+                capacidades: pnp
+                configuração: driver=system
+        *-sata
+             descrição: SATA controller
+             produto: 8 Series/C220 Series Chipset Family 6-port SATA Controller 1 [AHCI mode]
+             fabricante: Intel Corporation
+             ID físico: 1f.2
+             informações do barramento: pci@0000:00:1f.2
+             nome lógico: scsi4
+             versão: 05
+             largura: 32 bits
+             clock: 66MHz
+             capacidades: sata msi pm ahci_1.0 bus_master cap_list emulated
+             configuração: driver=ahci latency=0
+             recursos: irq:33 porta de E/S:f070(tamanho=8) porta de E/S:f060(tamanho=4) porta de E/S:f050(tamanho=8) porta de E/S:f040(tamanho=4) porta de E/S:f020(tamanho=32) memória:f7216000-f72167ff
+           *-disk
+                descrição: ATA Disk
+                produto: SSD 480GB
+                ID físico: 0.0.0
+                informações do barramento: scsi@4:0.0.0
+                nome lógico: /dev/sda
+                versão: 09BA
+                serial: SN-on-the-lable
+                tamanho: 447GiB (480GB)
+                capacidades: gpt-1.00 partitioned partitioned:gpt
+                configuração: ansiversion=5 guid=6614036d-e514-4b3e-9167-ddeb438d3e73 logicalsectorsize=512 sectorsize=512
+              *-volume:0
+                   descrição: Windows FAT volume
+                   fabricante: MSDOS5.0
+                   ID físico: 1
+                   informações do barramento: scsi@4:0.0.0,1
+                   nome lógico: /dev/sda1
+                   nome lógico: /boot/efi
+                   versão: FAT32
+                   serial: 346f-a2b4
+                   tamanho: 95MiB
+                   capacidade: 99MiB
+                   capacidades: boot nomount fat initialized
+                   configuração: FATs=2 filesystem=fat mount.fstype=vfat mount.options=rw,relatime,fmask=0077,dmask=0077,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro name=EFI system partition state=mounted
+              *-volume:1
+                   descrição: reserved partition
+                   fabricante: Windows
+                   ID físico: 2
+                   informações do barramento: scsi@4:0.0.0,2
+                   nome lógico: /dev/sda2
+                   serial: 68898f2b-0e15-44ae-aced-bed9abb316be
+                   capacidade: 15MiB
+                   capacidades: nofs nomount
+                   configuração: name=Microsoft reserved partition
+              *-volume:2
+                   descrição: Windows NTFS volume
+                   fabricante: Windows
+                   ID físico: 3
+                   informações do barramento: scsi@4:0.0.0,3
+                   nome lógico: /dev/sda3
+                   versão: 3.1
+                   serial: 6ed2e0b7-1817-e245-acc3-fcb172b5e340
+                   tamanho: 347GiB
+                   capacidade: 347GiB
+                   capacidades: ntfs initialized
+                   configuração: clustersize=4096 created=2024-01-01 00:05:55 filesystem=ntfs name=Basic data partition state=clean
+              *-volume:3
+                   descrição: recovery environment
+                   fabricante: Windows
+                   ID físico: 4
+                   informações do barramento: scsi@4:0.0.0,4
+                   nome lógico: /dev/sda4
+                   serial: ea53149e-d196-4e16-8804-635b9afa065b
+                   capacidade: 555MiB
+                   capacidades: boot precious nomount
+              *-volume:4
+                   descrição: volume EXT4
+                   fabricante: Linux
+                   ID físico: 5
+                   informações do barramento: scsi@4:0.0.0,5
+                   nome lógico: /dev/sda5
+                   nome lógico: /
+                   versão: 1.0
+                   serial: 6298cce3-901e-482b-b360-7af7831a903e
+                   tamanho: 98GiB
+                   capacidades: journaled extended_attributes large_files huge_files dir_nlink recover 64bit extents ext4 ext2 initialized
+                   configuração: created=2026-02-28 16:01:00 filesystem=ext4 lastmountpoint=/ modified=2026-03-28 19:07:07 mount.fstype=ext4 mount.options=rw,relatime,errors=remount-ro mounted=2026-03-28 16:06:19 state=mounted
+        *-serial
+             descrição: SMBus
+             produto: 8 Series/C220 Series Chipset Family SMBus Controller
+             fabricante: Intel Corporation
+             ID físico: 1f.3
+             informações do barramento: pci@0000:00:1f.3
+             versão: 05
+             largura: 64 bits
+             clock: 33MHz
+             configuração: driver=i801_smbus latency=0
+             recursos: irq:18 memória:f7215000-f72150ff porta de E/S:f000(tamanho=32)
+  *-power DISPONÍVEL
+       descrição: To Be Filled By O.E.M.
+       produto: To Be Filled By O.E.M.
+       fabricante: To Be Filled By O.E.M.
+       ID físico: 1
+       versão: To Be Filled By O.E.M.
+       serial: To Be Filled By O.E.M.
+       capacidade: 32768mWh
+  *-input:0
+       produto: Power Button
+       ID físico: 2
+       nome lógico: input0
+       nome lógico: /dev/input/event0
+       capacidades: platform
+  *-input:1
+       produto: Power Button
+       ID físico: 3
+       nome lógico: input1
+       nome lógico: /dev/input/event1
+       capacidades: platform
+  *-network
+       descrição: Interface sem fio
+       ID físico: 4
+       informações do barramento: usb@1:5
+       nome lógico: wlx00e027312e66
+       serial: 00:e0:27:31:2e:66
+       capacidades: ethernet physical wireless
+       configuração: broadcast=yes driver=rtl8xxxu driverversion=6.17.0-19-generic firmware=N/A ip=192.168.1.90 link=yes multicast=yes wireless=IEEE 802.11
