@@ -1,287 +1,392 @@
 # ⚖️ Agente Jurídico Automatizado
 
-Sistema modular para automação de geração de documentos jurídicos a partir de OCR e interação via Telegram.
+Plataforma modular de automação jurídica desenvolvida em Python, com IA local via Ollama + Qwen, OCR local e integração via Telegram.
+
+O sistema foi projetado para auxiliar escritórios de advocacia na automação operacional de documentos, triagem de informações, organização de fluxos jurídicos e geração assistida de peças e documentos.
+
+A arquitetura prioriza:
+
+* privacidade de dados
+* operação local/offline
+* modularização
+* produtividade jurídica
+* controle interno de informações sensíveis
 
 ---
 
-## 📌 Visão Geral
+# 📌 Visão Geral
 
 O projeto permite transformar documentos enviados pelo cliente (PDF ou imagem) em documentos jurídicos estruturados, utilizando:
 
-* OCR (extração de texto)
-* IA para interpretação de dados
-* Templates jurídicos padronizados
+* OCR local
+* IA local para interpretação de dados
+* templates jurídicos padronizados
+* automação de fluxo via Telegram
 
-O sistema foi projetado para operação assistida, com validação humana antes da geração final.
+O sistema foi projetado para operação assistida, mantendo validação humana antes da geração final dos documentos.
 
 ---
 
-## 🚀 Funcionalidades
+# 🚀 Funcionalidades
 
 * Recebimento de documentos via Telegram
-* Extração de texto (OCR)
-* Interpretação de dados com IA (DeepSeek)
-* Complementação via regex
-* Interface interativa para correção de dados
-* Geração automática de:
+* OCR local com Tesseract
+* Interpretação jurídica via IA local (Qwen/Ollama)
+* Complementação e validação via regex
+* Interface interativa para conferência de dados
+* Geração automatizada de:
 
   * Procuração
   * Declaração de hipossuficiência
   * Contrato de honorários
+  * Documentos personalizados
+* Organização modular por agentes
+* Sistema preparado para expansão via orquestrador
 
 ---
 
-## 🧠 Arquitetura
+# 🧠 Arquitetura
 
-```
+```text
 agente_juridico/
 │
-├── core/                # Lógica principal dos bots
+├── core/                    # Núcleo principal
 │   ├── bot.py
 │   ├── bot_ocr.py
-│   ├── bot_conversa.py
+│   ├── parser_juridico.py
+│   ├── ia_juridica.py
+│   └── prazo.py
 │
-├── services/            # Serviços auxiliares
+├── orchestrator/            # Orquestração modular
+│   ├── dispatcher.py
+│   ├── router.py
+│   ├── api.py
+│   └── process_manager.py
+│
+├── services/                # Serviços auxiliares
 │   ├── templates/
-│   ├── parser_dados.py
+│   └── modelos jurídicos
 │
-├── data/                # (NÃO versionado) dados sensíveis
-│   ├── clientes/
-│   ├── documentos/
+├── infra/                   # Infraestrutura e suporte
+├── core_offline/            # Execução offline/local
+├── logs/                    # Logs
+├── temp/                    # Arquivos temporários
+├── exports/                 # Exportações
 │
-├── temp/                # arquivos temporários
-├── logs/                # logs de execução
+├── telegram_bot.py
+├── dashboard.py
+├── qwen_client.py
+├── utils.py
 │
-├── requirements.txt
 ├── start_main.sh
 ├── start_all.sh
+├── start_email.sh
+│
 └── .env (NÃO versionado)
 ```
 
 ---
 
-## ⚙️ Requisitos
+# 🧠 IA Local (Arquitetura Principal)
+
+O sistema opera prioritariamente com IA local utilizando:
+
+* Ollama
+* Qwen
+* Gemma (suporte opcional)
+
+A inferência principal ocorre localmente, sem envio automático de documentos para APIs externas.
+
+Modelo atualmente utilizado:
+
+```env
+OLLAMA_MODEL=qwen2.5:7b-instruct-q4_K_M
+```
+
+---
+
+# 🔐 Privacidade e LGPD
+
+O sistema foi projetado para operação prioritariamente local/offline.
+
+A arquitetura busca reduzir exposição de documentos sensíveis e aumentar o controle interno de dados jurídicos.
+
+Tecnologias locais utilizadas:
+
+* Ollama
+* Qwen
+* Tesseract OCR
+
+A integração com APIs externas (como DeepSeek) é opcional e utilizada apenas como fallback contingencial.
+
+Por padrão, a operação principal pode ocorrer integralmente local.
+
+Essa arquitetura prioriza:
+
+* sigilo profissional
+* privacidade documental
+* controle interno de dados
+* redução de transferência externa de informações
+* adequação operacional à LGPD
+
+⚠️ O uso adequado do sistema e a conformidade jurídica dependem da configuração e operação realizadas pelo usuário.
+
+---
+
+# ⚙️ Requisitos
 
 * Python 3.10+
-* Tesseract OCR (obrigatório)
+* Ollama instalado
+* Tesseract OCR
+* Linux recomendado
 
-### Instalação de dependências
+---
 
-```
+# 📦 Instalação
+
+## Dependências Python
+
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-## 🔍 OCR (Dependência Crítica)
+# 🔍 OCR (Tesseract)
 
-### Linux
+## Linux
 
-```
+```bash
 sudo apt install tesseract-ocr
 sudo apt install tesseract-ocr-por
 ```
 
-### Windows
+## Windows
 
 Download:
 https://github.com/UB-Mannheim/tesseract/wiki
 
-Configuração opcional no `.env`:
+Configuração opcional:
 
-```
+```env
 TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
 ```
 
 ---
 
-## 🔐 Configuração (.env)
+# 🧠 Instalação do Ollama
 
-Criar arquivo `.env` na raiz:
+Instalar:
+https://ollama.com
 
+Baixar modelo:
+
+```bash
+ollama pull qwen2.5:7b-instruct-q4_K_M
 ```
+
+Executar Ollama:
+
+```bash
+ollama serve
+```
+
+---
+
+# 🔐 Configuração (.env)
+
+Criar arquivo `.env` na raiz do projeto:
+
+```env
+# =========================
+# BOT PRINCIPAL
+# =========================
 TELEGRAM_BOT_TOKEN=SEU_TOKEN
-DEEPSEEK_API_KEY=SUA_API_KEY
+
+# =========================
+# IA LOCAL
+# =========================
+OLLAMA_URL=http://localhost:11434
+OLLAMA_MODEL=qwen2.5:7b-instruct-q4_K_M
+OLLAMA_TIMEOUT=180
+
+# =========================
+# OCR
+# =========================
 OCR_LANG=por+eng
+
+# =========================
+# FALLBACK EXTERNO (OPCIONAL)
+# =========================
+ALLOW_EXTERNAL_FALLBACK=false
+DEEPSEEK_API_KEY=SUA_API_KEY
 ```
 
 ⚠️ Nunca versionar este arquivo.
 
+⚠️ Nunca publicar tokens, APIs ou credenciais reais.
+
 ---
 
-## ▶️ Execução
+# ▶️ Execução
 
-```
+## Bot principal
+
+```bash
 python -m core.bot
 ```
 
-Ou via script:
+Ou:
 
-```
+```bash
 bash start_main.sh
 ```
 
 ---
 
-## 🔄 Fluxo de Uso
+# 📬 Bot de Publicações (DJEN / Email)
 
-1. Envio de documento (PDF ou imagem)
-2. OCR e extração de dados
-3. Apresentação para conferência
-4. Correção manual (se necessário)
-5. Comando `/kit`
-6. Geração automática dos documentos
+O sistema possui um serviço complementar para captura automatizada de publicações jurídicas.
+
+## Funcionalidades
+
+* Consulta automática de publicações
+* Processamento estruturado
+* Envio automatizado por e-mail
+* Organização de arquivos temporários
+
+## Componentes
+
+```text
+bot_email.py
+script_djen.py
+temp_email/
+```
+
+## Execução
+
+```bash
+python bot_email.py
+```
+
+Ou:
+
+```bash
+bash start_email.sh
+```
 
 ---
 
-## ⚠️ Limitações Conhecidas
+# 🔄 Fluxo de Uso
 
-Persistência indevida de dados em memória:
-
-* Dados podem ser reutilizados entre execuções
-* Campo "nome" pode apresentar inconsistência
-
-### Causa técnica
-
-* Cache por `chat_id`
-* Sobrescrita parcial de estados
-* Dependência combinada de OCR + IA
+1. Cliente envia documento
+2. OCR local extrai informações
+3. IA interpreta os dados
+4. Sistema apresenta conferência
+5. Usuário corrige dados (se necessário)
+6. Geração automatizada dos documentos
 
 ---
 
-## 🛠 Soluções Temporárias
+# ⚠️ Limitações Conhecidas
 
-* Corrigir manualmente os dados no fluxo
+* Dependência da qualidade do OCR
+* Possibilidade de inconsistência em documentos muito degradados
+* Persistência parcial de estados em memória
+* Necessidade de validação humana
+
+---
+
+# 🛠 Recomendações Operacionais
+
 * Utilizar `/limpar` antes de novo atendimento
-* Reenviar documento com dados completos
+* Validar dados antes da geração final
+* Não reutilizar documentos temporários
+* Manter backups criptografados
+* Separar dados sensíveis do código
 
 ---
 
-## 🔐 Segurança e LGPD
-
-Este sistema pode manipular dados pessoais sensíveis.
-
-Boas práticas obrigatórias:
-
-* Nunca subir `.env` para repositórios
-* Não versionar dados reais de clientes
-* Utilizar criptografia em backups
-* Separar dados e código
-
-Estrutura recomendada:
-
-```
-/data        → dados sensíveis (fora do Git)
-/core        → código
-/services    → lógica auxiliar
-```
-
----
-
-## 💾 Backup e Recuperação
+# 💾 Backup e Recuperação
 
 Estratégia recomendada:
 
-1. GitHub (privado) → versionamento do código
-2. Backup criptografado → armazenamento em nuvem
+1. GitHub privado → versionamento do código
+2. Backup criptografado → nuvem
 3. Backup offline → HD externo
 
-### Exemplo de backup seguro
+## Exemplo
 
-```
+```bash
 tar -czf backup.tar.gz .
 gpg -c backup.tar.gz
 ```
 
 ---
 
-## 🧪 Testes
+# 🧪 Testes
 
-Testar OCR diretamente:
+## OCR
 
-```
+```bash
 python -m core.bot_ocr arquivo.pdf
 ```
 
 ---
 
-## ❌ Erros Comuns
+# ❌ Erros Comuns
 
-* OCR não funciona
-  → verificar instalação do Tesseract
+## OCR não funciona
 
-* Bot não inicia
-  → verificar `.env`
+Verificar instalação do Tesseract.
 
-* Templates não encontrados
-  → conferir pasta `services/templates/`
+## Ollama não responde
+
+Verificar:
+
+```bash
+ollama serve
+```
+
+## Modelo não encontrado
+
+Executar:
+
+```bash
+ollama pull qwen2.5:7b-instruct-q4_K_M
+```
+
+## Bot não inicia
+
+Verificar `.env`.
 
 ---
 
-## 📦 Portabilidade
+# 📦 Portabilidade
 
 Para mover o sistema:
 
-1. Copiar o projeto (sem `.env`)
-2. Recriar `.env` no destino
-3. Instalar dependências
-4. Instalar Tesseract
-5. Executar
+1. Copiar projeto
+2. NÃO copiar `.env`
+3. Recriar `.env`
+4. Instalar dependências
+5. Instalar Ollama
+6. Instalar Tesseract
+7. Executar
 
 ---
 
-## 📊 Status do Projeto
+# 📊 Status do Projeto
 
 * Em desenvolvimento
+* Arquitetura modular em evolução
+* Orquestrador em expansão
 * Uso assistido recomendado
-* Arquitetura em evolução (orquestrador em fase inicial)
+* Foco em automação jurídica local
 
 ---
 
-## 👤 Autor
+# 👤 Autor
 
 Raphael Vitor Aragão de Oliveira
-
----
-
----
-
-## 📬 Bot de Publicações (DJEN / Email)
-
-O sistema possui um serviço complementar responsável pela captura e envio automatizado de publicações jurídicas.
-
-### Funcionalidades
-
-* Consulta automática de publicações (DJEN)
-* Processamento dos dados retornados
-* Envio estruturado por e-mail
-* Organização de arquivos temporários
-
-### Componentes
-
-```id="2e1r8v"
-bot_email.py        # Bot responsável pelo envio
-script_djen.py      # Consulta e processamento das publicações
-temp_email/         # Armazenamento temporário
-```
-
-### Execução
-
-```id="9z7l2x"
-python bot_email.py
-```
-
-Ou via script:
-
-```id="5y3k1a"
-bash start_email.sh
-```
-
-### Observações
-
-* Este serviço opera de forma independente do bot principal
-* Pode ser integrado ao futuro orquestrador
-* Requer configuração de credenciais de e-mail/API
-
----
 
