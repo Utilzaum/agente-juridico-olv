@@ -1,0 +1,31 @@
+/* reference:
+ font_1569503366.css
+*/
+
+*{
+  /* Tamanho e família de fontes; força estilo normal no corpo de texto*/
+  /*font: normal 10pt Arial, Helvetica, sans-serif;*/
+  font-family: Arial, Helvetica, sans-serif, Font Awesome 5 Free !important;
+  font-size: 10pt;
+}
+body{
+  margin: .8em;
+}
+p{
+  text-indent: 1.8em;
+}
+h1, h2, h3, h4, h5 {text-align:center; margin:0;}
+h1{font-size:16pt;}
+h2{font-size:14pt;}
+h3{font-size:12pt;}
+h4, h5 {/*Sem Negrito*/ font-weight: normal;}
+h4, h5, h6{/*Tamanho da fonte*/font-size:10pt}
+h4, h6 {
+  padding-top: .4em;
+  padding-bottom: .1em;
+}
+h5{
+  padding-top: -.2em;
+  padding-bottom: .1em;
+}
+h6 {text-align:left; font-weight: bold;margin-bottom:.8em; text-indent: 2em;}

@@ -1,0 +1,1172 @@
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
+./infra/repositorio.py-194-# =========================================================
+./infra/repositorio.py-195-def obter_cursor(chave: str = 'ultima_djen') -> Optional[date]:
+./infra/repositorio.py-196-    """Busca o valor do cursor pelo nome."""
+./infra/repositorio.py-197-    conn = conectar()
+./infra/repositorio.py-198-    cursor = conn.cursor()
+./infra/repositorio.py:199:    cursor.execute("SELECT valor FROM cursores WHERE chave = ?", (chave,))
+./infra/repositorio.py-200-    row = cursor.fetchone()
+./infra/repositorio.py-201-    conn.close()
+./infra/repositorio.py-202-    
+./infra/repositorio.py-203-    if row and row['valor']:
+./infra/repositorio.py-204-        return datetime.strptime(row['valor'], "%Y-%m-%d").date()
+./infra/repositorio.py-205-    return None
+./infra/repositorio.py-206-
+./infra/repositorio.py-207-def atualizar_cursor(chave: str, valor: date):
+./infra/repositorio.py-208-    """Atualiza ou insere o cursor."""
+./infra/repositorio.py-209-    conn = conectar()
+--
+./infra/repositorio.py-301-    """Lista todos os eventos pendentes ordenados por prazo."""
+./infra/repositorio.py-302-    conn = conectar()
+./infra/repositorio.py-303-    cursor = conn.cursor()
+./infra/repositorio.py-304-    
+./infra/repositorio.py-305-    query = """
+./infra/repositorio.py:306:        SELECT id, numero_processo, tipo_evento, data_publicacao,
+./infra/repositorio.py-307-               inicio_prazo, prazo_final, autor, reu, tribunal,
+./infra/repositorio.py-308-               orgao_julgador, descricao,
+./infra/repositorio.py-309-               urgencia, prazo_dias, tipo_prazo, ramo
+./infra/repositorio.py-310-        FROM eventos
+./infra/repositorio.py-311-        WHERE status = 'pendente' OR status IS NULL
+./infra/repositorio.py-312-        ORDER BY prazo_final ASC, id DESC
+./infra/repositorio.py-313-    """
+./infra/repositorio.py-314-    
+./infra/repositorio.py-315-    if limit and offset is not None:
+./infra/repositorio.py-316-        query += f" LIMIT {limit} OFFSET {offset}"
+--
+./infra/repositorio.py-324-
+./infra/repositorio.py-325-def buscar_evento_por_id(evento_id: int) -> Optional[Dict]:
+./infra/repositorio.py-326-    """Busca um evento específico pelo ID."""
+./infra/repositorio.py-327-    conn = conectar()
+./infra/repositorio.py-328-    cursor = conn.cursor()
+./infra/repositorio.py:329:    cursor.execute("SELECT * FROM eventos WHERE id = ?", (evento_id,))
+./infra/repositorio.py-330-    row = cursor.fetchone()
+./infra/repositorio.py-331-    conn.close()
+./infra/repositorio.py-332-    return dict(row) if row else None
+./infra/repositorio.py-333-
+./infra/repositorio.py-334-# =========================================================
+./infra/repositorio.py-335-# AÇÕES SOBRE EVENTOS
+./infra/repositorio.py-336-# =========================================================
+./infra/repositorio.py-337-def concluir_evento(evento_id: int, motivo: str = "Não informado", usuario: str = "Sistema") -> str:
+./infra/repositorio.py-338-    """Conclui um evento e registra na auditoria."""
+./infra/repositorio.py-339-    conn = conectar()
+./infra/repositorio.py-340-    try:
+./infra/repositorio.py-341-        cursor = conn.cursor()
+./infra/repositorio.py:342:        cursor.execute("SELECT status FROM eventos WHERE id = ?", (evento_id,))
+./infra/repositorio.py-343-        row = cursor.fetchone()
+./infra/repositorio.py-344-        if not row:
+./infra/repositorio.py-345-            return f"❌ Evento #{evento_id} não encontrado"
+./infra/repositorio.py-346-        
+./infra/repositorio.py-347-        status_anterior = row['status']
+./infra/repositorio.py-348-        
+./infra/repositorio.py-349-        cursor.execute(
+./infra/repositorio.py-350-            """UPDATE eventos
+./infra/repositorio.py-351-               SET status = 'concluido', data_conclusao = CURRENT_TIMESTAMP,
+./infra/repositorio.py-352-                   atualizado_em = CURRENT_TIMESTAMP
+--
+./infra/repositorio.py-377-def corrigir_prazo(evento_id: int, nova_data: date, motivo: str = "Correção manual", usuario: str = "Sistema") -> str:
+./infra/repositorio.py-378-    """Corrige o prazo final de um evento."""
+./infra/repositorio.py-379-    conn = conectar()
+./infra/repositorio.py-380-    try:
+./infra/repositorio.py-381-        cursor = conn.cursor()
+./infra/repositorio.py:382:        cursor.execute("SELECT prazo_final, status FROM eventos WHERE id = ?", (evento_id,))
+./infra/repositorio.py-383-        row = cursor.fetchone()
+./infra/repositorio.py-384-        if not row:
+./infra/repositorio.py-385-            return f"❌ Evento #{evento_id} não encontrado"
+./infra/repositorio.py-386-        
+./infra/repositorio.py-387-        prazo_antigo = row['prazo_final']
+./infra/repositorio.py-388-        
+./infra/repositorio.py-389-        cursor.execute(
+./infra/repositorio.py-390-            """UPDATE eventos
+./infra/repositorio.py-391-               SET prazo_final = ?, atualizado_em = CURRENT_TIMESTAMP
+./infra/repositorio.py-392-               WHERE id = ?""",
+--
+./infra/repositorio.py-417-def reabrir_evento(evento_id: int, motivo: str = "Reabertura manual", usuario: str = "Sistema") -> str:
+./infra/repositorio.py-418-    """Reabre um evento concluído."""
+./infra/repositorio.py-419-    conn = conectar()
+./infra/repositorio.py-420-    try:
+./infra/repositorio.py-421-        cursor = conn.cursor()
+./infra/repositorio.py:422:        cursor.execute("SELECT status FROM eventos WHERE id = ?", (evento_id,))
+./infra/repositorio.py-423-        row = cursor.fetchone()
+./infra/repositorio.py-424-        if not row:
+./infra/repositorio.py-425-            return f"❌ Evento #{evento_id} não encontrado"
+./infra/repositorio.py-426-        
+./infra/repositorio.py-427-        status_anterior = row['status']
+./infra/repositorio.py-428-        
+./infra/repositorio.py-429-        cursor.execute(
+./infra/repositorio.py-430-            """UPDATE eventos
+./infra/repositorio.py-431-               SET status = 'pendente', data_conclusao = NULL,
+./infra/repositorio.py-432-                   atualizado_em = CURRENT_TIMESTAMP
+--
+./infra/repositorio.py-462-    conn = conectar()
+./infra/repositorio.py-463-    cursor = conn.cursor()
+./infra/repositorio.py-464-    
+./infra/repositorio.py-465-    if evento_id:
+./infra/repositorio.py-466-        cursor.execute(
+./infra/repositorio.py:467:            """SELECT a.*, e.numero_processo, e.tipo_evento
+./infra/repositorio.py-468-               FROM auditoria_prazos a
+./infra/repositorio.py-469-               LEFT JOIN eventos e ON a.evento_id = e.id
+./infra/repositorio.py-470-               WHERE a.evento_id = ?
+./infra/repositorio.py-471-               ORDER BY a.data_hora DESC
+./infra/repositorio.py-472-               LIMIT ?""",
+./infra/repositorio.py-473-            (evento_id, limite)
+./infra/repositorio.py-474-        )
+./infra/repositorio.py-475-    else:
+./infra/repositorio.py-476-        cursor.execute(
+./infra/repositorio.py:477:            """SELECT a.*, e.numero_processo, e.tipo_evento
+./infra/repositorio.py-478-               FROM auditoria_prazos a
+./infra/repositorio.py-479-               LEFT JOIN eventos e ON a.evento_id = e.id
+./infra/repositorio.py-480-               ORDER BY a.data_hora DESC
+./infra/repositorio.py-481-               LIMIT ?""",
+./infra/repositorio.py-482-            (limite,)
+./infra/repositorio.py-483-        )
+./infra/repositorio.py-484-    
+./infra/repositorio.py-485-    resultados = [dict(row) for row in cursor.fetchall()]
+./infra/repositorio.py-486-    conn.close()
+./infra/repositorio.py-487-    return resultados
+--
+./infra/repositorio.py-489-def listar_concluidos(limite: int = 20) -> List[Dict]:
+./infra/repositorio.py-490-    """Lista eventos concluídos com dados de auditoria."""
+./infra/repositorio.py-491-    conn = conectar()
+./infra/repositorio.py-492-    cursor = conn.cursor()
+./infra/repositorio.py-493-    cursor.execute(
+./infra/repositorio.py:494:        """SELECT e.*, a.motivo as motivo_conclusao, a.data_hora as data_conclusao
+./infra/repositorio.py-495-           FROM eventos e
+./infra/repositorio.py-496-           LEFT JOIN auditoria_prazos a ON e.id = a.evento_id AND a.acao = 'CONCLUIDO'
+./infra/repositorio.py-497-           WHERE e.status = 'concluido'
+./infra/repositorio.py-498-           ORDER BY e.data_conclusao DESC
+./infra/repositorio.py-499-           LIMIT ?""",
+./infra/repositorio.py-500-        (limite,)
+./infra/repositorio.py-501-    )
+./infra/repositorio.py-502-    resultados = [dict(row) for row in cursor.fetchall()]
+./infra/repositorio.py-503-    conn.close()
+./infra/repositorio.py-504-    return resultados
+--
+./infra/repositorio.py-529-    """Retorna métricas das últimas 24 horas."""
+./infra/repositorio.py-530-    conn = conectar()
+./infra/repositorio.py-531-    conn.row_factory = sqlite3.Row
+./infra/repositorio.py-532-    cursor = conn.cursor()
+./infra/repositorio.py-533-    cursor.execute("""
+./infra/repositorio.py:534:        SELECT * FROM metricas_performance
+./infra/repositorio.py-535-        WHERE data_hora >= datetime('now', '-1 day')
+./infra/repositorio.py-536-        ORDER BY data_hora DESC
+./infra/repositorio.py-537-    """)
+./infra/repositorio.py-538-    metricas = [dict(row) for row in cursor.fetchall()]
+./infra/repositorio.py-539-    conn.close()
+./infra/repositorio.py-540-    return metricas
+./infra/repositorio.py-541-
+./infra/repositorio.py-542-def obter_resumo_performance() -> Dict:
+./infra/repositorio.py-543-    """Retorna resumo de performance geral."""
+./infra/repositorio.py-544-    conn = conectar()
+./infra/repositorio.py-545-    conn.row_factory = sqlite3.Row
+./infra/repositorio.py-546-    cursor = conn.cursor()
+./infra/repositorio.py-547-    cursor.execute("""
+./infra/repositorio.py:548:        SELECT
+./infra/repositorio.py-549-            COUNT(*) as total_operacoes,
+./infra/repositorio.py-550-            AVG(tempo_execucao) as tempo_medio,
+./infra/repositorio.py-551-            SUM(CASE WHEN sucesso = 1 THEN 1 ELSE 0 END) as sucessos,
+./infra/repositorio.py-552-            SUM(CASE WHEN sucesso = 0 THEN 1 ELSE 0 END) as erros,
+./infra/repositorio.py-553-            SUM(registros_processados) as total_registros
+./infra/repositorio.py-554-        FROM metricas_performance
+./infra/repositorio.py-555-        WHERE data_hora >= datetime('now', '-7 days')
+./infra/repositorio.py-556-    """)
+./infra/repositorio.py-557-    resumo = dict(cursor.fetchone())
+./infra/repositorio.py-558-    conn.close()
+--
+./infra/repositorio.py-580-    """Retorna logs recentes do sistema."""
+./infra/repositorio.py-581-    conn = conectar()
+./infra/repositorio.py-582-    conn.row_factory = sqlite3.Row
+./infra/repositorio.py-583-    cursor = conn.cursor()
+./infra/repositorio.py-584-    cursor.execute(
+./infra/repositorio.py:585:        "SELECT * FROM logs_sistema ORDER BY data_hora DESC LIMIT ?",
+./infra/repositorio.py-586-        (limite,)
+./infra/repositorio.py-587-    )
+./infra/repositorio.py-588-    logs = [dict(row) for row in cursor.fetchall()]
+./infra/repositorio.py-589-    conn.close()
+./infra/repositorio.py-590-    return logs
+./infra/repositorio.py-591-
+./infra/repositorio.py-592-def iniciar_sessao(modulo: str) -> int:
+./infra/repositorio.py-593-    """Inicia uma sessão de execução e retorna o ID."""
+./infra/repositorio.py-594-    conn = conectar()
+./infra/repositorio.py-595-    cursor = conn.cursor()
+--
+./infra/migrar_eventos.py-8-origem.row_factory = sqlite3.Row
+./infra/migrar_eventos.py-9-cur_origem = origem.cursor()
+./infra/migrar_eventos.py-10-cur_destino = destino.cursor()
+./infra/migrar_eventos.py-11-
+./infra/migrar_eventos.py-12-registros = cur_origem.execute("""
+./infra/migrar_eventos.py:13:SELECT *
+./infra/migrar_eventos.py-14-FROM eventos
+./infra/migrar_eventos.py-15-""").fetchall()
+./infra/migrar_eventos.py-16-
+./infra/migrar_eventos.py-17-print(f"Encontrados {len(registros)} eventos")
+./infra/migrar_eventos.py-18-
+./infra/migrar_eventos.py-19-for r in registros:
+./infra/migrar_eventos.py-20-
+./infra/migrar_eventos.py-21-    hash_evento = hashlib.sha256(
+./infra/migrar_eventos.py-22-        (
+./infra/migrar_eventos.py-23-            str(r["numero_processo"]) +
+--
+./infra/db.py-155-    Evita duplicação quando o DJEN busca no dia seguinte.
+./infra/db.py-156-    """
+./infra/db.py-157-    with conectar() as conn:
+./infra/db.py-158-        cursor = conn.cursor()
+./infra/db.py-159-        cursor.execute("""
+./infra/db.py:160:            SELECT 1 FROM eventos
+./infra/db.py-161-            WHERE numero_processo = ?
+./infra/db.py-162-              AND descricao = ?
+./infra/db.py-163-              AND prazo_final = ?
+./infra/db.py-164-              AND concluido = 0
+./infra/db.py-165-            LIMIT 1
+./infra/db.py-166-        """, (numero_processo, descricao, prazo_final))
+./infra/db.py-167-        return cursor.fetchone() is not None
+./infra/db.py-168-
+./infra/db.py-169-# =========================
+./infra/db.py-170-# ➕ INSERÇÃO DE EVENTOS
+--
+./infra/db.py-257-# =========================
+./infra/db.py-258-def listar_eventos_pendentes() -> List[sqlite3.Row]:
+./infra/db.py-259-    """Retorna todos os eventos pendentes ordenados por prazo."""
+./infra/db.py-260-    with conectar() as conn:
+./infra/db.py-261-        return conn.execute("""
+./infra/db.py:262:            SELECT * FROM eventos
+./infra/db.py-263-            WHERE status = 'pendente' AND concluido = 0
+./infra/db.py-264-            ORDER BY prazo_final ASC, urgencia DESC
+./infra/db.py-265-        """).fetchall()
+./infra/db.py-266-
+./infra/db.py-267-def listar_eventos_concluidos(limite: Optional[int] = None) -> List[sqlite3.Row]:
+./infra/db.py-268-    """
+./infra/db.py-269-    Retorna eventos concluídos para histórico.
+./infra/db.py-270-    
+./infra/db.py-271-    Args:
+./infra/db.py-272-        limite: Quantidade máxima de registros (None = todos)
+./infra/db.py-273-    """
+./infra/db.py-274-    query = """
+./infra/db.py:275:        SELECT * FROM eventos
+./infra/db.py-276-        WHERE status = 'concluido' OR concluido = 1
+./infra/db.py-277-        ORDER BY data_conclusao DESC
+./infra/db.py-278-    """
+./infra/db.py-279-    if limite:
+./infra/db.py-280-        query += f" LIMIT {limite}"
+./infra/db.py-281-    
+./infra/db.py-282-    with conectar() as conn:
+./infra/db.py-283-        return conn.execute(query).fetchall()
+./infra/db.py-284-
+./infra/db.py-285-def listar_processos() -> List[sqlite3.Row]:
+./infra/db.py-286-    """Retorna todos os processos ordenados por última movimentação."""
+./infra/db.py-287-    with conectar() as conn:
+./infra/db.py-288-        return conn.execute("""
+./infra/db.py:289:            SELECT * FROM processos
+./infra/db.py-290-            ORDER BY data_ultima_movimentacao DESC
+./infra/db.py-291-        """).fetchall()
+./infra/db.py-292-
+./infra/db.py-293-# =========================
+./infra/db.py-294-# 🔄 ATUALIZAÇÕES
+./infra/db.py-295-# =========================
+./infra/db.py-296-def atualizar_processo(numero: str, tribunal: Optional[str] = None, data: Optional[str] = None):
+./infra/db.py-297-    """
+./infra/db.py-298-    Atualiza ou cria processo com UPSERT.
+./infra/db.py-299-    
+--
+./infra/db.py-344-
+./infra/db.py-345-def buscar_evento_por_id(evento_id: int) -> Optional[sqlite3.Row]:
+./infra/db.py-346-    """Busca um evento específico pelo ID."""
+./infra/db.py-347-    with conectar() as conn:
+./infra/db.py-348-        return conn.execute(
+./infra/db.py:349:            "SELECT * FROM eventos WHERE id = ?",
+./infra/db.py-350-            (evento_id,)
+./infra/db.py-351-        ).fetchone()
+./infra/db.py-352-
+./infra/db.py-353-def contar_prazos_por_urgencia() -> List[sqlite3.Row]:
+./infra/db.py-354-    """Retorna contagem de prazos pendentes por nível de urgência."""
+./infra/db.py-355-    with conectar() as conn:
+./infra/db.py-356-        return conn.execute("""
+./infra/db.py:357:            SELECT urgencia, COUNT(*) as total
+./infra/db.py-358-            FROM eventos
+./infra/db.py-359-            WHERE status = 'pendente' AND concluido = 0
+./infra/db.py-360-            GROUP BY urgencia
+./infra/db.py-361-        """).fetchall()
+./infra/db.py-362-
+./infra/db.py-363-def estatisticas_gerais() -> Dict[str, int]:
+./infra/db.py-364-    """Retorna estatísticas gerais do sistema."""
+./infra/db.py-365-    with conectar() as conn:
+./infra/db.py-366-        cursor = conn.cursor()
+./infra/db.py-367-        
+./infra/db.py-368-        # Total de eventos
+./infra/db.py:369:        cursor.execute("SELECT COUNT(*) FROM eventos")
+./infra/db.py-370-        total_eventos = cursor.fetchone()[0]
+./infra/db.py-371-        
+./infra/db.py-372-        # Pendentes
+./infra/db.py:373:        cursor.execute("SELECT COUNT(*) FROM eventos WHERE concluido = 0")
+./infra/db.py-374-        pendentes = cursor.fetchone()[0]
+./infra/db.py-375-        
+./infra/db.py-376-        # Concluídos
+./infra/db.py:377:        cursor.execute("SELECT COUNT(*) FROM eventos WHERE concluido = 1")
+./infra/db.py-378-        concluidos = cursor.fetchone()[0]
+./infra/db.py-379-        
+./infra/db.py-380-        # Vencidos
+./infra/db.py-381-        cursor.execute("""
+./infra/db.py:382:            SELECT COUNT(*) FROM eventos
+./infra/db.py-383-            WHERE concluido = 0 AND prazo_final < date('now')
+./infra/db.py-384-        """)
+./infra/db.py-385-        vencidos = cursor.fetchone()[0]
+./infra/db.py-386-        
+./infra/db.py-387-        return {
+./infra/db.py-388-            "total_eventos": total_eventos,
+./infra/db.py-389-            "pendentes": pendentes,
+./infra/db.py-390-            "concluidos": concluidos,
+./infra/db.py-391-            "vencidos": vencidos,
+./infra/db.py:392:            "total_processos": cursor.execute("SELECT COUNT(*) FROM processos").fetchone()[0]
+./infra/db.py-393-        }
+--
+./ajustar_processos.py-16-""")
+./ajustar_processos.py-17-
+./ajustar_processos.py-18-# Popular tabela processos
+./ajustar_processos.py-19-cursor.execute("""
+./ajustar_processos.py-20-INSERT OR REPLACE INTO processos (processo, tribunal, data_ultima_movimentacao, total_movimentacoes)
+./ajustar_processos.py:21:SELECT 
+./ajustar_processos.py-22-    processo,
+./ajustar_processos.py-23-    MAX(tribunal),
+./ajustar_processos.py-24-    MAX(data_publicacao),
+./ajustar_processos.py-25-    COUNT(*)
+./ajustar_processos.py-26-FROM publicacoes
+./ajustar_processos.py-27-WHERE processo != 'N/D'
+./ajustar_processos.py-28-GROUP BY processo;
+./ajustar_processos.py-29-""")
+./ajustar_processos.py-30-
+./ajustar_processos.py-31-# Marcar processos encerrados
+./ajustar_processos.py-32-cursor.execute("""
+./ajustar_processos.py-33-UPDATE processos
+./ajustar_processos.py-34-SET encerrado = 1
+./ajustar_processos.py-35-WHERE processo IN (
+./ajustar_processos.py:36:    SELECT DISTINCT processo
+./ajustar_processos.py-37-    FROM publicacoes
+./ajustar_processos.py-38-    WHERE LOWER(conteudo) LIKE '%arquive-se%'
+./ajustar_processos.py-39-       OR LOWER(conteudo) LIKE '%dê-se baixa%'
+./ajustar_processos.py-40-);
+./ajustar_processos.py-41-""")
+./ajustar_processos.py-42-
+./ajustar_processos.py-43-conn.commit()
+./ajustar_processos.py-44-conn.close()
+./ajustar_processos.py-45-
+./ajustar_processos.py-46-print("✅ Processos organizados com sucesso!")
+--
+./bot_historico-140-
+./bot_historico-141-def exportar_sqlite_para_excel() -> Optional[str]:
+./bot_historico-142-    """Exporta dados do SQLite para Excel."""
+./bot_historico-143-    logger.info("📊 Exportando do SQLite para Excel...")
+./bot_historico-144-    conn = conectar_db()
+./bot_historico:145:    df = pd.read_sql_query("SELECT * FROM publicacoes ORDER BY data_publicacao DESC", conn)
+./bot_historico-146-    conn.close()
+./bot_historico-147-    
+./bot_historico-148-    if df.empty:
+./bot_historico-149-        return None
+./bot_historico-150-    
+./bot_historico-151-    colunas = [
+./bot_historico-152-        "processo", "tribunal", "orgao_julgador", "tipo_ato",
+./bot_historico-153-        "data_publicacao", "inicio_prazo", "audiencia",
+./bot_historico-154-        "autor", "reu", "conteudo"
+./bot_historico-155-    ]
+--
+./bot_historico-162-
+./bot_historico-163-def consultar_total_registros() -> int:
+./bot_historico-164-    """Retorna total de registros no banco."""
+./bot_historico-165-    conn = conectar_db()
+./bot_historico-166-    cursor = conn.cursor()
+./bot_historico:167:    cursor.execute("SELECT COUNT(*) FROM publicacoes")
+./bot_historico-168-    total = cursor.fetchone()[0]
+./bot_historico-169-    conn.close()
+./bot_historico-170-    return total
+./bot_historico-171-
+./bot_historico-172-# =========================
+./bot_historico-173-# FUNÇÕES AUXILIARES
+./bot_historico-174-# =========================
+./bot_historico-175-def proximo_dia_util(data: datetime) -> datetime:
+./bot_historico-176-    """Calcula próximo dia útil (D+1)."""
+./bot_historico-177-    data += timedelta(days=1)
+--
+./orchestrator/controladoria/service.py-48-    conn = get_conn()
+./orchestrator/controladoria/service.py-49-    cursor = conn.cursor()
+./orchestrator/controladoria/service.py-50-    
+./orchestrator/controladoria/service.py-51-    # ✅ CORREÇÃO: Colunas reais do schema atual
+./orchestrator/controladoria/service.py-52-    cursor.execute("""
+./orchestrator/controladoria/service.py:53:        SELECT
+./orchestrator/controladoria/service.py-54-            id,
+./orchestrator/controladoria/service.py-55-            numero_processo,
+./orchestrator/controladoria/service.py-56-            descricao,
+./orchestrator/controladoria/service.py-57-            tipo_evento,
+./orchestrator/controladoria/service.py-58-            prazo_final,
+./orchestrator/controladoria/service.py-59-            urgencia,
+./orchestrator/controladoria/service.py-60-            status,
+./orchestrator/controladoria/service.py-61-            resumo,
+./orchestrator/controladoria/service.py-62-            tribunal,
+./orchestrator/controladoria/service.py-63-            orgao_julgador,
+--
+./orchestrator/controladoria/service.py-126-    conn = get_conn()
+./orchestrator/controladoria/service.py-127-    cursor = conn.cursor()
+./orchestrator/controladoria/service.py-128-    
+./orchestrator/controladoria/service.py-129-    # ✅ CORREÇÃO: JOIN com tabela 'auditoria'
+./orchestrator/controladoria/service.py-130-    cursor.execute("""
+./orchestrator/controladoria/service.py:131:        SELECT
+./orchestrator/controladoria/service.py-132-            e.id,
+./orchestrator/controladoria/service.py-133-            e.numero_processo,
+./orchestrator/controladoria/service.py-134-            e.tipo_evento,
+./orchestrator/controladoria/service.py-135-            e.data_publicacao,
+./orchestrator/controladoria/service.py-136-            e.prazo_final,
+./orchestrator/controladoria/service.py-137-            e.autor,
+./orchestrator/controladoria/service.py-138-            e.tribunal,
+./orchestrator/controladoria/service.py-139-            e.orgao_julgador,
+./orchestrator/controladoria/service.py-140-            e.descricao,
+./orchestrator/controladoria/service.py-141-            a.motivo as motivo_conclusao,
+--
+./orchestrator/controladoria/service.py-162-    cursor = conn.cursor()
+./orchestrator/controladoria/service.py-163-    
+./orchestrator/controladoria/service.py-164-    try:
+./orchestrator/controladoria/service.py-165-        # Busca prazo atual para auditoria
+./orchestrator/controladoria/service.py-166-        cursor.execute(
+./orchestrator/controladoria/service.py:167:            "SELECT prazo_final FROM eventos WHERE id = ?",
+./orchestrator/controladoria/service.py-168-            (evento_id,)
+./orchestrator/controladoria/service.py-169-        )
+./orchestrator/controladoria/service.py-170-        row = cursor.fetchone()
+./orchestrator/controladoria/service.py-171-        
+./orchestrator/controladoria/service.py-172-        if not row:
+./orchestrator/controladoria/service.py-173-            return f"❌ Evento #{evento_id} não encontrado"
+./orchestrator/controladoria/service.py-174-        
+./orchestrator/controladoria/service.py-175-        prazo_antigo = row['prazo_final']
+./orchestrator/controladoria/service.py-176-        
+./orchestrator/controladoria/service.py-177-        # Atualiza prazo
+--
+./ajustar_processos-16-""")
+./ajustar_processos-17-
+./ajustar_processos-18-# Popular tabela processos
+./ajustar_processos-19-cursor.execute("""
+./ajustar_processos-20-INSERT OR REPLACE INTO processos (processo, tribunal, data_ultima_movimentacao, total_movimentacoes)
+./ajustar_processos:21:SELECT 
+./ajustar_processos-22-    processo,
+./ajustar_processos-23-    MAX(tribunal),
+./ajustar_processos-24-    MAX(data_publicacao),
+./ajustar_processos-25-    COUNT(*)
+./ajustar_processos-26-FROM publicacoes
+./ajustar_processos-27-WHERE processo != 'N/D'
+./ajustar_processos-28-GROUP BY processo;
+./ajustar_processos-29-""")
+./ajustar_processos-30-
+./ajustar_processos-31-# Marcar processos encerrados
+./ajustar_processos-32-cursor.execute("""
+./ajustar_processos-33-UPDATE processos
+./ajustar_processos-34-SET encerrado = 1
+./ajustar_processos-35-WHERE processo IN (
+./ajustar_processos:36:    SELECT DISTINCT processo
+./ajustar_processos-37-    FROM publicacoes
+./ajustar_processos-38-    WHERE LOWER(conteudo) LIKE '%arquive-se%'
+./ajustar_processos-39-       OR LOWER(conteudo) LIKE '%dê-se baixa%'
+./ajustar_processos-40-);
+./ajustar_processos-41-""")
+./ajustar_processos-42-
+./ajustar_processos-43-conn.commit()
+./ajustar_processos-44-conn.close()
+./ajustar_processos-45-
+./ajustar_processos-46-print("✅ Processos organizados com sucesso!")
+--
+./exportar_ativos.py-29-
+./exportar_ativos.py-30-def validar_tabela(conn):
+./exportar_ativos.py-31-    """Verifica se a tabela 'processos' existe."""
+./exportar_ativos.py-32-    cursor = conn.cursor()
+./exportar_ativos.py-33-    cursor.execute("""
+./exportar_ativos.py:34:        SELECT name FROM sqlite_master
+./exportar_ativos.py-35-        WHERE type='table' AND name='processos';
+./exportar_ativos.py-36-    """)
+./exportar_ativos.py-37-    row = cursor.fetchone()
+./exportar_ativos.py-38-    if not row:
+./exportar_ativos.py-39-        print("❌ Tabela 'processos' não encontrada no banco.")
+./exportar_ativos.py-40-        print("👉 Execute primeiro o script que cria/popula a tabela de processos.")
+./exportar_ativos.py-41-        sys.exit(1)
+./exportar_ativos.py-42-
+./exportar_ativos.py-43-
+./exportar_ativos.py-44-def carregar_dados(conn):
+./exportar_ativos.py-45-    """Carrega processos ativos com ordenação útil."""
+./exportar_ativos.py-46-    query = """
+./exportar_ativos.py:47:    SELECT
+./exportar_ativos.py-48-        processo,
+./exportar_ativos.py-49-        tribunal,
+./exportar_ativos.py-50-        data_ultima_movimentacao,
+./exportar_ativos.py-51-        total_movimentacoes,
+./exportar_ativos.py-52-        status
+./exportar_ativos.py-53-    FROM processos
+./exportar_ativos.py-54-    WHERE encerrado = 0
+./exportar_ativos.py-55-    ORDER BY
+./exportar_ativos.py-56-        -- tenta ordenar corretamente mesmo sendo texto DD/MM/AAAA
+./exportar_ativos.py-57-        CASE

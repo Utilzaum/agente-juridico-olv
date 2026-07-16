@@ -1,0 +1,299 @@
+{
+  "status": "success",
+  "message": "Sucesso",
+  "count": 4,
+  "items": [
+    {
+      "id": 654558677,
+      "data_disponibilizacao": "2026-06-30",
+      "siglaTribunal": "TJRJ",
+      "tipoComunicacao": "Intimação",
+      "nomeOrgao": "Comarca de Nilópolis- Cartório da 2ª Vara de Família, Inf. e da Juv. e do Idoso",
+      "idOrgao": 59999,
+      "texto": "Dê-se vista ao Ministério Público.",
+      "numero_processo": "00076664620178190036",
+      "meio": "D",
+      "link": null,
+      "tipoDocumento": "Despacho",
+      "nomeClasse": "ALIMENTOS - LEI ESPECIAL Nº 5.478/68",
+      "codigoClasse": "69",
+      "numeroComunicacao": 35424,
+      "ativo": true,
+      "hash": "lx8NKdwzZKqf4aOfPTKe7gnRbD1mrE",
+      "status": "P",
+      "motivo_cancelamento": null,
+      "data_cancelamento": null,
+      "datadisponibilizacao": "30/06/2026",
+      "meiocompleto": "Diário de Justiça Eletrônico Nacional",
+      "numeroprocessocommascara": "0007666-46.2017.8.19.0036",
+      "destinatarios": [
+        {
+          "nome": "PROCESSO ESTÁ EM SEGREDO DE JUSTIÇA - 1",
+          "polo": "A",
+          "comunicacao_id": 654558677
+        },
+        {
+          "nome": "PROCESSO ESTÁ EM SEGREDO DE JUSTIÇA - 2",
+          "polo": "P",
+          "comunicacao_id": 654558677
+        }
+      ],
+      "destinatarioadvogados": [
+        {
+          "id": 1207190227,
+          "comunicacao_id": 654558677,
+          "advogado_id": 1599739,
+          "created_at": "2026-06-29T00:23:49",
+          "updated_at": "2026-06-29T00:23:49",
+          "advogado": {
+            "id": 1599739,
+            "nome": "LUZEVIR LUAN RODRIGUES DA SILVA",
+            "numero_oab": "143513",
+            "uf_oab": "RJ"
+          }
+        },
+        {
+          "id": 1207190226,
+          "comunicacao_id": 654558677,
+          "advogado_id": 2783638,
+          "created_at": "2026-06-29T00:23:49",
+          "updated_at": "2026-06-29T00:23:49",
+          "advogado": {
+            "id": 2783638,
+            "nome": "RAPHAEL VITOR ARAGÃO DE OLIVEIRA",
+            "numero_oab": "176629",
+            "uf_oab": "RJ"
+          }
+        }
+      ]
+    },
+    {
+      "id": 654563256,
+      "data_disponibilizacao": "2026-06-30",
+      "siglaTribunal": "TJRJ",
+      "tipoComunicacao": "Intimação",
+      "nomeOrgao": "Comarca de Nilópolis- Cartório da 2ª Vara de Família, Inf. e da Juv. e do Idoso",
+      "idOrgao": 59999,
+      "texto": "Aos 23 de junho de 2026, às 14:20 horas, na Sala de Audiências deste Juízo, onde presentes se achavam o MM. Juíza de Direito, Dra. CAROLINA DUBOIS FAVA, a Ilma. Promotora de Justiça, Dr. EDSON GOES, realizou-se a audiência designada no presente feito. Em seguida, feito o pregão, presente a parte autora, acompanhada da DEFENSORIA PÚBLICA Dra. RENATA AFONSO GODINHO D'IPPOLITO, presente a parte ré, acompanhado de seu patrono Dr. RAPHAEL VITOR ARAGÃO DE OLIVEIRA OAB/RJ Nº. 176.629.        Proposta a conciliação, o acordo constante em id 178 foi reajustado em razão da atual situação de convivência do casal com seus filhos. Por ambos, foi esclarecido que Agatha Cunha da Silva Gouveia, atualmente com 16 anos de idade, reside na companhia do genitor, motivo pelo qual o acordo de pensão não irá inclui-la. Assim, o acordo de fl. 178 engloba tão somente os autores BERNARDO CUNHA DA SILVA GOUVEIA (diagnosticado com autismo) e GUILHERME CUNHA DA SILVA GOUVEIA nos seguintes termos: 1) Em caso de ausência de vínculo empregatício, os alimentos serão pagos pelo réu na proporção de 66% (sessenta e seis) do valor do salário mínimo federal, 37,4% (trinta e sete e quatro por cento) para o filho BERNARDO e 28,6% (vinte e oito e seis por cento) para o filho GUILHERME, a ser pago mediante depósito em conta corrente de titularidade da representante legal, até o dia dez de cada mês subsequente ao vencido; 2) Em caso de vínculo empregatício, o réu pensionará os autores com 30% (trinta por cento) de seus rendimentos brutos, 17% (dezessete por cento) para BERNARDO e 13% (treze por cento) para GUILHERME, deduzidos apenas os descontos fiscais obrigatórios, incidindo tal percentual sobre o 13º salário, férias, ou seja, sobre o valor bruto, bem como a retenção em valor equivalente ao FGTS, em caso de dispensa do mesmo, para suprir eventual inadimplência, sendo certo que o valor fixado neste item não poderá ser inferior ao estabelecido no item 1; 3) Os alimentos serão depositados na conta da genitora já informada na petição de fl. 179; 4) Além da cláusula das despesas médicas, mencionadas na petição de fl. 179, as partes incluem, nessa data, o rateio de 50% (cinquenta por cento) da matrícula, do material escolar e uniforme escolar no início do ano letivo, mediante apresentação de recibo; 5) Em relação à cláusula das vestimentas, o genitor irá se comprometer a arcar integralmente com tais gastos, em periodicidade semestral, com compras que correspondam a R$500,00 (quinhentos reais), já incluída a roupa de ambos os filhos. Por fim, as partes manifestaram o desejo de formalizar acordo também em relação à discussão do Processo nº0004125-29.2022.8.19.0036, no qual a genitora Ana Lúcia requeria alimentos para si própria, manifestando, nesse ato, sua desistência formal em relação ao pedido.        Pelas partes, foi dito que: pela homologação do acordo.        O Ministério Público opinou pela homologação do acordo.        Pelo MM. Dr. Juiz foi proferida a seguinte SENTENÇA: HOMOLOGO o acordo celebrado nesta oportunidade para que produza seus jurídicos e legais efeitos. Em consequência, tendo a homologação da transação efeito de sentença de mérito, JULGO EXTINTO o processo, na forma do artigo 487, III, alínea b do CPC. A presente sentença valerá como ofício ao empregador para desconto da pensão alimentícia em folha de pagamento, observada a conta da RL indicada. Translade-se cópia dessa sentença ao Processo nº0004125-29.2022.8.19.0036, também despachado nessa data, revogando-se eventual alimento provisório fixado em favor da genitora naqueles autos. Custas sobrestadas na forma do artigo 98, §3º do CPC, em face da gratuidade de Justiça, que ora defiro ao réu. Intimados os presentes. Publicada em audiência, as partes informaram que não pretendem recorrer. Transitada em julgado em audiência, dê-se baixa e arquive-se. Nada mais havendo, pelo MM Dr. Juiz foi determinado o encerramento da presente.            CAROLINA DUBOIS FAVA    JUÍZA DE DIREITO",
+      "numero_processo": "00041244420228190036",
+      "meio": "D",
+      "link": null,
+      "tipoDocumento": "Sentença em Audiência",
+      "nomeClasse": "ALIMENTOS - LEI ESPECIAL Nº 5.478/68",
+      "codigoClasse": "69",
+      "numeroComunicacao": 38742,
+      "ativo": true,
+      "hash": "JKg5dkqmRLlfEDXImTwgamdR1NarD3",
+      "status": "P",
+      "motivo_cancelamento": null,
+      "data_cancelamento": null,
+      "datadisponibilizacao": "30/06/2026",
+      "meiocompleto": "Diário de Justiça Eletrônico Nacional",
+      "numeroprocessocommascara": "0004124-44.2022.8.19.0036",
+      "destinatarios": [
+        {
+          "nome": "PROCESSO ESTÁ EM SEGREDO DE JUSTIÇA - 1",
+          "polo": "A",
+          "comunicacao_id": 654563256
+        },
+        {
+          "nome": "PROCESSO ESTÁ EM SEGREDO DE JUSTIÇA - 2",
+          "polo": "A",
+          "comunicacao_id": 654563256
+        },
+        {
+          "nome": "PROCESSO ESTÁ EM SEGREDO DE JUSTIÇA - 3",
+          "polo": "A",
+          "comunicacao_id": 654563256
+        },
+        {
+          "nome": "PROCESSO ESTÁ EM SEGREDO DE JUSTIÇA - 4",
+          "polo": "P",
+          "comunicacao_id": 654563256
+        }
+      ],
+      "destinatarioadvogados": [
+        {
+          "id": 1207201033,
+          "comunicacao_id": 654563256,
+          "advogado_id": 2783638,
+          "created_at": "2026-06-29T01:03:37",
+          "updated_at": "2026-06-29T01:03:37",
+          "advogado": {
+            "id": 2783638,
+            "nome": "RAPHAEL VITOR ARAGÃO DE OLIVEIRA",
+            "numero_oab": "176629",
+            "uf_oab": "RJ"
+          }
+        },
+        {
+          "id": 1207201032,
+          "comunicacao_id": 654563256,
+          "advogado_id": 2749808,
+          "created_at": "2026-06-29T01:03:37",
+          "updated_at": "2026-06-29T01:03:37",
+          "advogado": {
+            "id": 2749808,
+            "nome": "DEFENSOR PÚBLICO",
+            "numero_oab": "TJ000002",
+            "uf_oab": "RJ"
+          }
+        }
+      ]
+    },
+    {
+      "id": 654576939,
+      "data_disponibilizacao": "2026-06-30",
+      "siglaTribunal": "TJRJ",
+      "tipoComunicacao": "Intimação",
+      "nomeOrgao": "Comarca de Nilópolis- Cartório da 2ª Vara Cível",
+      "idOrgao": 61126,
+      "texto": "Anote-se a habilitação do advogado, c. petição pendente de juntada;   Decisão saneadora - id. 224;   Quesitos da ré e indicação de assistente- id. 244;   Nomeio em substituição o Dr. JORGE ANDRÉ RIBEIRO SOBRAL - CRO 54880, e-mail: jars1984@dr.com;   Intime-se o perito para informar se aceita o encargo, bem como para estipular seus honorários, que serão suportados pela parte autora, na forma do art. 95 do CPC, ressaltando a gratuidade de justiça deferida. Neste sentido, poderá o i. expert solicitar junto ao SEJUD/TJERJ o pagamento de ajuda de custo;   Com a manifestação do perito, sem nova conclusão, digam as partes;       Havendo impugnação, intime-se o perito para ciência e manifestação;      Por fim, voltem conclusos para decisão/homologação quanto aos honorários periciais e determinação do início dos trabalhos;   Intimem-se TODOS.",
+      "numero_processo": "00015998920228190036",
+      "meio": "D",
+      "link": null,
+      "tipoDocumento": "Despacho",
+      "nomeClasse": "LIQUIDAçãO PROVISóRIA DE SENTENçA PELO PROCEDIMENTO COMUM",
+      "codigoClasse": "12088",
+      "numeroComunicacao": 49087,
+      "ativo": true,
+      "hash": "wx71ANK4R2xfXnLfAT91laBZrzBL3W",
+      "status": "P",
+      "motivo_cancelamento": null,
+      "data_cancelamento": null,
+      "datadisponibilizacao": "30/06/2026",
+      "meiocompleto": "Diário de Justiça Eletrônico Nacional",
+      "numeroprocessocommascara": "0001599-89.2022.8.19.0036",
+      "destinatarios": [
+        {
+          "nome": "CENTRO ODONTOLOGICO SORRIA RIO II LTDA (SORRIA RIO)",
+          "polo": "P",
+          "comunicacao_id": 654576939
+        },
+        {
+          "nome": "FABIANA BARCELLOS DE SOUZA VIEIRA",
+          "polo": "A",
+          "comunicacao_id": 654576939
+        }
+      ],
+      "destinatarioadvogados": [
+        {
+          "id": 1207232995,
+          "comunicacao_id": 654576939,
+          "advogado_id": 2783638,
+          "created_at": "2026-06-29T03:01:33",
+          "updated_at": "2026-06-29T03:01:33",
+          "advogado": {
+            "id": 2783638,
+            "nome": "RAPHAEL VITOR ARAGÃO DE OLIVEIRA",
+            "numero_oab": "176629",
+            "uf_oab": "RJ"
+          }
+        },
+        {
+          "id": 1207232997,
+          "comunicacao_id": 654576939,
+          "advogado_id": 1372718,
+          "created_at": "2026-06-29T03:01:33",
+          "updated_at": "2026-06-29T03:01:33",
+          "advogado": {
+            "id": 1372718,
+            "nome": "LEONARDO HENRIQUE ALVES PEREIRA DA SILVA",
+            "numero_oab": "421599",
+            "uf_oab": "SP"
+          }
+        },
+        {
+          "id": 1207232996,
+          "comunicacao_id": 654576939,
+          "advogado_id": 2877767,
+          "created_at": "2026-06-29T03:01:33",
+          "updated_at": "2026-06-29T03:01:33",
+          "advogado": {
+            "id": 2877767,
+            "nome": "RUI SOARES JUNIOR",
+            "numero_oab": "209966",
+            "uf_oab": "RJ"
+          }
+        }
+      ]
+    },
+    {
+      "id": 654266817,
+      "data_disponibilizacao": "2026-06-29",
+      "siglaTribunal": "TJRJ",
+      "tipoComunicacao": "Intimação",
+      "nomeOrgao": "Comarca de Nova Iguaçu- Cartório do Juizado da Violência Doméstica",
+      "idOrgao": 52449,
+      "texto": "EM CUMPRIMENTO AO R. DESPACHO (FL. 334):  ... à Defesa Técnica, para apresentação das contrarrazões...      Despacho à folha 334:  Fls. 298 e 331 - Recebo o recurso interposto pelo Assistente de Acusação nos seus regulares efeitos. Venham as razões.    Após, independentemente de nova conclusão, ao MP e à Defesa Técnica, para apresentação das contrarrazões.      Ao final, remetam-se os autos ao Tribunal de Justiça com as homenagens do juízo. ...",
+      "numero_processo": "00214585120238190038",
+      "meio": "D",
+      "link": null,
+      "tipoDocumento": "Ato Ordinatório Praticado",
+      "nomeClasse": "AçãO PENAL - PROCEDIMENTO ORDINáRIO",
+      "codigoClasse": "283",
+      "numeroComunicacao": 28081,
+      "ativo": true,
+      "hash": "QJDEM7aXY8Qfk9NhrTVzl1qRoWe2dL",
+      "status": "P",
+      "motivo_cancelamento": null,
+      "data_cancelamento": null,
+      "datadisponibilizacao": "29/06/2026",
+      "meiocompleto": "Diário de Justiça Eletrônico Nacional",
+      "numeroprocessocommascara": "0021458-51.2023.8.19.0038",
+      "destinatarios": [
+        {
+          "comunicacao_id": 654266817,
+          "nome": "ANGELICA BOMFIM DE SANT ANNA",
+          "polo": "A"
+        },
+        {
+          "comunicacao_id": 654266817,
+          "nome": "RENEE PEREIRA DA SILVA",
+          "polo": "P"
+        }
+      ],
+      "destinatarioadvogados": [
+        {
+          "id": 1206657743,
+          "comunicacao_id": 654266817,
+          "advogado_id": 2877767,
+          "created_at": "2026-06-27T03:28:41",
+          "updated_at": "2026-06-27T03:28:41",
+          "advogado": {
+            "id": 2877767,
+            "nome": "RUI SOARES JUNIOR",
+            "numero_oab": "209966",
+            "uf_oab": "RJ"
+          }
+        },
+        {
+          "id": 1206657744,
+          "comunicacao_id": 654266817,
+          "advogado_id": 2783638,
+          "created_at": "2026-06-27T03:28:41",
+          "updated_at": "2026-06-27T03:28:41",
+          "advogado": {
+            "id": 2783638,
+            "nome": "RAPHAEL VITOR ARAGÃO DE OLIVEIRA",
+            "numero_oab": "176629",
+            "uf_oab": "RJ"
+          }
+        },
+        {
+          "id": 1206657745,
+          "comunicacao_id": 654266817,
+          "advogado_id": 3649964,
+          "created_at": "2026-06-27T03:28:41",
+          "updated_at": "2026-06-27T03:28:41",
+          "advogado": {
+            "id": 3649964,
+            "nome": "ANGÉLICA BOMFIM DE SANT ANNA OLIVEIRA",
+            "numero_oab": "252797",
+            "uf_oab": "RJ"
+          }
+        }
+      ]
+    }
+  ]
+}

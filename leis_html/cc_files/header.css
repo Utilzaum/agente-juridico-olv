@@ -1,0 +1,27 @@
+/*reference: header_1557999036.css*/
+header{
+  height: 110px;
+  color: #808000; /* Cor da fonte */
+  background: #fff url("http://www.planalto.gov.br/ccivil_03/img/brasao.png") 10em 1.5em no-repeat;
+  background-size: 82px 82px;
+  padding-top: 0em;
+  display: block;
+  margin:0;
+  text-align:center;
+  font-family: Arial, Helvetica, sans-serif;
+  }
+header h1 {
+  padding-top:1em;
+  padding-bottom:0em;
+  vertical-align: middle;
+  display: block;
+  }
+header h2, header h3 {
+  padding-top:0em;
+  vertical-align: middle;
+  display: block;
+  }
+h1, h2, h3 {padding:0; margin:0;}
+  header h1 {font-size:16pt;}
+  header h2 {font-size:14pt;}
+  header h3 {font-size:12pt;}

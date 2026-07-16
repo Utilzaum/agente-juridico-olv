@@ -1,0 +1,52 @@
+CREATE TABLE eventos (
+
+    id INTEGER PRIMARY KEY,
+
+    publicacao_id INTEGER,
+
+    hash_evento TEXT UNIQUE,
+
+    numero_processo TEXT,
+
+    tipo_evento TEXT,
+
+    descricao TEXT,
+
+    tribunal TEXT,
+    orgao_julgador TEXT,
+
+    autor TEXT,
+    reu TEXT,
+
+    data_publicacao TEXT,
+
+    inicio_prazo TEXT,
+    prazo_final TEXT,
+
+    prazo_dias INTEGER,
+
+    tipo_contagem TEXT,
+
+    urgencia TEXT,
+
+    status TEXT,
+
+    criado_em TIMESTAMP,
+    atualizado_em TIMESTAMP, hash_publicacao TEXT,
+
+    FOREIGN KEY(publicacao_id)
+        REFERENCES publicacoes_djen(id)
+);
+CREATE INDEX idx_evento_processo
+ON eventos(numero_processo);
+CREATE INDEX idx_evento_status
+ON eventos(status);
+CREATE INDEX idx_evento_prazo
+ON eventos(prazo_final);
+CREATE INDEX idx_evento_urgencia
+ON eventos(urgencia);
+CREATE INDEX idx_evento_hash
+ON eventos(hash_evento);
+CREATE INDEX idx_eventos_status ON eventos(status);
+CREATE INDEX idx_eventos_prazo ON eventos(prazo_final);
+CREATE INDEX idx_eventos_processo ON eventos(numero_processo);

@@ -1,6 +1,6 @@
 # qwen_client.py
 """
-Cliente para extração jurídica com Qwen 2.5:7b via Ollama local.
+Cliente para extração jurídica com Qwen via Ollama local.
 ✅ Timeout configurável + Validação de resposta + Cache
 ✅ Conformidade LGPD: processamento 100% offline
 """
@@ -14,9 +14,9 @@ logger = logging.getLogger(__name__)
 
 # Configurações
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL = "qwen2.5:7b"
-TIMEOUT = 10  # ⚠️ Timeout crítico para evitar travamento
-MAX_TOKENS = 512
+MODEL = "hf.co/LiquidAI/LFM2.5-1.2B-Thinking-GGUF:Q4_K_M"
+TIMEOUT = 15  # ⚠️ Timeout crítico para evitar travamento
+MAX_TOKENS = 256
 
 # Cache simples para evitar reprocessamento
 _CACHE: Dict[str, Dict] = {}

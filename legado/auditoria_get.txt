@@ -1,0 +1,184 @@
+./bot_ocr_conversacional.py:688:            filtro_fonte=filtro_metadado.get("fonte"),
+./dashboard.py:206:            st.write(row.get("tipo_evento", "N/D"))
+./script_djen.py:170:        items = dados.get("items") or dados.get("content") or dados.get("resultados") or []
+./script_djen.py:171:        total_count = dados.get("count", 0)
+./script_djen.py:198:    destinatarios = item.get("destinatarios", [])
+./script_djen.py:200:        nome = dest.get("nome", "")
+./script_djen.py:201:        polo = dest.get("polo", "")
+./script_djen.py:210:    tipo_doc = item.get("tipoDocumento", "")
+./script_djen.py:211:    nome_classe = item.get("nomeClasse", "")
+./script_djen.py:212:    texto = item.get("texto", "").upper()
+./script_djen.py:269:            data_str = item.get("dataDisponibilizacao") or item.get("data_disponibilizacao")
+./script_djen.py:283:                item.get("numeroprocessocommascara") or
+./script_djen.py:284:                item.get("numeroProcesso") or
+./script_djen.py:285:                item.get("numero_processo") or
+./script_djen.py:286:                item.get("npu") or "N/D"
+./script_djen.py:288:            tribunal = item.get("siglaTribunal") or "N/D"
+./script_djen.py:289:            orgao = item.get("nomeOrgao") or "N/D"
+./script_djen.py:290:            texto = item.get("texto") or item.get("conteudo") or ""
+./script_djen.py:311:                    prazo_dias, unidade = info_llm.get("dias", 15), info_llm.get("tipo", "uteis")
+./script_djen.py:312:                    ramo_llm = info_llm.get("ramo", "CPC")
+./script_djen.py:314:                    tipo_prazo = info_llm.get("tipo_prazo", "prazo_padrao")
+./prazo_engine.py:48:    prazo = info_llm.get("prazo_dias")
+./prazo_engine.py:49:    unidade = info_llm.get("unidade")
+./prazo_engine.py:50:    ramo = info_llm.get("ramo") or "CPC"  # ✅ Fallback explícito para ramo
+./indexar_leis_html.py:208:            "tamanho_janela": bloco.get("tamanho_janela", 5),
+./core/bot_peticoes.py:239:        "numero_processo": dados_llm.get("numero_processo") or dados_regex.get("numero_processo", ""),
+./core/bot_peticoes.py:240:        "autor": dados_llm.get("autor") or dados_regex.get("autor", ""),
+./core/bot_peticoes.py:241:        "reu": dados_llm.get("reu") or dados_regex.get("reu", ""),
+./core/bot_peticoes.py:242:        "tipo_acao": dados_llm.get("tipo_acao", "cumprimento"),
+./core/bot_peticoes.py:243:        "contexto": dados_llm.get("contexto", "cumprimento de determinação judicial"),
+./core/bot_peticoes.py:244:        "prazo": dados_llm.get("prazo", "")
+./core/bot_peticoes.py:557:            models = response.json().get("models", [])
+./core/bot.py:355:        content = response.json().get("response", "")
+./core/bot.py:358:        if dados.get("nome"):
+./core/bot.py:360:        if dados.get("cpf"):
+./core/bot.py:362:        if dados.get("email"):
+./core/bot.py:367:        if dados.get("nacionalidade"):
+./core/bot.py:411:        "nome": ud.get("nome", ""),
+./core/bot.py:412:        "nacionalidade": ud.get("nacionalidade", "brasileira"),
+./core/bot.py:413:        "estado_civil": ud.get("estado_civil", ""),
+./core/bot.py:414:        "profissao": ud.get("profissao", ""),
+./core/bot.py:415:        "rg": ud.get("rg", "NÃO INFORMADO"),
+./core/bot.py:416:        "orgao_expedidor": ud.get("orgao_expedidor", "NÃO INFORMADO"),
+./core/bot.py:417:        "cpf": formatar_cpf(ud.get("cpf", "")),
+./core/bot.py:418:        "data_nascimento": ud.get("data_nascimento", ""),
+./core/bot.py:419:        "endereco": ud.get("endereco", ""),
+./core/bot.py:420:        "email": ud.get("email", ""),
+./core/bot.py:422:        "area_juridica": ud.get("area_juridica", "Direito Civil")
+./core/bot.py:429:    nome_cliente = re.sub(r"[^\w\s]", "", contexto_kit(chat_id).get("nome", "CLIENTE")).strip().replace(" ", "_")
+./core/bot.py:443:    nome_cliente = re.sub(r"[^\w\s]", "", contexto_kit(chat_id).get("nome", "CLIENTE")).strip().replace(" ", "_")
+./core/bot.py:457:    nome_cliente = re.sub(r"[^\w\s]", "", contexto_kit(chat_id).get("nome", "CLIENTE")).strip().replace(" ", "_")
+./core/bot.py:532:    if tipo_doc.get("tipo") == "rg":
+./core/bot.py:554:    if ud.get("cpf"):
+./core/bot.py:557:    if ud.get("nacionalidade"):
+./core/bot.py:583:    is_rg = context.user_data.get("is_rg", False)
+./core/bot.py:616:        if not ud.get("email"):
+./core/bot.py:626:        if not ud.get("rg") or ud.get("rg") == "NÃO INFORMADO":
+./core/bot.py:636:        if not ud.get("area_juridica"):
+./core/bot.py:707:    if not ud.get("rg") or ud.get("rg") == "NÃO INFORMADO":
+./core/bot.py:717:    if not ud.get("area_juridica"):
+./core/bot.py:756:    if not ud.get("area_juridica"):
+./core/bot.py:787:    is_rg = context.user_data.get("is_rg", False)
+./core/bot.py:815:        if not ud.get("rg") or ud.get("rg") == "NÃO INFORMADO":
+./core/bot.py:825:        if not ud.get("area_juridica"):
+./core/ai/interpreter.py:22:        content = response.json().get("response", "{}")
+./core/ai/rg_reader.py:38:        content = response.json().get("response", "")
+./core/ai/document_classifier.py:29:        content = response.json().get("response", "{}")
+./qwen_client.py:37:    prazo = resultado.get("prazo_dias")
+./qwen_client.py:44:    unidade = resultado.get("unidade")
+./qwen_client.py:50:    ramo = resultado.get("ramo")
+./qwen_client.py:56:    aud = resultado.get("audiencia_data")
+./qwen_client.py:116:        raw = resp.json().get("response", "{}").strip()
+./qwen_client.py:162:        resp = requests.get("http://localhost:11434/api/tags", timeout=5)
+./infra/repositorio.py:237:                item_api.get("numeroprocessocommascara") or item_api.get("numeroProcesso"),
+./infra/repositorio.py:238:                item_api.get("siglaTribunal"),
+./infra/repositorio.py:239:                item_api.get("nomeOrgao"),
+./infra/repositorio.py:240:                item_api.get("tipoDocumento") or item_api.get("nomeClasse"),
+./infra/repositorio.py:241:                item_api.get("dataDisponibilizacao"),
+./infra/repositorio.py:242:                item_api.get("dataPublicacao"),
+./infra/repositorio.py:272:                dados.get("numero_processo"),
+./infra/repositorio.py:273:                dados.get("tipo_evento"),
+./infra/repositorio.py:274:                dados.get("data_publicacao"),
+./infra/repositorio.py:275:                dados.get("inicio_prazo"),
+./infra/repositorio.py:276:                dados.get("prazo_final"),
+./infra/repositorio.py:277:                dados.get("autor"),
+./infra/repositorio.py:278:                dados.get("reu"),
+./infra/repositorio.py:279:                dados.get("tribunal"),
+./infra/repositorio.py:280:                dados.get("orgao_julgador"),
+./infra/repositorio.py:281:                dados.get("descricao") or dados.get("determinacao_judicial"),
+./infra/repositorio.py:282:                dados.get("prazo_dias"),
+./infra/repositorio.py:283:                dados.get("tipo_prazo"),
+./infra/repositorio.py:284:                dados.get("ramo"),
+./infra/repositorio.py:285:                dados.get("urgencia", "normal"),
+./infra/repositorio.py:286:                dados.get("resumo"),
+./infra/repositorio.py:287:                dados.get("audiencia"),
+./infra/repositorio.py:288:                dados.get("hash_publicacao"),
+./infra/db.py:196:    prazo_final = padronizar_data(dados.get("prazo_final"))
+./infra/db.py:197:    data_publicacao = padronizar_data(dados.get("data_publicacao"))
+./infra/db.py:198:    inicio_prazo = padronizar_data(dados.get("inicio_prazo"))
+./infra/db.py:200:    numero_processo = dados.get("numero_processo")
+./infra/db.py:201:    descricao = (dados.get("determinacao_judicial") or dados.get("descricao") or "Intimação").strip()
+./infra/db.py:238:            dados.get("tipo_evento"),
+./infra/db.py:239:            dados.get("prazo_dias"),
+./infra/db.py:240:            dados.get("tipo_prazo"),
+./infra/db.py:244:            dados.get("autor"),
+./infra/db.py:245:            dados.get("reu"),
+./infra/db.py:246:            dados.get("tribunal"),
+./infra/db.py:247:            dados.get("orgao_julgador"),
+./infra/db.py:248:            dados.get("urgencia"),
+./infra/db.py:249:            dados.get("resumo"),
+./telegram_bot.py:412:                    prazo_str = e.get("prazo_final") or e.get("prazo")
+./telegram_bot.py:413:                    autor = e.get("autor", "")
+./telegram_bot.py:414:                    descricao = e.get("descricao") or e.get("tipo_evento", "")
+./telegram_bot.py:465:                    id_prazo = e.get("id")
+./telegram_bot.py:466:                    prazo_str = e.get("prazo_final") or e.get("prazo")
+./telegram_bot.py:467:                    autor = e.get("autor", "N/D")
+./telegram_bot.py:468:                    descricao = e.get("descricao") or e.get("tipo_evento", "N/D")
+./telegram_bot.py:469:                    processo = e.get("numero_processo", "")
+./telegram_bot.py:506:                    id_prazo = e.get("id")
+./telegram_bot.py:507:                    prazo_str = e.get("prazo_final") or e.get("prazo")
+./bot_historico:242:        items = dados.get("items", [])
+./bot_historico:267:            data_str = item.get("dataDisponibilizacao") or item.get("data_disponibilizacao")
+./bot_historico:277:            processo = (item.get("numeroProcesso") or item.get("numero_processo") or item.get("npu") or "N/D")
+./bot_historico:278:            tribunal = (item.get("siglaTribunal") or item.get("tribunal") or "N/D")
+./bot_historico:279:            conteudo = (item.get("texto") or item.get("conteudo") or "")
+./telegram_formatter/prazo.py:25:    autor = evento.get("autor") or ""
+./telegram_formatter/prazo.py:26:    tribunal = evento.get("tribunal") or "N/D"
+./telegram_formatter/prazo.py:27:    orgao = evento.get("orgao_julgador") or ""
+./telegram_formatter/prazo.py:28:    tipo = evento.get("tipo_evento") or evento.get("descricao") or "Sem descrição"
+./telegram_formatter/prazo.py:29:    processo = evento.get("numero_processo") or evento.get("processo") or "N/D"
+./telegram_formatter/prazo.py:30:    id_prazo = evento.get("id") or "?"
+./telegram_formatter/prazo.py:32:    pub = evento.get("data_publicacao") or "N/D"
+./telegram_formatter/prazo.py:33:    inicio = evento.get("inicio_prazo") or "N/D"
+./telegram_formatter/prazo.py:34:    final = evento.get("prazo_final") or "N/D"
+./telegram_formatter/auditoria.py:40:            id_prazo = e.get("id") or "N/D"
+./telegram_formatter/auditoria.py:41:            processo = e.get("processo") or e.get("numero_processo") or "N/D"
+./telegram_formatter/auditoria.py:42:            descricao = e.get("descricao") or e.get("tipo_evento") or "Sem descrição"
+./telegram_formatter/auditoria.py:43:            motivo = e.get("motivo_conclusao") or "Não informado"
+./telegram_formatter/auditoria.py:44:            data_conclusao = e.get("data_conclusao") or "N/D"
+./telegram_formatter/auditoria.py:45:            autor = e.get("autor") or ""
+./orchestrator/email/app.py:7:    data = payload.get("data")
+./orchestrator/api.py:38:@app.get("/status")
+./orchestrator/api.py:72:@app.get("/health")
+./orchestrator/api.py:80:@app.get("/")
+./orchestrator/executor/app.py:11:    comando = payload.get("data")
+./services/gerar_juntada.py:16:    dados_extraidos = extrair_dados(dados.get("texto", "")) if "texto" in dados else dados
+./services/gerar_juntada.py:21:        "numero_processo": dados_extraidos.get("processo", ""),
+./services/gerar_juntada.py:22:        "vara": dados_extraidos.get("comarca", ""),
+./services/gerar_juntada.py:23:        "autor": dados_extraidos.get("nome", ""),
+./services/gerar_juntada.py:24:        "reu": dados_extraidos.get("reu", ""),
+./services/gerar_juntada.py:26:        "finalidade": dados_extraidos.get("finalidade", "instrução processual"),
+./services/gerar_juntada.py:27:        "cidade": dados_extraidos.get("comarca", "Nilópolis"),
+./services/gerar_juntada.py:28:        "data": dados_extraidos.get("data", datetime.now().strftime("%d/%m/%Y")),
+./services/montador_prompt.py:4:    nome = dados.get("nome") or "NOME NÃO IDENTIFICADO"
+./services/montador_prompt.py:5:    cpf = dados.get("cpf") or "CPF NÃO INFORMADO"
+./services/montador_prompt.py:6:    rg = dados.get("rg") or "RG NÃO INFORMADO"
+./services/montador_prompt.py:7:    endereco = dados.get("endereco") or "ENDEREÇO NÃO INFORMADO"
+./services/montador_prompt.py:8:    email = dados.get("email") or "EMAIL NÃO INFORMADO"
+./services/gerar_contrato.py:34:        "nome": limpar(dados_extraidos.get("nome")),
+./services/gerar_contrato.py:35:        "nacionalidade": limpar(dados_extraidos.get("nacionalidade", "brasileiro")),
+./services/gerar_contrato.py:36:        "estado_civil": limpar(dados_extraidos.get("estado_civil")),
+./services/gerar_contrato.py:37:        "profissao": limpar(dados_extraidos.get("profissao")),
+./services/gerar_contrato.py:38:        "rg": limpar(dados_extraidos.get("rg")),
+./services/gerar_contrato.py:39:        "orgao_rg": limpar(dados_extraidos.get("orgao_rg", "SSP")),
+./services/gerar_contrato.py:40:        "cpf": limpar(dados_extraidos.get("cpf")),
+./services/gerar_contrato.py:41:        "endereco": limpar(dados_extraidos.get("endereco")),
+./services/gerar_contrato.py:42:        "email": limpar(dados_extraidos.get("email")),
+./services/gerar_contrato.py:43:        "area_juridica": limpar(dados_extraidos.get("area_juridica", "cível")),
+./services/gerar_contrato.py:44:        "data": limpar(dados_extraidos.get("data", datetime.now().strftime("%d/%m/%Y"))),
+./services/gerar_procuracao.py:26:        "nome": dados_extraidos.get("nome", ""),
+./services/gerar_procuracao.py:27:        "cpf": dados_extraidos.get("cpf", ""),
+./services/gerar_procuracao.py:28:        "endereco": dados_extraidos.get("endereco", ""),
+./services/gerar_procuracao.py:29:        "data": dados_extraidos.get("data", datetime.now().strftime("%d/%m/%Y")),
+./services/reranker.py:87:            if c.get("fonte") == filtro_fonte
+./services/gerar_hipossuficiencia.py:16:    dados_extraidos = extrair_dados(dados.get("texto", "")) if "texto" in dados else dados
+./services/gerar_hipossuficiencia.py:21:        "nome": dados_extraidos.get("nome", ""),
+./services/gerar_hipossuficiencia.py:22:        "nacionalidade": dados_extraidos.get("nacionalidade", ""),
+./services/gerar_hipossuficiencia.py:23:        "estado_civil": dados_extraidos.get("estado_civil", ""),
+./services/gerar_hipossuficiencia.py:24:        "profissao": dados_extraidos.get("profissao", ""),
+./services/gerar_hipossuficiencia.py:25:        "rg": dados_extraidos.get("rg", ""),
+./services/gerar_hipossuficiencia.py:26:        "cpf": dados_extraidos.get("cpf", ""),
+./services/gerar_hipossuficiencia.py:27:        "endereco": dados_extraidos.get("endereco", ""),
+./services/gerar_hipossuficiencia.py:28:        "email": dados_extraidos.get("email", ""),
+./services/gerar_hipossuficiencia.py:29:        "data": dados_extraidos.get("data", datetime.now().strftime("%d/%m/%Y")),
