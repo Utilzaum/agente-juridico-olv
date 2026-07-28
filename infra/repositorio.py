@@ -1,456 +1,455 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-REPOSITÓRIO CENTRAL - Camada única de acesso ao banco
-✅ Schema alinhado com controladoria.db (2026)
-✅ Usa 'descricao' (não 'determinacao_judicial')
-✅ Usa 'tipo_contagem' (não 'tipo_prazo')
-✅ Usa 'status' (não 'concluido')
-✅ Remove 'data_conclusao' (não existe no schema)
-✅ Paginação SQL via LIMIT/OFFSET
-✅ Funções completas para DJEN + Telegram
+Repositório Central — Camada Única de Persistência (v2.1)
+✅ Tudo que o telegram_bot.py usa  +  tudo que o script_djen.py precisa
+✅ Deduplicação por hash (publicacoes_djen + eventos) → fim dos prazos ressuscitados
+✅ Schema expandido de forma idempotente (não quebra banco existente)
+✅ PATCH v2.1: autor preservado (não sobrescrito ao concluir/corrigir/reabrir)
 """
-import sqlite3
 import json
 import hashlib
-from datetime import datetime, date
+import sqlite3
 from pathlib import Path
-from typing import Optional, Dict, List, Any, Tuple
-import logging
-
-logger = logging.getLogger(__name__)
+from datetime import date, datetime
+from dataclasses import dataclass
+from typing import Optional, List, Dict, Any, Tuple
 
 # =========================================================
-# CONFIGURAÇÃO
+# 📍 CONFIG
 # =========================================================
-DB_PATH = Path(__file__).parent / "controladoria.db"
+BASE_DIR = Path(__file__).resolve().parent.parent
+DB_PATH = BASE_DIR / "infra" / "controladoria.db"
 
-def conectar() -> sqlite3.Connection:
-    """Retorna conexão com row_factory habilitado."""
-    conn = sqlite3.connect(str(DB_PATH))
+def get_connection() -> sqlite3.Connection:
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
-    conn.execute("PRAGMA foreign_keys=ON")
+    conn.execute("PRAGMA foreign_keys = ON")
+    conn.execute("PRAGMA journal_mode = WAL")  # concorre bem com o bot lendo
     return conn
 
-def inicializar_db():
-    """Cria todas as tabelas se não existirem."""
-    conn = conectar()
-    cursor = conn.cursor()
-    
-    # Tabela de publicações cruas da API
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS publicacoes_djen (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            hash_api TEXT UNIQUE NOT NULL,
-            numero_processo TEXT,
-            tribunal TEXT,
-            orgao_julgador TEXT,
-            tipo_ato TEXT,
-            data_disponibilizacao TEXT,
-            data_publicacao TEXT,
-            json_original TEXT,
-            processado INTEGER DEFAULT 0,
-            criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    
-    # Tabela de eventos (prazos processados) - Schema real
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS eventos (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            numero_processo TEXT NOT NULL,
-            tipo_evento TEXT NOT NULL,
-            data_publicacao TEXT NOT NULL,
-            inicio_prazo TEXT NOT NULL,
-            prazo_final TEXT NOT NULL,
-            autor TEXT,
-            reu TEXT,
-            tribunal TEXT,
-            orgao_julgador TEXT,
-            descricao TEXT,
-            prazo_dias INTEGER,
-            tipo_contagem TEXT,
-            ramo TEXT,
-            urgencia TEXT DEFAULT 'normal',
-            resumo TEXT,
-            audiencia TEXT,
-            status TEXT DEFAULT 'pendente',
-            hash_publicacao TEXT,
-            criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            atualizado_em TIMESTAMP
-        )
-    """)
-    
-    # Tabela de auditoria
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS auditoria_prazos (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            evento_id INTEGER NOT NULL,
-            acao TEXT NOT NULL,
-            motivo TEXT,
-            usuario TEXT DEFAULT 'Sistema',
-            data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            observacao TEXT,
-            FOREIGN KEY (evento_id) REFERENCES eventos(id)
-        )
-    """)
-    
-    # Tabela de cursores
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS cursores (
-            chave TEXT PRIMARY KEY,
-            valor TEXT,
-            atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-    
-    # Tabela de histórico de status
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS historico_status (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            evento_id INTEGER NOT NULL,
-            status_anterior TEXT,
-            status_novo TEXT NOT NULL,
-            motivo TEXT,
-            usuario TEXT DEFAULT 'Sistema',
-            data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (evento_id) REFERENCES eventos(id)
-        )
-    """)
-    
-    # Índices
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_eventos_status ON eventos(status)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_eventos_prazo ON eventos(prazo_final)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_eventos_processo ON eventos(numero_processo)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_publicacoes_hash ON publicacoes_djen(hash_api)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_auditoria_evento ON auditoria_prazos(evento_id)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_historico_evento ON historico_status(evento_id)")
-    
-    conn.commit()
-    conn.close()
-    logger.info("✅ Banco de dados inicializado")
+# =========================================================
+# 📋 MODELOS
+# =========================================================
+@dataclass
+class Publicacao:
+    hash_api: str
+    numero_processo: str
+    tribunal: str
+    orgao_julgador: str
+    tipo_ato: str
+    data_disponibilizacao: str
+    data_publicacao: str
+    json_original: str
+    id: Optional[int] = None
+    processado: int = 0
+    criado_em: Optional[str] = None
+
+@dataclass
+class Evento:
+    numero_processo: str
+    tipo_evento: str
+    data_publicacao: str
+    inicio_prazo: str
+    prazo_final: str
+    descricao: str
+    id: Optional[int] = None
+    status: str = "pendente"
+    autor: str = ""
+    hash_publicacao: Optional[str] = None
+
+@dataclass
+class PipelineExecucao:
+    inicio: str
+    fim: Optional[str] = None
+    status: str = "em_execucao"
+    publicacoes: int = 0
+    duplicatas: int = 0
+    eventos: int = 0
+    falhas: int = 0
+    cursor_final: Optional[str] = None
+    tempo_ms: int = 0
+    id: Optional[int] = None
 
 # =========================================================
-# HASH DA PUBLICAÇÃO (Deduplicação)
+# 🔐 HASH (deduplicação)
 # =========================================================
-def calcular_hash_api(item_api: Dict) -> str:
-    """Calcula hash SHA256 do item cru da API."""
-    conteudo = json.dumps(item_api, sort_keys=True, ensure_ascii=False)
-    return hashlib.sha256(conteudo.encode()).hexdigest()
+def calcular_hash_api(item: dict) -> str:
+    """Hash SHA256 do item cru da API (ordem de chaves normalizada)."""
+    conteudo = json.dumps(item, sort_keys=True, ensure_ascii=False)
+    return hashlib.sha256(conteudo.encode("utf-8")).hexdigest()
 
 # =========================================================
-# CURSORES
+# 💾 ESCRITA — DJEN (camada única)
 # =========================================================
-def obter_cursor(chave: str = 'ultima_djen') -> Optional[date]:
-    """Busca o valor do cursor pelo nome."""
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute("SELECT valor FROM cursores WHERE chave = ?", (chave,))
-    row = cursor.fetchone()
-    conn.close()
-    
-    if row and row['valor']:
-        return datetime.strptime(row['valor'], "%Y-%m-%d").date()
-    return None
-
-def atualizar_cursor(chave: str, valor: date):
-    """Atualiza ou insere o cursor."""
-    conn = conectar()
-    conn.execute(
-        """INSERT OR REPLACE INTO cursores (chave, valor, atualizado_em)
-           VALUES (?, ?, CURRENT_TIMESTAMP)""",
-        (chave, valor.strftime("%Y-%m-%d"))
-    )
-    conn.commit()
-    conn.close()
-    logger.info(f"💾 Cursor '{chave}' atualizado para {valor.strftime('%d/%m/%Y')}")
-
-# =========================================================
-# PUBLICAÇÕES DJEN
-# =========================================================
-def salvar_publicacao(item_api: Dict) -> Tuple[bool, str]:
-    """Salva a publicação crua da API."""
-    hash_api = calcular_hash_api(item_api)
-    conn = conectar()
+def salvar_publicacao(item: dict) -> Tuple[str, Optional[int]]:
+    """
+    Salva a publicação CRUA antes da IA.
+    Retorna (status, id) com status ∈ {'ok', 'duplicata', 'erro'}.
+    """
+    hash_api = calcular_hash_api(item)
+    conn = get_connection()
     try:
-        conn.execute(
+        cur = conn.execute(
             """INSERT INTO publicacoes_djen
-               (hash_api, numero_processo, tribunal, orgao_julgador,
-                tipo_ato, data_disponibilizacao, data_publicacao, json_original)
+               (hash_api, numero_processo, tribunal, orgao_julgador, tipo_ato,
+                data_disponibilizacao, data_publicacao, json_original)
                VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
             (
                 hash_api,
-                item_api.get("numeroprocessocommascara") or item_api.get("numeroProcesso"),
-                item_api.get("siglaTribunal"),
-                item_api.get("nomeOrgao"),
-                item_api.get("tipoDocumento") or item_api.get("nomeClasse"),
-                item_api.get("dataDisponibilizacao"),
-                item_api.get("dataPublicacao"),
-                json.dumps(item_api, ensure_ascii=False)
-            )
+                item.get("numeroprocessocommascara") or item.get("numeroProcesso") or "",
+                item.get("siglaTribunal") or "",
+                item.get("nomeOrgao") or "",
+                item.get("tipoDocumento") or "",
+                item.get("dataDisponibilizacao") or "",
+                item.get("dataPublicacao") or "",
+                json.dumps(item, ensure_ascii=False),
+            ),
         )
         conn.commit()
-        return True, "ok"
+        return "ok", cur.lastrowid
     except sqlite3.IntegrityError:
-        return False, "duplicata"
+        return "duplicata", None
     except Exception as e:
         conn.rollback()
-        return False, str(e)
+        return "erro", None
+    finally:
+        conn.close()
+
+# Colunas ricas da tabela eventos (na ordem do INSERT)
+_COLUNAS_EVENTO = [
+    "numero_processo", "tipo_evento", "data_publicacao", "inicio_prazo",
+    "prazo_final", "descricao", "status", "autor", "hash_publicacao",
+    "reu", "tribunal", "orgao_julgador", "prazo_dias", "tipo_contagem",
+    "ramo", "urgencia", "resumo", "audiencia",
+]
+
+def salvar_evento(registro: dict) -> Tuple[str, Optional[int]]:
+    """
+    Salva o evento processado. Dedup em 2ª camada por hash_publicacao.
+    Retorna (status, id) com status ∈ {'criado', 'duplicata', 'erro'}.
+    """
+    hash_pub = registro.get("hash_publicacao")
+    conn = get_connection()
+    try:
+        # 2ª camada de dedup: se o evento (mesmo hash) já existe, não recria
+        if hash_pub:
+            row = conn.execute(
+                "SELECT id FROM eventos WHERE hash_publicacao = ?", (hash_pub,)
+            ).fetchone()
+            if row:
+                return "duplicata", row["id"]
+
+        valores = [registro.get(c, "") for c in _COLUNAS_EVENTO]
+        # status padrão pendente se não informado
+        idx_status = _COLUNAS_EVENTO.index("status")
+        if not valores[idx_status]:
+            valores[idx_status] = "pendente"
+
+        placeholders = ", ".join(["?"] * len(_COLUNAS_EVENTO))
+        cols = ", ".join(_COLUNAS_EVENTO)
+        cur = conn.execute(
+            f"INSERT INTO eventos ({cols}) VALUES ({placeholders})", valores
+        )
+        conn.commit()
+        return "criado", cur.lastrowid
+    except Exception as e:
+        conn.rollback()
+        return "erro", None
+    finally:
+        conn.close()
+
+def registrar_execucao(dados: dict) -> None:
+    """Registra uma execução do pipeline (auditoria do DJEN)."""
+    conn = get_connection()
+    try:
+        conn.execute(
+            """INSERT INTO pipeline_execucao
+               (inicio, fim, status, publicacoes, duplicatas, eventos, falhas, cursor_final, tempo_ms)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            (
+                dados.get("inicio"), dados.get("fim"), dados.get("status", "concluido"),
+                int(dados.get("publicacoes", 0)), int(dados.get("duplicatas", 0)),
+                int(dados.get("eventos", 0)), int(dados.get("falhas", 0)),
+                dados.get("cursor_final"), int(dados.get("tempo_ms", 0)),
+            ),
+        )
+        conn.commit()
+    except Exception:
+        conn.rollback()
     finally:
         conn.close()
 
 # =========================================================
-# EVENTOS
+# 🔎 CONSULTAS — EVENTOS (usadas pelo bot)
 # =========================================================
-def salvar_evento(dados: Dict) -> Optional[int]:
-    """Salva um evento processado no banco."""
-    conn = conectar()
+def _evento_row_to_dict(r) -> Dict[str, Any]:
+    return {
+        "id": r["id"],
+        "numero_processo": r["numero_processo"],
+        "tipo_evento": r["tipo_evento"],
+        "data_publicacao": r["data_publicacao"],
+        "inicio_prazo": r["inicio_prazo"],
+        "prazo_final": r["prazo_final"],
+        "prazo": r["prazo_final"],
+        "descricao": r["descricao"],
+        "status": r["status"],
+        "autor": r["autor"] or "N/D",
+    }
+
+def buscar_eventos_pendentes(limit: int = 100, offset: int = 0) -> List[Dict[str, Any]]:
+    conn = get_connection()
     try:
-        cursor = conn.cursor()
-        cursor.execute(
-            """INSERT INTO eventos
-               (numero_processo, tipo_evento, data_publicacao, inicio_prazo,
-                prazo_final, autor, reu, tribunal, orgao_julgador,
-                descricao, prazo_dias, tipo_contagem, ramo,
-                urgencia, resumo, audiencia, hash_publicacao, status)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pendente')""",
-            (
-                dados.get("numero_processo"),
-                dados.get("tipo_evento"),
-                dados.get("data_publicacao"),
-                dados.get("inicio_prazo"),
-                dados.get("prazo_final"),
-                dados.get("autor"),
-                dados.get("reu"),
-                dados.get("tribunal"),
-                dados.get("orgao_julgador"),
-                dados.get("descricao"),
-                dados.get("prazo_dias"),
-                dados.get("tipo_contagem"),
-                dados.get("ramo"),
-                dados.get("urgencia", "normal"),
-                dados.get("resumo"),
-                dados.get("audiencia"),
-                dados.get("hash_publicacao"),
-            )
+        cur = conn.execute(
+            """SELECT id, numero_processo, tipo_evento, data_publicacao,
+                      inicio_prazo, prazo_final, descricao, status, autor
+               FROM eventos WHERE status = 'pendente'
+               ORDER BY prazo_final ASC, id ASC LIMIT ? OFFSET ?""",
+            (limit, offset),
         )
+        return [_evento_row_to_dict(r) for r in cur.fetchall()]
+    finally:
+        conn.close()
+
+def buscar_evento_por_id(evento_id: int) -> Optional[Dict[str, Any]]:
+    conn = get_connection()
+    try:
+        cur = conn.execute(
+            """SELECT id, numero_processo, tipo_evento, data_publicacao,
+                      inicio_prazo, prazo_final, descricao, status, autor
+               FROM eventos WHERE id = ?""",
+            (evento_id,),
+        )
+        r = cur.fetchone()
+        return _evento_row_to_dict(r) if r else None
+    finally:
+        conn.close()
+
+# =========================================================
+# ⚡ AÇÕES — EVENTOS (usadas pelo bot)
+# =========================================================
+def _auditar(conn, evento_id: int, acao: str, motivo: str, usuario: str) -> None:
+    conn.execute(
+        "INSERT INTO auditoria (evento_id, acao, motivo, usuario, data_hora) VALUES (?,?,?,?,?)",
+        (evento_id, acao, motivo, usuario, datetime.now().isoformat()),
+    )
+
+def concluir_evento(evento_id: int, motivo: str, usuario: str) -> str:
+    """Conclui evento preservando o autor (cliente). O operador vai pra auditoria."""
+    conn = get_connection()
+    try:
+        ev = buscar_evento_por_id(evento_id)
+        if not ev:
+            return f"❌ Evento #{evento_id} não encontrado"
+        # ✅ PATCH: não sobrescreve autor (nome do cliente)
+        conn.execute("UPDATE eventos SET status='concluido' WHERE id=?", (evento_id,))
+        _auditar(conn, evento_id, "CONCLUIDO", motivo, usuario)
         conn.commit()
-        return cursor.lastrowid
+        return f"✅ Evento #{evento_id} concluído com sucesso!"
     except Exception as e:
         conn.rollback()
-        logger.error(f"❌ Erro ao salvar evento: {e}")
+        return f"❌ Erro ao concluir evento: {e}"
+    finally:
+        conn.close()
+
+def corrigir_prazo(evento_id: int, nova_data: date, motivo: str, usuario: str) -> str:
+    """Corrige prazo preservando o autor (cliente). O operador vai pra auditoria."""
+    conn = get_connection()
+    try:
+        ev = buscar_evento_por_id(evento_id)
+        if not ev:
+            return f"❌ Evento #{evento_id} não encontrado"
+        # ✅ PATCH: não sobrescreve autor (nome do cliente)
+        conn.execute("UPDATE eventos SET prazo_final=? WHERE id=?",
+                     (nova_data.isoformat(), evento_id))
+        _auditar(conn, evento_id, "CORRIGIDO", motivo, usuario)
+        conn.commit()
+        return f"✅ Prazo do evento #{evento_id} corrigido para {nova_data.strftime('%d/%m/%Y')}"
+    except Exception as e:
+        conn.rollback()
+        return f"❌ Erro ao corrigir prazo: {e}"
+    finally:
+        conn.close()
+
+def reabrir_evento(evento_id: int, motivo: str, usuario: str) -> str:
+    """Reabre evento preservando o autor (cliente). O operador vai pra auditoria."""
+    conn = get_connection()
+    try:
+        ev = buscar_evento_por_id(evento_id)
+        if not ev:
+            return f"❌ Evento #{evento_id} não encontrado"
+        if ev["status"] != "concluido":
+            return f"⚠️ Evento #{evento_id} já está pendente"
+        # ✅ PATCH: não sobrescreve autor (nome do cliente)
+        conn.execute("UPDATE eventos SET status='pendente' WHERE id=?", (evento_id,))
+        _auditar(conn, evento_id, "REABERTO", motivo, usuario)
+        conn.commit()
+        return f"✅ Evento #{evento_id} reaberto com sucesso!"
+    except Exception as e:
+        conn.rollback()
+        return f"❌ Erro ao reabrir evento: {e}"
+    finally:
+        conn.close()
+
+# =========================================================
+# 📊 RELATÓRIOS
+# =========================================================
+def listar_concluidos(data_inicio: Optional[date] = None,
+                      data_fim: Optional[date] = None) -> List[Dict[str, Any]]:
+    conn = get_connection()
+    try:
+        q = "SELECT id, numero_processo, tipo_evento, prazo_final, descricao, autor FROM eventos WHERE status='concluido'"
+        p: List[Any] = []
+        if data_inicio:
+            q += " AND DATE(prazo_final) >= ?"; p.append(data_inicio.isoformat())
+        if data_fim:
+            q += " AND DATE(prazo_final) <= ?"; p.append(data_fim.isoformat())
+        q += " ORDER BY prazo_final DESC"
+        return [{
+            "id": r["id"], "numero_processo": r["numero_processo"], "tipo_evento": r["tipo_evento"],
+            "prazo_final": r["prazo_final"], "descricao": r["descricao"], "autor": r["autor"] or "N/D",
+        } for r in conn.execute(q, p).fetchall()]
+    finally:
+        conn.close()
+
+def listar_auditoria(evento_id: Optional[int] = None, limite: int = 50) -> List[Dict[str, Any]]:
+    conn = get_connection()
+    try:
+        q = """SELECT a.id, a.evento_id, a.acao, a.motivo, a.usuario, a.data_hora, e.numero_processo
+               FROM auditoria a LEFT JOIN eventos e ON a.evento_id = e.id"""
+        p: List[Any] = []
+        if evento_id:
+            q += " WHERE a.evento_id = ?"; p.append(evento_id)
+        q += " ORDER BY a.data_hora DESC LIMIT ?"; p.append(limite)
+        return [{
+            "id": r["id"], "evento_id": r["evento_id"], "acao": r["acao"], "motivo": r["motivo"],
+            "usuario": r["usuario"], "data_hora": r["data_hora"],
+            "numero_processo": r["numero_processo"] or "N/D",
+        } for r in conn.execute(q, p).fetchall()]
+    finally:
+        conn.close()
+
+# =========================================================
+# 📍 CURSORES
+# =========================================================
+def obter_cursor(nome_cursor: str) -> Optional[date]:
+    conn = get_connection()
+    try:
+        r = conn.execute("SELECT valor FROM cursores WHERE nome=?", (nome_cursor,)).fetchone()
+        if r and r["valor"]:
+            return date.fromisoformat(str(r["valor"])[:10])
         return None
     finally:
         conn.close()
 
-def buscar_eventos_pendentes(limit: int = None, offset: int = None) -> List[Dict]:
-    """Lista todos os eventos pendentes ordenados por prazo."""
-    conn = conectar()
-    cursor = conn.cursor()
-    
-    query = """
-        SELECT id, numero_processo, tipo_evento, descricao, data_publicacao,
-               inicio_prazo, prazo_final, autor, reu, tribunal,
-               orgao_julgador, urgencia, prazo_dias, tipo_contagem, status
-        FROM eventos
-        WHERE status = 'pendente' OR status IS NULL
-        ORDER BY prazo_final ASC, id DESC
-    """
-    
-    if limit and offset is not None:
-        query += f" LIMIT {limit} OFFSET {offset}"
-    elif limit:
-        query += f" LIMIT {limit}"
-    
-    cursor.execute(query)
-    eventos = [dict(row) for row in cursor.fetchall()]
-    conn.close()
-    return eventos
-
-def buscar_evento_por_id(evento_id: int) -> Optional[Dict]:
-    """Busca um evento específico pelo ID."""
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM eventos WHERE id = ?", (evento_id,))
-    row = cursor.fetchone()
-    conn.close()
-    return dict(row) if row else None
-
-# =========================================================
-# AÇÕES SOBRE EVENTOS
-# =========================================================
-def concluir_evento(evento_id: int, motivo: str = "Não informado", usuario: str = "Sistema") -> str:
-    """Conclui um evento e registra na auditoria."""
-    conn = conectar()
+def atualizar_cursor(nome_cursor: str, valor: date) -> None:
+    conn = get_connection()
     try:
-        cursor = conn.cursor()
-        cursor.execute("SELECT status FROM eventos WHERE id = ?", (evento_id,))
-        row = cursor.fetchone()
-        if not row:
-            return f"❌ Evento #{evento_id} não encontrado"
-        
-        status_anterior = row['status']
-        
-        cursor.execute(
-            """UPDATE eventos
-               SET status = 'concluido', atualizado_em = CURRENT_TIMESTAMP
-               WHERE id = ?""",
-            (evento_id,)
+        conn.execute(
+            """INSERT INTO cursores (nome, valor, atualizado_em) VALUES (?, ?, ?)
+               ON CONFLICT(nome) DO UPDATE SET valor=excluded.valor, atualizado_em=excluded.atualizado_em""",
+            (nome_cursor, valor.isoformat(), datetime.now().isoformat()),
         )
-        
-        cursor.execute(
-            """INSERT INTO auditoria_prazos (evento_id, acao, motivo, usuario)
-               VALUES (?, 'CONCLUIDO', ?, ?)""",
-            (evento_id, motivo, usuario)
-        )
-        
-        cursor.execute(
-            """INSERT INTO historico_status (evento_id, status_anterior, status_novo, motivo, usuario)
-               VALUES (?, ?, 'CONCLUIDO', ?, ?)""",
-            (evento_id, status_anterior, motivo, usuario)
-        )
-        
         conn.commit()
-        return f"✅ Evento #{evento_id} concluído com sucesso."
-    except Exception as e:
-        conn.rollback()
-        raise e
-    finally:
-        conn.close()
-
-def corrigir_prazo(evento_id: int, nova_data: date, motivo: str = "Correção manual", usuario: str = "Sistema") -> str:
-    """Corrige o prazo final de um evento."""
-    conn = conectar()
-    try:
-        cursor = conn.cursor()
-        cursor.execute("SELECT prazo_final, status FROM eventos WHERE id = ?", (evento_id,))
-        row = cursor.fetchone()
-        if not row:
-            return f"❌ Evento #{evento_id} não encontrado"
-        
-        prazo_antigo = row['prazo_final']
-        
-        cursor.execute(
-            """UPDATE eventos
-               SET prazo_final = ?, atualizado_em = CURRENT_TIMESTAMP
-               WHERE id = ?""",
-            (nova_data.strftime("%Y-%m-%d"), evento_id)
-        )
-        
-        cursor.execute(
-            """INSERT INTO auditoria_prazos (evento_id, acao, motivo, usuario, observacao)
-               VALUES (?, 'CORRIGIDO', ?, ?, ?)""",
-            (evento_id, f"Prazo alterado de {prazo_antigo} para {nova_data.strftime('%Y-%m-%d')}",
-             usuario, f"Prazo anterior: {prazo_antigo}")
-        )
-        
-        cursor.execute(
-            """INSERT INTO historico_status (evento_id, status_anterior, status_novo, motivo, usuario)
-               VALUES (?, 'CORRIGIDO', 'CORRIGIDO', ?, ?)""",
-            (evento_id, motivo, usuario)
-        )
-        
-        conn.commit()
-        return f"✅ Prazo #{evento_id} corrigido para {nova_data.strftime('%d/%m/%Y')}"
-    except Exception as e:
-        conn.rollback()
-        raise e
-    finally:
-        conn.close()
-
-def reabrir_evento(evento_id: int, motivo: str = "Reabertura manual", usuario: str = "Sistema") -> str:
-    """Reabre um evento concluído."""
-    conn = conectar()
-    try:
-        cursor = conn.cursor()
-        cursor.execute("SELECT status FROM eventos WHERE id = ?", (evento_id,))
-        row = cursor.fetchone()
-        if not row:
-            return f"❌ Evento #{evento_id} não encontrado"
-        
-        status_anterior = row['status']
-        
-        cursor.execute(
-            """UPDATE eventos
-               SET status = 'pendente', atualizado_em = CURRENT_TIMESTAMP
-               WHERE id = ?""",
-            (evento_id,)
-        )
-        
-        cursor.execute(
-            """INSERT INTO auditoria_prazos (evento_id, acao, motivo, usuario)
-               VALUES (?, 'REABERTO', ?, ?)""",
-            (evento_id, motivo, usuario)
-        )
-        
-        cursor.execute(
-            """INSERT INTO historico_status (evento_id, status_anterior, status_novo, motivo, usuario)
-               VALUES (?, ?, 'REABERTO', ?, ?)""",
-            (evento_id, status_anterior, motivo, usuario)
-        )
-        
-        conn.commit()
-        return f"✅ Evento #{evento_id} reaberto."
-    except Exception as e:
-        conn.rollback()
-        raise e
     finally:
         conn.close()
 
 # =========================================================
-# AUDITORIA
+# 🧹 REINICIAR BASE (botão do menu Sistema)
 # =========================================================
-def listar_auditoria(evento_id: Optional[int] = None, limite: int = 50) -> List[Dict]:
-    """Lista registros de auditoria, filtrando por evento se especificado."""
-    conn = conectar()
-    cursor = conn.cursor()
-    
-    if evento_id:
-        cursor.execute(
-            """SELECT a.*, e.numero_processo, e.tipo_evento
-               FROM auditoria_prazos a
-               LEFT JOIN eventos e ON a.evento_id = e.id
-               WHERE a.evento_id = ?
-               ORDER BY a.data_hora DESC
-               LIMIT ?""",
-            (evento_id, limite)
-        )
-    else:
-        cursor.execute(
-            """SELECT a.*, e.numero_processo, e.tipo_evento
-               FROM auditoria_prazos a
-               LEFT JOIN eventos e ON a.evento_id = e.id
-               ORDER BY a.data_hora DESC
-               LIMIT ?""",
-            (limite,)
-        )
-    
-    resultados = [dict(row) for row in cursor.fetchall()]
-    conn.close()
-    return resultados
-
-def listar_concluidos(limite: int = 20) -> List[Dict]:
-    """Lista eventos concluídos com dados de auditoria."""
-    conn = conectar()
-    cursor = conn.cursor()
-    cursor.execute(
-        """SELECT e.*, a.motivo as motivo_conclusao, a.data_hora as data_conclusao
-           FROM eventos e
-           LEFT JOIN auditoria_prazos a ON e.id = a.evento_id AND a.acao = 'CONCLUIDO'
-           WHERE e.status = 'concluido'
-           ORDER BY a.data_hora DESC
-           LIMIT ?""",
-        (limite,)
-    )
-    resultados = [dict(row) for row in cursor.fetchall()]
-    conn.close()
-    return resultados
+def resetar_base(avancar_cursor_para_hoje: bool = True) -> str:
+    """Zera eventos + auditoria e (opcional) avança o cursor do DJEN para hoje."""
+    conn = get_connection()
+    try:
+        conn.execute("DELETE FROM auditoria")
+        conn.execute("DELETE FROM eventos")
+        if avancar_cursor_para_hoje:
+            hoje = date.today().isoformat()
+            conn.execute(
+                """INSERT INTO cursores (nome, valor, atualizado_em) VALUES (?, ?, ?)
+                   ON CONFLICT(nome) DO UPDATE SET valor=excluded.valor, atualizado_em=excluded.atualizado_em""",
+                ("ultima_djen", hoje, datetime.now().isoformat()),
+            )
+        conn.commit()
+        return "✅ Prazos e histórico apagados. Cursor do DJEN → hoje."
+    except Exception as e:
+        conn.rollback()
+        return f"❌ Erro ao reiniciar base: {e}"
+    finally:
+        conn.close()
 
 # =========================================================
-# INICIALIZAÇÃO AUTOMÁTICA
+# 🏗️ SCHEMA (idempotente: cria tabelas + adiciona colunas novas)
 # =========================================================
-try:
-    inicializar_db()
-except Exception as e:
-    logger.warning(f"⚠️ Não foi possível inicializar o banco: {e}")
+def _ensure_column(conn, table: str, column: str, typedef: str) -> None:
+    """Adiciona coluna se não existir (SQLite não tem IF NOT EXISTS p/ coluna)."""
+    try:
+        conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {typedef}")
+    except sqlite3.OperationalError:
+        pass  # coluna já existe
+
+def inicializar_schema() -> None:
+    conn = get_connection()
+    try:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS eventos (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                numero_processo TEXT NOT NULL,
+                tipo_evento TEXT NOT NULL,
+                data_publicacao TEXT NOT NULL,
+                inicio_prazo TEXT NOT NULL,
+                prazo_final TEXT NOT NULL,
+                descricao TEXT,
+                status TEXT DEFAULT 'pendente',
+                autor TEXT,
+                hash_publicacao TEXT,
+                reu TEXT, tribunal TEXT, orgao_julgador TEXT,
+                prazo_dias INTEGER, tipo_contagem TEXT, ramo TEXT,
+                urgencia TEXT, resumo TEXT, audiencia TEXT,
+                criado_em TEXT DEFAULT (datetime('now')),
+                atualizado_em TEXT DEFAULT (datetime('now'))
+            )""")
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS publicacoes_djen (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                hash_api TEXT UNIQUE NOT NULL,
+                numero_processo TEXT, tribunal TEXT, orgao_julgador TEXT,
+                tipo_ato TEXT, data_disponibilizacao TEXT, data_publicacao TEXT,
+                json_original TEXT, processado INTEGER DEFAULT 0,
+                criado_em TEXT DEFAULT (datetime('now'))
+            )""")
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS auditoria (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                evento_id INTEGER NOT NULL, acao TEXT NOT NULL, motivo TEXT,
+                usuario TEXT, data_hora TEXT NOT NULL,
+                FOREIGN KEY (evento_id) REFERENCES eventos(id)
+            )""")
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS cursores (
+                nome TEXT PRIMARY KEY, valor TEXT,
+                atualizado_em TEXT DEFAULT (datetime('now'))
+            )""")
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS pipeline_execucao (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                inicio TEXT NOT NULL, fim TEXT, status TEXT DEFAULT 'em_execucao',
+                publicacoes INTEGER DEFAULT 0, duplicatas INTEGER DEFAULT 0,
+                eventos INTEGER DEFAULT 0, falhas INTEGER DEFAULT 0,
+                cursor_final TEXT, tempo_ms INTEGER DEFAULT 0
+            )""")
+        # Índices p/ dedup e ordenação
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_eventos_hash ON eventos(hash_publicacao)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_eventos_status ON eventos(status, prazo_final)")
+        # Migração segura: garante colunas ricas em bancos já existentes
+        for col, td in [
+            ("reu", "TEXT"), ("tribunal", "TEXT"), ("orgao_julgador", "TEXT"),
+            ("prazo_dias", "INTEGER"), ("tipo_contagem", "TEXT"), ("ramo", "TEXT"),
+            ("urgencia", "TEXT"), ("resumo", "TEXT"), ("audiencia", "TEXT"),
+        ]:
+            _ensure_column(conn, "eventos", col, td)
+        conn.commit()
+    finally:
+        conn.close()
+
+inicializar_schema()

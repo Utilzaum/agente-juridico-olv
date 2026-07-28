@@ -1,33 +1,74 @@
-# Ambiente virtual
-venv/
-
+# =====================================
 # Python
+# =====================================
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
 
-# Variáveis sensíveis
+# Ambientes Virtuais
+venv/
+.venv/
+env/
+
+# Variáveis de ambiente
 .env
-.env.save
+.env.*
 
-# Banco de dados
-*.db
-*.sqlite3
-
+# =====================================
 # Logs
+# =====================================
 logs/
 *.log
-nohup.out
 
-# Temporários
-temp/
-temp_email/
+# =====================================
+# Bancos de Dados
+# =====================================
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup de bancos
+*_backup.db
+
+# =====================================
+# Banco Vetorial
+# =====================================
+db_vetorial/
+
+# =====================================
+# Arquivos temporários
+# =====================================
+*.tmp
+*.bak
+*.swp
+
+# =====================================
+# IDEs
+# =====================================
+.vscode/
+.idea/
+
+# =====================================
+# Sistema Operacional
+# =====================================
+.DS_Store
+Thumbs.db
+
+# =====================================
+# Arquivos de clientes
+# =====================================
+clientes/
 exports/
+files/
 
-# Arquivos privados
-*.pdf
-*.xlsx
-backup_*.tar.gz
-backup_*.gpg
+# =====================================
+# Cache
+# =====================================
+.pytest_cache/
+.mypy_cache/
 
-PicoClaw/
+# =====================================
+# LibreOffice
+# =====================================
+~$*.docx
+~$*.odt

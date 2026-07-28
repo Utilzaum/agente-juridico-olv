@@ -8,7 +8,6 @@ DJEN v17.1 — Agente Jurídico Inteligente (Produção)
 ✅ DEDUPLICAÇÃO: Hash SHA256 do item cru da API
 ✅ SALVAMENTO: Publicação crua em publicacoes_djen ANTES da IA
 ✅ EVENTOS: Salvos após inferência jurídica
-✅ SCHEMA: descricao, tipo_contagem, status (não determinacao_judicial, tipo_prazo, concluido)
 """
 import requests
 import json
@@ -41,7 +40,7 @@ try:
     from qwen_client import extrair_prazo_com_llm, health_check
     LLM_OK = True
 except ImportError as e:
-    print(f"️ Erro ao importar qwen_client: {e}")
+    print(f"⚠️ Erro ao importar qwen_client: {e}")
     LLM_OK = False
 
 # =========================================================
@@ -51,7 +50,7 @@ try:
     from motor_prazos import calcular_prazo_legal
     MOTOR_OK = True
 except ImportError as e:
-    print(f"️ Motor de prazos não disponível: {e}")
+    print(f"⚠️ Motor de prazos não disponível: {e}")
     MOTOR_OK = False
 
 # =========================================================
@@ -75,14 +74,13 @@ RETRY_DELAY = 2
 REQUEST_TIMEOUT = 30
 REQUEST_DELAY = 1.0
 PAGE_SIZE = 100
-LOOKBACK_DAYS = 10  # Fallback apenas para primeira execução
-MARGEM_SEGURANCA = 3  # Dias de margem no cursor
+LOOKBACK_DAYS = 10
+MARGEM_SEGURANCA = 3
 
 # =========================================================
 # 🌐 REDE
 # =========================================================
 def fazer_requisicao(url: str, params: dict) -> Optional[requests.Response]:
-    """Requisição HTTP com retry exponencial."""
     headers = {
         "User-Agent": "Mozilla/5.0 (AgenteJuridico-DJEN/17.1)",
         "Accept": "application/json",
@@ -101,13 +99,12 @@ def fazer_requisicao(url: str, params: dict) -> Optional[requests.Response]:
                 logger.error(f"❌ HTTP {resp.status_code}: {resp.text[:200]}")
                 return None
         except requests.exceptions.Timeout:
-            logger.warning(f"️ Timeout (tentativa {tentativa + 1}/{MAX_RETRIES})")
+            logger.warning(f"⏱️ Timeout (tentativa {tentativa + 1}/{MAX_RETRIES})")
         except requests.exceptions.ConnectionError:
             logger.error(f"❌ Erro de conexão (tentativa {tentativa + 1}/{MAX_RETRIES})")
         except Exception as e:
             logger.error(f"❌ Erro inesperado: {e}")
             return None
-        
         if tentativa < MAX_RETRIES - 1:
             wait = RETRY_DELAY * (2 ** tentativa)
             time.sleep(wait)
@@ -117,13 +114,7 @@ def fazer_requisicao(url: str, params: dict) -> Optional[requests.Response]:
 # 🔎 BUSCA NA API PJe
 # =========================================================
 def buscar_publicacoes() -> List[Dict]:
-    """
-    Busca publicações usando CURSOR PERSISTENTE + busca deslizante.
-    Fluxo: cursor - 3 dias até hoje
-    """
-    # 🧭 LÓGICA DO CURSOR PERSISTENTE
     cursor_data = obter_cursor('ultima_djen')
-    
     if cursor_data:
         data_inicio = (cursor_data - timedelta(days=MARGEM_SEGURANCA)).strftime("%Y-%m-%d")
         logger.info(f"🧭 Cursor encontrado: {cursor_data.strftime('%d/%m/%Y')} → busca de {data_inicio}")
@@ -136,7 +127,6 @@ def buscar_publicacoes() -> List[Dict]:
     
     todas = []
     page = 1
-    
     while True:
         params = {
             "numeroOab": OAB_NUMERO,
@@ -146,22 +136,18 @@ def buscar_publicacoes() -> List[Dict]:
             "size": PAGE_SIZE,
             "page": page,
         }
-        
         response = fazer_requisicao(BASE_URL, params)
         if not response:
             logger.error(f"❌ Falha na página {page}")
             break
-        
         try:
             dados = response.json()
         except ValueError as e:
             logger.error(f"❌ JSON inválido: {e}")
             break
         
-        # 🛡️ Blindagem contra mudanças na API
         items = dados.get("items") or dados.get("content") or dados.get("resultados") or []
         total_count = dados.get("count", 0)
-        
         if not items:
             logger.info(f"📭 Página {page} vazia.")
             break
@@ -169,12 +155,10 @@ def buscar_publicacoes() -> List[Dict]:
         todas.extend(items)
         logger.info(f"  ✅ Página {page}: {len(items)} itens (total: {len(todas)}/{total_count})")
         
-        # Paginação robusta
         if total_count > 0 and len(todas) >= total_count:
             break
         if len(items) < PAGE_SIZE:
             break
-        
         page += 1
         time.sleep(REQUEST_DELAY)
     
@@ -185,7 +169,6 @@ def buscar_publicacoes() -> List[Dict]:
 # 📊 EXTRAÇÃO ESTRUTURADA
 # =========================================================
 def extrair_partes_estruturado(item: Dict) -> tuple:
-    """Extrai autor e réu do campo 'destinatarios' com 'polo'."""
     autor, reu = "", ""
     destinatarios = item.get("destinatarios", [])
     for dest in destinatarios:
@@ -198,14 +181,11 @@ def extrair_partes_estruturado(item: Dict) -> tuple:
     return autor[:150] if autor else "", reu[:150] if reu else ""
 
 def extrair_tipo_ato_estruturado(item: Dict) -> str:
-    """Extrai tipo de ato diretamente da API."""
     tipo_doc = item.get("tipoDocumento", "")
     nome_classe = item.get("nomeClasse", "")
     texto = item.get("texto", "").upper()
-    
     if tipo_doc: return tipo_doc
     if nome_classe: return nome_classe
-    
     if "AUDIÊNCIA" in texto or "AUDIENCIA" in texto:
         if "NÃO" not in texto and "SEM" not in texto and "CANCELADA" not in texto:
             return "AUDIÊNCIA"
@@ -218,7 +198,6 @@ def extrair_tipo_ato_estruturado(item: Dict) -> str:
     return "OUTROS"
 
 def extrair_audiencia(texto: str) -> Optional[str]:
-    """Extrai data de audiência no formato DD/MM/YYYY."""
     import re
     if "AUDIÊNCIA" not in texto.upper() and "AUDIENCIA" not in texto.upper():
         return None
@@ -229,26 +208,15 @@ def extrair_audiencia(texto: str) -> Optional[str]:
 # ⚖️ PROCESSAMENTO JURÍDICO
 # =========================================================
 def processar_publicacoes(publicacoes: List[Dict]) -> int:
-    """
-    Processa publicações com fluxo completo:
-    1. Calcula hash da publicação crua
-    2. Salva publicação crua (publicacoes_djen) - ANTES da IA
-    3. Inferência jurídica (Motor + LLM fallback)
-    4. Validações temporais
-    5. Salva evento processado (eventos)
-    """
     logger.info("⚙️ Processando com motor jurídico integrado...")
-    
     eventos_criados = 0
     duplicatas = 0
     erros = 0
     
     for idx, item in enumerate(publicacoes):
         try:
-            # 1️⃣ CALCULAR HASH DA PUBLICAÇÃO CRUA
             hash_api = calcular_hash_api(item)
             
-            # 2️⃣ SALVAR PUBLICAÇÃO CRUA (antes da IA)
             sucesso, msg = salvar_publicacao(item)
             if not sucesso and msg == "duplicata":
                 duplicatas += 1
@@ -257,11 +225,9 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
             elif not sucesso:
                 logger.warning(f"⚠️ Erro ao salvar publicação: {msg}")
             
-            # 3️⃣ PARSE DA DATA
             data_str = item.get("dataDisponibilizacao") or item.get("data_disponibilizacao")
             if not data_str:
                 continue
-            
             if isinstance(data_str, (int, float)):
                 data_pub = datetime.fromtimestamp(data_str / 1000)
             else:
@@ -270,7 +236,6 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
                 except:
                     data_pub = datetime.strptime(str(data_str)[:10], "%d/%m/%Y")
             
-            # 4️⃣ EXTRAÇÃO DE CAMPOS
             processo = (
                 item.get("numeroprocessocommascara") or
                 item.get("numeroProcesso") or
@@ -280,14 +245,11 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
             tribunal = item.get("siglaTribunal") or "N/D"
             orgao = item.get("nomeOrgao") or "N/D"
             texto = item.get("texto") or item.get("conteudo") or ""
-            
             tipo = extrair_tipo_ato_estruturado(item)
             audiencia_br = extrair_audiencia(texto)
             autor, reu = extrair_partes_estruturado(item)
             
-            # 5️ INFERÊNCIA JURÍDICA (Motor + LLM fallback)
             if MOTOR_OK:
-                # ✅ NOVO: Usa motor_prazos (Regex + Recesso Forense)
                 resultado_motor = calcular_prazo_legal(data_pub, texto, tipo)
                 prazo_dias = resultado_motor["dias"]
                 unidade = resultado_motor["tipo_dia"]
@@ -295,7 +257,6 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
                 artigo = resultado_motor["artigo"]
                 logger.info(f"🤖 Motor: {prazo_dias} dias {unidade} ({artigo})")
             else:
-                # Fallback para LLM local
                 if LLM_OK and health_check():
                     info_llm = extrair_prazo_com_llm(texto)
                     prazo_dias, unidade = info_llm.get("dias", 15), info_llm.get("tipo", "uteis")
@@ -304,38 +265,30 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
                     prazo_dias, unidade = 15, "uteis"
                     ramo_llm = "CPC"
             
-            # Calcula marco inicial (dia seguinte à publicação)
             inicio_prazo = data_pub + timedelta(days=1)
             
-            # Calcula prazo final
             if unidade == "uteis":
-                # Usa função do motor se disponível
                 if MOTOR_OK:
                     from motor_prazos import adicionar_dias_uteis
                     prazo_final_dt = adicionar_dias_uteis(inicio_prazo, prazo_dias)
                 else:
-                    # Fallback simples: apenas dias úteis (seg-sex)
                     dias_adicionados = 0
                     data_atual = inicio_prazo
                     while dias_adicionados < prazo_dias:
                         data_atual += timedelta(days=1)
-                        if data_atual.weekday() < 5:  # Seg-Sex
+                        if data_atual.weekday() < 5:
                             dias_adicionados += 1
                     prazo_final_dt = data_atual
             else:
                 prazo_final_dt = inicio_prazo + timedelta(days=prazo_dias)
             
             prazo_final = prazo_final_dt.strftime("%Y-%m-%d")
-            
-            # Determina tipo de evento
             tipo_evento = "AUDIÊNCIA" if audiencia_br else tipo
             
-            # 6️⃣ VALIDAÇÕES TEMPORAIS
             try:
                 data_pub_date = data_pub.date() if isinstance(data_pub, datetime) else data_pub
                 inicio_prazo_date = inicio_prazo.date() if isinstance(inicio_prazo, datetime) else inicio_prazo
                 prazo_final_date = datetime.strptime(prazo_final, "%Y-%m-%d").date()
-                
                 if prazo_final_date < inicio_prazo_date:
                     logger.error(f"❌ prazo_final anterior ao inicio_prazo. Processo {processo} descartado.")
                     erros += 1
@@ -349,7 +302,6 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
                 erros += 1
                 continue
             
-            # 7️⃣ MONTAR REGISTRO DO EVENTO (SCHEMA REAL)
             registro = {
                 "numero_processo": str(processo).strip(),
                 "tipo_evento": tipo_evento,
@@ -360,9 +312,9 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
                 "reu": reu,
                 "tribunal": tribunal,
                 "orgao_julgador": orgao,
-                "descricao": f"Publicação DJEN: {tipo_evento}",  # ✅ CORRETO
+                "descricao": f"Publicação DJEN: {tipo_evento}",
                 "prazo_dias": prazo_dias,
-                "tipo_contagem": unidade,  # ✅ CORRETO
+                "tipo_contagem": unidade,
                 "ramo": ramo_llm,
                 "urgencia": "alta" if prazo_dias <= 5 else "normal",
                 "resumo": str(texto).strip()[:200],
@@ -370,7 +322,6 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
                 "hash_publicacao": hash_api,
             }
             
-            # 8️⃣ SALVAR EVENTO PROCESSADO
             evento_id = salvar_evento(registro)
             if evento_id:
                 eventos_criados += 1
@@ -380,18 +331,17 @@ def processar_publicacoes(publicacoes: List[Dict]) -> int:
             
             if (idx + 1) % 20 == 0:
                 logger.info(f"   Processados {idx + 1}/{len(publicacoes)}...")
-                
         except Exception as e:
             erros += 1
             if erros <= 3:
-                logger.warning(f"⚠️ Erro no item {idx}: {e}")
+                logger.warning(f"️ Erro no item {idx}: {e}")
             continue
     
     logger.info(f"✨ Resumo: {eventos_criados} criados, {duplicatas} duplicatas, {erros} erros")
     return eventos_criados
 
 # =========================================================
-#  MAIN
+# 🚀 MAIN
 # =========================================================
 def main():
     logger.info("🚀 DJEN v17.1 — Agente Jurídico Inteligente (Produção)")
@@ -405,26 +355,21 @@ def main():
         return
     
     try:
-        # 1. Busca publicações
         publicacoes = buscar_publicacoes()
         if not publicacoes:
             logger.warning("⚠️ Nenhuma publicação encontrada.")
             atualizar_cursor('ultima_djen', date.today())
             return
         
-        # 2. Processa (salva crua + inferência + salva evento)
         eventos_criados = processar_publicacoes(publicacoes)
         
-        # 3. Atualiza cursor APENAS se houve sucesso
         if eventos_criados > 0 or len(publicacoes) > 0:
             atualizar_cursor('ultima_djen', date.today())
-        
-        logger.info("✅ Processo concluído com sucesso!")
-        
+            logger.info("✅ Processo concluído com sucesso!")
     except KeyboardInterrupt:
         logger.warning("⚠️ Interrompido pelo usuário. Cursor NÃO atualizado.")
     except Exception as e:
-        logger.error(f" Erro crítico: {e}", exc_info=True)
+        logger.error(f"❌ Erro crítico: {e}", exc_info=True)
         logger.warning("⚠️ Cursor NÃO atualizado devido ao erro.")
     finally:
         logger.info("🏁 DJEN encerrado.")
