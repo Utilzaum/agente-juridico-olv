@@ -1,5 +1,16 @@
 # ⚖️ Agente Jurídico OLV
 
+┌──────────────────────────────────────────────────────────────────────┐
+│                                                                      │
+│                     ⚖️ AGENTE JURÍDICO OLV                           │
+│                                                                      │
+│        Plataforma Modular de Inteligência Artificial                 │
+│                 para Automação da Advocacia                          │
+│                                                                      │
+│      OCR • IA Local • RAG • DJEN • Controladoria • Telegram          │
+│                                                                      │
+└──────────────────────────────────────────────────────────────────────┘
+
 > **Status do Projeto**
 >
 > 🟢 Desenvolvimento ativo
