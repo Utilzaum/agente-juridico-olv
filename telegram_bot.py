@@ -218,6 +218,8 @@ def _get_comando_bot(nome: str) -> list[str]:
         "ia": [python_exec, str(BASE_DIR / "bot_ocr_conversacional.py")],
         # 🔹 EDIÇÃO #1: comando do bot de audiências
         "audiencias": [python_exec, str(BASE_DIR / "bot_audiencias.py")],
+        # 🔹 EDIÇÃO #5: Documentarista Previdenciário (módulo próprio, token próprio)
+        "previdenciario": [python_exec, str(BASE_DIR / "core" / "previdenciario" / "bot_prev.py")],
     }
     return comandos.get(nome, [python_exec, str(BASE_DIR / f"bot_{nome}.py")])
 
@@ -234,7 +236,7 @@ def _ler_heartbeat():
 def obter_status_global() -> Dict[str, Dict[str, Any]]:
     status = {}
     # 🔹 EDIÇÃO #2: incluir "audiencias" no monitoramento
-    for nome_bot in ["djen", "executor", "ia", "audiencias"]:
+    for nome_bot in ["djen", "executor", "ia", "audiencias", "previdenciario"]:
         proc = processos.get(nome_bot)
         if nome_bot == "audiencias":
             hb = _ler_heartbeat()
@@ -658,6 +660,8 @@ def kb_bots() -> InlineKeyboardMarkup:
          InlineKeyboardButton("⏹️ IA", callback_data="stop_ia")],
         [InlineKeyboardButton("▶️ Audiências", callback_data="start_audiencias"),
          InlineKeyboardButton("⏹️ Audiências", callback_data="stop_audiencias")],
+        [InlineKeyboardButton("▶️ Previdenciário", callback_data="start_previdenciario"),
+         InlineKeyboardButton("⏹️ Previdenciário", callback_data="stop_previdenciario")],
         [InlineKeyboardButton("⬅️ Voltar", callback_data="menu_principal")],
     ])
 
@@ -892,13 +896,13 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     # 🔹 EDIÇÃO #3: permitir start/stop para "audiencias"
     if data.startswith("start_"):
         nome = data.replace("start_", "")
-        if nome in ["executor", "djen", "ia", "audiencias"]:
+        if nome in ["executor", "djen", "ia", "audiencias", "previdenciario"]:
             return await edit(start_processo(nome, _get_comando_bot(nome)))
     if data.startswith("stop_"):
         nome = data.replace("stop_", "")
         if nome == "all":
             return await edit(stop_all_processos())
-        if nome in ["executor", "djen", "ia", "audiencias"]:
+        if nome in ["executor", "djen", "ia", "audiencias", "previdenciario"]:
             return await edit(stop_processo(nome))
 
     await query.answer()
@@ -1014,7 +1018,7 @@ def main() -> None:
         logger.info(f"🗄️ Repositório: {'OK' if REPOSITORIO_OK else 'FALHOU'}")
         logger.info(f"🎨 Formatter: {'OK' if FORMATTER_OK else 'FALLBACK'}")
         logger.info("📱 UX: lista=enriquecida · concluir/corrigir por toque · modo conversacional")
-        logger.info("🎯 Bots: DJEN | Executor | IA | Audiências")
+        logger.info("🎯 Bots: DJEN | Executor | IA | Audiências | Previdenciário")
         app = build_app()
         app.run_polling(drop_pending_updates=True)
     except Exception as e:
