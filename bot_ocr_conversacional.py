@@ -52,7 +52,7 @@ MAX_DISTANCE_DICIONARIO = float(os.getenv("MAX_DISTANCE_DICIONARIO", "0.50"))
 
 CHROMA_TOP_K = 15
 BM25_TOP_K = 15
-RRF_TOP_K = 5
+RRF_TOP_K = 8
 
 if not TOKEN:
     raise ValueError("❌ TOKEN não encontrado no .env")
@@ -119,6 +119,9 @@ SINONIMOS_RAG = {
     "habeas corpus": "artigo 5 inciso LXVIII habeas corpus constituição",
     "legítima defesa": "artigo 25 legítima defesa CP código penal",
     "estado de necessidade": "artigo 24 estado de necessidade CP código penal",
+    "ameaça": "artigo 147 ameaçar crime de ameaça CP código penal",
+    "perseguição": "artigo 147-A stalking perseguição CP código penal",
+    "violência doméstica": "artigo 147-B dano emocional mulher CP código penal",
 }
 
 # =========================================================
@@ -219,7 +222,7 @@ def _carregar_corpus_bm25(fonte: str = None):
 def classificar_intencao(pergunta: str) -> str:
     p = pergunta.lower()
     verbos = ("disserte", "dissertar", "explique", "analise", "analisar", "comente",
-              "interprete", "compare", "comparar", "fundamente", "esclareça")
+              "interprete", "compare", "comparar", "fundamente", "esclareça", "conceitue", "conceituar", "defina", "definir")
     tem_verbo = any(v in p for v in verbos)
     tem_artigo = bool(RE_BUSCA_EXATA.search(pergunta))
 
@@ -227,7 +230,7 @@ def classificar_intencao(pergunta: str) -> str:
         return "INTERPRETAR"
     if tem_artigo:                     # "art 147" puro => transcrição direta
         return "LOCALIZAR"
-    if any(x in p for x in ("o que é", "o que sao", "significa", "conceito", "definição")):
+    if any(x in p for x in ("o que é", "o que sao", "significa", "conceito", "definição", "conceitue", "conceituar")):
         return "CONCEITO"
     if any(x in p for x in ("texto", "mostrar", "transcrever", "diga o que diz", "redação")):
         return "LOCALIZAR"
@@ -425,9 +428,25 @@ def montar_contexto(pergunta: str, chat_id: int, artigo_exato: dict, verbete_dic
     consulta_rag = pergunta
     for termo, expandido in SINONIMOS_RAG.items():
         if termo in pergunta.lower():
-            consulta_rag = f"{pergunta} {expandido}"
+            consulta_rag = f"{consulta_rag} {expandido}"
             logger.info(f"🔤 Expansão de query (concatenação): termo='{termo}'")
-            break
+
+    # 🧠 CAMADA 2 (fallback): expansão por IA quando o dicionário não casa
+    if consulta_rag == pergunta:
+        try:
+            sugestao = llm_chat(
+                mensagens=[{"role": "user", "content":
+                    f"Você é um bibliotecário jurídico. O usuário perguntou: '{pergunta}'. "
+                    "Cite o artigo e a lei mais específicos sobre o tema e 3 termos-chave "
+                    "para busca documental. Responda em uma única linha, sem explicações."}],
+                model_key="bibliotecario", timeout=600
+            )
+            sugestao = limpar_raciocinio(sugestao or "").strip().replace("\n", " ")[:200]
+            if sugestao:
+                consulta_rag = f"{pergunta} {sugestao}"
+                logger.info(f"🧠 Expansão de query por IA (fallback): '{sugestao}'")
+        except Exception as e:
+            logger.warning(f"⚠️ Expansão por IA falhou (seguindo sem expansão): {e}")
 
     candidatos_chroma = []
     try:
@@ -488,8 +507,8 @@ def montar_contexto(pergunta: str, chat_id: int, artigo_exato: dict, verbete_dic
     fonte_bm25 = filtro_metadado.get("fonte")
     corpus = _carregar_corpus_bm25(fonte=fonte_bm25)
     if corpus:
-        candidatos_bm25 = buscar_bm25_puro(
-            query=consulta_rag, corpus=corpus, texto_key="texto", top_k=BM25_TOP_K
+        candidatos_bm25 = rerank_bm25(
+            query=consulta_rag, documentos=corpus, texto_key="texto", top_k=BM25_TOP_K
         )
         if artigo_exato:
             candidatos_bm25 = [
@@ -562,6 +581,15 @@ def limpar_raciocinio(texto: str) -> str:
 # =========================================================
 # GERADOR DE BOTÕES
 # =========================================================
+def enviar_resposta_segura(message, texto, chat_id):
+    """Markdown com fallback automático para texto puro."""
+    try:
+        bot.reply_to(message, texto, parse_mode="Markdown", reply_markup=gerar_menu_leis(chat_id))
+    except Exception as e:
+        logger.warning(f"⚠️ Markdown rejeitado; reenviando sem formatação: {e}")
+        bot.reply_to(message, texto, reply_markup=gerar_menu_leis(chat_id))
+
+
 def gerar_menu_leis(chat_id: int) -> InlineKeyboardMarkup:
     filtro_atual = filtros_ativos.get(chat_id, "rag_geral")
     markup = InlineKeyboardMarkup(row_width=2)
@@ -695,27 +723,22 @@ def processar_mensagem(message):
             f"{artigo_exato['texto']}\n\n"
             f"_(Fonte: {artigo_exato['fonte']} | Ano: {artigo_exato['ano']})_"
         )
-        bot.reply_to(
-            message, resposta_formatada, parse_mode="Markdown",
-            reply_markup=gerar_menu_leis(chat_id)
-        )
+        enviar_resposta_segura(message, resposta_formatada, chat_id)
         return
 
     verbete_dicionario = None
     if colecao_dicionario:
-        verbete_dicionario = buscar_no_dicionario(pergunta, n_results=1)
+        termo_dic = next((t for t in SINONIMOS_RAG if t in pergunta.lower()), None)
+        verbete_dicionario = buscar_no_dicionario(termo_dic or pergunta, n_results=1)
 
-    if verbete_dicionario and intencao == "CONCEITO":
+    if verbete_dicionario and intencao == "CONCEITO" and not RE_BUSCA_EXATA.search(pergunta):
         resposta_direta = (
             f"📖 **{verbete_dicionario['titulo']}**\n\n"
             f"{verbete_dicionario['texto']}\n\n"
             f"_Fonte: {verbete_dicionario['fonte']}_\n"
             f"_Similaridade: {(1 - verbete_dicionario['distancia'] / 2):.0%}_"
         )
-        bot.reply_to(
-            message, resposta_direta, parse_mode="Markdown",
-            reply_markup=gerar_menu_leis(chat_id)
-        )
+        enviar_resposta_segura(message, resposta_direta, chat_id)
         return
 
     status_msg = bot.reply_to(
@@ -755,7 +778,7 @@ def processar_mensagem(message):
     mensagens.append({"role": "user", "content": user_content})
 
     try:
-        texto_ia = llm_chat(mensagens=mensagens, model_key="bibliotecario", timeout=120)
+        texto_ia = llm_chat(mensagens=mensagens, model_key="bibliotecario", timeout=600)
         texto_ia = limpar_raciocinio(texto_ia)
         if not texto_ia:
             texto_ia = "Não encontrei base documental suficiente na base indexada."
@@ -769,10 +792,24 @@ def processar_mensagem(message):
             bot.delete_message(chat_id, status_msg.message_id)
         except Exception:
             pass
-        bot.reply_to(
-            message, texto_ia, parse_mode=None,
-            reply_markup=gerar_menu_leis(chat_id)
-        )
+        NL = chr(10)
+        limite = 4000
+        partes = []
+        resto = texto_ia
+        while len(resto) > limite:
+            corte = resto.rfind(NL + NL, 0, limite)
+            if corte < 2000:
+                corte = resto.rfind(NL, 0, limite)
+            if corte < 2000:
+                corte = limite
+            partes.append(resto[:corte].strip())
+            resto = resto[corte:].strip()
+        partes.append(resto)
+        for i, parte in enumerate(partes):
+            bot.reply_to(
+                message, parte, parse_mode=None,
+                reply_markup=gerar_menu_leis(chat_id) if i == len(partes) - 1 else None
+            )
     except Exception as e:
         try:
             bot.delete_message(chat_id, status_msg.message_id)

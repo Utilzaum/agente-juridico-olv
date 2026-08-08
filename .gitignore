@@ -72,3 +72,18 @@ files/
 # =====================================
 ~$*.docx
 ~$*.odt
+
+# Dados gerados pelo Documentarista de Audiências
+audiencias/data/
+
+# Cache Python
+__pycache__/
+
+# Arquivos temporários de desenvolvimento
+*.orig
+*.rej
+*.backup
+
+# Artefatos temporários de correção
+consertar_bot.py
+kit_completo.patch

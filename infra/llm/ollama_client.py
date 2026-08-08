@@ -93,7 +93,7 @@ def gerar(prompt: str, model_key: str = "default", timeout: int = TIMEOUT) -> st
             json={
                 "model": model,
                 "prompt": prompt,
-                "stream": False,
+                "stream": False, "think": False,
                 "options": DEFAULT_OPTIONS
             },
             headers={"Content-Type": "application/json"},

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Orquestrador Jurídico v3.3 — UX Mobile-First com Lista Enriquecida
+Orquestrador Jurídico v3.4 — UX Mobile-First com Lista Enriquecida
 ✅ CAMADA ÚNICA: infra.repositorio
 ✅ LISTA ENRIQUECIDA: cada botão mostra #ID | Cliente | Processo | Tipo | Dias
 ✅ DRILL-DOWN: tocar no botão abre o detalhe com as ações
@@ -9,7 +9,7 @@ Orquestrador Jurídico v3.3 — UX Mobile-First com Lista Enriquecida
 ✅ MODO CONVERSACIONAL: digita motivo/data só se quiser
 ✅ PAGINAÇÃO: técnica limit+1 (detecta "próxima" de verdade)
 ✅ REINICIAR BASE: zera eventos + avança cursor do DJEN para hoje
-✅ LGPD: processo mascarado; parte em spoiler no detalhe   <-- [REMOVIDO]
+✅ BOT AUDIÊNCIAS: registrado, monitorado e controlável via menu
 """
 from __future__ import annotations
 
@@ -115,7 +115,7 @@ if not TOKEN:
 
 ADMIN_ID = 501276610
 ADMIN_NOME = "Raphael"
-ITENS_POR_PAGINA = 6  # 👈 REDUZIDO de 8 para 6 (botões mais largos agora)
+ITENS_POR_PAGINA = 6  # botões mais largos
 
 MOTIVOS_RAPIDOS: List[Tuple[str, str]] = [
     ("pet", "Petição protocolada"),
@@ -123,7 +123,11 @@ MOTIVOS_RAPIDOS: List[Tuple[str, str]] = [
     ("cumpr", "Prazo cumprido"),
     ("arq", "Arquivado / sem ação"),
 ]
-AJUSTES_RAPIDOS: List[Tuple[str, str]] = [("7", "+7 dias"), ("15", "+15 dias"), ("30", "+30 dias")]
+AJUSTES_RAPIDOS: List[Tuple[str, str]] = [
+    ("7", "+7 dias"),
+    ("15", "+15 dias"),
+    ("30", "+30 dias"),
+]
 
 # =========================================================
 # 🔒 LOCK
@@ -186,7 +190,7 @@ def stop_processo(nome: str, timeout: int = 10) -> str:
             proc.wait(timeout=timeout)
             logger.info(f"🛑 {nome} encerrado graciosamente (PID {proc.pid})")
         except subprocess.TimeoutExpired:
-            logger.warning(f"️ {nome} não respondeu ao SIGTERM, enviando SIGKILL")
+            logger.warning(f"⚠️ {nome} não respondeu ao SIGTERM, enviando SIGKILL")
             proc.kill()
             proc.wait(timeout=5)
         finally:
@@ -212,13 +216,36 @@ def _get_comando_bot(nome: str) -> list[str]:
         "executor": [python_exec, "-m", "core.bot"],
         "djen": [python_exec, str(BASE_DIR / "script_djen.py")],
         "ia": [python_exec, str(BASE_DIR / "bot_ocr_conversacional.py")],
+        # 🔹 EDIÇÃO #1: comando do bot de audiências
+        "audiencias": [python_exec, str(BASE_DIR / "bot_audiencias.py")],
     }
     return comandos.get(nome, [python_exec, str(BASE_DIR / f"bot_{nome}.py")])
 
+def _ler_heartbeat():
+    try:
+        import json as _json
+        p = BASE_DIR / "audiencias" / "data" / "heartbeat.json"
+        if p.exists():
+            return _json.loads(p.read_text())
+    except Exception:
+        pass
+    return None
+
 def obter_status_global() -> Dict[str, Dict[str, Any]]:
     status = {}
-    for nome_bot in ["djen", "executor", "ia"]:
+    # 🔹 EDIÇÃO #2: incluir "audiencias" no monitoramento
+    for nome_bot in ["djen", "executor", "ia", "audiencias"]:
         proc = processos.get(nome_bot)
+        if nome_bot == "audiencias":
+            hb = _ler_heartbeat()
+            vivo = proc and proc.poll() is None
+            if hb and (time.time() - hb.get("ts", 0)) < 120:
+                status[nome_bot] = {"estado": "rodando", "pid": hb.get("pid"), "icone": "🟢"}
+            elif vivo:
+                status[nome_bot] = {"estado": "vivo mas surdo", "pid": proc.pid, "icone": "🟡"}
+            else:
+                status[nome_bot] = {"estado": "parado", "pid": None, "icone": "🔴"}
+            continue
         if proc and proc.poll() is None:
             status[nome_bot] = {"estado": "rodando", "pid": proc.pid, "icone": "🟢"}
         else:
@@ -239,7 +266,6 @@ def mascarar_processo(processo: str) -> str:
     return limpo if limpo else "N/D"
 
 def truncar(texto: str, max_len: int = 18) -> str:
-    """Trunca texto longo mantendo começo + reticências."""
     texto = str(texto or "")
     if len(texto) <= max_len:
         return texto
@@ -303,7 +329,7 @@ class SafeShutdown:
         if self.estado == self.ESTADO_AGUARDANDO and self.timestamp_solicitacao:
             decorrido = (datetime.now() - self.timestamp_solicitacao).total_seconds()
             if decorrido < self.timeout_confirmacao:
-                return False, f" Aguardando confirmação ({int(self.timeout_confirmacao - decorrido)}s restantes)"
+                return False, f"⏳ Aguardando confirmação ({int(self.timeout_confirmacao - decorrido)}s restantes)"
         self.estado = self.ESTADO_AGUARDANDO
         self.usuario_solicitante = usuario_id
         self.timestamp_solicitacao = datetime.now()
@@ -311,10 +337,10 @@ class SafeShutdown:
         return True, (
             f"🛑 <b>CONFIRMAÇÃO DE SHUTDOWN</b>\n"
             f"👤 Solicitado por: <tg-spoiler>{escape_html(usuario_nome)}</tg-spoiler>\n"
-            f" {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
-            f"<b>Ações:</b>\n1. 🛑 Encerrar bots\n2.  Liberar lock\n"
+            f"⏱️ {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n\n"
+            f"<b>Ações:</b>\n1. 🛑 Encerrar bots\n2. 🔓 Liberar lock\n"
             f"3. 💾 Fechar banco\n4. ⏻ Desligar o sistema\n\n"
-            f"️ <b>Irreversível.</b>\nDigite <code>CONFIRMAR</code> ou <code>CANCELAR</code>."
+            f"⚠️ <b>Irreversível.</b>\nDigite <code>CONFIRMAR</code> ou <code>CANCELAR</code>."
         )
 
     def confirmar(self, usuario_id: int) -> Tuple[bool, str]:
@@ -342,13 +368,14 @@ class SafeShutdown:
             release_lock()
             linhas.append("🔓 Lock file liberado")
             linhas.append("\n<b>4. Fechando banco...</b>")
-            import gc; gc.collect()
+            import gc
+            gc.collect()
             linhas.append("💾 Conexões fechadas")
             linhas.append("\n<b>5. Desligando sistema...</b>")
             linhas.append("⏻ Sistema será desligado em 5 segundos...")
         except Exception as e:
             logger.error(f"❌ Erro no shutdown: {e}", exc_info=True)
-            linhas.append(f" Erro: {escape_html(str(e))}")
+            linhas.append(f"❌ Erro: {escape_html(str(e))}")
         finally:
             self._agendar_poweroff()
         return "\n".join(linhas)
@@ -356,7 +383,7 @@ class SafeShutdown:
     def _agendar_poweroff(self, delay: int = 5):
         def _poweroff():
             time.sleep(delay)
-            logger.critical(" EXECUTANDO POWEROFF")
+            logger.critical("⏻ EXECUTANDO POWEROFF")
             for cmd in [["sudo", "systemctl", "poweroff"],
                         ["sudo", "shutdown", "-h", "now"],
                         ["sudo", "poweroff"]]:
@@ -374,14 +401,14 @@ class SafeShutdown:
             self.estado = self.ESTADO_IDLE
             self.usuario_solicitante = None
             self.timestamp_solicitacao = None
-            logger.info("Shutdown cancelado")
+            logger.info("✅ Shutdown cancelado")
             return "✅ Shutdown cancelado com sucesso"
         return "ℹ️ Nenhum shutdown pendente"
 
 shutdown_manager = SafeShutdown()
 
 # =========================================================
-# ️ PRAZO SERVICE (UX Mobile-First + Lista Enriquecida)
+# ⚙️ PRAZO SERVICE (UX Mobile-First + Lista Enriquecida)
 # =========================================================
 class PrazoService:
 
@@ -389,7 +416,7 @@ class PrazoService:
     def classificar_urgencia(dias: int) -> Tuple[str, str, int]:
         if dias < 0: return "🔴", "VENCIDO", 0
         if dias == 0: return "🔥", "HOJE", 1
-        if dias <= 3: return "", "URGENTE", 2
+        if dias <= 3: return "🟠", "URGENTE", 2
         if dias <= 7: return "🟡", "ATENÇÃO", 3
         return "🟢", "NORMAL", 4
 
@@ -399,7 +426,6 @@ class PrazoService:
         if dias == 0: return "HOJE"
         return f"{dias}d"
 
-    # ---------- LISTA ENRIQUECIDA (1 botão por prazo, com cliente + processo) ----------
     @staticmethod
     def gerar_lista(pagina: int = 1) -> Tuple[str, InlineKeyboardMarkup]:
         if not REPOSITORIO_OK:
@@ -416,7 +442,7 @@ class PrazoService:
                 msg = ("📭 <b>Nenhum prazo pendente.</b>\n"
                        "<i>Ótimo trabalho! Aproveite pra descansar um pouco. ☕</i>")
                 kb = [[InlineKeyboardButton("🔄 Atualizar", callback_data="atualizar_prazos"),
-                       InlineKeyboardButton(" Menu", callback_data="menu_principal")]]
+                       InlineKeyboardButton("🏠 Menu", callback_data="menu_principal")]]
                 return msg, InlineKeyboardMarkup(kb)
 
             linhas = [f"📋 <b>PRAZOS PENDENTES</b> · pág {pagina}",
@@ -431,16 +457,13 @@ class PrazoService:
                         continue
                     dias = (prazo - hoje).days
                     emoji, _label, _prio = PrazoService.classificar_urgencia(dias)
-                    
+
                     tipo = escape_html((e.get("descricao") or e.get("tipo_evento") or "Evento")[:20])
                     autor = e.get("autor") or "N/D"
-                    # 🔹 REMOVIDO o mascaramento do processo
                     processo = e.get("numero_processo", "N/D")
-                    
-                    # Linha de texto acima do botão (resumo visual)
+
                     linhas.append(f"{emoji} <b>#{id_p}</b> · {autor} · {tipo} · <b>{PrazoService._relativo(dias)}</b>")
-                    
-                    # Botão enriquecido (1 linha, com cliente + processo)
+
                     btn_text = f"{emoji} #{id_p} | {autor} | Proc: {processo} | {tipo} | {PrazoService._relativo(dias)}"
                     keyboard.append([InlineKeyboardButton(btn_text, callback_data=f"ver_{id_p}")])
                 except Exception as ex:
@@ -455,7 +478,7 @@ class PrazoService:
             if nav:
                 keyboard.append(nav)
             keyboard.append([
-                InlineKeyboardButton(" Atualizar", callback_data="atualizar_prazos"),
+                InlineKeyboardButton("🔄 Atualizar", callback_data="atualizar_prazos"),
                 InlineKeyboardButton("📊 Resumo", callback_data="menu_dashboard"),
                 InlineKeyboardButton("🏠 Menu", callback_data="menu_principal"),
             ])
@@ -464,7 +487,6 @@ class PrazoService:
             logger.error(f"Erro ao gerar lista: {e}", exc_info=True)
             return f"❌ Erro ao carregar prazos: {escape_html(str(e))}", InlineKeyboardMarkup([])
 
-    # ---------- DETALHE (drill-down) ----------
     @staticmethod
     def detalhe(evento_id: int) -> Tuple[str, InlineKeyboardMarkup]:
         if not REPOSITORIO_OK:
@@ -479,7 +501,6 @@ class PrazoService:
         emoji, label, _prio = PrazoService.classificar_urgencia(dias)
         tipo = escape_html(e.get("tipo_evento") or "Evento")
         desc = escape_html(e.get("descricao") or "")
-        # 🔹 REMOVIDO o mascaramento do processo e o spoiler do autor
         processo = e.get("numero_processo", "N/D")
         autor = e.get("autor") or ""
         autor_html = escape_html(autor) if autor and autor != "N/D" else "—"
@@ -507,7 +528,6 @@ class PrazoService:
         ]
         return validar_html_telegram(texto), InlineKeyboardMarkup(kb)
 
-    # ---------- MENU DE MOTIVOS RÁPIDOS ----------
     @staticmethod
     def menu_concluir(evento_id: int) -> Tuple[str, InlineKeyboardMarkup]:
         texto = (f"✅ <b>Concluir #{evento_id}</b>\n"
@@ -519,7 +539,6 @@ class PrazoService:
         kb.append([InlineKeyboardButton("⬅️ Voltar", callback_data=f"ver_{evento_id}")])
         return texto, InlineKeyboardMarkup(kb)
 
-    # ---------- MENU DE AJUSTE RÁPIDO DE PRAZO ----------
     @staticmethod
     def menu_corrigir(evento_id: int) -> Tuple[str, InlineKeyboardMarkup]:
         e = buscar_evento_por_id(evento_id)
@@ -537,11 +556,10 @@ class PrazoService:
         kb.append([InlineKeyboardButton("⬅️ Voltar", callback_data=f"ver_{evento_id}")])
         return texto, InlineKeyboardMarkup(kb)
 
-    # ---------- BRIEFING / STATUS / AUDITORIA ----------
     @staticmethod
     def briefing() -> str:
         if not REPOSITORIO_OK:
-            return f"<b>{get_saudacao()}, {ADMIN_NOME}</b>.\n️ <i>Sistema em manutenção.</i>"
+            return f"<b>{get_saudacao()}, {ADMIN_NOME}</b>.\n⚠️ <i>Sistema em manutenção.</i>"
         try:
             eventos = buscar_eventos_pendentes(limit=500)
             hoje = date.today()
@@ -577,11 +595,11 @@ class PrazoService:
         try:
             registros = listar_auditoria(evento_id=evento_id, limite=20)
             if not registros:
-                return " <b>Nenhuma ação registrada ainda.</b>"
+                return "📭 <b>Nenhuma ação registrada ainda.</b>"
             try:
                 return validar_html_telegram(formatar_auditoria(registros))
             except Exception:
-                icones = {"CONCLUIDO": "✔️", "CORRIGIDO": "️", "REABERTO": "🔄", "ARQUIVADO": "🗄️"}
+                icones = {"CONCLUIDO": "✔️", "CORRIGIDO": "✏️", "REABERTO": "🔄", "ARQUIVADO": "🗄️"}
                 linhas = ["<b>📋 HISTÓRICO</b>\n"]
                 for r in registros:
                     acao = r.get('acao', 'N/D')
@@ -595,11 +613,11 @@ class PrazoService:
     @staticmethod
     def status_cursor() -> str:
         if not REPOSITORIO_OK:
-            return "️ <i>Sistema em manutenção.</i>"
+            return "⚠️ <i>Sistema em manutenção.</i>"
         try:
             ult = obter_cursor('ultima_djen')
             return (
-                "<b> CURSOR DJEN</b>\n\n"
+                "<b>📍 CURSOR DJEN</b>\n\n"
                 f"🕐 Última execução: <b>{ult.strftime('%d/%m/%Y') if ult else 'Nunca'}</b>\n"
                 f"📅 Hoje: <b>{date.today().strftime('%d/%m/%Y')}</b>\n\n"
                 "<i>O DJEN busca do cursor−3 dias até hoje.\n"
@@ -613,7 +631,7 @@ class PrazoService:
         try:
             sf = {}
             for nome, info in obter_status_global().items():
-                sf[nome] = f"🟢 rodando • PID {info['pid']}" if info["estado"] == "rodando" else "🔴 parado"
+                sf[nome] = f"{info['icone']} {info['estado']}" + (f" • PID {info['pid']}" if info.get('pid') else "")
             return validar_html_telegram(formatar_status(sf))
         except Exception:
             return "❌ Erro ao carregar status."
@@ -630,13 +648,16 @@ def kb_principal() -> InlineKeyboardMarkup:
     ])
 
 def kb_bots() -> InlineKeyboardMarkup:
+    # 🔹 EDIÇÃO #4: botões ▶️/⏹️ Audiências
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("▶️ DJEN", callback_data="start_djen"),
          InlineKeyboardButton("⏹️ DJEN", callback_data="stop_djen")],
         [InlineKeyboardButton("▶️ Executor", callback_data="start_executor"),
          InlineKeyboardButton("⏹️ Executor", callback_data="stop_executor")],
         [InlineKeyboardButton("▶️ IA", callback_data="start_ia"),
-         InlineKeyboardButton("️ IA", callback_data="stop_ia")],
+         InlineKeyboardButton("⏹️ IA", callback_data="stop_ia")],
+        [InlineKeyboardButton("▶️ Audiências", callback_data="start_audiencias"),
+         InlineKeyboardButton("⏹️ Audiências", callback_data="stop_audiencias")],
         [InlineKeyboardButton("⬅️ Voltar", callback_data="menu_principal")],
     ])
 
@@ -675,7 +696,7 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         return
     limpar_aguardando(context)
     await update.message.reply_text(
-        f"🤖 <b>Orquestrador Jurídico v3.3</b>\n"
+        f"🤖 <b>Orquestrador Jurídico v3.4</b>\n"
         f"{get_saudacao()}, <b>{ADMIN_NOME}</b>! 👋\n"
         f"<i>Toque nos botões para navegar.</i>",
         parse_mode="HTML", reply_markup=ReplyKeyboardRemove(),
@@ -731,11 +752,12 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         return
     await query.answer()
     data = query.data
-    logger.info(f" Callback: {data}")
+    logger.info(f"📩 Callback: {data}")
 
     async def edit(text, markup=None, html=True):
         await query.edit_message_text(text, parse_mode="HTML" if html else None, reply_markup=markup)
 
+    # ---- Navegação principal ----
     if data == "safe_shutdown":
         uid = update.effective_user.id
         nome = update.effective_user.first_name or "Usuário"
@@ -767,6 +789,7 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
     if data == "ajuda_sistema":
         return await edit(formatar_ajuda(), kb_sistema())
 
+    # ---- Prazos / lista ----
     if data == "atualizar_prazos" or data.startswith("prazos_page_"):
         if data.startswith("prazos_page_"):
             p = int(data.replace("prazos_page_", ""))
@@ -781,17 +804,18 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         t, m = PrazoService.detalhe(int(data[4:]))
         return await edit(t, m)
 
-    # CONCLUIR (específicos ANTES do genérico)
+    # ---- Concluir ----
     if data.startswith("concluir_rapido_"):
         partes = data.split("_")
-        eid = int(partes[2]); cod = partes[3]
+        eid = int(partes[2])
+        cod = partes[3]
         motivo = next((d for c, d in MOTIVOS_RAPIDOS if c == cod), "Concluído via botão")
         resultado = concluir_evento(eid, motivo, ADMIN_NOME)
         return await edit(
             f"✅ <b>#{eid} concluído</b>\n<i>{escape_html(motivo)}</i>\n\n{escape_html(resultado)}",
             InlineKeyboardMarkup([
                 [InlineKeyboardButton("🔄 Ver lista atualizada", callback_data="menu_prazos")],
-                [InlineKeyboardButton("️ Voltar ao prazo", callback_data=f"ver_{eid}")],
+                [InlineKeyboardButton("⬅️ Voltar ao prazo", callback_data=f"ver_{eid}")],
             ]))
     if data.startswith("concluir_digitar_"):
         eid = int(data.replace("concluir_digitar_", ""))
@@ -805,10 +829,11 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         t, m = PrazoService.menu_concluir(eid)
         return await edit(t, m)
 
-    # CORRIGIR (específicos ANTES do genérico)
+    # ---- Corrigir prazo ----
     if data.startswith("corrigir_dias_"):
         partes = data.split("_")
-        eid = int(partes[2]); n = int(partes[3])
+        eid = int(partes[2])
+        n = int(partes[3])
         e = buscar_evento_por_id(eid)
         prazo = _parse_prazo(e) if e else None
         if not prazo:
@@ -833,17 +858,20 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         t, m = PrazoService.menu_corrigir(eid)
         return await edit(t, m)
 
+    # ---- Reabrir ----
     if data.startswith("reabrir_"):
         eid = int(data.replace("reabrir_", ""))
         resultado = reabrir_evento(eid, "Reabertura via botão", ADMIN_NOME)
         return await edit(f"↩️ <b>#{eid}</b>\n{escape_html(resultado)}",
                           InlineKeyboardMarkup([[InlineKeyboardButton("⬅️ Voltar ao prazo", callback_data=f"ver_{eid}")]]))
 
+    # ---- Auditoria ----
     if data.startswith("aud_"):
         eid = int(data.replace("aud_", ""))
         return await edit(PrazoService.auditoria(evento_id=eid),
                           InlineKeyboardMarkup([[InlineKeyboardButton("⬅️ Voltar ao prazo", callback_data=f"ver_{eid}")]]))
 
+    # ---- Reset base ----
     if data == "reset_base":
         return await edit(
             "🧹 <b>REINICIAR BASE</b>\n\n"
@@ -860,15 +888,17 @@ async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
                           f"<i>Use 🤖 → ▶️ DJEN para buscar só publicações recentes.</i>",
                           kb_sistema())
 
+    # ---- Controle de Bots ----
+    # 🔹 EDIÇÃO #3: permitir start/stop para "audiencias"
     if data.startswith("start_"):
         nome = data.replace("start_", "")
-        if nome in ["executor", "djen", "ia"]:
+        if nome in ["executor", "djen", "ia", "audiencias"]:
             return await edit(start_processo(nome, _get_comando_bot(nome)))
     if data.startswith("stop_"):
         nome = data.replace("stop_", "")
         if nome == "all":
             return await edit(stop_all_processos())
-        if nome in ["executor", "djen", "ia"]:
+        if nome in ["executor", "djen", "ia", "audiencias"]:
             return await edit(stop_processo(nome))
 
     await query.answer()
@@ -918,6 +948,7 @@ async def route_plain_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -
                 ]))
             return
 
+    # Comandos rápidos por texto
     if low in ("oi", "olá", "ola", "bom dia", "boa tarde", "boa noite", "menu", "start", "/start"):
         await cmd_start(update, context)
     elif low in ("prazos", "/prazos"):
@@ -929,7 +960,7 @@ async def route_plain_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -
     elif low == "status":
         await update.message.reply_text(PrazoService.status_bots(), parse_mode="HTML")
     elif low == "resumo":
-        await update.message.reply_text(f"<b> RESUMO</b>\n{PrazoService.briefing()}", parse_mode="HTML")
+        await update.message.reply_text(f"<b>📊 RESUMO</b>\n{PrazoService.briefing()}", parse_mode="HTML")
     elif low == "stop all":
         await update.message.reply_text(stop_all_processos())
     elif low in ("safe shutdown", "desligar"):
@@ -970,23 +1001,24 @@ def main() -> None:
     acquire_lock()
 
     def _sig_handler(signum: int, frame: Any) -> None:
-        logger.info(f"Sinal {signum} recebido. Encerrando...")
+        logger.info(f"⚠️ Sinal {signum} recebido. Encerrando...")
         release_lock()
         raise SystemExit(0)
 
     signal.signal(signal.SIGINT, _sig_handler)
     signal.signal(signal.SIGTERM, _sig_handler)
     try:
-        logger.info("🚀 Iniciando Orquestrador Jurídico v3.3 (lista enriquecida)...")
+        logger.info("🚀 Iniciando Orquestrador Jurídico v3.4 (com Audiências)...")
         logger.info(f"📁 Base: {BASE_DIR}")
-        logger.info(f" Admin ID: {ADMIN_ID}")
-        logger.info(f"🗄️  Repositório: {'OK' if REPOSITORIO_OK else 'FALHOU'}")
-        logger.info(f" Formatter: {'OK' if FORMATTER_OK else 'FALLBACK'}")
-        logger.info(" UX: lista=botões enriquecidos · concluir/corrigir por toque · modo conversacional")
+        logger.info(f"👤 Admin ID: {ADMIN_ID}")
+        logger.info(f"🗄️ Repositório: {'OK' if REPOSITORIO_OK else 'FALHOU'}")
+        logger.info(f"🎨 Formatter: {'OK' if FORMATTER_OK else 'FALLBACK'}")
+        logger.info("📱 UX: lista=enriquecida · concluir/corrigir por toque · modo conversacional")
+        logger.info("🎯 Bots: DJEN | Executor | IA | Audiências")
         app = build_app()
         app.run_polling(drop_pending_updates=True)
     except Exception as e:
-        logger.critical(f" Erro fatal: {e}", exc_info=True)
+        logger.critical(f"💥 Erro fatal: {e}", exc_info=True)
     finally:
         release_lock()
         logger.info("👋 Orquestrador encerrado")

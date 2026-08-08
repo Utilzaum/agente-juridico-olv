@@ -147,7 +147,12 @@ def corrigir_docx(caminho: str) -> str:
         logging.warning("Falha ao corrigir DOCX, usando original: %s", exc)
         return caminho
 
-def converter_docx_para_pdf(caminho_docx: str) -> Optional[str]:
+import threading
+
+# 🔒 LibreOffice não suporta instâncias simultâneas no mesmo perfil.
+_LIBREOFFICE_LOCK = threading.Lock()
+
+def _tentar_conversao_once(caminho_docx: str) -> Optional[str]:
     import subprocess
     try:
         docx_path = Path(caminho_docx)
@@ -180,12 +185,24 @@ def converter_docx_para_pdf(caminho_docx: str) -> Optional[str]:
         logging.error("Erro na conversão DOCX/PDF: %s", exc)
         return None
 
+def converter_docx_para_pdf(caminho_docx: str, tentativas: int = 3) -> Optional[str]:
+    # Conversão com lock + retry (nunca concorre com outra instância).
+    for tentativa in range(1, tentativas + 1):
+        with _LIBREOFFICE_LOCK:
+            pdf = _tentar_conversao_once(caminho_docx)
+        if pdf:
+            return pdf
+        logger.warning("⚠️ Conversão PDF falhou (tentativa %d/%d): %s",
+                       tentativa, tentativas, caminho_docx)
+        time.sleep(2 * tentativa)
+    return None
+
 # =========================
 # CONFIGURAÇÃO
 # =========================
 load_dotenv()
 TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "hf.co/LiquidAI/LFM2.5-1.2B-Thinking-GGUF:Q4_K_M")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "hf.co/unsloth/LFM2.5-1.2B-Instruct-GGUF:Q4_K_M")
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
 ALLOW_EXTERNAL_FALLBACK = os.getenv("ALLOW_EXTERNAL_FALLBACK", "false").lower() == "true"
@@ -434,7 +451,8 @@ Regras críticas:
         "model": OLLAMA_MODEL,
         "prompt": prompt,
         "stream": False,
-        "options": {"temperature": 0.1, "num_predict": 500}
+        "format": "json",
+        "options": {"temperature": 0.1, "num_predict": 2048}
     }
     try:
         response = requests.post(f"{OLLAMA_URL}/api/generate", json=payload, timeout=45)
@@ -588,13 +606,47 @@ async def gerar_contrato(chat_id: int) -> str:
         limpar_temporarios(caminho_docx_corrigido)
     return caminho_pdf if caminho_pdf else str(caminho_docx)
 
-async def gerar_kit_inicial(chat_id: int) -> List[str]:
-    resultados = await asyncio.gather(
-        gerar_procuracao(chat_id),
-        gerar_hipossuficiencia(chat_id),
-        gerar_contrato(chat_id)
-    )
-    return [r for r in resultados if r]
+DOCUMENTOS_KIT = [
+    ("PROCURACAO",                  "modelo_procuracao.docx",       "Procuração"),
+    ("DECLARACAO_HIPOSSUFICIENCIA", "modelo_hipossuficiencia.docx", "Declaração de Hipossuficiência"),
+    ("CONTRATO_HONORARIOS",         "modelo_honorarios.docx",       "Contrato de Honorários"),
+]
+
+def rotulo_doc(tipo: str) -> str:
+    return next((r[2] for r in DOCUMENTOS_KIT if r[0] == tipo), tipo)
+
+async def _gerar_documento(chat_id: int, tipo: str, nome_template: str) -> Dict[str, Any]:
+    """Gera 1 documento do kit. Nunca retorna caminho inexistente: ok=False indica falha."""
+    import io
+    res = {"tipo": tipo, "template": nome_template, "caminho": None, "ok": False}
+    if not DOCXTPL_AVAILABLE:
+        raise RuntimeError("docxtpl não está instalado")
+    doc = DocxTemplate(localizar_template(nome_template))
+    doc.render(contexto_kit(chat_id))
+    nome_cliente = re.sub(r"[^\w\s]", "", contexto_kit(chat_id).get("nome", "CLIENTE")).strip().replace(" ", "_")
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    caminho_docx = BASE_TEMP_DIR / f"{nome_cliente}_{tipo}_{ts}.docx"
+    buf = io.BytesIO()
+    doc.save(buf)
+    caminho_docx.write_bytes(buf.getvalue())
+    caminho_docx_corrigido = corrigir_docx(str(caminho_docx))
+    caminho_pdf = await asyncio.to_thread(converter_docx_para_pdf, caminho_docx_corrigido)
+    if caminho_pdf:
+        limpar_temporarios(caminho_docx, caminho_docx_corrigido)
+        res["caminho"], res["ok"] = caminho_pdf, True
+    elif Path(caminho_docx_corrigido).exists():
+        # Fallback: entrega o .docx em vez de entregar nada
+        limpar_temporarios(caminho_docx)
+        res["caminho"], res["ok"] = caminho_docx_corrigido, True
+    else:
+        limpar_temporarios(caminho_docx, caminho_docx_corrigido)
+    return res
+
+async def gerar_kit_inicial(chat_id: int) -> List[Dict[str, Any]]:
+    # O render (docxtpl) continua paralelo; só o LibreOffice é serializado pelo lock.
+    return list(await asyncio.gather(*[
+        _gerar_documento(chat_id, tipo, tpl) for tipo, tpl, _ in DOCUMENTOS_KIT
+    ]))
 
 # =========================
 # 🔥 UI CONVERSACIONAL
@@ -849,6 +901,28 @@ async def handle_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) ->
         context.user_data.pop("campo_editando", None)
         await _mostrar_cartao_principal(update, context)
         return
+    # ===== REGERAR DOCUMENTOS FALTANTES =====
+    elif data == "regen_missing":
+        pendentes = context.user_data.pop("docs_pendentes", [])
+        if not pendentes:
+            await query.answer("✅ Nada pendente.")
+            return
+        await query.answer("🔄 Regerando documentos...")
+        await _atualizar_mensagem_viva(context, chat_id, "🔄 <b>Regerando documentos faltantes...</b>", None)
+        retry = await asyncio.gather(*[
+            _gerar_documento(chat_id, p["tipo"], p["template"]) for p in pendentes])
+        enviados, ainda = await _enviar_documentos(retry, query.message, context, chat_id)
+        if ainda:
+            context.user_data["docs_pendentes"] = ainda
+            await _atualizar_mensagem_viva(
+                context, chat_id, "❌ <b>Ainda há falhas.</b> Toque para tentar de novo.",
+                InlineKeyboardMarkup([[InlineKeyboardButton("🔄 Tentar novamente", callback_data="regen_missing")]]))
+        else:
+            await _atualizar_mensagem_viva(context, chat_id, "✅ <b>Todos os documentos foram entregues!</b>", None)
+            reset_user_data(chat_id)
+            context.user_data.clear()
+        return
+
         
     # ===== EDITAR CAMPO ESPECÍFICO =====
     elif data.startswith("edit_"):
@@ -962,6 +1036,30 @@ async def processar_correcao(update: Update, context: ContextTypes.DEFAULT_TYPE)
     await _atualizar_mensagem_viva(context, chat_id, ajuda, keyboard)
     return AGUARDANDO_CORRECAO
 
+async def _enviar_documentos(resultados: List[Dict[str, Any]], reply_channel,
+                             context: ContextTypes.DEFAULT_TYPE, chat_id: int):
+    # Envia os docs gerados; falhas viram 'pendentes' (antes eram puladas em silêncio).
+    enviados, pendentes = [], []
+    for i, res in enumerate(resultados, 1):
+        caminho = res.get("caminho")
+        if res.get("ok") and caminho and os.path.exists(caminho):
+            nome_arquivo = Path(caminho).stem
+            porcentagem = int((i / len(resultados)) * 100)
+            barras = "▓" * (porcentagem // 5) + "░" * (20 - porcentagem // 5)
+            await _atualizar_mensagem_viva(
+                context, chat_id,
+                f"🚀 <b>GERANDO KIT INICIAL</b>\n📄 Enviando: <b>{nome_arquivo}</b>\n{barras} {porcentagem}%", None)
+            with open(caminho, "rb") as f:
+                await reply_channel.reply_document(
+                    document=f, filename=Path(caminho).name,
+                    caption=f"📄 {nome_arquivo.replace('_fix', '').replace('_', ' ').title()}")
+            try: os.remove(caminho)
+            except Exception: pass
+            enviados.append(res["tipo"])
+        else:
+            pendentes.append(res)
+    return enviados, pendentes
+
 async def cmd_kit(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if update.message:
         reply_channel = update.message
@@ -990,41 +1088,41 @@ async def cmd_kit(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await _atualizar_mensagem_viva(context, chat_id, progresso, None)
     
     try:
-        caminhos = await gerar_kit_inicial(chat_id)
-        for i, caminho in enumerate(caminhos, 1):
-            if caminho and os.path.exists(caminho):
-                nome_arquivo = Path(caminho).stem
-                porcentagem = int((i / len(caminhos)) * 100)
-                barras = "▓" * (porcentagem // 5) + "░" * (20 - porcentagem // 5)
-                progresso = (
-                    f"🚀 <b>GERANDO KIT INICIAL</b>\n"
-                    f"📄 Enviando: <b>{nome_arquivo}</b>\n"
-                    f"{barras} {porcentagem}%"
-                )
-                await _atualizar_mensagem_viva(context, chat_id, progresso, None)
-                
-                with open(caminho, "rb") as f:
-                    await reply_channel.reply_document(
-                        document=f, filename=Path(caminho).name,
-                        caption=f"📄 {nome_arquivo.replace('_', ' ').title()}"
-                    )
-                try: os.remove(caminho)
-                except Exception: pass
-                
-        sucesso = (
-            "✅ <b>KIT INICIAL COMPLETO!</b>\n"
-            "📋 <b>Documentos gerados:</b>\n"
-            "1. Procuração\n"
-            "2. Declaração de Hipossuficiência\n"
-            "3. Contrato de Honorários\n"
-            "━━━━━━━━━━━━━━━━━━\n"
-            "📌 <b>Envie outro documento</b> para iniciar novo processo."
-        )
-        await _atualizar_mensagem_viva(context, chat_id, sucesso, None)
-        
-        # ✅ Limpeza de robustez: apaga a sessão em memória após gerar o kit
-        reset_user_data(chat_id)
-        context.user_data.clear()
+        resultados = await gerar_kit_inicial(chat_id)
+        enviados, pendentes = await _enviar_documentos(resultados, reply_channel, context, chat_id)
+        # 🔁 RETRY AUTOMÁTICO: detectou faltante → regera antes de avisar
+        if pendentes:
+            await _atualizar_mensagem_viva(
+                context, chat_id,
+                "🔄 <b>Falha detectada!</b> Regerando: " +
+                ", ".join(rotulo_doc(p["tipo"]) for p in pendentes) + "...", None)
+            retry = await asyncio.gather(*[
+                _gerar_documento(chat_id, p["tipo"], p["template"]) for p in pendentes])
+            ok2, pendentes = await _enviar_documentos(retry, reply_channel, context, chat_id)
+            enviados += ok2
+        if not pendentes:
+            sucesso = (
+                "✅ <b>KIT INICIAL COMPLETO!</b>\n"
+                "📋 <b>Documentos gerados:</b>\n"
+                "1. Procuração\n"
+                "2. Declaração de Hipossuficiência\n"
+                "3. Contrato de Honorários\n"
+                "━━━━━━━━━━━━━━━━━━\n"
+                "📌 <b>Envie outro documento</b> para iniciar novo processo."
+            )
+            await _atualizar_mensagem_viva(context, chat_id, sucesso, None)
+            reset_user_data(chat_id)
+            context.user_data.clear()
+        else:
+            # ⚠️ Kit parcial: mensagem honesta + botão de regeração manual
+            context.user_data["docs_pendentes"] = pendentes
+            nomes = "\n".join("• " + rotulo_doc(p["tipo"]) for p in pendentes)
+            teclado = InlineKeyboardMarkup([[InlineKeyboardButton(
+                "🔄 Regerar documentos faltantes", callback_data="regen_missing")]])
+            await _atualizar_mensagem_viva(
+                context, chat_id,
+                f"⚠️ <b>Kit parcial:</b> {len(enviados)}/3 documentos entregues.\n"
+                f"<b>Faltando:</b>\n{nomes}\n\n👇 Toque para regerar agora:", teclado)
         
     except Exception as exc:
         logger.exception("Erro ao gerar kit")
@@ -1065,7 +1163,7 @@ def build_app() -> Application:
                 CommandHandler("limpar", cmd_limpar),
                 CommandHandler("cancel", cancelar),
                 # ✅ Regex corrigida para casar com edit_nome, edit_cpf, etc.
-                CallbackQueryHandler(handle_callback, pattern=r"^(edit_.*|confirm|generate_kit|edit_data|reextract|cancel|cancel_edit)$"),
+                    CallbackQueryHandler(handle_callback, pattern=r"^(edit_.*|confirm|generate_kit|edit_data|reextract|cancel|cancel_edit|regen_missing)$"),
                 MessageHandler(filters.TEXT & ~filters.COMMAND, processar_correcao),
             ],
         },

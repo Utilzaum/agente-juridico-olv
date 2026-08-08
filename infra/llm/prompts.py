@@ -122,8 +122,7 @@ PERFIL_DOUTRINA = """MODO DOUTRINA — utilize somente doutrina existente na bas
 _VERBOS_EXPLICAR = (
     "explique", "expliquem", "disserte", "dissertar", "analise", "analisar",
     "fundamente", "fundamentar", "interprete", "interpretar", "comente",
-    "comentar", "esclareça", "esclarecer",
-)
+    "comentar", "esclareça", "esclarecer", "conceitue", "conceituar", "defina", "definir", "diferencie")
 _PALAVRAS_COMPARAR = (
     "compare", "comparar", "comparação", "diferença", "distinga", "distinguir",
     "versus", " vs ", "semelhança", "contraste",
