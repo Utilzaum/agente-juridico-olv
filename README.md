@@ -93,6 +93,65 @@ Atualmente gera automaticamente:
 
 ---
 
+## 🧑‍⚖️ Documentarista de Audiências
+
+Agente especializado na organização e acompanhamento de audiências, com processamento de documentos e informações de pauta.
+
+Principais recursos:
+
+- recebimento de documentos pelo Telegram;
+- OCR e extração de informações;
+- identificação e normalização de dados da audiência;
+- revisão das informações extraídas;
+- geração de agenda em formato `.ics`;
+- notificações e alertas;
+- separação entre audiências pendentes de revisão e audiências confirmadas.
+
+O agente foi desenvolvido como módulo independente, com armazenamento e ciclo operacional próprios.
+
+---
+
+## 🏛️ Documentarista Previdenciário
+
+Agente especializado na documentação inicial de clientes para demandas previdenciárias.
+
+Fluxo de processamento:
+
+Documento ou foto
+
+⬇
+
+OCR
+
+⬇
+
+Extração de Dados
+
+⬇
+
+Revisão pelo usuário
+
+⬇
+
+Confirmação
+
+⬇
+
+Geração do Kit Previdenciário
+
+Atualmente gera automaticamente:
+
+- Procuração;
+- Declaração de Hipossuficiência;
+- Renúncia ao Teto;
+- Contrato de Honorários.
+
+O agente possui bot Telegram próprio e token independente, mantendo o módulo previdenciário separado dos demais agentes.
+
+A estrutura foi concebida para reutilizar a infraestrutura segura do projeto sem depender diretamente do núcleo do bot principal.
+
+---
+
 ## ⚖️ Controladoria Jurídica
 
 Sistema responsável pela gestão operacional dos processos.
@@ -209,6 +268,11 @@ O usuário pode:
 core/
 │
 ├── Documentarista Cível
+├── previdenciario/
+│   ├── bot_prev.py
+│   ├── engine_prev.py
+│   ├── kit_prev.py
+│   └── ui_prev.py
 ├── OCR
 ├── Parser Jurídico
 ├── IA
@@ -238,6 +302,17 @@ services/
 └── Templates
 
 telegram_formatter/
+
+audiencias/
+├── extractor.py
+├── models.py
+├── normaliza.py
+├── ocr.py
+├── protocolo.py
+├── store.py
+├── watcher.py
+├── notifier.py
+└── ics_builder.py
 
 dicionario/
 
@@ -289,17 +364,19 @@ Automatizar tarefas repetitivas para que o profissional concentre seus esforços
 
 - Orquestrador Jurídico
 - Documentarista Cível
+- Documentarista de Audiências
+- Documentarista Previdenciário — MVP
 - OCR Jurídico
 - Controladoria
 - DJEN
 - Banco Vetorial
 - Biblioteca Jurídica
 - Templates DOCX
-- Telegram
+- Integração Telegram
+- Agenda de Audiências
 
 ## Em desenvolvimento
 
-- Documentarista Previdenciário
 - Bibliotecária IA
 - Pesquisa Jurisprudencial
 - Agenda Inteligente

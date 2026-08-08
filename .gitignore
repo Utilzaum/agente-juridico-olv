@@ -87,3 +87,9 @@ __pycache__/
 # Artefatos temporários de correção
 consertar_bot.py
 kit_completo.patch
+
+# Arquivos de correção/backup específicos
+*.antes_fix
+
+# Modelos locais de IA
+models/
