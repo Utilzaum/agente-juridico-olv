@@ -427,7 +427,7 @@ Sugestões e discussões técnicas são bem-vindas.
 
 # 📜 Direitos Autorais
 
-© 2026 Raphael Oliveira – Oliveira Advocacia.
+© 2026 Raphael V. A. Oliveira – Oliveira Advocacia.
 
 Este repositório é disponibilizado para fins de demonstração técnica, documentação da arquitetura do projeto e controle de versionamento.
 
