@@ -1,0 +1,362 @@
+{
+  "codigo_peca": "recurso_inominado",
+  "nome_peca": "Recurso Inominado",
+  "requisitos": [
+    {
+      "codigo": "recorrente",
+      "nome": "Recorrente",
+      "categoria": "identificacao",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Identificação da parte que interpõe o recurso.",
+      "validacao": {},
+      "consequencia": "Sem a identificação do recorrente, a peça não pode ser finalizada."
+    },
+    {
+      "codigo": "recorrido",
+      "nome": "Recorrido",
+      "categoria": "identificacao",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Identificação da parte contra a qual o recurso é dirigido.",
+      "validacao": {},
+      "consequencia": "Sem a identificação do recorrido, a peça não pode ser finalizada."
+    },
+    {
+      "codigo": "numero_processo",
+      "nome": "Número do processo",
+      "categoria": "identificacao",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Número identificador do processo judicial.",
+      "validacao": {
+        "necessario_para": [
+          "identificacao_processual"
+        ]
+      },
+      "consequencia": "A peça não deve ser finalizada sem a identificação do processo."
+    },
+    {
+      "codigo": "juizo_origem",
+      "nome": "Juízo de origem",
+      "categoria": "processual",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Juízo perante o qual tramita ou tramitou o processo em primeiro grau.",
+      "validacao": {},
+      "consequencia": "Necessário para a correta identificação da origem do recurso."
+    },
+    {
+      "codigo": "turma_recursal",
+      "nome": "Turma Recursal competente",
+      "categoria": "processual",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Órgão colegiado competente para julgamento do recurso.",
+      "validacao": {},
+      "consequencia": "O endereçamento não deve ser finalizado sem a identificação do órgão competente."
+    },
+    {
+      "codigo": "sentenca_impugnada",
+      "nome": "Sentença impugnada",
+      "categoria": "cabimento",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "documento",
+      "descricao": "Decisão judicial objeto do Recurso Inominado.",
+      "validacao": {
+        "necessario_para": [
+          "cabimento",
+          "resumo_da_lide",
+          "fundamentacao"
+        ]
+      },
+      "consequencia": "Sem a sentença ou seu conteúdo verificável, não é possível estruturar adequadamente a impugnação."
+    },
+    {
+      "codigo": "tipo_decisao",
+      "nome": "Tipo da decisão impugnada",
+      "categoria": "cabimento",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Identificação da natureza da decisão que se pretende impugnar.",
+      "validacao": {
+        "regra": "Deve ser compatível com o cabimento do Recurso Inominado."
+      },
+      "consequencia": "Se a decisão não for compatível com o recurso, o sistema deve sinalizar possível inadequação recursal."
+    },
+    {
+      "codigo": "data_ciencia",
+      "nome": "Data da ciência da sentença",
+      "categoria": "tempestividade",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "data",
+      "descricao": "Data efetivamente identificada nos autos como marco de ciência da sentença.",
+      "validacao": {
+        "necessario_para": [
+          "tempestividade"
+        ]
+      },
+      "consequencia": "Sem a data de ciência, a tempestividade não pode ser verificada com segurança."
+    },
+    {
+      "codigo": "data_interposicao",
+      "nome": "Data da interposição",
+      "categoria": "tempestividade",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "data",
+      "descricao": "Data em que o recurso foi ou será efetivamente interposto.",
+      "validacao": {
+        "necessario_para": [
+          "tempestividade"
+        ]
+      },
+      "consequencia": "Sem a data de interposição, a tempestividade não pode ser verificada."
+    },
+    {
+      "codigo": "situacao_preparo",
+      "nome": "Situação do preparo",
+      "categoria": "preparo",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "enum",
+      "opcoes": [
+        "recolhido",
+        "gratuidade_concedida",
+        "gratuidade_requerida",
+        "isento",
+        "nao_informado"
+      ],
+      "descricao": "Situação processual relativa ao preparo recursal.",
+      "validacao": {
+        "regra": "A situação deve ser confirmada a partir dos autos ou das informações fornecidas."
+      },
+      "consequencia": "O sistema deve sinalizar ausência de informação suficiente sobre o preparo."
+    },
+    {
+      "codigo": "comprovante_preparo",
+      "nome": "Comprovante de preparo",
+      "categoria": "preparo",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "documento",
+      "descricao": "Comprovante do recolhimento do preparo quando houver obrigação de recolhimento.",
+      "validacao": {
+        "condicao": "Obrigatório quando a situação do preparo for recolhido."
+      },
+      "consequencia": "A ausência do comprovante deve ser sinalizada para conferência."
+    },
+    {
+      "codigo": "gratuidade_justica",
+      "nome": "Situação da gratuidade da justiça",
+      "categoria": "gratuidade",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "enum",
+      "opcoes": [
+        "concedida",
+        "requerida",
+        "indeferida",
+        "nao_requerida",
+        "nao_informada"
+      ],
+      "descricao": "Situação da assistência judiciária gratuita relacionada ao recurso.",
+      "validacao": {
+        "condicao": "Verificar quando houver alegação, pedido ou decisão relativa à gratuidade."
+      },
+      "consequencia": "Se houver pedido de gratuidade, sua situação deve ser expressamente identificada."
+    },
+    {
+      "codigo": "fatos_relevantes",
+      "nome": "Fatos relevantes",
+      "categoria": "demanda",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Fatos necessários à compreensão da controvérsia recursal.",
+      "validacao": {},
+      "consequencia": "A ausência de fatos suficientes impede a construção segura da fundamentação."
+    },
+    {
+      "codigo": "pedidos_iniciais",
+      "nome": "Pedidos formulados na demanda",
+      "categoria": "demanda",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Pedidos originalmente formulados pela parte autora.",
+      "validacao": {},
+      "consequencia": "Necessário para compreender a extensão da controvérsia."
+    },
+    {
+      "codigo": "defesa",
+      "nome": "Defesa apresentada",
+      "categoria": "demanda",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "documento",
+      "descricao": "Contestação ou manifestação defensiva relevante para a compreensão da controvérsia.",
+      "validacao": {},
+      "consequencia": "A ausência deve ser sinalizada quando a defesa for relevante para o recurso."
+    },
+    {
+      "codigo": "resultado_sentenca",
+      "nome": "Resultado da sentença",
+      "categoria": "sentenca",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Resultado efetivamente produzido pela sentença.",
+      "validacao": {},
+      "consequencia": "Necessário para determinar o objeto da insurgência recursal."
+    },
+    {
+      "codigo": "capitulos_impugnados",
+      "nome": "Capítulos da sentença impugnados",
+      "categoria": "recursal",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "lista",
+      "descricao": "Identificação individualizada dos capítulos ou conclusões da sentença que serão objeto de impugnação.",
+      "validacao": {
+        "regra": "Cada capítulo impugnado deve possuir fundamento recursal correspondente."
+      },
+      "consequencia": "Não se deve redigir fundamentação genérica sem identificar o objeto efetivo da insurgência."
+    },
+    {
+      "codigo": "objetivo_recursal",
+      "nome": "Objetivo do recurso",
+      "categoria": "recursal",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Resultado processual pretendido com o recurso.",
+      "validacao": {},
+      "consequencia": "Os pedidos devem corresponder diretamente ao objetivo recursal."
+    },
+    {
+      "codigo": "teses_recursais",
+      "nome": "Teses recursais",
+      "categoria": "fundamentacao",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "lista",
+      "descricao": "Fundamentos jurídicos individualizados destinados à reforma ou anulação da sentença.",
+      "validacao": {
+        "regra": "Cada tese deve possuir relação identificável com fatos, provas, fundamentos jurídicos e resultado pretendido."
+      },
+      "consequencia": "Sem tese recursal definida, a IA não deve inventar fundamentos para preencher a peça."
+    },
+    {
+      "codigo": "provas_relacionadas",
+      "nome": "Provas relacionadas às teses",
+      "categoria": "fundamentacao",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "lista",
+      "descricao": "Documentos ou outros elementos probatórios relacionados às teses recursais.",
+      "validacao": {
+        "condicao": "Obrigatório quando a tese depender de demonstração probatória."
+      },
+      "consequencia": "A ausência deve ser sinalizada quando a argumentação depender de prova não localizada."
+    },
+    {
+      "codigo": "fundamentos_juridicos",
+      "nome": "Fundamentos jurídicos",
+      "categoria": "fundamentacao",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "lista",
+      "descricao": "Normas, princípios e demais fundamentos jurídicos pertinentes às teses recursais.",
+      "validacao": {
+        "regra": "Os fundamentos devem ser vinculados às respectivas teses."
+      },
+      "consequencia": "Não devem ser inseridos dispositivos legais sem relação identificável com a tese."
+    },
+    {
+      "codigo": "dispositivos_prequestionamento",
+      "nome": "Dispositivos para prequestionamento",
+      "categoria": "prequestionamento",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "lista",
+      "descricao": "Dispositivos legais ou constitucionais cuja apreciação seja concretamente pretendida para fins de prequestionamento.",
+      "validacao": {
+        "condicao": "Obrigatório somente quando o prequestionamento fizer parte da estratégia recursal."
+      },
+      "consequencia": "O sistema deve impedir a inserção artificial de dispositivos sem relação com as questões discutidas."
+    },
+    {
+      "codigo": "questoes_prequestionamento",
+      "nome": "Questões jurídicas relacionadas ao prequestionamento",
+      "categoria": "prequestionamento",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "lista",
+      "descricao": "Questões jurídicas efetivamente debatidas às quais os dispositivos indicados para prequestionamento estão relacionados.",
+      "validacao": {
+        "condicao": "Obrigatório quando o prequestionamento for utilizado."
+      },
+      "consequencia": "O prequestionamento não deve ser tratado como mera lista de artigos."
+    },
+    {
+      "codigo": "pedido_principal",
+      "nome": "Pedido principal",
+      "categoria": "pedidos",
+      "obrigatoriedade": "obrigatorio",
+      "tipo_dado": "texto",
+      "descricao": "Resultado principal pretendido com o julgamento do recurso.",
+      "validacao": {
+        "regra": "Deve corresponder ao objetivo recursal e às teses desenvolvidas."
+      },
+      "consequencia": "Não finalizar a peça se o pedido principal não estiver definido."
+    },
+    {
+      "codigo": "pedidos_sucessivos",
+      "nome": "Pedidos sucessivos",
+      "categoria": "pedidos",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "lista",
+      "descricao": "Pedidos sucessivos ou subsidiários eventualmente decorrentes da estratégia recursal.",
+      "validacao": {
+        "condicao": "Utilizar quando houver estratégia subsidiária."
+      },
+      "consequencia": "Devem possuir relação lógica com as teses e com o pedido principal."
+    },
+    {
+      "codigo": "pedido_efeito_suspensivo",
+      "nome": "Pedido de efeito suspensivo",
+      "categoria": "pedidos",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "texto",
+      "descricao": "Pedido destinado à atribuição de efeito suspensivo ao recurso.",
+      "validacao": {
+        "condicao": "Utilizar somente quando houver fundamento concreto para evitar dano irreparável."
+      },
+      "consequencia": "Não inserir pedido genérico de efeito suspensivo."
+    },
+    {
+      "codigo": "risco_dano_irreparavel",
+      "nome": "Risco de dano irreparável",
+      "categoria": "recursal",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "texto",
+      "descricao": "Descrição concreta do risco de dano irreparável que fundamentaria eventual pedido de efeito suspensivo.",
+      "validacao": {
+        "condicao": "Obrigatório quando houver pedido de efeito suspensivo."
+      },
+      "consequencia": "Sem demonstração concreta do risco, o pedido de efeito suspensivo deve ser sinalizado para revisão."
+    },
+    {
+      "codigo": "fundamento_efeito_suspensivo",
+      "nome": "Fundamento do efeito suspensivo",
+      "categoria": "recursal",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "texto",
+      "descricao": "Fundamentação jurídica e fática específica utilizada para sustentar o pedido de efeito suspensivo.",
+      "validacao": {
+        "condicao": "Obrigatório quando houver pedido de efeito suspensivo."
+      },
+      "consequencia": "O pedido de efeito suspensivo não deve ser inserido de forma genérica ou sem fundamento concreto."
+    },
+    {
+      "codigo": "documentos_citados",
+      "nome": "Documentos citados",
+      "categoria": "documentacao",
+      "obrigatoriedade": "condicional",
+      "tipo_dado": "lista",
+      "descricao": "Relação dos documentos ou elementos probatórios mencionados na fundamentação e que devem estar disponíveis para conferência.",
+      "validacao": {
+        "condicao": "Aplicável quando a peça fizer referência a documentos ou elementos probatórios específicos."
+      },
+      "consequencia": "Documento mencionado sem localização correspondente deve ser sinalizado para revisão."
+    }
+  ],
+  "versao": "1.0.0",
+  "status": "rascunho"
+}

@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://olv.local/schemas/requisitos.schema.json",
+  "title": "Schema de Requisitos de Peça Processual OLV",
+  "description": "Contrato estrutural para os requisitos necessários à produção segura de uma peça processual da Biblioteca de Petições OLV.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "codigo_peca",
+    "nome_peca",
+    "requisitos",
+    "versao",
+    "status"
+  ],
+
+  "properties": {
+    "codigo_peca": {
+      "type": "string",
+      "description": "Código técnico da peça à qual os requisitos pertencem.",
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+
+    "nome_peca": {
+      "type": "string",
+      "description": "Nome jurídico da peça."
+    },
+
+    "requisitos": {
+      "type": "array",
+      "description": "Lista de requisitos necessários para a produção da peça.",
+      "minItems": 1,
+
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+
+        "required": [
+          "codigo",
+          "nome",
+          "categoria",
+          "obrigatoriedade",
+          "tipo_dado",
+          "descricao",
+          "validacao",
+          "consequencia"
+        ],
+
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "Identificador técnico único do requisito.",
+            "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+          },
+
+          "nome": {
+            "type": "string",
+            "description": "Nome legível do requisito."
+          },
+
+          "categoria": {
+            "type": "string",
+            "enum": [
+              "identificacao",
+              "processual",
+              "cabimento",
+              "tempestividade",
+              "preparo",
+              "gratuidade",
+              "demanda",
+              "sentenca",
+              "recursal",
+              "fundamentacao",
+              "prequestionamento",
+              "pedidos",
+              "documentacao"
+            ]
+          },
+
+          "obrigatoriedade": {
+            "type": "string",
+            "enum": [
+              "obrigatorio",
+              "condicional",
+              "opcional"
+            ]
+          },
+
+          "tipo_dado": {
+            "type": "string",
+            "enum": [
+              "texto",
+              "data",
+              "documento",
+              "lista",
+              "enum"
+            ]
+          },
+
+          "opcoes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+
+          "descricao": {
+            "type": "string"
+          },
+
+          "validacao": {
+            "type": "object",
+            "additionalProperties": false,
+
+            "properties": {
+              "necessario_para": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "minItems": 1
+              },
+
+              "regra": {
+                "type": "string"
+              },
+
+              "condicao": {
+                "type": "string"
+              }
+            }
+          },
+
+          "consequencia": {
+            "type": "string",
+            "description": "Consequência da ausência, inconsistência ou impossibilidade de validação do requisito."
+          }
+        }
+      }
+    },
+
+    "versao": {
+      "type": "string",
+      "description": "Versão do conjunto de requisitos.",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+
+    "status": {
+      "type": "string",
+      "enum": [
+        "rascunho",
+        "ativo",
+        "inativo",
+        "obsoleto"
+      ]
+    }
+  }
+}

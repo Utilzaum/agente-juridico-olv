@@ -1,0 +1,180 @@
+{
+  "codigo_peca": "recurso_inominado",
+  "nome_peca": "Recurso Inominado",
+
+  "fundamentos": [
+    {
+      "codigo": "cabimento",
+      "tema": "Cabimento do Recurso Inominado",
+      "natureza": "admissibilidade",
+      "finalidade": "Verificar se a decisão impugnada admite Recurso Inominado no âmbito dos Juizados Especiais.",
+      "fontes_normativas": [
+        "Lei 9.099/1995, art. 41"
+      ],
+      "aplicabilidade": "obrigatoria",
+      "orientacao": "Identificar a natureza da decisão impugnada e demonstrar sua compatibilidade com o recurso utilizado. Não presumir o cabimento sem verificar a decisão e o procedimento.",
+      "dados_necessarios": [
+        "tipo_decisao",
+        "sentenca_impugnada",
+        "procedimento"
+      ]
+    },
+
+    {
+      "codigo": "representacao_advogado",
+      "tema": "Representação por advogado",
+      "natureza": "processual",
+      "finalidade": "Verificar a representação processual adequada para a interposição do recurso.",
+      "fontes_normativas": [
+        "Lei 9.099/1995, art. 41, § 2º"
+      ],
+      "aplicabilidade": "obrigatoria",
+      "orientacao": "Verificar a representação processual conforme a legislação aplicável ao recurso. Não presumir regularidade da representação quando houver informação ou documento conflitante.",
+      "dados_necessarios": [
+        "advogado",
+        "representacao_processual"
+      ]
+    },
+
+    {
+      "codigo": "tempestividade",
+      "tema": "Tempestividade",
+      "natureza": "admissibilidade",
+      "finalidade": "Demonstrar que o recurso foi ou será interposto dentro do prazo legal.",
+      "fontes_normativas": [
+        "Lei 9.099/1995, art. 42, caput"
+      ],
+      "aplicabilidade": "obrigatoria",
+      "orientacao": "Utilizar exclusivamente as datas efetivamente identificadas nos autos ou fornecidas pelo usuário. O cálculo do prazo deverá ser realizado por componente próprio de cálculo processual, e não pela LLM.",
+      "dados_necessarios": [
+        "data_ciencia",
+        "data_interposicao"
+      ],
+      "observacoes": "A existência de feriados, suspensão de expediente, indisponibilidade de sistema ou outros eventos relevantes deverá ser tratada pelo mecanismo específico de cálculo de prazo."
+    },
+
+    {
+      "codigo": "razoes_e_pedido",
+      "tema": "Razões e pedido recursal",
+      "natureza": "formal",
+      "finalidade": "Garantir que o recurso contenha razões de insurgência e pedido recursal claramente identificados.",
+      "fontes_normativas": [
+        "Lei 9.099/1995, art. 42, caput"
+      ],
+      "aplicabilidade": "obrigatoria",
+      "orientacao": "As razões devem demonstrar de forma individualizada por que a decisão é impugnada e os pedidos devem corresponder ao resultado recursal pretendido.",
+      "dados_necessarios": [
+        "capitulos_impugnados",
+        "teses_recursais",
+        "pedido_principal"
+      ]
+    },
+
+    {
+      "codigo": "preparo",
+      "tema": "Preparo recursal",
+      "natureza": "processual",
+      "finalidade": "Verificar a situação do preparo recursal e eventual hipótese de assistência judiciária gratuita.",
+      "fontes_normativas": [
+        "Lei 9.099/1995, art. 42, § 1º",
+        "Lei 9.099/1995, art. 54, parágrafo único"
+      ],
+      "aplicabilidade": "obrigatoria",
+      "orientacao": "Identificar se há obrigação de recolhimento, se o preparo foi realizado, se existe gratuidade da justiça ou se há outra situação juridicamente relevante. Não presumir pagamento ou isenção.",
+      "dados_necessarios": [
+        "situacao_preparo",
+        "comprovante_preparo",
+        "gratuidade_justica"
+      ],
+      "observacoes": "A conferência documental do preparo deve ser separada da redação da peça."
+    },
+
+    {
+      "codigo": "efeito_recursal",
+      "tema": "Efeito do recurso",
+      "natureza": "efeito_recursal",
+      "finalidade": "Identificar o efeito aplicável ao recurso e eventual necessidade de requerimento de efeito suspensivo.",
+      "fontes_normativas": [
+        "Lei 9.099/1995, art. 43"
+      ],
+      "aplicabilidade": "obrigatoria",
+      "orientacao": "Considerar a regra legal do efeito devolutivo e avaliar, diante dos fatos concretos, se existe fundamento para requerimento de efeito suspensivo destinado a evitar dano irreparável.",
+      "dados_necessarios": [
+        "efeito_recursal",
+        "risco_dano_irreparavel",
+        "fundamento_efeito_suspensivo"
+      ],
+      "observacoes": "O pedido de efeito suspensivo não deve ser inserido automaticamente."
+    },
+
+    {
+      "codigo": "impugnacao_especifica",
+      "tema": "Impugnação dos fundamentos da sentença",
+      "natureza": "merito_recursal",
+      "finalidade": "Organizar a insurgência contra os fundamentos efetivamente utilizados na sentença.",
+      "fontes_normativas": [],
+      "aplicabilidade": "dinamica",
+      "orientacao": "Identificar cada capítulo relevante da sentença e relacioná-lo à respectiva tese recursal, aos fatos, às provas e às normas aplicáveis. A fundamentação deve decorrer do caso concreto.",
+      "dados_necessarios": [
+        "sentenca_impugnada",
+        "capitulos_impugnados",
+        "teses_recursais",
+        "provas_relacionadas"
+      ],
+      "observacoes": "As fontes jurídicas concretas devem ser recuperadas e verificadas por meio da base jurídica/RAG. Este arquivo não deve funcionar como banco de teses."
+    },
+
+    {
+      "codigo": "fundamentacao_dinamica",
+      "tema": "Fundamentação jurídica do mérito",
+      "natureza": "merito_recursal",
+      "finalidade": "Orientar a construção dos capítulos jurídicos específicos do recurso.",
+      "fontes_normativas": [],
+      "aplicabilidade": "dinamica",
+      "orientacao": "Cada fundamento deve relacionar problema jurídico, fatos relevantes, provas disponíveis, normas aplicáveis, interpretação jurídica e conclusão pretendida. Não criar tese sem suporte nos fatos e documentos fornecidos.",
+      "dados_necessarios": [
+        "teses_recursais",
+        "fatos_relacionados",
+        "provas_relacionadas",
+        "fundamentos_juridicos",
+        "conclusoes_pretendidas"
+      ],
+      "observacoes": "O número e o conteúdo dos capítulos do Direito serão definidos conforme o caso concreto."
+    },
+
+    {
+      "codigo": "prequestionamento",
+      "tema": "Prequestionamento",
+      "natureza": "estrategico",
+      "finalidade": "Avaliar a necessidade de formular prequestionamento em relação às questões jurídicas efetivamente discutidas.",
+      "fontes_normativas": [],
+      "aplicabilidade": "condicional",
+      "condicao": "Utilizar quando houver finalidade processual concreta para o prequestionamento.",
+      "orientacao": "Relacionar os dispositivos cuja apreciação seja pretendida às questões jurídicas efetivamente discutidas no recurso. Não inserir artigos apenas para produzir uma lista de dispositivos.",
+      "dados_necessarios": [
+        "questoes_prequestionamento",
+        "dispositivos_prequestionamento"
+      ],
+      "observacoes": "A estratégia de prequestionamento deve ser definida de acordo com a finalidade recursal e as vias impugnativas efetivamente disponíveis."
+    },
+
+    {
+      "codigo": "coerencia_pedidos",
+      "tema": "Coerência entre fundamentos e pedidos",
+      "natureza": "formal",
+      "finalidade": "Garantir correspondência lógica entre as teses desenvolvidas e os resultados pedidos ao órgão julgador.",
+      "fontes_normativas": [],
+      "aplicabilidade": "obrigatoria",
+      "orientacao": "Cada pedido deve possuir fundamento correspondente e estar relacionado ao capítulo efetivamente impugnado. Pedidos sem suporte argumentativo devem ser sinalizados.",
+      "dados_necessarios": [
+        "teses_recursais",
+        "capitulos_impugnados",
+        "pedido_principal",
+        "pedidos_sucessivos"
+      ]
+    }
+  ],
+
+  "versao": "1.0.0",
+  "status": "rascunho"
+}

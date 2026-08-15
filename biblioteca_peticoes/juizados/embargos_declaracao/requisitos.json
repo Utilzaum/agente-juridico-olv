@@ -1,0 +1,216 @@
+{
+  "area": "juizados",
+  "peca": "embargos_declaracao",
+  "requisitos": [
+    {
+      "id": "REQ01",
+      "titulo": "Identificação do processo",
+      "obrigatorio": true,
+      "descricao": "Número do processo e identificação das partes."
+    },
+    {
+      "id": "REQ02",
+      "titulo": "Identificação do pronunciamento embargado",
+      "obrigatorio": true,
+      "descricao": "Identificação precisa da sentença, decisão ou pronunciamento objeto dos embargos."
+    },
+    {
+      "id": "REQ03",
+      "titulo": "Data do pronunciamento",
+      "obrigatorio": false,
+      "descricao": "Data da decisão embargada, quando disponível nos autos."
+    },
+    {
+      "id": "REQ04",
+      "titulo": "Conteúdo do pronunciamento",
+      "obrigatorio": true,
+      "descricao": "Texto ou conteúdo suficiente da decisão para permitir a identificação do eventual vício."
+    },
+    {
+      "id": "REQ05",
+      "titulo": "Identificação do vício",
+      "obrigatorio": true,
+      "descricao": "Indicação objetiva de omissão, contradição, obscuridade ou erro material."
+    },
+    {
+      "id": "REQ06",
+      "titulo": "Trecho da decisão relacionado ao vício",
+      "obrigatorio": true,
+      "descricao": "Indicação do trecho ou passagem do pronunciamento que contém ou evidencia o vício."
+    },
+    {
+      "id": "REQ07",
+      "titulo": "Questão omitida",
+      "obrigatorio": false,
+      "descricao": "Identificação da questão relevante que deixou de ser apreciada, quando o vício alegado for omissão."
+    },
+    {
+      "id": "REQ08",
+      "titulo": "Pedido anteriormente formulado",
+      "obrigatorio": false,
+      "descricao": "Identificação do pedido ou requerimento anteriormente submetido ao Juízo e supostamente não apreciado."
+    },
+    {
+      "id": "REQ09",
+      "titulo": "Argumento anteriormente apresentado",
+      "obrigatorio": false,
+      "descricao": "Indicação da manifestação ou fundamento anteriormente apresentado e que tenha relevância para a alegação de omissão."
+    },
+    {
+      "id": "REQ10",
+      "titulo": "Prova ou documento relacionado",
+      "obrigatorio": false,
+      "descricao": "Documento ou elemento probatório cuja apreciação seja relevante para demonstrar o vício."
+    },
+    {
+      "id": "REQ11",
+      "titulo": "Trechos contraditórios",
+      "obrigatorio": false,
+      "descricao": "Indicação dos trechos internos do pronunciamento que apresentam incompatibilidade, quando houver contradição."
+    },
+    {
+      "id": "REQ12",
+      "titulo": "Explicação da incompatibilidade",
+      "obrigatorio": false,
+      "descricao": "Demonstração objetiva de por que as passagens identificadas são incompatíveis entre si."
+    },
+    {
+      "id": "REQ13",
+      "titulo": "Trecho obscuro",
+      "obrigatorio": false,
+      "descricao": "Identificação do trecho cuja redação não permite compreender adequadamente o pronunciamento."
+    },
+    {
+      "id": "REQ14",
+      "titulo": "Explicação da obscuridade",
+      "obrigatorio": false,
+      "descricao": "Demonstração objetiva da dificuldade de compreensão causada pelo trecho."
+    },
+    {
+      "id": "REQ15",
+      "titulo": "Identificação do erro material",
+      "obrigatorio": false,
+      "descricao": "Indicação do dado, nome, número, valor, data ou informação objetivamente incorreta."
+    },
+    {
+      "id": "REQ16",
+      "titulo": "Informação correta",
+      "obrigatorio": false,
+      "descricao": "Indicação do dado correto que deve substituir o elemento materialmente equivocado."
+    },
+    {
+      "id": "REQ17",
+      "titulo": "Fonte da informação correta",
+      "obrigatorio": false,
+      "descricao": "Elemento dos autos ou do próprio pronunciamento que permita verificar a correção pretendida."
+    },
+    {
+      "id": "REQ18",
+      "titulo": "Relevância jurídica do vício",
+      "obrigatorio": true,
+      "descricao": "Explicação de por que o vício precisa ser corrigido, esclarecido ou integrado."
+    },
+    {
+      "id": "REQ19",
+      "titulo": "Relação entre o vício e a conclusão",
+      "obrigatorio": false,
+      "descricao": "Demonstração de eventual influência do vício sobre a conclusão do pronunciamento."
+    },
+    {
+      "id": "REQ20",
+      "titulo": "Consequência pretendida",
+      "obrigatorio": true,
+      "descricao": "Indicação do resultado jurídico pretendido com o saneamento do vício."
+    },
+    {
+      "id": "REQ21",
+      "titulo": "Pedido de integração",
+      "obrigatorio": false,
+      "descricao": "Indicação da questão que deve ser apreciada para complementar o pronunciamento."
+    },
+    {
+      "id": "REQ22",
+      "titulo": "Pedido de esclarecimento",
+      "obrigatorio": false,
+      "descricao": "Indicação do trecho que precisa ser esclarecido."
+    },
+    {
+      "id": "REQ23",
+      "titulo": "Pedido de correção",
+      "obrigatorio": false,
+      "descricao": "Indicação objetiva do erro material que deve ser corrigido."
+    },
+    {
+      "id": "REQ24",
+      "titulo": "Pedido de efeitos modificativos",
+      "obrigatorio": false,
+      "descricao": "Somente quando a correção ou integração do vício necessariamente puder alterar a conclusão do julgamento."
+    },
+    {
+      "id": "REQ25",
+      "titulo": "Demonstração do nexo com eventual efeito modificativo",
+      "obrigatorio": false,
+      "descricao": "Demonstração de que a alteração do resultado decorre do saneamento do vício e não de mera pretensão de reforma."
+    },
+    {
+      "id": "REQ26",
+      "titulo": "Questão jurídica para manifestação expressa",
+      "obrigatorio": false,
+      "descricao": "Questão jurídica relevante cuja apreciação expressa seja concretamente necessária."
+    },
+    {
+      "id": "REQ27",
+      "titulo": "Indicação de eventual necessidade de prequestionamento",
+      "obrigatorio": false,
+      "descricao": "Identificação da necessidade concreta de manifestação sobre questão jurídica relevante para eventual discussão posterior."
+    },
+    {
+      "id": "REQ28",
+      "titulo": "Verificação de inexistência de inovação",
+      "obrigatorio": true,
+      "descricao": "Confirmar que os embargos não estão introduzindo matéria completamente nova e estranha à controvérsia."
+    },
+    {
+      "id": "REQ29",
+      "titulo": "Verificação contra mera rediscussão",
+      "obrigatorio": true,
+      "descricao": "Confirmar que a pretensão está vinculada a vício do pronunciamento e não apenas ao inconformismo com o resultado."
+    },
+    {
+      "id": "REQ30",
+      "titulo": "Individualização dos vícios",
+      "obrigatorio": true,
+      "descricao": "Quando houver mais de um vício, cada um deve ser identificado e demonstrado separadamente."
+    },
+    {
+      "id": "REQ31",
+      "titulo": "Compatibilidade entre fundamentação e pedidos",
+      "obrigatorio": true,
+      "descricao": "Verificar se os pedidos correspondem diretamente aos vícios demonstrados."
+    },
+    {
+      "id": "REQ32",
+      "titulo": "Compatibilidade com o rito dos Juizados",
+      "obrigatorio": true,
+      "descricao": "Verificar objetividade, simplicidade, celeridade e adequação da linguagem ao rito dos Juizados."
+    },
+    {
+      "id": "REQ33",
+      "titulo": "Base legal aplicável",
+      "obrigatorio": true,
+      "descricao": "Identificar a legislação processual aplicável aos embargos no caso concreto."
+    },
+    {
+      "id": "REQ34",
+      "titulo": "Elementos para eventual tempestividade",
+      "obrigatorio": false,
+      "descricao": "Quando disponível, identificar a data de ciência/intimação e os elementos necessários para análise da tempestividade."
+    },
+    {
+      "id": "REQ35",
+      "titulo": "Insuficiência de elementos",
+      "obrigatorio": true,
+      "descricao": "Caso não seja possível identificar objetivamente um vício ou os elementos necessários à sua demonstração, a IA deve sinalizar a insuficiência antes de redigir a peça."
+    }
+  ]
+}

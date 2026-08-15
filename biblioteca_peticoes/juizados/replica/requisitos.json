@@ -1,0 +1,272 @@
+{
+  "peca": "replica",
+  "area": "juizados",
+  "nome": "Requisitos da Réplica",
+  "principio": "A Réplica deve ser construída a partir da contestação efetivamente apresentada e dos elementos concretos dos autos.",
+  "requisitos": [
+    {
+      "id": "R01",
+      "titulo": "Identificação do processo",
+      "obrigatorio": true,
+      "descricao": "Número do processo e identificação das partes."
+    },
+    {
+      "id": "R02",
+      "titulo": "Contestação disponível",
+      "obrigatorio": true,
+      "descricao": "Texto ou conteúdo suficiente da contestação para análise."
+    },
+    {
+      "id": "R03",
+      "titulo": "Identificação das alegações defensivas",
+      "obrigatorio": true,
+      "descricao": "Mapeamento das principais alegações apresentadas pelo réu."
+    },
+    {
+      "id": "R04",
+      "titulo": "Identificação das preliminares",
+      "obrigatorio": false,
+      "descricao": "Identificação de eventuais preliminares efetivamente suscitadas."
+    },
+    {
+      "id": "R05",
+      "titulo": "Identificação das teses de mérito",
+      "obrigatorio": true,
+      "descricao": "Mapeamento das teses de mérito relevantes apresentadas pelo réu."
+    },
+    {
+      "id": "R06",
+      "titulo": "Identificação dos fatos defensivos",
+      "obrigatorio": false,
+      "descricao": "Identificação dos fatos alegados pelo réu que possam modificar a controvérsia."
+    },
+    {
+      "id": "R07",
+      "titulo": "Identificação de fatos impeditivos",
+      "obrigatorio": false,
+      "descricao": "Verificação de eventual alegação de fato impeditivo."
+    },
+    {
+      "id": "R08",
+      "titulo": "Identificação de fatos modificativos",
+      "obrigatorio": false,
+      "descricao": "Verificação de eventual alegação de fato modificativo."
+    },
+    {
+      "id": "R09",
+      "titulo": "Identificação de fatos extintivos",
+      "obrigatorio": false,
+      "descricao": "Verificação de eventual alegação de fato extintivo."
+    },
+    {
+      "id": "R10",
+      "titulo": "Identificação dos fatos incontroversos",
+      "obrigatorio": false,
+      "descricao": "Mapeamento de fatos expressamente admitidos ou não efetivamente controvertidos."
+    },
+    {
+      "id": "R11",
+      "titulo": "Identificação dos fatos controvertidos",
+      "obrigatorio": true,
+      "descricao": "Definição dos fatos que permanecem controvertidos após a contestação."
+    },
+    {
+      "id": "R12",
+      "titulo": "Identificação dos argumentos jurídicos defensivos",
+      "obrigatorio": true,
+      "descricao": "Separação entre alegações fáticas e argumentos jurídicos."
+    },
+    {
+      "id": "R13",
+      "titulo": "Identificação dos documentos apresentados pelo réu",
+      "obrigatorio": false,
+      "descricao": "Mapeamento dos documentos juntados com a contestação."
+    },
+    {
+      "id": "R14",
+      "titulo": "Relevância dos documentos",
+      "obrigatorio": false,
+      "descricao": "Análise da pertinência dos documentos apresentados para a controvérsia."
+    },
+    {
+      "id": "R15",
+      "titulo": "Necessidade de impugnação documental",
+      "obrigatorio": false,
+      "descricao": "Verificação de existência de fundamento concreto para impugnação de documento."
+    },
+    {
+      "id": "R16",
+      "titulo": "Confronto entre alegações e documentos",
+      "obrigatorio": false,
+      "descricao": "Verificação de eventual incompatibilidade entre a narrativa defensiva e os documentos dos autos."
+    },
+    {
+      "id": "R17",
+      "titulo": "Provas já existentes",
+      "obrigatorio": true,
+      "descricao": "Identificação dos elementos probatórios disponíveis para confronto das alegações defensivas."
+    },
+    {
+      "id": "R18",
+      "titulo": "Provas necessárias",
+      "obrigatorio": false,
+      "descricao": "Identificação de fatos controvertidos que ainda dependam de prova."
+    },
+    {
+      "id": "R19",
+      "titulo": "Necessidade de produção probatória",
+      "obrigatorio": false,
+      "descricao": "Verificação de necessidade concreta de produção de prova."
+    },
+    {
+      "id": "R20",
+      "titulo": "Questões relacionadas ao ônus da prova",
+      "obrigatorio": false,
+      "descricao": "Identificação de controvérsia concreta sobre distribuição, inversão ou redistribuição do ônus da prova."
+    },
+    {
+      "id": "R21",
+      "titulo": "Pedido formulado pelo réu",
+      "obrigatorio": false,
+      "descricao": "Identificação de eventual pedido ou pretensão formulada pelo réu."
+    },
+    {
+      "id": "R22",
+      "titulo": "Necessidade de impugnação do pedido do réu",
+      "obrigatorio": false,
+      "descricao": "Verificação da necessidade de manifestação específica sobre eventual pedido defensivo."
+    },
+    {
+      "id": "R23",
+      "titulo": "Comparação com a petição inicial",
+      "obrigatorio": true,
+      "descricao": "Comparação entre os fundamentos da inicial e as alegações da contestação."
+    },
+    {
+      "id": "R24",
+      "titulo": "Identificação de matérias efetivamente novas",
+      "obrigatorio": true,
+      "descricao": "Verificação de quais questões foram introduzidas ou desenvolvidas pela contestação."
+    },
+    {
+      "id": "R25",
+      "titulo": "Identificação de matérias já enfrentadas na inicial",
+      "obrigatorio": true,
+      "descricao": "Identificação de alegações defensivas que apenas repetem questões já previsíveis ou anteriormente enfrentadas."
+    },
+    {
+      "id": "R26",
+      "titulo": "Relevância das matérias novas",
+      "obrigatorio": true,
+      "descricao": "Classificação das matérias novas segundo sua relevância para o julgamento."
+    },
+    {
+      "id": "R27",
+      "titulo": "Necessidade de réplica",
+      "obrigatorio": true,
+      "descricao": "Determinação se a contestação apresenta matéria relevante que justifique manifestação do autor."
+    },
+    {
+      "id": "R28",
+      "titulo": "Classificação da extensão da resposta",
+      "obrigatorio": true,
+      "descricao": "Classificação da manifestação como objetiva, desenvolvida ou simples."
+    },
+    {
+      "id": "R29",
+      "titulo": "Resposta às preliminares",
+      "obrigatorio": false,
+      "descricao": "Quando houver preliminar, deve existir resposta específica e relacionada à alegação apresentada."
+    },
+    {
+      "id": "R30",
+      "titulo": "Resposta às teses de mérito",
+      "obrigatorio": false,
+      "descricao": "Quando houver tese de mérito relevante, deve existir resposta diretamente relacionada."
+    },
+    {
+      "id": "R31",
+      "titulo": "Resposta aos fatos defensivos",
+      "obrigatorio": false,
+      "descricao": "Quando houver fatos relevantes alegados pelo réu, deve existir impugnação ou concordância fundamentada."
+    },
+    {
+      "id": "R32",
+      "titulo": "Resposta aos fatos impeditivos, modificativos ou extintivos",
+      "obrigatorio": false,
+      "descricao": "Quando alegados, devem ser individualmente enfrentados."
+    },
+    {
+      "id": "R33",
+      "titulo": "Resposta aos documentos relevantes",
+      "obrigatorio": false,
+      "descricao": "Quando houver documento relevante cuja impugnação seja pertinente, deve existir manifestação correspondente."
+    },
+    {
+      "id": "R34",
+      "titulo": "Preservação dos fundamentos da inicial",
+      "obrigatorio": true,
+      "descricao": "Verificar quais fundamentos da inicial permanecem íntegros após a contestação."
+    },
+    {
+      "id": "R35",
+      "titulo": "Correspondência entre impugnações e pedidos",
+      "obrigatorio": true,
+      "descricao": "Os pedidos finais devem decorrer das matérias efetivamente enfrentadas."
+    },
+    {
+      "id": "R36",
+      "titulo": "Adequação ao rito dos Juizados",
+      "obrigatorio": true,
+      "descricao": "A manifestação deve observar simplicidade, informalidade, economia processual e celeridade."
+    },
+    {
+      "id": "R37",
+      "titulo": "Ausência de repetição desnecessária",
+      "obrigatorio": true,
+      "descricao": "A manifestação não deve reproduzir integralmente a petição inicial sem necessidade."
+    },
+    {
+      "id": "R38",
+      "titulo": "Ausência de criação de controvérsia artificial",
+      "obrigatorio": true,
+      "descricao": "A IA não deve criar matéria para justificar a existência de réplica."
+    },
+    {
+      "id": "R39",
+      "titulo": "Ausência de fabricação de fatos",
+      "obrigatorio": true,
+      "descricao": "Nenhum fato pode ser criado para responder à contestação."
+    },
+    {
+      "id": "R40",
+      "titulo": "Ausência de fabricação de documentos",
+      "obrigatorio": true,
+      "descricao": "Nenhum documento pode ser presumido ou criado sem suporte nos autos."
+    },
+    {
+      "id": "R41",
+      "titulo": "Ausência de fabricação de jurisprudência",
+      "obrigatorio": true,
+      "descricao": "Nenhum precedente ou jurisprudência pode ser inventado."
+    },
+    {
+      "id": "R42",
+      "titulo": "Identificação de insuficiência documental",
+      "obrigatorio": true,
+      "descricao": "Quando faltar elemento necessário para responder à contestação, a insuficiência deve ser sinalizada."
+    },
+    {
+      "id": "R43",
+      "titulo": "Classificação final da manifestação",
+      "obrigatorio": true,
+      "descricao": "Classificar o resultado como réplica necessária, réplica objetiva ou manifestação simples."
+    }
+  ],
+  "classificacao_final": {
+    "replica_necessaria": "Há matéria nova, preliminar, fato impeditivo, modificativo ou extintivo, documento relevante, pedido defensivo ou outra questão que exige enfrentamento específico.",
+    "replica_objetiva": "Há questões relevantes a responder, mas a controvérsia pode ser delimitada e enfrentada de maneira concisa.",
+    "manifestacao_simples": "A contestação não apresenta questão relevante nova ou exige apenas manifestação breve para preservação dos fundamentos da inicial."
+  },
+  "regra_de_nao_fabricacao": "Se a contestação, os autos ou os documentos disponíveis não sustentarem determinada alegação, a IA deve sinalizar a ausência de informação em vez de criar conteúdo."
+}

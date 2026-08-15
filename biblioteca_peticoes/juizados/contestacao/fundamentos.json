@@ -1,0 +1,401 @@
+{
+  "codigo": "contestacao",
+  "nome": "Fundamentos Jurídicos da Contestação",
+  "area": "juizados",
+  "procedimento": "Juizado Especial Cível",
+  "status": "em_validacao",
+  "versao": "1.0",
+  "orientacao": "Os fundamentos devem ser selecionados de acordo com os fatos, documentos, pedidos e controvérsias efetivamente existentes no processo. Nenhum fundamento deve ser inserido automaticamente apenas porque consta nesta biblioteca.",
+  "fundamentos": [
+    {
+      "id": "jec_resposta_reu",
+      "titulo": "Da concentração da matéria de defesa na contestação",
+      "categoria": "estrutura_defensiva",
+      "fundamento_legal": [
+        "Lei 9.099/1995, art. 30"
+      ],
+      "aplicacao": "Aplicável como fundamento estrutural da contestação no JEC.",
+      "instrucao_ia": "Concentrar na contestação as matérias de defesa pertinentes ao caso, sem criar alegações que não tenham relação com os fatos ou documentos disponíveis.",
+      "condicional": false
+    },
+    {
+      "id": "jec_simplicidade_informalidade",
+      "titulo": "Dos critérios de oralidade, simplicidade, informalidade, economia processual e celeridade",
+      "categoria": "rito",
+      "fundamento_legal": [
+        "Lei 9.099/1995, art. 2º"
+      ],
+      "aplicacao": "Aplicável como diretriz interpretativa do procedimento dos Juizados Especiais.",
+      "instrucao_ia": "Preservar objetividade, clareza e adequação ao rito dos Juizados, evitando excesso argumentativo incompatível com a simplicidade processual.",
+      "condicional": false
+    },
+    {
+      "id": "cpc_concentracao_defesa",
+      "titulo": "Da concentração da matéria de defesa",
+      "categoria": "estrutura_defensiva",
+      "fundamento_legal": [
+        "CPC, art. 336"
+      ],
+      "aplicacao": "Utilizar subsidiariamente quando pertinente à organização da defesa.",
+      "instrucao_ia": "Apresentar as razões de fato e de direito pelas quais os pedidos do autor devem ser rejeitados e indicar as provas pertinentes.",
+      "condicional": false
+    },
+    {
+      "id": "cpc_preliminares",
+      "titulo": "Das matérias preliminares",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337"
+      ],
+      "aplicacao": "Utilizar somente quando existir matéria preliminar efetivamente configurada.",
+      "instrucao_ia": "Identificar e desenvolver somente as preliminares sustentadas pelos fatos e documentos do processo.",
+      "condicional": true
+    },
+    {
+      "id": "nulidade_citacao",
+      "titulo": "Da inexistência ou nulidade da citação",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, I"
+      ],
+      "aplicacao": "Somente quando houver elemento concreto demonstrando vício de citação.",
+      "instrucao_ia": "Demonstrar especificamente o vício da citação, seus efeitos processuais e a providência juridicamente cabível.",
+      "condicional": true
+    },
+    {
+      "id": "incompetencia",
+      "titulo": "Da incompetência do juízo",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, II"
+      ],
+      "aplicacao": "Somente quando houver fundamento concreto para questionar a competência.",
+      "instrucao_ia": "Indicar a razão objetiva da incompetência e o juízo ou órgão competente quando isso for juridicamente seguro.",
+      "condicional": true
+    },
+    {
+      "id": "valor_causa",
+      "titulo": "Da incorreção do valor da causa",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, III"
+      ],
+      "aplicacao": "Utilizar quando houver divergência juridicamente relevante no valor atribuído à causa.",
+      "instrucao_ia": "Demonstrar objetivamente a inconsistência e, quando possível, indicar o critério adequado.",
+      "condicional": true
+    },
+    {
+      "id": "inépcia_inicial",
+      "titulo": "Da inépcia da petição inicial",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, IV",
+        "CPC, art. 330, § 1º"
+      ],
+      "aplicacao": "Somente quando houver vício concreto que comprometa a compreensão ou o exercício da defesa.",
+      "instrucao_ia": "Identificar o vício específico da petição inicial e demonstrar de que forma ele impede ou prejudica o exercício da defesa.",
+      "condicional": true
+    },
+    {
+      "id": "perempção",
+      "titulo": "Da perempção",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, V"
+      ],
+      "aplicacao": "Somente quando houver situação processual concreta que caracterize perempção.",
+      "instrucao_ia": "Não alegar perempção sem elementos processuais suficientes para sua caracterização.",
+      "condicional": true
+    },
+    {
+      "id": "litispendencia",
+      "titulo": "Da litispendência",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, VI e §§ 1º a 3º"
+      ],
+      "aplicacao": "Somente quando houver outra ação em curso com identidade juridicamente relevante.",
+      "instrucao_ia": "Comparar partes, causa de pedir e pedidos antes de sustentar litispendência.",
+      "condicional": true
+    },
+    {
+      "id": "coisa_julgada",
+      "titulo": "Da coisa julgada",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, VII e §§ 1º, 2º e 4º"
+      ],
+      "aplicacao": "Somente quando houver decisão anterior transitada em julgado que alcance a controvérsia.",
+      "instrucao_ia": "Identificar a decisão anterior e demonstrar a identidade relevante entre as demandas.",
+      "condicional": true
+    },
+    {
+      "id": "conexao",
+      "titulo": "Da conexão",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, VIII"
+      ],
+      "aplicacao": "Somente quando houver relação processual concreta que justifique a alegação.",
+      "instrucao_ia": "Demonstrar objetivamente a relação entre as demandas e a consequência processual pretendida.",
+      "condicional": true
+    },
+    {
+      "id": "ilegitimidade",
+      "titulo": "Da ausência de legitimidade",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, XI"
+      ],
+      "aplicacao": "Utilizar quando os elementos do processo demonstrarem ausência de pertinência subjetiva da parte.",
+      "instrucao_ia": "Relacionar a alegação de ilegitimidade aos fatos, à relação jurídica discutida e aos documentos disponíveis.",
+      "condicional": true
+    },
+    {
+      "id": "falta_interesse_processual",
+      "titulo": "Da ausência de interesse processual",
+      "categoria": "preliminar",
+      "fundamento_legal": [
+        "CPC, art. 337, XI"
+      ],
+      "aplicacao": "Somente quando houver fundamento concreto relacionado à necessidade, adequação ou utilidade da tutela jurisdicional pretendida.",
+      "instrucao_ia": "Demonstrar concretamente a ausência de interesse processual, sem utilizar alegação genérica.",
+      "condicional": true
+    },
+    {
+      "id": "impugnacao_especifica",
+      "titulo": "Da impugnação específica dos fatos",
+      "categoria": "defesa_de_fato",
+      "fundamento_legal": [
+        "CPC, art. 341"
+      ],
+      "aplicacao": "Utilizar na organização da defesa dos fatos relevantes alegados na inicial, observada a compatibilidade do dispositivo com o rito.",
+      "instrucao_ia": "Enfrentar os fatos relevantes de forma individualizada, identificando aqueles admitidos, negados ou não comprovados.",
+      "condicional": false
+    },
+    {
+      "id": "onus_prova_autor",
+      "titulo": "Do ônus da prova dos fatos constitutivos",
+      "categoria": "prova",
+      "fundamento_legal": [
+        "CPC, art. 373, I"
+      ],
+      "aplicacao": "Utilizar quando a controvérsia envolver ausência de comprovação de fato constitutivo alegado pelo autor.",
+      "instrucao_ia": "Identificar qual fato constitutivo foi alegado pelo autor e qual elemento probatório falta ou é insuficiente para demonstrá-lo.",
+      "condicional": true
+    },
+    {
+      "id": "onus_prova_reu",
+      "titulo": "Do ônus da prova dos fatos impeditivos, modificativos ou extintivos",
+      "categoria": "prova",
+      "fundamento_legal": [
+        "CPC, art. 373, II"
+      ],
+      "aplicacao": "Utilizar quando a defesa estiver baseada em fato impeditivo, modificativo ou extintivo do direito alegado.",
+      "instrucao_ia": "Identificar o fato defensivo e indicar a prova correspondente, evitando alegação desacompanhada de suporte probatório.",
+      "condicional": true
+    },
+    {
+      "id": "distribuicao_dinamica_onus",
+      "titulo": "Da distribuição dinâmica do ônus da prova",
+      "categoria": "prova",
+      "fundamento_legal": [
+        "CPC, art. 373, § 1º"
+      ],
+      "aplicacao": "Utilizar somente quando houver circunstâncias concretas que justifiquem distribuição diversa do ônus probatório.",
+      "instrucao_ia": "Demonstrar especificamente a maior facilidade de uma parte para produzir determinada prova ou a impossibilidade ou excessiva dificuldade da parte originalmente onerada.",
+      "condicional": true
+    },
+    {
+      "id": "relacao_consumo",
+      "titulo": "Da aplicação do Código de Defesa do Consumidor",
+      "categoria": "direito_material",
+      "fundamento_legal": [
+        "CDC, arts. 2º e 3º"
+      ],
+      "aplicacao": "Utilizar somente quando os fatos demonstrarem relação de consumo.",
+      "instrucao_ia": "Verificar concretamente a presença de consumidor, fornecedor, produto ou serviço antes de aplicar o regime consumerista.",
+      "condicional": true
+    },
+    {
+      "id": "inversao_onus_consumidor",
+      "titulo": "Da inversão do ônus da prova no âmbito consumerista",
+      "categoria": "prova",
+      "fundamento_legal": [
+        "CDC, art. 6º, VIII"
+      ],
+      "aplicacao": "Utilizar somente em demandas submetidas ao CDC e quando houver discussão concreta sobre inversão do ônus probatório.",
+      "instrucao_ia": "Analisar os pressupostos legais da inversão e, quando pertinente, demonstrar a ausência de verossimilhança ou hipossuficiência que justifique a medida, sem alegação automática.",
+      "condicional": true
+    },
+    {
+      "id": "inadimplemento_contratual",
+      "titulo": "Do cumprimento das obrigações contratuais",
+      "categoria": "direito_material",
+      "fundamento_legal": [
+        "Código Civil, arts. 421 e seguintes, quando aplicáveis",
+        "Código Civil, art. 422, quando aplicável"
+      ],
+      "aplicacao": "Utilizar em controvérsias contratuais quando a defesa estiver relacionada ao cumprimento das obrigações.",
+      "instrucao_ia": "Relacionar as obrigações contratuais aos documentos e condutas efetivamente demonstrados nos autos.",
+      "condicional": true
+    },
+    {
+      "id": "boa_fe_objetiva",
+      "titulo": "Da boa-fé objetiva",
+      "categoria": "direito_material",
+      "fundamento_legal": [
+        "Código Civil, art. 422, quando aplicável"
+      ],
+      "aplicacao": "Utilizar quando a controvérsia envolver comportamento contratual ou exercício de posições jurídicas incompatíveis com a boa-fé.",
+      "instrucao_ia": "Identificar a conduta concreta que fundamenta a incidência da boa-fé objetiva, evitando invocação abstrata do princípio.",
+      "condicional": true
+    },
+    {
+      "id": "prescricao",
+      "titulo": "Da prescrição",
+      "categoria": "prejudicial_de_merito",
+      "fundamento_legal": [
+        "Código Civil, arts. 189 e seguintes, quando aplicáveis"
+      ],
+      "aplicacao": "Utilizar somente quando os fatos e documentos permitirem verificar o transcurso do prazo prescricional pertinente.",
+      "instrucao_ia": "Identificar o direito discutido, o termo inicial juridicamente aplicável, o prazo correspondente e eventual causa de suspensão ou interrupção.",
+      "condicional": true
+    },
+    {
+      "id": "decadencia",
+      "titulo": "Da decadência",
+      "categoria": "prejudicial_de_merito",
+      "fundamento_legal": [
+        "Código Civil, arts. 207 e seguintes, quando aplicáveis",
+        "CDC, art. 26, quando aplicável"
+      ],
+      "aplicacao": "Utilizar somente quando houver prazo decadencial aplicável ao direito discutido.",
+      "instrucao_ia": "Identificar a natureza do direito, o prazo aplicável e o marco temporal comprovado nos autos.",
+      "condicional": true
+    },
+    {
+      "id": "ausencia_nexo_causal",
+      "titulo": "Da ausência de nexo causal",
+      "categoria": "responsabilidade_civil",
+      "fundamento_legal": [
+        "Código Civil, arts. 186 e 927, quando aplicáveis"
+      ],
+      "aplicacao": "Utilizar quando a pretensão indenizatória depender da demonstração de relação causal não comprovada.",
+      "instrucao_ia": "Relacionar os fatos, a conduta atribuída ao réu e o dano alegado, demonstrando concretamente a ausência ou insuficiência do nexo causal.",
+      "condicional": true
+    },
+    {
+      "id": "ausencia_dano",
+      "titulo": "Da ausência de dano indenizável",
+      "categoria": "responsabilidade_civil",
+      "fundamento_legal": [
+        "Código Civil, arts. 186 e 927, quando aplicáveis"
+      ],
+      "aplicacao": "Utilizar quando a defesa demonstrar ausência de dano juridicamente indenizável.",
+      "instrucao_ia": "Distinguir a mera alegação de prejuízo da efetiva demonstração do dano juridicamente relevante.",
+      "condicional": true
+    },
+    {
+      "id": "inexistencia_ato_ilícito",
+      "titulo": "Da inexistência de ato ilícito",
+      "categoria": "responsabilidade_civil",
+      "fundamento_legal": [
+        "Código Civil, arts. 186 e 188, quando aplicáveis"
+      ],
+      "aplicacao": "Utilizar quando a conduta atribuída ao réu não configurar ato ilícito diante dos fatos comprovados.",
+      "instrucao_ia": "Analisar a conduta concreta e o enquadramento jurídico aplicável, sem presumir responsabilidade.",
+      "condicional": true
+    },
+    {
+      "id": "dano_moral_nao_automatico",
+      "titulo": "Da necessidade de demonstração dos pressupostos do dano extrapatrimonial",
+      "categoria": "responsabilidade_civil",
+      "fundamento_legal": [
+        "Código Civil, arts. 186 e 927, quando aplicáveis"
+      ],
+      "aplicacao": "Utilizar em pedidos de dano moral quando houver fundamento concreto para contestar a configuração do dano.",
+      "instrucao_ia": "Analisar os fatos concretos e evitar afirmações genéricas de que todo inadimplemento ou contratempo gera automaticamente dano moral.",
+      "condicional": true
+    },
+    {
+      "id": "quantificacao_dano_moral",
+      "titulo": "Da proporcionalidade na quantificação da indenização",
+      "categoria": "responsabilidade_civil",
+      "fundamento_legal": [
+        "Código Civil, art. 944, quando aplicável"
+      ],
+      "aplicacao": "Utilizar subsidiariamente quando a própria existência do dano não for o único ponto controvertido e houver discussão sobre o quantum.",
+      "instrucao_ia": "Caso pertinente, impugnar o valor pretendido com base nas circunstâncias concretas do caso, evitando pedido de redução baseado exclusivamente em fórmulas genéricas.",
+      "condicional": true
+    },
+    {
+      "id": "cumprimento_obrigacao",
+      "titulo": "Do cumprimento da obrigação ou inexistência de inadimplemento",
+      "categoria": "direito_material",
+      "fundamento_legal": [
+        "Código Civil, arts. 389 e seguintes, quando aplicáveis"
+      ],
+      "aplicacao": "Utilizar quando documentos e fatos demonstrarem cumprimento da obrigação discutida.",
+      "instrucao_ia": "Apontar objetivamente os documentos, pagamentos, serviços, entregas ou demais atos que comprovem o cumprimento.",
+      "condicional": true
+    },
+    {
+      "id": "fato_impeditivo_modificativo_extintivo",
+      "titulo": "Do fato impeditivo, modificativo ou extintivo do direito alegado",
+      "categoria": "defesa_de_merito",
+      "fundamento_legal": [
+        "CPC, art. 373, II"
+      ],
+      "aplicacao": "Utilizar quando a defesa estiver fundada em circunstância que impeça, modifique ou extinga o direito alegado pelo autor.",
+      "instrucao_ia": "Individualizar o fato defensivo e demonstrar sua relação causal e probatória com o pedido autoral.",
+      "condicional": true
+    },
+    {
+      "id": "impugnacao_documental",
+      "titulo": "Da impugnação dos documentos apresentados pela parte autora",
+      "categoria": "prova",
+      "fundamento_legal": [
+        "CPC, arts. 428 e seguintes, quando aplicáveis"
+      ],
+      "aplicacao": "Utilizar somente quando houver documento específico cuja autenticidade, conteúdo, eficácia ou pertinência seja efetivamente controvertida.",
+      "instrucao_ia": "Identificar individualmente o documento impugnado e explicar a razão concreta da impugnação.",
+      "condicional": true
+    },
+    {
+      "id": "prova_documental_reu",
+      "titulo": "Da prova documental apresentada pelo réu",
+      "categoria": "prova",
+      "fundamento_legal": [
+        "Lei 9.099/1995, art. 32",
+        "CPC, art. 369, quando aplicável"
+      ],
+      "aplicacao": "Utilizar para organizar a demonstração dos fatos defensivos por documentos.",
+      "instrucao_ia": "Relacionar cada documento relevante ao fato que pretende demonstrar.",
+      "condicional": true
+    },
+    {
+      "id": "prova_testemunhal",
+      "titulo": "Da prova testemunhal",
+      "categoria": "prova",
+      "fundamento_legal": [
+        "Lei 9.099/1995, arts. 32 e seguintes, quando aplicáveis"
+      ],
+      "aplicacao": "Utilizar quando houver fatos controvertidos que possam ser demonstrados por testemunhas.",
+      "instrucao_ia": "Indicar a pertinência da prova testemunhal em relação aos pontos controvertidos, sem solicitar prova genérica.",
+      "condicional": true
+    },
+    {
+      "id": "improcedencia_pedidos",
+      "titulo": "Da improcedência dos pedidos",
+      "categoria": "pedido_defensivo",
+      "fundamento_legal": [
+        "Lei 9.099/1995, art. 30",
+        "CPC, art. 487, I, quando aplicável"
+      ],
+      "aplicacao": "Utilizar quando a defesa demonstrar a ausência dos pressupostos fáticos ou jurídicos necessários aos pedidos formulados pelo autor.",
+      "instrucao_ia": "Relacionar a improcedência de cada pedido à respectiva tese defensiva, evitando pedido genérico desacompanhado de fundamentação.",
+      "condicional": false
+    }
+  ]
+}

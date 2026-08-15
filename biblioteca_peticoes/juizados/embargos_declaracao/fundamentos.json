@@ -1,0 +1,216 @@
+{
+  "area": "juizados",
+  "peca": "embargos_declaracao",
+  "fundamentos": [
+    {
+      "id": "ED01",
+      "titulo": "Cabimento dos Embargos de Declaração",
+      "regra": "Os embargos devem ser utilizados para sanar vício efetivamente existente no pronunciamento judicial, e não como instrumento genérico de inconformismo.",
+      "aplicacao": "Identificar concretamente o vício existente antes de formular qualquer argumento."
+    },
+    {
+      "id": "ED02",
+      "titulo": "Princípio da integração do pronunciamento judicial",
+      "regra": "O pronunciamento judicial deve ser suficientemente claro, coerente e completo quanto às questões relevantes submetidas à apreciação judicial.",
+      "aplicacao": "Utilizar quando a decisão não permitir compreender adequadamente seus fundamentos ou deixar questão relevante sem apreciação."
+    },
+    {
+      "id": "ED03",
+      "titulo": "Omissão sobre questão relevante",
+      "regra": "Há omissão quando o pronunciamento deixa de apreciar questão relevante que deveria ter sido enfrentada para a adequada solução da controvérsia.",
+      "aplicacao": "Apontar exatamente qual questão foi apresentada ao Juízo, onde foi suscitada e qual foi a ausência de manifestação."
+    },
+    {
+      "id": "ED04",
+      "titulo": "Omissão sobre argumento capaz de influenciar o resultado",
+      "regra": "A omissão juridicamente relevante deve ser demonstrada a partir da importância concreta da questão não enfrentada para o resultado do julgamento.",
+      "aplicacao": "Demonstrar o nexo entre a questão omitida e a conclusão adotada na decisão."
+    },
+    {
+      "id": "ED05",
+      "titulo": "Omissão quanto a pedido formulado",
+      "regra": "A ausência de apreciação de pedido efetivamente formulado pode justificar a integração do pronunciamento.",
+      "aplicacao": "Identificar o pedido, sua localização nos autos e a ausência de resposta judicial correspondente."
+    },
+    {
+      "id": "ED06",
+      "titulo": "Omissão quanto a prova ou documento relevante",
+      "regra": "A ausência de enfrentamento de elemento probatório relevante pode constituir vício quando sua análise era necessária para a solução da controvérsia.",
+      "aplicacao": "Demonstrar a relevância objetiva da prova e sua relação com a conclusão da decisão."
+    },
+    {
+      "id": "ED07",
+      "titulo": "Contradição interna",
+      "regra": "A contradição apta a justificar embargos é aquela existente internamente no próprio pronunciamento judicial.",
+      "aplicacao": "Comparar trechos específicos da decisão que apresentam conclusões ou premissas incompatíveis entre si."
+    },
+    {
+      "id": "ED08",
+      "titulo": "Contradição entre fundamentação e dispositivo",
+      "regra": "Pode haver contradição quando os fundamentos conduzem a determinada conclusão e o dispositivo apresenta conclusão incompatível.",
+      "aplicacao": "Demonstrar objetivamente a incompatibilidade entre a fundamentação e a conclusão dispositiva."
+    },
+    {
+      "id": "ED09",
+      "titulo": "Obscuridade",
+      "regra": "A obscuridade ocorre quando a redação do pronunciamento não permite compreender adequadamente seu conteúdo, fundamento ou alcance.",
+      "aplicacao": "Indicar o trecho obscuro e explicar por que sua redação impede a compreensão objetiva da decisão."
+    },
+    {
+      "id": "ED10",
+      "titulo": "Erro material",
+      "regra": "Erros materiais ou inexatidões objetivas podem ser corrigidos quando identificáveis a partir dos próprios elementos constantes dos autos ou do pronunciamento.",
+      "aplicacao": "Apontar o dado incorreto e apresentar o dado correto, demonstrando objetivamente a inexatidão."
+    },
+    {
+      "id": "ED11",
+      "titulo": "Necessidade de indicação precisa do vício",
+      "regra": "A alegação deve individualizar o vício, evitando afirmações genéricas de omissão, contradição ou obscuridade.",
+      "aplicacao": "Sempre indicar qual trecho da decisão contém o problema e qual providência deve ser adotada."
+    },
+    {
+      "id": "ED12",
+      "titulo": "Relação entre vício e resultado do julgamento",
+      "regra": "O embargante deve demonstrar a relevância do vício para a compreensão, integração ou correção do pronunciamento.",
+      "aplicacao": "Explicar de forma objetiva qual consequência decorre do saneamento do vício."
+    },
+    {
+      "id": "ED13",
+      "titulo": "Efeito integrativo",
+      "regra": "O acolhimento dos embargos pode integrar, esclarecer ou corrigir o pronunciamento judicial.",
+      "aplicacao": "Formular pedido compatível com o vício efetivamente demonstrado."
+    },
+    {
+      "id": "ED14",
+      "titulo": "Possibilidade excepcional de efeitos modificativos",
+      "regra": "Quando o saneamento do vício necessariamente conduzir à alteração da conclusão anteriormente adotada, os embargos podem produzir efeitos modificativos como consequência do acolhimento do vício.",
+      "aplicacao": "Demonstrar primeiro o vício e somente depois explicar a consequência modificativa dele decorrente."
+    },
+    {
+      "id": "ED15",
+      "titulo": "Efeitos infringentes não constituem finalidade autônoma",
+      "regra": "A alteração do resultado não deve ser apresentada como simples pretensão de reforma, mas como consequência necessária da correção ou integração do pronunciamento.",
+      "aplicacao": "Vincular qualquer pedido modificativo ao vício concretamente identificado."
+    },
+    {
+      "id": "ED16",
+      "titulo": "Prequestionamento",
+      "regra": "Quando houver questão jurídica relevante cuja apreciação seja necessária para eventual discussão em instância superior, os embargos podem ser utilizados para provocar manifestação judicial específica.",
+      "aplicacao": "Utilizar apenas quando houver questão jurídica efetivamente pertinente ao processo e necessidade concreta de manifestação."
+    },
+    {
+      "id": "ED17",
+      "titulo": "Prequestionamento não autoriza inovação",
+      "regra": "Os embargos não devem ser utilizados para introduzir questão jurídica ou fática que não tenha relação com a controvérsia anteriormente submetida ao Juízo.",
+      "aplicacao": "Verificar se a matéria já integra a controvérsia antes de formular pedido de manifestação."
+    },
+    {
+      "id": "ED18",
+      "titulo": "Impossibilidade de mera rediscussão do mérito",
+      "regra": "O simples inconformismo com a conclusão judicial, sem demonstração de omissão, contradição, obscuridade ou erro material, não caracteriza fundamento suficiente para os embargos.",
+      "aplicacao": "Rejeitar argumentos que apenas pretendam substituir a valoração judicial por outra sem apontar vício."
+    },
+    {
+      "id": "ED19",
+      "titulo": "Distinção entre contradição interna e divergência com a tese da parte",
+      "regra": "A decisão não é contraditória apenas porque adotou conclusão contrária à pretensão da parte.",
+      "aplicacao": "Exigir incompatibilidade interna entre premissas, fundamentos ou dispositivo."
+    },
+    {
+      "id": "ED20",
+      "titulo": "Distinção entre omissão e decisão desfavorável",
+      "regra": "O fato de a decisão não acolher determinado argumento não significa, por si só, existência de omissão.",
+      "aplicacao": "Verificar se houve efetiva ausência de apreciação de questão relevante, e não mera rejeição implícita ou expressa da tese."
+    },
+    {
+      "id": "ED21",
+      "titulo": "Objetividade no rito dos Juizados",
+      "regra": "A fundamentação deve observar a simplicidade, informalidade, economia processual e celeridade características do sistema dos Juizados.",
+      "aplicacao": "Evitar repetição extensa dos fatos e concentrar a argumentação no vício da decisão."
+    },
+    {
+      "id": "ED22",
+      "titulo": "Delimitação do objeto dos embargos",
+      "regra": "Os embargos devem permanecer vinculados ao pronunciamento judicial efetivamente impugnado.",
+      "aplicacao": "Não introduzir fatos, documentos ou teses desconectados do vício identificado."
+    },
+    {
+      "id": "ED23",
+      "titulo": "Necessidade de demonstração documental",
+      "regra": "Sempre que o vício depender de comparação com petição, documento, pedido ou manifestação anterior, a alegação deve ser vinculada ao elemento correspondente dos autos.",
+      "aplicacao": "Indicar a peça, documento ou manifestação que demonstra a questão omitida ou contradita."
+    },
+    {
+      "id": "ED24",
+      "titulo": "Correção de inexatidão objetiva",
+      "regra": "Quando o problema decorrer de erro numérico, nominal, cronológico ou de identificação, o pedido deve indicar precisamente a correção pretendida.",
+      "aplicacao": "Evitar argumentação desnecessária quando o vício puder ser demonstrado objetivamente."
+    },
+    {
+      "id": "ED25",
+      "titulo": "Clareza do pedido de integração",
+      "regra": "O pedido deve indicar exatamente qual ponto deve ser esclarecido, integrado ou corrigido.",
+      "aplicacao": "Relacionar cada pedido ao respectivo vício apontado."
+    },
+    {
+      "id": "ED26",
+      "titulo": "Pedido de manifestação expressa",
+      "regra": "Quando necessário, o embargante pode requerer manifestação expressa sobre questão relevante indicada na fundamentação.",
+      "aplicacao": "Utilizar para questões concretamente submetidas ao Juízo e relevantes ao julgamento."
+    },
+    {
+      "id": "ED27",
+      "titulo": "Coerência entre fundamentação e pedidos",
+      "regra": "Os pedidos devem corresponder aos vícios efetivamente demonstrados na fundamentação.",
+      "aplicacao": "Impedir pedidos genéricos ou incompatíveis com a causa de pedir dos embargos."
+    },
+    {
+      "id": "ED28",
+      "titulo": "Ausência de vício comprovável",
+      "regra": "Não deve ser sustentado vício que não possa ser identificado objetivamente no pronunciamento ou na relação deste com os autos.",
+      "aplicacao": "Se não houver vício demonstrável, a IA deve sinalizar a insuficiência antes de elaborar a peça."
+    },
+    {
+      "id": "ED29",
+      "titulo": "Vedação à criação de vícios artificiais",
+      "regra": "A IA não deve fabricar omissões, contradições, obscuridades ou erros materiais para justificar a interposição dos embargos.",
+      "aplicacao": "O vício deve resultar da análise dos autos e do pronunciamento judicial."
+    },
+    {
+      "id": "ED30",
+      "titulo": "Primazia dos elementos concretos dos autos",
+      "regra": "A argumentação deve partir do conteúdo efetivamente existente no processo, especialmente da decisão embargada e das manifestações relevantes das partes.",
+      "aplicacao": "Priorizar fatos, pedidos, documentos e trechos efetivamente identificados nos autos."
+    },
+    {
+      "id": "ED31",
+      "titulo": "Individualização de múltiplos vícios",
+      "regra": "Quando houver mais de um vício, cada um deve ser apresentado de maneira individualizada e logicamente organizada.",
+      "aplicacao": "Separar omissão, contradição, obscuridade e erro material quando coexistirem."
+    },
+    {
+      "id": "ED32",
+      "titulo": "Ausência de cumulação artificial",
+      "regra": "Não classificar o mesmo problema simultaneamente como múltiplos vícios sem demonstrar características distintas.",
+      "aplicacao": "Escolher a classificação jurídica que melhor corresponda ao problema efetivamente identificado."
+    },
+    {
+      "id": "ED33",
+      "titulo": "Fundamentação proporcional ao vício",
+      "regra": "A extensão da fundamentação deve ser proporcional à complexidade do vício e compatível com a natureza objetiva dos embargos.",
+      "aplicacao": "Evitar peças excessivamente longas quando a correção puder ser demonstrada de forma simples."
+    },
+    {
+      "id": "ED34",
+      "titulo": "Preservação da finalidade dos embargos",
+      "regra": "A peça deve buscar tornar o pronunciamento judicial completo, coerente, claro e materialmente correto.",
+      "aplicacao": "Usar essa finalidade como critério de controle da argumentação e dos pedidos."
+    },
+    {
+      "id": "ED35",
+      "titulo": "Compatibilidade com o rito dos Juizados Especiais",
+      "regra": "A elaboração deve respeitar as características próprias do microssistema dos Juizados, sem importar automaticamente estruturas incompatíveis com sua simplicidade e celeridade.",
+      "aplicacao": "Manter linguagem objetiva e pedidos diretamente relacionados ao vício identificado."
+    }
+  ]
+}

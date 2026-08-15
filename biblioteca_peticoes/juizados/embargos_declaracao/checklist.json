@@ -1,0 +1,571 @@
+{
+  "area": "juizados",
+  "peca": "embargos_declaracao",
+  "nome": "Checklist de Auditoria — Embargos de Declaração JEC",
+  "status_possiveis": [
+    "pendente",
+    "em_analise",
+    "concluido",
+    "nao_aplicavel",
+    "bloqueado"
+  ],
+  "etapas": [
+    {
+      "id": "E01",
+      "ordem": 1,
+      "titulo": "IDENTIFICAÇÃO PROCESSUAL",
+      "objetivo": "Confirmar os dados básicos do processo e do pronunciamento embargado.",
+      "itens": [
+        {
+          "id": "C01",
+          "descricao": "Número do processo conferido.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C02",
+          "descricao": "Partes corretamente identificadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C03",
+          "descricao": "Juízo responsável pelo pronunciamento identificado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C04",
+          "descricao": "Decisão, sentença ou pronunciamento embargado identificado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C05",
+          "descricao": "Data do pronunciamento identificada quando disponível.",
+          "obrigatorio": false
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "ordem": 2,
+      "titulo": "LEITURA DA DECISÃO",
+      "objetivo": "Compreender o pronunciamento antes de identificar eventual vício.",
+      "itens": [
+        {
+          "id": "C06",
+          "descricao": "Fundamentação da decisão foi analisada integralmente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C07",
+          "descricao": "Dispositivo foi analisado integralmente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C08",
+          "descricao": "Principais premissas utilizadas pelo Juízo foram identificadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C09",
+          "descricao": "Conclusão adotada pelo Juízo foi identificada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C10",
+          "descricao": "Trechos potencialmente relevantes para os embargos foram localizados.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "ordem": 3,
+      "titulo": "IDENTIFICAÇÃO DO VÍCIO",
+      "objetivo": "Determinar se existe efetivamente hipótese compatível com embargos de declaração.",
+      "itens": [
+        {
+          "id": "C11",
+          "descricao": "Foi identificada omissão, contradição, obscuridade ou erro material.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C12",
+          "descricao": "O vício foi individualizado objetivamente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C13",
+          "descricao": "Existe trecho concreto da decisão relacionado ao vício.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C14",
+          "descricao": "O vício não depende de interpretação artificial da decisão.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C15",
+          "descricao": "A alegação não se limita ao inconformismo com o resultado.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "ordem": 4,
+      "titulo": "OMISSÃO",
+      "objetivo": "Verificar eventual ausência de apreciação de questão relevante.",
+      "itens": [
+        {
+          "id": "C16",
+          "descricao": "Existe questão relevante anteriormente submetida ao Juízo.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C17",
+          "descricao": "A questão omitida foi efetivamente apresentada nos autos.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C18",
+          "descricao": "A decisão não enfrentou a questão identificada.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C19",
+          "descricao": "A questão omitida possui relevância para o julgamento.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C20",
+          "descricao": "Foi demonstrado o possível impacto do saneamento da omissão.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "ordem": 5,
+      "titulo": "CONTRADIÇÃO",
+      "objetivo": "Verificar incompatibilidade interna no pronunciamento.",
+      "itens": [
+        {
+          "id": "C21",
+          "descricao": "Foram identificados dois ou mais trechos potencialmente incompatíveis.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C22",
+          "descricao": "A incompatibilidade está dentro do próprio pronunciamento.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C23",
+          "descricao": "A contradição não consiste apenas em divergência entre decisão e tese da parte.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C24",
+          "descricao": "Foi demonstrado objetivamente o conflito entre os trechos.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "ordem": 6,
+      "titulo": "OBSCURIDADE",
+      "objetivo": "Verificar se existe falta de clareza no pronunciamento.",
+      "itens": [
+        {
+          "id": "C25",
+          "descricao": "Trecho obscuro foi identificado.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C26",
+          "descricao": "A redação do trecho impede ou dificulta sua compreensão objetiva.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C27",
+          "descricao": "Foi indicado o esclarecimento necessário.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "ordem": 7,
+      "titulo": "ERRO MATERIAL",
+      "objetivo": "Verificar eventual inexatidão objetiva passível de correção.",
+      "itens": [
+        {
+          "id": "C28",
+          "descricao": "Erro material foi identificado.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C29",
+          "descricao": "Erro é objetivamente verificável.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C30",
+          "descricao": "Dado correto foi identificado.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C31",
+          "descricao": "Fonte do dado correto está disponível nos autos ou no próprio pronunciamento.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "ordem": 8,
+      "titulo": "RELEVÂNCIA DO VÍCIO",
+      "objetivo": "Demonstrar a importância concreta do saneamento do pronunciamento.",
+      "itens": [
+        {
+          "id": "C32",
+          "descricao": "Foi demonstrada a relevância jurídica do vício.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C33",
+          "descricao": "Foi demonstrada a relação entre o vício e a conclusão da decisão, quando existente.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C34",
+          "descricao": "Foi indicada a consequência esperada do saneamento.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E09",
+      "ordem": 9,
+      "titulo": "EFEITOS MODIFICATIVOS",
+      "objetivo": "Verificar se eventual alteração do resultado decorre do saneamento do vício.",
+      "itens": [
+        {
+          "id": "C35",
+          "descricao": "Existe possibilidade concreta de alteração do resultado.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C36",
+          "descricao": "A alteração decorre diretamente da correção ou integração do vício.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C37",
+          "descricao": "O pedido não consiste simplesmente em reforma da decisão por inconformismo.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "ordem": 10,
+      "titulo": "PREQUESTIONAMENTO",
+      "objetivo": "Verificar se existe necessidade concreta de manifestação expressa sobre questão jurídica.",
+      "itens": [
+        {
+          "id": "C38",
+          "descricao": "Existe questão jurídica relevante para eventual discussão posterior.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C39",
+          "descricao": "A questão já integra a controvérsia.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C40",
+          "descricao": "A manifestação expressa do Juízo possui utilidade concreta.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C41",
+          "descricao": "O prequestionamento não está sendo utilizado para introduzir matéria nova.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "ordem": 11,
+      "titulo": "LIMITES DOS EMBARGOS",
+      "objetivo": "Impedir utilização inadequada dos embargos como instrumento de rediscussão.",
+      "itens": [
+        {
+          "id": "C42",
+          "descricao": "A peça não se limita a repetir argumentos já rejeitados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C43",
+          "descricao": "A peça não busca simples reexame do conjunto probatório.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C44",
+          "descricao": "A peça não apresenta novo pedido estranho ao pronunciamento.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C45",
+          "descricao": "A peça não introduz matéria fática completamente nova.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C46",
+          "descricao": "O fundamento dos embargos permanece vinculado ao vício identificado.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E12",
+      "ordem": 12,
+      "titulo": "PEDIDOS",
+      "objetivo": "Garantir correspondência entre o vício identificado e a providência requerida.",
+      "itens": [
+        {
+          "id": "C47",
+          "descricao": "Pedido de conhecimento dos embargos foi formulado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C48",
+          "descricao": "Pedido de acolhimento foi formulado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C49",
+          "descricao": "Pedido de integração foi formulado quando houver omissão.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C50",
+          "descricao": "Pedido de esclarecimento foi formulado quando houver obscuridade.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C51",
+          "descricao": "Pedido de correção foi formulado quando houver erro material.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C52",
+          "descricao": "Pedido de correção da contradição foi formulado quando houver contradição.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C53",
+          "descricao": "Eventual efeito modificativo foi expressamente vinculado ao saneamento do vício.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C54",
+          "descricao": "Pedido de manifestação expressa foi formulado quando necessário.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E13",
+      "ordem": 13,
+      "titulo": "TEMPESTIVIDADE",
+      "objetivo": "Verificar os elementos temporais disponíveis para análise da tempestividade.",
+      "itens": [
+        {
+          "id": "C55",
+          "descricao": "Data de ciência ou intimação foi identificada quando disponível.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C56",
+          "descricao": "Prazo aplicável foi identificado.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C57",
+          "descricao": "Data prevista para término do prazo foi conferida quando os dados forem suficientes.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C58",
+          "descricao": "Eventual dúvida sobre tempestividade foi sinalizada.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E14",
+      "ordem": 14,
+      "titulo": "INTEGRIDADE DA PEÇA",
+      "objetivo": "Impedir fabricação de informações.",
+      "itens": [
+        {
+          "id": "C59",
+          "descricao": "Nenhum fato foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C60",
+          "descricao": "Nenhuma data foi inventada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C61",
+          "descricao": "Nenhum documento foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C62",
+          "descricao": "Nenhum trecho da decisão foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C63",
+          "descricao": "Nenhuma jurisprudência ou precedente foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C64",
+          "descricao": "Informações ausentes foram identificadas como pendências.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E15",
+      "ordem": 15,
+      "titulo": "AUDITORIA FINAL",
+      "objetivo": "Classificar a viabilidade da peça antes da geração definitiva.",
+      "itens": [
+        {
+          "id": "C65",
+          "descricao": "Existe vício objetivamente identificável.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C66",
+          "descricao": "O vício foi demonstrado com base no pronunciamento e nos autos.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C67",
+          "descricao": "A fundamentação corresponde ao vício identificado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C68",
+          "descricao": "Os pedidos correspondem à fundamentação.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C69",
+          "descricao": "A peça não constitui mera rediscussão do mérito.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C70",
+          "descricao": "A peça está adequada ao rito dos Juizados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C71",
+          "descricao": "A peça foi classificada como apta, apta com pendências ou inapta.",
+          "obrigatorio": true
+        }
+      ]
+    }
+  ],
+  "regras_de_bloqueio": [
+    {
+      "id": "B01",
+      "regra": "Se não for identificado nenhum vício objetivamente demonstrável, bloquear a geração automática dos embargos.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B02",
+      "regra": "Se a fundamentação consistir apenas em inconformismo com o resultado, bloquear.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B03",
+      "regra": "Se a suposta contradição existir apenas entre a decisão e a tese da parte, bloquear a classificação como contradição.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B04",
+      "regra": "Se a alegação de omissão não identificar questão relevante anteriormente submetida ao Juízo, bloquear.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B05",
+      "regra": "Se o suposto erro material não puder ser objetivamente demonstrado, bloquear.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B06",
+      "regra": "Se o pedido de efeitos modificativos não decorrer do saneamento do vício, bloquear.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B07",
+      "regra": "Se houver criação de trecho, fato, documento ou informação inexistente nos autos, bloquear.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B08",
+      "regra": "Se os pedidos não corresponderem aos vícios identificados, exigir correção.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B09",
+      "regra": "Se faltar informação essencial para identificar o pronunciamento embargado, classificar como pendente.",
+      "acao": "bloquear"
+    }
+  ],
+  "resultado_final": {
+    "apto": "Existe vício objetivamente identificável, fundamentado nos autos, com pedidos compatíveis e sem mera rediscussão do mérito.",
+    "apto_com_pendencias": "Existe possível vício, mas faltam elementos necessários para demonstrá-lo com segurança.",
+    "inapto": "Não foi identificado vício compatível com os embargos ou a pretensão consiste essencialmente em rediscussão do mérito."
+  }
+}

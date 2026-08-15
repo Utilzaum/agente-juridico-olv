@@ -1,0 +1,253 @@
+{
+  "area": "juizados",
+  "peca": "inicial",
+  "nome": "Petição Inicial — Juizado Especial Cível",
+  "descricao": "Estrutura modular para elaboração de petições iniciais no âmbito do Juizado Especial Cível, com seleção dos blocos conforme os fatos, a causa de pedir, a pretensão e as provas disponíveis.",
+  "legislacao_base": [
+    {
+      "norma": "Lei nº 9.099/1995",
+      "dispositivos": [
+        "art. 2º",
+        "art. 3º",
+        "art. 4º",
+        "art. 8º",
+        "art. 9º",
+        "art. 14",
+        "art. 15",
+        "art. 16",
+        "art. 17",
+        "art. 18",
+        "art. 19",
+        "art. 20",
+        "art. 21",
+        "art. 22",
+        "art. 23",
+        "art. 24"
+      ]
+    },
+    {
+      "norma": "Lei nº 13.105/2015 — Código de Processo Civil",
+      "dispositivos": [
+        "art. 319",
+        "art. 320",
+        "art. 321",
+        "art. 322",
+        "art. 323",
+        "art. 324",
+        "art. 326",
+        "art. 327",
+        "art. 330"
+      ],
+      "observacao": "Aplicação subsidiária e compatível com o microssistema dos Juizados Especiais."
+    }
+  ],
+  "secoes": [
+    {
+      "id": "enderecamento",
+      "ordem": 1,
+      "nome": "Endereçamento",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Indicação do órgão jurisdicional competente para processamento da demanda."
+    },
+    {
+      "id": "qualificacao_partes",
+      "ordem": 2,
+      "nome": "Qualificação das partes",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Identificação do autor e do réu com os dados necessários à individualização e citação."
+    },
+    {
+      "id": "competencia",
+      "ordem": 3,
+      "nome": "Competência do Juizado Especial Cível",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Demonstração da adequação da demanda ao Juizado Especial, considerando matéria, valor, partes e competência territorial.",
+      "fundamentos": [
+        "Lei nº 9.099/1995, arts. 3º e 4º",
+        "Lei nº 9.099/1995, art. 8º"
+      ]
+    },
+    {
+      "id": "gratuidade_justica",
+      "ordem": 4,
+      "nome": "Gratuidade da justiça",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Inserir quando houver fundamento concreto para o pedido de gratuidade ou quando a estratégia processual recomendar sua formulação.",
+      "observacao": "Não presumir hipossuficiência econômica apenas pela escolha do JEC."
+    },
+    {
+      "id": "prioridade",
+      "ordem": 5,
+      "nome": "Prioridade de tramitação",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Inserir somente quando houver hipótese legal de prioridade devidamente demonstrada."
+    },
+    {
+      "id": "sintese_fatica",
+      "ordem": 6,
+      "nome": "Síntese dos fatos",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Exposição cronológica, objetiva e juridicamente relevante dos fatos que constituem a causa de pedir."
+    },
+    {
+      "id": "relacao_juridica",
+      "ordem": 7,
+      "nome": "Da relação jurídica entre as partes",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Delimitação da relação jurídica quando sua caracterização for relevante para a solução da controvérsia."
+    },
+    {
+      "id": "pretensao_resistida",
+      "ordem": 8,
+      "nome": "Da pretensão resistida",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Demonstração da resistência do réu à pretensão do autor, especialmente quando houver tentativa administrativa, reclamação, notificação, protocolo ou comunicação prévia relevante."
+    },
+    {
+      "id": "fundamento_principal",
+      "ordem": 9,
+      "nome": "Do fundamento jurídico principal",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Enquadramento jurídico central da controvérsia, vinculando os fatos narrados à consequência jurídica pretendida."
+    },
+    {
+      "id": "fundamentos_complementares",
+      "ordem": 10,
+      "nome": "Dos fundamentos jurídicos complementares",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Desenvolvimento de fundamentos adicionais pertinentes ao caso concreto, sem repetição ou inclusão automática de teses."
+    },
+    {
+      "id": "responsabilidade_civil",
+      "ordem": 11,
+      "nome": "Da responsabilidade civil",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Inserir quando a pretensão decorrer de ato ilícito, falha na prestação de serviço, inadimplemento ou outra situação juridicamente apta a gerar responsabilidade civil."
+    },
+    {
+      "id": "danos_materiais",
+      "ordem": 12,
+      "nome": "Dos danos materiais",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Demonstrar o prejuízo patrimonial efetivamente suportado e sua relação causal com a conduta imputada ao réu."
+    },
+    {
+      "id": "danos_morais",
+      "ordem": 13,
+      "nome": "Dos danos morais",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Inserir somente quando os fatos concretos permitirem sustentar lesão extrapatrimonial juridicamente relevante.",
+      "regra": "Não presumir dano moral pela mera existência de inadimplemento ou falha contratual."
+    },
+    {
+      "id": "restituicao",
+      "ordem": 14,
+      "nome": "Da restituição de valores",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Inserir quando houver pagamento indevido, cobrança indevida, desconto indevido ou outra hipótese juridicamente relevante de restituição."
+    },
+    {
+      "id": "obrigacao_fazer",
+      "ordem": 15,
+      "nome": "Da obrigação de fazer",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Inserir quando a tutela pretendida exigir comportamento positivo do réu."
+    },
+    {
+      "id": "obrigacao_nao_fazer",
+      "ordem": 16,
+      "nome": "Da obrigação de não fazer",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Inserir quando a pretensão exigir abstenção de determinada conduta pelo réu."
+    },
+    {
+      "id": "tutela_urgencia",
+      "ordem": 17,
+      "nome": "Da tutela provisória de urgência",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Inserir somente quando houver situação concreta que justifique tutela provisória e forem demonstrados os respectivos pressupostos legais."
+    },
+    {
+      "id": "inversao_onus",
+      "ordem": 18,
+      "nome": "Da inversão ou distribuição do ônus da prova",
+      "obrigatoria": false,
+      "condicional": true,
+      "descricao": "Selecionar conforme a natureza da relação jurídica e as circunstâncias probatórias do caso.",
+      "observacao": "Não formular pedido de inversão de forma automática. Identificar previamente o regime jurídico aplicável."
+    },
+    {
+      "id": "provas",
+      "ordem": 19,
+      "nome": "Das provas",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Indicação dos meios de prova pertinentes e dos documentos que acompanham a demanda."
+    },
+    {
+      "id": "pedidos",
+      "ordem": 20,
+      "nome": "Dos pedidos",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Formulação objetiva, individualizada e coerente dos provimentos jurisdicionais pretendidos."
+    },
+    {
+      "id": "valor_causa",
+      "ordem": 21,
+      "nome": "Do valor da causa",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Indicação do valor da causa conforme a pretensão deduzida e as regras aplicáveis."
+    },
+    {
+      "id": "requerimentos_finais",
+      "ordem": 22,
+      "nome": "Requerimentos finais",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Requerimentos processuais necessários ao regular prosseguimento da demanda, inclusive citação do réu e demais providências pertinentes."
+    },
+    {
+      "id": "fechamento",
+      "ordem": 23,
+      "nome": "Fechamento",
+      "obrigatoria": true,
+      "condicional": false,
+      "descricao": "Local, data, identificação e assinatura do advogado."
+    }
+  ],
+  "regras_de_construcao": [
+    "A estrutura deve ser modular.",
+    "Seção condicional somente deve ser incluída quando os fatos e a estratégia jurídica do caso justificarem sua utilização.",
+    "A narrativa dos fatos deve preceder o enquadramento jurídico.",
+    "Os fundamentos jurídicos devem estar vinculados aos fatos concretamente narrados.",
+    "Os pedidos devem corresponder diretamente aos fundamentos desenvolvidos.",
+    "Não criar fatos, documentos, valores, datas, protocolos ou circunstâncias não fornecidos pelo usuário.",
+    "Não inserir teses jurídicas apenas porque são frequentemente utilizadas em demandas semelhantes.",
+    "Não presumir relação de consumo sem elementos que permitam sua caracterização.",
+    "Não presumir dano moral.",
+    "Não presumir inversão do ônus da prova.",
+    "Não inserir tutela provisória sem verificar a existência de situação concreta que a justifique.",
+    "A peça deve observar o rito dos Juizados Especiais e suas particularidades, evitando importar automaticamente a estrutura do procedimento comum.",
+    "O Mandado de Segurança não integra esta biblioteca de peças do JEC.",
+    "Quando houver incompatibilidade entre uma pretensão e a competência do Juizado Especial, a IA deve sinalizar a questão antes da elaboração da peça."
+  ]
+}

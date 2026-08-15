@@ -1,0 +1,326 @@
+{
+  "codigo": "contestacao",
+  "nome": "Requisitos da Contestação",
+  "area": "juizados",
+  "procedimento": "Juizado Especial Cível",
+  "status": "em_validacao",
+  "versao": "1.0",
+  "orientacao": "Os requisitos servem como controle de qualidade e completude da contestação. O atendimento de um requisito não autoriza a criação de fatos, documentos, teses ou informações inexistentes nos autos.",
+  "requisitos": [
+    {
+      "id": "r01",
+      "titulo": "Identificação correta do processo",
+      "categoria": "identificacao",
+      "obrigatorio": true,
+      "verificacao": "Confirmar número do processo conforme os autos.",
+      "erro_se_faltar": "Não gerar a identificação processual definitiva sem o número correto."
+    },
+    {
+      "id": "r02",
+      "titulo": "Identificação correta das partes",
+      "categoria": "identificacao",
+      "obrigatorio": true,
+      "verificacao": "Confirmar autor e réu conforme os autos.",
+      "erro_se_faltar": "Não presumir nomes, qualificações ou posições processuais."
+    },
+    {
+      "id": "r03",
+      "titulo": "Identificação do Juizado competente",
+      "categoria": "identificacao",
+      "obrigatorio": true,
+      "verificacao": "Confirmar comarca, Juizado e unidade judiciária quando disponíveis.",
+      "erro_se_faltar": "Sinalizar a ausência dos dados de endereçamento."
+    },
+    {
+      "id": "r04",
+      "titulo": "Conhecimento da pretensão autoral",
+      "categoria": "analise_da_inicial",
+      "obrigatorio": true,
+      "verificacao": "Identificar causa de pedir, fatos narrados e pedidos formulados na inicial.",
+      "erro_se_faltar": "Não desenvolver defesa de mérito sem conhecer a pretensão que está sendo contestada."
+    },
+    {
+      "id": "r05",
+      "titulo": "Síntese objetiva da demanda",
+      "categoria": "estrutura",
+      "obrigatorio": true,
+      "verificacao": "Resumir a demanda sem reproduzir integralmente a petição inicial.",
+      "erro_se_faltar": "Sinalizar necessidade de síntese da demanda."
+    },
+    {
+      "id": "r06",
+      "titulo": "Versão defensiva dos fatos",
+      "categoria": "fatos",
+      "obrigatorio": true,
+      "verificacao": "Identificar a versão dos fatos apresentada pelo réu e os elementos que a sustentam.",
+      "erro_se_faltar": "Não inventar narrativa defensiva."
+    },
+    {
+      "id": "r07",
+      "titulo": "Mapeamento dos fatos controvertidos",
+      "categoria": "fatos",
+      "obrigatorio": true,
+      "verificacao": "Separar fatos incontroversos, controvertidos, admitidos, negados e não comprovados.",
+      "erro_se_faltar": "Não considerar como incontroverso fato que esteja efetivamente controvertido."
+    },
+    {
+      "id": "r08",
+      "titulo": "Impugnação dos fatos relevantes da inicial",
+      "categoria": "defesa",
+      "obrigatorio": true,
+      "verificacao": "Conferir se os fatos relevantes alegados pelo autor foram enfrentados de maneira específica.",
+      "erro_se_faltar": "Sinalizar pontos relevantes da inicial que permaneceram sem resposta."
+    },
+    {
+      "id": "r09",
+      "titulo": "Análise das preliminares",
+      "categoria": "preliminares",
+      "obrigatorio": true,
+      "verificacao": "Verificar se existe alguma matéria preliminar efetivamente aplicável.",
+      "erro_se_faltar": "Não inserir preliminares genéricas apenas para completar a peça."
+    },
+    {
+      "id": "r10",
+      "titulo": "Justificação concreta das preliminares utilizadas",
+      "categoria": "preliminares",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Toda preliminar utilizada deve estar vinculada a fatos, documentos ou elementos processuais concretos.",
+      "erro_se_faltar": "Eliminar a preliminar ou solicitar informação complementar."
+    },
+    {
+      "id": "r11",
+      "titulo": "Verificação de legitimidade das partes",
+      "categoria": "preliminares",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Analisar pertinência subjetiva das partes somente quando houver elementos para questioná-la.",
+      "erro_se_faltar": "Não alegar ilegitimidade sem fundamento concreto."
+    },
+    {
+      "id": "r12",
+      "titulo": "Verificação do interesse processual",
+      "categoria": "preliminares",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Avaliar necessidade, adequação e utilidade da tutela pretendida quando houver fundamento para a análise.",
+      "erro_se_faltar": "Não criar alegação genérica de ausência de interesse processual."
+    },
+    {
+      "id": "r13",
+      "titulo": "Verificação de litispendência ou coisa julgada",
+      "categoria": "preliminares",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Pesquisar nos dados fornecidos eventual processo anterior ou simultâneo com identidade juridicamente relevante.",
+      "erro_se_faltar": "Não alegar litispendência ou coisa julgada por mera suspeita."
+    },
+    {
+      "id": "r14",
+      "titulo": "Verificação da competência",
+      "categoria": "preliminares",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Analisar competência somente quando houver elemento concreto que justifique a insurgência.",
+      "erro_se_faltar": "Não inserir preliminar de incompetência automaticamente."
+    },
+    {
+      "id": "r15",
+      "titulo": "Análise de prescrição",
+      "categoria": "prejudicial",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Identificar o direito discutido, termo inicial, prazo aplicável e eventuais causas de suspensão ou interrupção.",
+      "erro_se_faltar": "Não alegar prescrição sem dados temporais suficientes."
+    },
+    {
+      "id": "r16",
+      "titulo": "Análise de decadência",
+      "categoria": "prejudicial",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Identificar a existência de prazo decadencial aplicável e o respectivo marco temporal.",
+      "erro_se_faltar": "Não alegar decadência sem dados temporais suficientes."
+    },
+    {
+      "id": "r17",
+      "titulo": "Identificação das teses de mérito",
+      "categoria": "merito",
+      "obrigatorio": true,
+      "verificacao": "Selecionar as teses defensivas efetivamente relacionadas aos fatos e pedidos.",
+      "erro_se_faltar": "Não produzir defesa genérica."
+    },
+    {
+      "id": "r18",
+      "titulo": "Correspondência entre tese e fato",
+      "categoria": "merito",
+      "obrigatorio": true,
+      "verificacao": "Cada tese deve estar relacionada a fatos concretos do processo.",
+      "erro_se_faltar": "Remover tese abstrata ou solicitar informação."
+    },
+    {
+      "id": "r19",
+      "titulo": "Correspondência entre tese e prova",
+      "categoria": "merito",
+      "obrigatorio": true,
+      "verificacao": "Identificar os documentos ou demais provas que sustentam cada tese relevante.",
+      "erro_se_faltar": "Sinalizar tese sem suporte probatório conhecido."
+    },
+    {
+      "id": "r20",
+      "titulo": "Análise individual dos pedidos do autor",
+      "categoria": "pedidos",
+      "obrigatorio": true,
+      "verificacao": "Conferir se cada pedido formulado na inicial foi enfrentado pela defesa.",
+      "erro_se_faltar": "Sinalizar pedido autoral sem resposta específica."
+    },
+    {
+      "id": "r21",
+      "titulo": "Impugnação do dano material quando houver pedido",
+      "categoria": "danos",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Verificar existência, comprovação, extensão e nexo do prejuízo material alegado.",
+      "erro_se_faltar": "Não presumir inexistência do dano; indicar qual elemento não foi comprovado."
+    },
+    {
+      "id": "r22",
+      "titulo": "Impugnação do dano extrapatrimonial quando houver pedido",
+      "categoria": "danos",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Analisar os fatos concretos alegados e os elementos utilizados para sustentar o dano.",
+      "erro_se_faltar": "Não afirmar automaticamente que a situação gera ou não gera dano moral."
+    },
+    {
+      "id": "r23",
+      "titulo": "Análise do valor indenizatório",
+      "categoria": "danos",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Caso a existência do dano não seja o único ponto controvertido, avaliar especificamente o quantum pretendido.",
+      "erro_se_faltar": "Não formular pedido genérico de redução sem fundamentação concreta."
+    },
+    {
+      "id": "r24",
+      "titulo": "Análise dos documentos do autor",
+      "categoria": "prova",
+      "obrigatorio": true,
+      "verificacao": "Identificar documentos relevantes apresentados pelo autor e sua relação com os fatos alegados.",
+      "erro_se_faltar": "Não afirmar que determinado documento foi apresentado sem confirmação nos autos."
+    },
+    {
+      "id": "r25",
+      "titulo": "Impugnação documental quando necessária",
+      "categoria": "prova",
+      "obrigatorio": false,
+      "condicional": true,
+      "verificacao": "Impugnar documento somente quando houver razão concreta relacionada à autenticidade, conteúdo, pertinência ou eficácia.",
+      "erro_se_faltar": "Não utilizar impugnação documental genérica."
+    },
+    {
+      "id": "r26",
+      "titulo": "Organização dos documentos do réu",
+      "categoria": "prova",
+      "obrigatorio": true,
+      "verificacao": "Relacionar os documentos apresentados pela defesa aos fatos que pretendem demonstrar.",
+      "erro_se_faltar": "Sinalizar documentos relevantes ainda não disponibilizados."
+    },
+    {
+      "id": "r27",
+      "titulo": "Análise da necessidade de prova testemunhal",
+      "categoria": "prova",
+      "obrigatorio": true,
+      "verificacao": "Avaliar se existem fatos controvertidos que dependam de prova oral.",
+      "erro_se_faltar": "Não solicitar prova testemunhal de maneira genérica."
+    },
+    {
+      "id": "r28",
+      "titulo": "Indicação das provas pretendidas",
+      "categoria": "prova",
+      "obrigatorio": true,
+      "verificacao": "Especificar as provas pertinentes aos pontos controvertidos.",
+      "erro_se_faltar": "Sinalizar ausência de análise probatória."
+    },
+    {
+      "id": "r29",
+      "titulo": "Coerência entre fatos, fundamentos e pedidos",
+      "categoria": "controle_de_qualidade",
+      "obrigatorio": true,
+      "verificacao": "Conferir se os pedidos decorrem logicamente das teses efetivamente desenvolvidas.",
+      "erro_se_faltar": "Bloquear a versão final até corrigir a inconsistência."
+    },
+    {
+      "id": "r30",
+      "titulo": "Ausência de teses incompatíveis sem subsidiariedade",
+      "categoria": "controle_de_qualidade",
+      "obrigatorio": true,
+      "verificacao": "Identificar teses que possam ser logicamente incompatíveis e verificar se foram apresentadas de maneira sucessiva ou subsidiária.",
+      "erro_se_faltar": "Reestruturar a argumentação antes da versão final."
+    },
+    {
+      "id": "r31",
+      "titulo": "Ausência de fatos inventados",
+      "categoria": "controle_de_qualidade",
+      "obrigatorio": true,
+      "verificacao": "Conferir se toda afirmação fática possui origem nos dados fornecidos ou nos documentos disponíveis.",
+      "erro_se_faltar": "Bloquear a geração do trecho não comprovado."
+    },
+    {
+      "id": "r32",
+      "titulo": "Ausência de documentos inventados",
+      "categoria": "controle_de_qualidade",
+      "obrigatorio": true,
+      "verificacao": "Conferir se nenhuma peça menciona documento que não tenha sido fornecido ou identificado nos autos.",
+      "erro_se_faltar": "Bloquear a referência ao documento inexistente."
+    },
+    {
+      "id": "r33",
+      "titulo": "Ausência de jurisprudência inventada",
+      "categoria": "controle_de_qualidade",
+      "obrigatorio": true,
+      "verificacao": "Utilizar jurisprudência somente quando a fonte estiver disponível e puder ser conferida.",
+      "erro_se_faltar": "Não criar número de processo, ementa, precedente ou tribunal."
+    },
+    {
+      "id": "r34",
+      "titulo": "Adequação ao rito dos Juizados Especiais",
+      "categoria": "controle_de_qualidade",
+      "obrigatorio": true,
+      "verificacao": "Conferir se linguagem, extensão, pedidos e estrutura são compatíveis com a simplicidade e celeridade do JEC.",
+      "erro_se_faltar": "Simplificar ou reestruturar a peça."
+    },
+    {
+      "id": "r35",
+      "titulo": "Separação da contestação e do pedido contraposto",
+      "categoria": "controle_de_qualidade",
+      "obrigatorio": true,
+      "verificacao": "Quando utilizado o fluxo da contestação simples, não inserir pedido contraposto como funcionalidade automática.",
+      "erro_se_faltar": "Encaminhar a demanda para o fluxo específico de contestação com pedido contraposto quando houver pretensão própria do réu."
+    },
+    {
+      "id": "r36",
+      "titulo": "Pedidos defensivos completos",
+      "categoria": "pedidos",
+      "obrigatorio": true,
+      "verificacao": "Conferir se as preliminares efetivamente utilizadas e as teses de mérito possuem correspondência nos pedidos finais.",
+      "erro_se_faltar": "Sinalizar pedido ou tese sem correspondência."
+    },
+    {
+      "id": "r37",
+      "titulo": "Pedido de improcedência dos pedidos autorais",
+      "categoria": "pedidos",
+      "obrigatorio": true,
+      "verificacao": "Verificar se a defesa requer expressamente a improcedência dos pedidos que foram efetivamente contestados.",
+      "erro_se_faltar": "Inserir pedido correspondente somente após conferir as teses desenvolvidas."
+    },
+    {
+      "id": "r38",
+      "titulo": "Fecho processual",
+      "categoria": "finalizacao",
+      "obrigatorio": true,
+      "verificacao": "Conferir local, data, nome do advogado e inscrição na OAB.",
+      "erro_se_faltar": "Sinalizar dados profissionais ausentes."
+    }
+  ]
+}

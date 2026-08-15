@@ -1,0 +1,301 @@
+{
+  "codigo_peca": "recurso_inominado",
+  "nome_peca": "Recurso Inominado",
+
+  "itens": [
+    {
+      "codigo": "identificacao_processo",
+      "item": "Processo corretamente identificado",
+      "categoria": "identificacao",
+      "criticidade": "critica",
+      "tipo_verificacao": "presenca",
+      "instrucao": "Confirmar número do processo, partes e juízo de origem.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "recorrente_identificado",
+      "item": "Recorrente corretamente identificado",
+      "categoria": "identificacao",
+      "criticidade": "critica",
+      "tipo_verificacao": "presenca",
+      "instrucao": "Conferir a identificação da parte que interpõe o recurso com os autos.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "recorrido_identificado",
+      "item": "Recorrido corretamente identificado",
+      "categoria": "identificacao",
+      "criticidade": "critica",
+      "tipo_verificacao": "presenca",
+      "instrucao": "Conferir a identificação do recorrido com os autos.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "representacao_processual",
+      "item": "Representação por advogado verificada",
+      "categoria": "representacao",
+      "criticidade": "critica",
+      "tipo_verificacao": "confirmacao",
+      "instrucao": "Verificar a representação processual da parte recorrente.",
+      "fonte": [
+        "Lei 9.099/1995, art. 41, § 2º"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "decisao_impugnada",
+      "item": "Decisão impugnada identificada",
+      "categoria": "cabimento",
+      "criticidade": "critica",
+      "tipo_verificacao": "presenca",
+      "instrucao": "Confirmar a existência e o conteúdo verificável da sentença objeto do recurso.",
+      "fonte": [
+        "Lei 9.099/1995, art. 41"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "cabimento_recurso",
+      "item": "Cabimento do Recurso Inominado confirmado",
+      "categoria": "cabimento",
+      "criticidade": "critica",
+      "tipo_verificacao": "confirmacao",
+      "instrucao": "Verificar se a decisão e o procedimento são compatíveis com o Recurso Inominado.",
+      "fonte": [
+        "Lei 9.099/1995, art. 41"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "data_ciencia",
+      "item": "Data da ciência da sentença confirmada",
+      "categoria": "tempestividade",
+      "criticidade": "critica",
+      "tipo_verificacao": "confirmacao",
+      "instrucao": "Confirmar a data efetiva da ciência da sentença a partir dos autos ou fonte processual confiável.",
+      "fonte": [
+        "Lei 9.099/1995, art. 42"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "data_interposicao",
+      "item": "Data da interposição confirmada",
+      "categoria": "tempestividade",
+      "criticidade": "critica",
+      "tipo_verificacao": "confirmacao",
+      "instrucao": "Confirmar a data efetiva de interposição do recurso.",
+      "fonte": [
+        "Lei 9.099/1995, art. 42"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "calculo_tempestividade",
+      "item": "Tempestividade calculada por mecanismo próprio",
+      "categoria": "tempestividade",
+      "criticidade": "critica",
+      "tipo_verificacao": "calculo",
+      "instrucao": "Calcular a tempestividade com mecanismo próprio de prazo processual, considerando os marcos temporais e eventos relevantes. A LLM não deve realizar o cálculo.",
+      "fonte": [
+        "Lei 9.099/1995, art. 42"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "situacao_preparo",
+      "item": "Situação do preparo ou gratuidade confirmada",
+      "categoria": "preparo",
+      "criticidade": "critica",
+      "tipo_verificacao": "confirmacao",
+      "instrucao": "Identificar documentalmente se houve preparo, gratuidade concedida/requerida ou outra situação juridicamente relevante.",
+      "fonte": [
+        "Lei 9.099/1995, art. 42, § 1º",
+        "Lei 9.099/1995, art. 54, parágrafo único"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "comprovante_preparo",
+      "item": "Comprovante de preparo localizado quando aplicável",
+      "categoria": "preparo",
+      "criticidade": "alta",
+      "tipo_verificacao": "condicional",
+      "condicao": "Aplicável quando houver obrigação de recolhimento do preparo.",
+      "instrucao": "Localizar e conferir o comprovante de preparo quando o recolhimento for exigível.",
+      "fonte": [
+        "Lei 9.099/1995, art. 42, § 1º"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "resumo_lide",
+      "item": "Resumo da lide conferido",
+      "categoria": "fatos",
+      "criticidade": "alta",
+      "tipo_verificacao": "consistencia",
+      "instrucao": "Verificar se o resumo representa fielmente os fatos relevantes, os pedidos, a defesa e a controvérsia.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "sentenca_resumida",
+      "item": "Resultado da sentença corretamente identificado",
+      "categoria": "sentenca",
+      "criticidade": "critica",
+      "tipo_verificacao": "consistencia",
+      "instrucao": "Conferir se o resumo e a fundamentação correspondem efetivamente ao conteúdo da sentença.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "capitulos_impugnados",
+      "item": "Capítulos impugnados individualizados",
+      "categoria": "sentenca",
+      "criticidade": "critica",
+      "tipo_verificacao": "presenca",
+      "instrucao": "Identificar exatamente quais capítulos, fundamentos ou conclusões da sentença são objeto da insurgência.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "teses_recursais",
+      "item": "Teses recursais individualizadas",
+      "categoria": "fundamentacao",
+      "criticidade": "critica",
+      "tipo_verificacao": "presenca",
+      "instrucao": "Cada tese deve estar relacionada a um problema jurídico concreto e possuir fundamento identificável.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "fatos_e_teses",
+      "item": "Teses relacionadas aos fatos",
+      "categoria": "fundamentacao",
+      "criticidade": "alta",
+      "tipo_verificacao": "consistencia",
+      "instrucao": "Verificar se cada tese decorre de fatos efetivamente fornecidos ou comprovados.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "provas_e_teses",
+      "item": "Provas relacionadas às teses verificadas",
+      "categoria": "provas",
+      "criticidade": "alta",
+      "tipo_verificacao": "consistencia",
+      "instrucao": "Quando a tese depender de prova, verificar se a prova correspondente foi localizada.",
+      "condicao": "Aplicável quando a argumentação depender de demonstração probatória.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "fontes_juridicas",
+      "item": "Fontes jurídicas utilizadas verificadas",
+      "categoria": "fundamentacao",
+      "criticidade": "alta",
+      "tipo_verificacao": "revisao_humana",
+      "instrucao": "Conferir a pertinência das normas, precedentes e demais fontes jurídicas utilizadas na fundamentação.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "efeito_suspensivo",
+      "item": "Pedido de efeito suspensivo justificado quando utilizado",
+      "categoria": "fundamentacao",
+      "criticidade": "alta",
+      "tipo_verificacao": "condicional",
+      "condicao": "Aplicável quando houver pedido de efeito suspensivo.",
+      "instrucao": "Verificar existência de fundamento concreto e demonstração do risco de dano irreparável.",
+      "fonte": [
+        "Lei 9.099/1995, art. 43"
+      ],
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "prequestionamento",
+      "item": "Prequestionamento coerente quando utilizado",
+      "categoria": "prequestionamento",
+      "criticidade": "media",
+      "tipo_verificacao": "condicional",
+      "condicao": "Aplicável quando o prequestionamento fizer parte da estratégia recursal.",
+      "instrucao": "Verificar se os dispositivos indicados estão relacionados às questões jurídicas efetivamente discutidas.",
+      "bloqueia_finalizacao": false
+    },
+
+    {
+      "codigo": "pedido_principal",
+      "item": "Pedido principal definido",
+      "categoria": "pedidos",
+      "criticidade": "critica",
+      "tipo_verificacao": "presenca",
+      "instrucao": "Confirmar a existência de pedido principal claro e determinado quanto ao resultado recursal pretendido.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "pedidos_e_teses",
+      "item": "Pedidos correspondem às teses",
+      "categoria": "coerencia",
+      "criticidade": "critica",
+      "tipo_verificacao": "consistencia",
+      "instrucao": "Verificar se cada pedido possui fundamento correspondente e se o resultado pretendido decorre das teses desenvolvidas.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "pedidos_e_capitulos",
+      "item": "Pedidos correspondem aos capítulos impugnados",
+      "categoria": "coerencia",
+      "criticidade": "alta",
+      "tipo_verificacao": "consistencia",
+      "instrucao": "Verificar correspondência entre os capítulos efetivamente impugnados e os resultados pedidos.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "documentos_citados",
+      "item": "Documentos citados na peça estão localizados",
+      "categoria": "documentacao",
+      "criticidade": "alta",
+      "tipo_verificacao": "confirmacao",
+      "instrucao": "Conferir se documentos mencionados na fundamentação existem no conjunto documental disponível.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "ausencia_informacoes",
+      "item": "Informações ausentes identificadas",
+      "categoria": "revisao",
+      "criticidade": "critica",
+      "tipo_verificacao": "revisao_humana",
+      "instrucao": "Nenhuma informação essencial ausente deve ser preenchida por presunção. Registrar expressamente as lacunas para revisão.",
+      "bloqueia_finalizacao": true
+    },
+
+    {
+      "codigo": "revisao_final_humana",
+      "item": "Revisão jurídica humana realizada",
+      "categoria": "revisao",
+      "criticidade": "critica",
+      "tipo_verificacao": "revisao_humana",
+      "instrucao": "A peça somente poderá ser considerada finalizada após revisão jurídica humana.",
+      "bloqueia_finalizacao": true
+    }
+  ],
+
+  "versao": "1.0.0",
+  "status": "rascunho"
+}

@@ -1,0 +1,387 @@
+{
+  "area": "juizados",
+  "peca": "inicial",
+  "nome": "Fundamentos Jurídicos — Petição Inicial JEC",
+  "descricao": "Base modular de fundamentos jurídicos para seleção e construção de petições iniciais no Juizado Especial Cível.",
+  "regra_central": "Nenhum fundamento deve ser inserido automaticamente. A seleção deve decorrer dos fatos narrados, da relação jurídica identificada, da pretensão deduzida e das provas disponíveis.",
+  "fontes_estruturantes": [
+    {
+      "norma": "Constituição Federal",
+      "finalidade": "Fundamentos constitucionais aplicáveis conforme a natureza da controvérsia."
+    },
+    {
+      "norma": "Lei nº 9.099/1995",
+      "finalidade": "Regime jurídico específico dos Juizados Especiais Cíveis."
+    },
+    {
+      "norma": "Lei nº 13.105/2015 — CPC",
+      "finalidade": "Aplicação subsidiária e compatível com o microssistema dos Juizados."
+    },
+    {
+      "norma": "Lei nº 8.078/1990 — Código de Defesa do Consumidor",
+      "finalidade": "Aplicação quando caracterizada relação de consumo."
+    },
+    {
+      "norma": "Código Civil",
+      "finalidade": "Aplicação conforme a natureza contratual, obrigacional ou de responsabilidade civil da controvérsia."
+    }
+  ],
+  "fundamentos": [
+    {
+      "id": "jec_criterios",
+      "categoria": "procedimental",
+      "nome": "Critérios orientadores dos Juizados Especiais",
+      "dispositivos": [
+        "Lei nº 9.099/1995, art. 2º"
+      ],
+      "quando_utilizar": "Como fundamento geral da adequação do procedimento e da interpretação das regras do microssistema.",
+      "tese": "O procedimento dos Juizados Especiais é orientado pela oralidade, simplicidade, informalidade, economia processual e celeridade, buscando, sempre que possível, a conciliação ou transação.",
+      "uso_automatico": false
+    },
+    {
+      "id": "competencia_valor",
+      "categoria": "competencia",
+      "nome": "Competência em razão do valor",
+      "dispositivos": [
+        "Lei nº 9.099/1995, art. 3º, I",
+        "Lei nº 9.099/1995, art. 3º, § 3º"
+      ],
+      "quando_utilizar": "Quando a competência do JEC depender do limite econômico da pretensão.",
+      "tese": "A demanda deve observar o limite de competência econômica estabelecido para o Juizado Especial Cível, considerando também eventual renúncia ao crédito excedente quando juridicamente cabível.",
+      "uso_automatico": false
+    },
+    {
+      "id": "competencia_materia",
+      "categoria": "competencia",
+      "nome": "Competência em razão da matéria",
+      "dispositivos": [
+        "Lei nº 9.099/1995, art. 3º",
+        "Lei nº 9.099/1995, art. 3º, § 2º"
+      ],
+      "quando_utilizar": "Sempre que for necessário demonstrar que a natureza da causa é compatível com o JEC.",
+      "tese": "A demanda deve estar inserida entre as causas de menor complexidade e não pode pertencer às matérias expressamente excluídas da competência dos Juizados Especiais.",
+      "uso_automatico": false,
+      "alerta": "Antes da elaboração da inicial, verificar se a matéria não está excluída da competência do JEC."
+    },
+    {
+      "id": "competencia_territorial",
+      "categoria": "competencia",
+      "nome": "Competência territorial",
+      "dispositivos": [
+        "Lei nº 9.099/1995, art. 4º"
+      ],
+      "quando_utilizar": "Sempre que houver necessidade de justificar o foro escolhido.",
+      "tese": "A competência territorial deve ser demonstrada conforme os critérios específicos previstos para as causas submetidas ao Juizado Especial.",
+      "uso_automatico": false
+    },
+    {
+      "id": "legitimidade",
+      "categoria": "processual",
+      "nome": "Legitimidade das partes",
+      "dispositivos": [
+        "Lei nº 9.099/1995, art. 8º",
+        "CPC, art. 17"
+      ],
+      "quando_utilizar": "Quando necessário demonstrar a pertinência subjetiva da demanda.",
+      "tese": "As partes indicadas devem possuir legitimidade para ocupar os polos da relação processual, observadas as regras específicas de capacidade e representação aplicáveis aos Juizados.",
+      "uso_automatico": false
+    },
+    {
+      "id": "acesso_jec_advogado",
+      "categoria": "processual",
+      "nome": "Assistência por advogado",
+      "dispositivos": [
+        "Lei nº 9.099/1995, art. 9º"
+      ],
+      "quando_utilizar": "Conforme o valor da causa e a forma de atuação da parte.",
+      "tese": "A necessidade de assistência por advogado deve ser analisada conforme o limite econômico estabelecido pela Lei dos Juizados Especiais.",
+      "uso_automatico": false
+    },
+    {
+      "id": "relacao_consumo",
+      "categoria": "direito_material",
+      "nome": "Caracterização da relação de consumo",
+      "dispositivos": [
+        "CDC, arts. 2º e 3º"
+      ],
+      "quando_utilizar": "Somente quando os fatos demonstrarem a presença de consumidor, fornecedor, produto ou serviço nos termos do CDC.",
+      "tese": "Caracterizada a relação de consumo, incidem as normas de proteção e defesa do consumidor pertinentes à controvérsia.",
+      "uso_automatico": false,
+      "alerta": "Não presumir relação de consumo."
+    },
+    {
+      "id": "responsabilidade_fornecedor",
+      "categoria": "consumidor",
+      "nome": "Responsabilidade pelo fato do serviço ou produto",
+      "dispositivos": [
+        "CDC, art. 12",
+        "CDC, art. 14"
+      ],
+      "quando_utilizar": "Quando houver defeito de produto ou serviço e estiverem presentes os pressupostos da responsabilidade previstos no CDC.",
+      "tese": "O fornecedor responde pelos danos decorrentes de defeitos do produto ou serviço nos termos do regime de responsabilidade aplicável.",
+      "uso_automatico": false
+    },
+    {
+      "id": "vicio_produto_servico",
+      "categoria": "consumidor",
+      "nome": "Vício do produto ou serviço",
+      "dispositivos": [
+        "CDC, arts. 18 e 20"
+      ],
+      "quando_utilizar": "Quando a controvérsia envolver inadequação ou vício de produto ou serviço.",
+      "tese": "O consumidor pode exercer as alternativas e pretensões previstas no CDC diante de vício de produto ou serviço, conforme a natureza concreta do problema.",
+      "uso_automatico": false
+    },
+    {
+      "id": "praticas_abusivas",
+      "categoria": "consumidor",
+      "nome": "Práticas abusivas",
+      "dispositivos": [
+        "CDC, art. 39"
+      ],
+      "quando_utilizar": "Quando a conduta do fornecedor se enquadrar em alguma das hipóteses legalmente previstas ou em situação abusiva reconhecida pelo ordenamento.",
+      "tese": "A conduta abusiva do fornecedor deve ser analisada à luz das hipóteses de práticas abusivas previstas no CDC e dos princípios de proteção do consumidor.",
+      "uso_automatico": false
+    },
+    {
+      "id": "dever_informacao",
+      "categoria": "consumidor",
+      "nome": "Dever de informação",
+      "dispositivos": [
+        "CDC, art. 6º, III",
+        "CDC, arts. 30 e 31"
+      ],
+      "quando_utilizar": "Quando a controvérsia envolver ausência, deficiência, inexatidão ou insuficiência de informação.",
+      "tese": "O consumidor possui direito à informação adequada, clara e suficiente acerca dos produtos e serviços contratados.",
+      "uso_automatico": false
+    },
+    {
+      "id": "boa_fe",
+      "categoria": "contratual",
+      "nome": "Boa-fé objetiva",
+      "dispositivos": [
+        "Código Civil, art. 113",
+        "Código Civil, art. 422"
+      ],
+      "quando_utilizar": "Quando houver controvérsia relacionada à formação, interpretação, execução ou encerramento de relação contratual.",
+      "tese": "A relação contratual deve ser interpretada e executada segundo os deveres decorrentes da boa-fé objetiva.",
+      "uso_automatico": false
+    },
+    {
+      "id": "inadimplemento",
+      "categoria": "contratual",
+      "nome": "Inadimplemento contratual",
+      "dispositivos": [
+        "Código Civil, art. 389",
+        "Código Civil, art. 395"
+      ],
+      "quando_utilizar": "Quando houver descumprimento de obrigação contratual.",
+      "tese": "O inadimplemento da obrigação pode gerar as consequências jurídicas previstas no ordenamento, inclusive perdas e danos quando presentes os respectivos pressupostos.",
+      "uso_automatico": false
+    },
+    {
+      "id": "perdas_danos",
+      "categoria": "responsabilidade_civil",
+      "nome": "Perdas e danos",
+      "dispositivos": [
+        "Código Civil, arts. 402 e 403"
+      ],
+      "quando_utilizar": "Quando houver prejuízo patrimonial juridicamente indenizável decorrente de inadimplemento ou ato ilícito.",
+      "tese": "A indenização deve compreender os prejuízos que decorram de forma juridicamente reconhecível da conduta imputada ao responsável.",
+      "uso_automatico": false
+    },
+    {
+      "id": "ato_ilicito",
+      "categoria": "responsabilidade_civil",
+      "nome": "Ato ilícito e dever de reparar",
+      "dispositivos": [
+        "Código Civil, arts. 186 e 927"
+      ],
+      "quando_utilizar": "Quando os fatos demonstrarem conduta ilícita, dano e nexo causal aptos a fundamentar responsabilidade civil.",
+      "tese": "Aquele que, por ação ou omissão juridicamente relevante, causar dano a outrem fica sujeito ao dever de reparação quando presentes os pressupostos da responsabilidade civil.",
+      "uso_automatico": false
+    },
+    {
+      "id": "dano_material",
+      "categoria": "responsabilidade_civil",
+      "nome": "Dano material",
+      "dispositivos": [
+        "Código Civil, arts. 402 e 403"
+      ],
+      "quando_utilizar": "Quando o autor demonstrar efetivo prejuízo patrimonial.",
+      "tese": "O prejuízo patrimonial comprovadamente relacionado à conduta do réu pode ensejar reparação.",
+      "uso_automatico": false,
+      "alerta": "Não criar valores ou presumir prejuízo sem suporte fático ou documental."
+    },
+    {
+      "id": "dano_moral",
+      "categoria": "responsabilidade_civil",
+      "nome": "Dano moral",
+      "dispositivos": [
+        "Constituição Federal, art. 5º, V e X",
+        "Código Civil, arts. 186 e 927"
+      ],
+      "quando_utilizar": "Quando os fatos concretos demonstrarem lesão a direitos da personalidade ou situação excepcional juridicamente apta a gerar dano extrapatrimonial.",
+      "tese": "A reparação por dano moral exige demonstração de lesão extrapatrimonial juridicamente relevante, não decorrendo automaticamente de todo inadimplemento ou falha contratual.",
+      "uso_automatico": false,
+      "alerta": "A IA deve analisar concretamente a gravidade da conduta, suas consequências e a existência de efetiva lesão extrapatrimonial."
+    },
+    {
+      "id": "restituicao_simples",
+      "categoria": "restituicao",
+      "nome": "Restituição de valor indevidamente cobrado ou pago",
+      "dispositivos": [
+        "Código Civil, arts. 876 e seguintes",
+        "CDC, art. 42, conforme aplicabilidade"
+      ],
+      "quando_utilizar": "Quando houver pagamento ou cobrança indevida e estiver configurada hipótese de restituição.",
+      "tese": "O valor indevidamente recebido ou cobrado deve ser restituído conforme o regime jurídico aplicável.",
+      "uso_automatico": false
+    },
+    {
+      "id": "repeticao_indebito_consumidor",
+      "categoria": "consumidor",
+      "nome": "Repetição do indébito nas relações de consumo",
+      "dispositivos": [
+        "CDC, art. 42, parágrafo único"
+      ],
+      "quando_utilizar": "Quando houver cobrança indevida em relação de consumo e estiverem presentes os requisitos legais para repetição.",
+      "tese": "O consumidor poderá pleitear a repetição do indébito nos termos do regime específico do CDC, observados os requisitos legais e a jurisprudência aplicável.",
+      "uso_automatico": false,
+      "alerta": "Não pedir restituição em dobro automaticamente. Verificar a hipótese jurídica concreta."
+    },
+    {
+      "id": "obrigacao_fazer",
+      "categoria": "tutela",
+      "nome": "Obrigação de fazer",
+      "dispositivos": [
+        "CPC, arts. 497 e 536",
+        "CDC, art. 84, quando aplicável"
+      ],
+      "quando_utilizar": "Quando a pretensão exigir que o réu pratique determinado ato.",
+      "tese": "O provimento jurisdicional pode impor ao réu o cumprimento da obrigação de fazer quando presentes os pressupostos jurídicos da pretensão.",
+      "uso_automatico": false
+    },
+    {
+      "id": "obrigacao_nao_fazer",
+      "categoria": "tutela",
+      "nome": "Obrigação de não fazer",
+      "dispositivos": [
+        "CPC, arts. 497 e 536",
+        "CDC, art. 84, quando aplicável"
+      ],
+      "quando_utilizar": "Quando a pretensão exigir que o réu se abstenha de determinada conduta.",
+      "tese": "O provimento jurisdicional pode impor obrigação de não fazer quando a pretensão estiver juridicamente demonstrada.",
+      "uso_automatico": false
+    },
+    {
+      "id": "tutela_urgencia",
+      "categoria": "tutela_provisoria",
+      "nome": "Tutela provisória de urgência",
+      "dispositivos": [
+        "CPC, art. 300"
+      ],
+      "quando_utilizar": "Quando houver probabilidade do direito e perigo de dano ou risco ao resultado útil do processo.",
+      "tese": "A tutela provisória de urgência poderá ser requerida quando demonstrados concretamente seus pressupostos legais.",
+      "uso_automatico": false,
+      "alerta": "A urgência deve ser demonstrada a partir de fatos concretos. Não utilizar a tutela como fórmula automática."
+    },
+    {
+      "id": "tutela_evidencia",
+      "categoria": "tutela_provisoria",
+      "nome": "Tutela da evidência",
+      "dispositivos": [
+        "CPC, art. 311"
+      ],
+      "quando_utilizar": "Somente quando o caso concreto se enquadrar em uma das hipóteses legais de tutela da evidência.",
+      "tese": "A tutela da evidência poderá ser requerida independentemente da demonstração de perigo de dano quando presente uma das hipóteses previstas em lei.",
+      "uso_automatico": false
+    },
+    {
+      "id": "inversao_onus_consumidor",
+      "categoria": "prova",
+      "nome": "Inversão do ônus da prova nas relações de consumo",
+      "dispositivos": [
+        "CDC, art. 6º, VIII"
+      ],
+      "quando_utilizar": "Quando caracterizada relação de consumo e estiverem presentes os requisitos legais para inversão.",
+      "tese": "A inversão do ônus da prova pode ser requerida quando presentes os pressupostos previstos no CDC, considerando a verossimilhança da alegação ou a hipossuficiência do consumidor.",
+      "uso_automatico": false,
+      "alerta": "A inversão não deve ser tratada como consequência automática da existência de relação de consumo."
+    },
+    {
+      "id": "distribuicao_onus_cpc",
+      "categoria": "prova",
+      "nome": "Distribuição do ônus da prova",
+      "dispositivos": [
+        "CPC, art. 373"
+      ],
+      "quando_utilizar": "Quando a controvérsia exigir definição do encargo probatório ou houver fundamento para distribuição diversa.",
+      "tese": "A distribuição do ônus da prova deve observar a regra legal e, quando cabível, eventual distribuição diversa juridicamente fundamentada.",
+      "uso_automatico": false
+    },
+    {
+      "id": "documentos_indispensaveis",
+      "categoria": "processual",
+      "nome": "Documentos indispensáveis",
+      "dispositivos": [
+        "CPC, art. 320"
+      ],
+      "quando_utilizar": "Na verificação da documentação necessária para instrução da inicial.",
+      "tese": "A petição inicial deve ser acompanhada dos documentos indispensáveis à propositura da ação.",
+      "uso_automatico": false
+    },
+    {
+      "id": "pedidos_especificos",
+      "categoria": "processual",
+      "nome": "Especificação dos pedidos",
+      "dispositivos": [
+        "CPC, arts. 322 e 324"
+      ],
+      "quando_utilizar": "Na construção e revisão dos pedidos.",
+      "tese": "Os pedidos devem ser certos, determinados ou juridicamente adequados às hipóteses de pedido genérico admitidas pela legislação.",
+      "uso_automatico": false
+    },
+    {
+      "id": "cumprimento_obrigacao",
+      "categoria": "processual",
+      "nome": "Efetividade do provimento jurisdicional",
+      "dispositivos": [
+        "CPC, art. 497",
+        "CPC, art. 536"
+      ],
+      "quando_utilizar": "Quando a tutela pretendida envolver obrigação de fazer ou não fazer.",
+      "tese": "O provimento jurisdicional deve ser formulado de modo a permitir a efetiva tutela específica da obrigação."
+    },
+    {
+      "id": "conciliacao",
+      "categoria": "procedimental",
+      "nome": "Conciliação no Juizado Especial",
+      "dispositivos": [
+        "Lei nº 9.099/1995, arts. 2º, 16 e 21"
+      ],
+      "quando_utilizar": "Na adequação da inicial ao rito e aos atos próprios dos Juizados Especiais.",
+      "tese": "A busca da conciliação constitui elemento estruturante do procedimento dos Juizados Especiais.",
+      "uso_automatico": false
+    }
+  ],
+  "regras_de_selecao": [
+    "Selecionar fundamentos a partir dos fatos concretos fornecidos pelo usuário.",
+    "Priorizar o fundamento jurídico diretamente relacionado à causa de pedir.",
+    "Utilizar fundamentos complementares somente quando acrescentarem consequência jurídica relevante.",
+    "Evitar fundamentação excessivamente extensa em causas simples compatíveis com o rito dos Juizados.",
+    "Não utilizar simultaneamente fundamentos incompatíveis entre si.",
+    "Não presumir relação de consumo.",
+    "Não presumir dano moral.",
+    "Não presumir dano material.",
+    "Não presumir tutela provisória.",
+    "Não presumir inversão do ônus da prova.",
+    "Não presumir repetição em dobro.",
+    "Não inventar jurisprudência, precedentes, súmulas ou números de processos.",
+    "Quando houver necessidade de jurisprudência específica, sinalizar a necessidade de pesquisa jurídica antes de inserir precedente.",
+    "Os fundamentos devem possuir correspondência com os pedidos formulados.",
+    "Os pedidos não podem ser superiores ou diferentes daquilo que os fundamentos e fatos sustentam.",
+    "A ausência de fundamento específico não deve ser suprida mediante criação de fatos.",
+    "Quando houver dúvida sobre a competência do JEC, interromper a geração definitiva da peça e sinalizar a questão."
+  ]
+}

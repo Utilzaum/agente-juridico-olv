@@ -1,0 +1,185 @@
+{
+  "peca": "replica",
+  "area": "juizados",
+  "nome": "Fundamentos da Réplica",
+  "principio_central": "A Réplica deve enfrentar as alegações relevantes efetivamente apresentadas pelo réu, relacionando cada impugnação aos fatos, provas e fundamentos jurídicos pertinentes.",
+  "regras": [
+    {
+      "id": "F01",
+      "titulo": "Delimitação da controvérsia",
+      "regra": "Identificar quais pontos da demanda permanecem efetivamente controvertidos após a contestação."
+    },
+    {
+      "id": "F02",
+      "titulo": "Ônus de impugnação",
+      "regra": "Verificar se o réu enfrentou especificamente os fatos relevantes alegados pelo autor e analisar as consequências processuais cabíveis."
+    },
+    {
+      "id": "F03",
+      "titulo": "Fatos incontroversos",
+      "regra": "Identificar fatos expressamente admitidos pelo réu ou que não tenham sido efetivamente controvertidos."
+    },
+    {
+      "id": "F04",
+      "titulo": "Fatos controvertidos",
+      "regra": "Individualizar os fatos efetivamente impugnados pelo réu e confrontá-los com os elementos existentes nos autos."
+    },
+    {
+      "id": "F05",
+      "titulo": "Fato impeditivo",
+      "regra": "Quando o réu alegar fato impeditivo, identificar a alegação, verificar sua comprovação e apresentar a impugnação correspondente."
+    },
+    {
+      "id": "F06",
+      "titulo": "Fato modificativo",
+      "regra": "Quando o réu alegar fato modificativo, verificar sua existência, pertinência e prova, enfrentando especificamente a alegação."
+    },
+    {
+      "id": "F07",
+      "titulo": "Fato extintivo",
+      "regra": "Quando o réu alegar fato extintivo, identificar a alegação, confrontá-la com os autos e demonstrar sua procedência ou improcedência."
+    },
+    {
+      "id": "F08",
+      "titulo": "Preliminares processuais",
+      "regra": "Enfrentar individualmente as preliminares efetivamente suscitadas pelo réu, sem criar preliminares inexistentes."
+    },
+    {
+      "id": "F09",
+      "titulo": "Ilegitimidade",
+      "regra": "Quando alegada, verificar a relação jurídica discutida, os fatos que vinculam a parte ao objeto da demanda e os documentos correspondentes."
+    },
+    {
+      "id": "F10",
+      "titulo": "Incompetência",
+      "regra": "Quando alegada, identificar o fundamento utilizado pelo réu e confrontá-lo com a competência aplicável ao caso concreto."
+    },
+    {
+      "id": "F11",
+      "titulo": "Inépcia ou deficiência da inicial",
+      "regra": "Quando alegada, verificar se a petição inicial permite compreender os fatos, a causa de pedir e os pedidos formulados."
+    },
+    {
+      "id": "F12",
+      "titulo": "Prescrição",
+      "regra": "Quando alegada, verificar o direito discutido, o prazo aplicável, o termo inicial e os fatos relevantes constantes dos autos."
+    },
+    {
+      "id": "F13",
+      "titulo": "Decadência",
+      "regra": "Quando alegada, verificar a natureza do direito discutido, o prazo aplicável e os elementos temporais comprovados nos autos."
+    },
+    {
+      "id": "F14",
+      "titulo": "Ausência de interesse processual",
+      "regra": "Quando alegada, identificar a justificativa apresentada pelo réu e verificar sua compatibilidade com a situação concreta."
+    },
+    {
+      "id": "F15",
+      "titulo": "Impugnação de documentos",
+      "regra": "Analisar documentos apresentados pelo réu quanto à autenticidade, conteúdo, pertinência, integridade e força probatória, quando houver fundamento concreto para impugnação."
+    },
+    {
+      "id": "F16",
+      "titulo": "Documento unilateral",
+      "regra": "Quando o réu utilizar documento produzido unilateralmente, avaliar seu conteúdo e sua capacidade de comprovar os fatos alegados, sem presumir sua invalidade apenas por ser unilateral."
+    },
+    {
+      "id": "F17",
+      "titulo": "Prova documental",
+      "regra": "Relacionar cada alegação relevante às provas documentais efetivamente existentes nos autos."
+    },
+    {
+      "id": "F18",
+      "titulo": "Ausência de prova da alegação defensiva",
+      "regra": "Quando o réu sustentar fato relevante sem apresentar suporte probatório suficiente, demonstrar objetivamente essa insuficiência."
+    },
+    {
+      "id": "F19",
+      "titulo": "Contradição entre alegação e documento",
+      "regra": "Quando houver incompatibilidade demonstrável entre a narrativa defensiva e documento dos autos, apontar precisamente a divergência."
+    },
+    {
+      "id": "F20",
+      "titulo": "Contradição interna da contestação",
+      "regra": "Quando a própria contestação apresentar alegações incompatíveis entre si, identificar os pontos conflitantes e explicar sua relevância."
+    },
+    {
+      "id": "F21",
+      "titulo": "Reiteração dos fundamentos da inicial",
+      "regra": "Preservar os fundamentos da petição inicial que não tenham sido efetivamente superados pela contestação, evitando reprodução integral desnecessária."
+    },
+    {
+      "id": "F22",
+      "titulo": "Impugnação específica de tese de mérito",
+      "regra": "Para cada tese defensiva relevante, apresentar resposta diretamente relacionada à alegação formulada pelo réu."
+    },
+    {
+      "id": "F23",
+      "titulo": "Distinção entre fato e argumento jurídico",
+      "regra": "Separar alegações fáticas de argumentos jurídicos para evitar respostas genéricas ou inadequadas."
+    },
+    {
+      "id": "F24",
+      "titulo": "Aplicação da norma ao caso concreto",
+      "regra": "Não basta citar dispositivo legal; demonstrar sua relação com os fatos e provas efetivamente existentes."
+    },
+    {
+      "id": "F25",
+      "titulo": "Jurisprudência",
+      "regra": "Utilizar jurisprudência somente quando pertinente, verificável e necessária para a controvérsia efetivamente apresentada."
+    },
+    {
+      "id": "F26",
+      "titulo": "Ônus da prova",
+      "regra": "Analisar a distribuição do ônus probatório somente quando houver questão concreta relacionada à demonstração dos fatos controvertidos."
+    },
+    {
+      "id": "F27",
+      "titulo": "Distribuição dinâmica ou inversão do ônus",
+      "regra": "Quando juridicamente pertinente, verificar os pressupostos concretos para redistribuição ou inversão do ônus da prova, sem presumir sua aplicação."
+    },
+    {
+      "id": "F28",
+      "titulo": "Necessidade de prova",
+      "regra": "Identificar quais fatos permanecem dependentes de prova e qual meio probatório é pertinente para sua demonstração."
+    },
+    {
+      "id": "F29",
+      "titulo": "Prova requerida pelo réu",
+      "regra": "Quando houver requerimento probatório da defesa relevante ao julgamento, avaliar sua pertinência e eventual necessidade de impugnação."
+    },
+    {
+      "id": "F30",
+      "titulo": "Ausência de matéria nova relevante",
+      "regra": "Se a contestação apenas reproduzir argumentos já enfrentados na inicial, evitar réplica artificialmente extensa."
+    },
+    {
+      "id": "F31",
+      "titulo": "Redundância defensiva",
+      "regra": "Não responder repetidamente à mesma alegação sob títulos diferentes."
+    },
+    {
+      "id": "F32",
+      "titulo": "Fato novo",
+      "regra": "Identificar eventual fato novo apresentado pelo réu e verificar sua relevância, comprovação e necessidade de manifestação."
+    },
+    {
+      "id": "F33",
+      "titulo": "Pedido do réu",
+      "regra": "Identificar eventual pedido formulado pelo réu e verificar sua compatibilidade com a controvérsia e com o rito dos Juizados."
+    },
+    {
+      "id": "F34",
+      "titulo": "Consequência jurídica da impugnação",
+      "regra": "Demonstrar, quando necessário, qual consequência jurídica decorre da rejeição da alegação defensiva."
+    },
+    {
+      "id": "F35",
+      "titulo": "Pedidos da réplica",
+      "regra": "Os pedidos devem corresponder às questões efetivamente enfrentadas e não podem criar pretensão inexistente na demanda."
+    }
+  ],
+  "regra_de_ativacao": "Nenhum fundamento deve ser utilizado automaticamente. A IA deve primeiro identificar a alegação correspondente na contestação ou questão concreta existente nos autos e somente então selecionar o fundamento pertinente.",
+  "regra_de_nao_fabricacao": "É proibido criar alegações defensivas, fatos, documentos, pedidos, provas, datas, jurisprudência ou fundamentos que não estejam sustentados pelos autos ou pela contestação."
+}

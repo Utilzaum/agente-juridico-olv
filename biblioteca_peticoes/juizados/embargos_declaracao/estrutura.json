@@ -1,0 +1,83 @@
+{
+  "area": "juizados",
+  "peca": "embargos_declaracao",
+  "nome": "Embargos de Declaração — Juizado Especial Cível",
+  "descricao": "Estrutura para elaboração de Embargos de Declaração contra decisão judicial proferida no âmbito do Juizado Especial Cível, com identificação objetiva do vício, demonstração de sua relevância e formulação do pedido de integração, esclarecimento ou correção.",
+  "secoes": [
+    {
+      "ordem": 1,
+      "titulo": "Endereçamento",
+      "objetivo": "Identificar corretamente o Juízo responsável pela decisão embargada."
+    },
+    {
+      "ordem": 2,
+      "titulo": "Identificação do processo",
+      "objetivo": "Indicar número do processo e partes."
+    },
+    {
+      "ordem": 3,
+      "titulo": "Identificação da decisão embargada",
+      "objetivo": "Precisar qual decisão, sentença ou ato judicial é objeto dos embargos."
+    },
+    {
+      "ordem": 4,
+      "titulo": "Síntese objetiva do pronunciamento judicial",
+      "objetivo": "Apresentar somente os elementos necessários para compreender o vício apontado."
+    },
+    {
+      "ordem": 5,
+      "titulo": "Cabimento dos Embargos de Declaração",
+      "objetivo": "Demonstrar a adequação dos embargos à hipótese concretamente identificada."
+    },
+    {
+      "ordem": 6,
+      "titulo": "Da omissão",
+      "objetivo": "Demonstrar eventual ausência de apreciação de questão relevante submetida ao Juízo."
+    },
+    {
+      "ordem": 7,
+      "titulo": "Da contradição",
+      "objetivo": "Demonstrar eventual incompatibilidade interna existente no próprio pronunciamento judicial."
+    },
+    {
+      "ordem": 8,
+      "titulo": "Da obscuridade",
+      "objetivo": "Demonstrar eventual falta de clareza que impeça a adequada compreensão do pronunciamento."
+    },
+    {
+      "ordem": 9,
+      "titulo": "Do erro material",
+      "objetivo": "Identificar eventual inexatidão material, numérica, nominal ou objetiva passível de correção."
+    },
+    {
+      "ordem": 10,
+      "titulo": "Da relevância do vício identificado",
+      "objetivo": "Demonstrar por que a correção, integração ou esclarecimento é juridicamente necessário."
+    },
+    {
+      "ordem": 11,
+      "titulo": "Do enfrentamento da questão relevante",
+      "objetivo": "Indicar precisamente qual questão deve ser apreciada, esclarecida ou corrigida."
+    },
+    {
+      "ordem": 12,
+      "titulo": "Dos efeitos decorrentes do saneamento do vício",
+      "objetivo": "Demonstrar eventual consequência lógica ou jurídica decorrente da correção do pronunciamento."
+    },
+    {
+      "ordem": 13,
+      "titulo": "Da impossibilidade de utilização dos embargos para mera rediscussão",
+      "objetivo": "Delimitar o pedido ao efetivo vício existente, evitando fundamentação incompatível com a natureza dos embargos."
+    },
+    {
+      "ordem": 14,
+      "titulo": "Dos pedidos",
+      "objetivo": "Formular pedidos objetivos de conhecimento, acolhimento e saneamento do vício identificado."
+    },
+    {
+      "ordem": 15,
+      "titulo": "Fechamento",
+      "objetivo": "Encerrar a peça com local, data, assinatura e identificação profissional."
+    }
+  ]
+}

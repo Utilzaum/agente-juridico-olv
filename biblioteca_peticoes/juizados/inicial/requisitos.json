@@ -1,0 +1,375 @@
+{
+  "area": "juizados",
+  "peca": "inicial",
+  "nome": "Requisitos — Petição Inicial JEC",
+  "descricao": "Requisitos jurídicos, processuais, fáticos e documentais necessários para elaboração e revisão de petição inicial no Juizado Especial Cível.",
+  "base_legal_principal": [
+    {
+      "norma": "Lei nº 9.099/1995",
+      "dispositivos": [
+        "art. 2º",
+        "art. 3º",
+        "art. 4º",
+        "art. 8º",
+        "art. 9º",
+        "art. 14",
+        "art. 15",
+        "art. 16"
+      ]
+    },
+    {
+      "norma": "Lei nº 13.105/2015 — Código de Processo Civil",
+      "dispositivos": [
+        "art. 319",
+        "art. 320",
+        "art. 321",
+        "art. 322",
+        "art. 324"
+      ],
+      "aplicacao": "Subsidiária e compatível com o microssistema dos Juizados Especiais."
+    }
+  ],
+  "requisitos": [
+    {
+      "id": "R01",
+      "categoria": "competencia",
+      "nome": "Competência do Juizado Especial Cível",
+      "obrigatorio": true,
+      "descricao": "A causa deve ser compatível com a competência do JEC quanto à matéria, valor e natureza.",
+      "verificacao": [
+        "A causa é cível.",
+        "A causa se enquadra entre as hipóteses de competência do JEC.",
+        "A causa não pertence às matérias excluídas pelo art. 3º, § 2º, da Lei nº 9.099/1995.",
+        "O valor da causa não ultrapassa o limite legal de 40 salários mínimos.",
+        "Caso exista crédito superior ao limite, foi analisada eventual renúncia ao excedente."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 3º"
+    },
+    {
+      "id": "R02",
+      "categoria": "competencia",
+      "nome": "Competência territorial",
+      "obrigatorio": true,
+      "descricao": "Deve ser identificada a hipótese legal que justifica o foro escolhido.",
+      "verificacao": [
+        "Domicílio do réu.",
+        "Local onde o réu exerça atividade profissional ou econômica ou mantenha estabelecimento.",
+        "Local onde a obrigação deva ser satisfeita.",
+        "Domicílio do autor ou local do ato ou fato, nas ações de reparação de dano."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 4º"
+    },
+    {
+      "id": "R03",
+      "categoria": "partes",
+      "nome": "Legitimidade e capacidade das partes",
+      "obrigatorio": true,
+      "descricao": "As partes devem ser juridicamente aptas a integrar a demanda no JEC.",
+      "verificacao": [
+        "Autor possui legitimidade para formular a pretensão.",
+        "Réu possui legitimidade para responder pela pretensão.",
+        "A parte possui capacidade processual compatível com o procedimento.",
+        "Quando houver pessoa jurídica no polo ativo, verificar se ela integra as categorias admitidas pela Lei nº 9.099/1995."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 8º"
+    },
+    {
+      "id": "R04",
+      "categoria": "qualificacao",
+      "nome": "Identificação das partes",
+      "obrigatorio": true,
+      "descricao": "A inicial deve permitir identificar adequadamente autor e réu.",
+      "verificacao": [
+        "Nome completo ou razão social.",
+        "CPF ou CNPJ quando disponível e pertinente.",
+        "Endereço conhecido.",
+        "Demais elementos necessários à individualização da parte."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 14; CPC, art. 319"
+    },
+    {
+      "id": "R05",
+      "categoria": "fatos",
+      "nome": "Exposição dos fatos",
+      "obrigatorio": true,
+      "descricao": "Os fatos devem ser apresentados de maneira suficientemente clara para permitir a compreensão da controvérsia.",
+      "verificacao": [
+        "Os acontecimentos relevantes estão narrados.",
+        "A sequência dos fatos pode ser compreendida.",
+        "As datas relevantes foram informadas quando necessárias.",
+        "A conduta atribuída ao réu está identificada.",
+        "As consequências da conduta estão identificadas."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 14, § 1º, II"
+    },
+    {
+      "id": "R06",
+      "categoria": "fundamentacao",
+      "nome": "Fundamentos jurídicos",
+      "obrigatorio": true,
+      "descricao": "A pretensão deve possuir fundamento jurídico relacionado aos fatos narrados.",
+      "verificacao": [
+        "Existe tese jurídica principal.",
+        "A legislação utilizada é pertinente.",
+        "Os fundamentos correspondem aos fatos.",
+        "Não existem teses incompatíveis entre si.",
+        "Não foram inseridos fundamentos sem suporte fático."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 14, § 1º, II; CPC, art. 319, III"
+    },
+    {
+      "id": "R07",
+      "categoria": "pedido",
+      "nome": "Objeto e especificação da pretensão",
+      "obrigatorio": true,
+      "descricao": "O objeto da demanda deve ser claramente identificável.",
+      "verificacao": [
+        "O que o autor pretende obter está claramente indicado.",
+        "Os pedidos são compatíveis com os fatos.",
+        "Os pedidos são compatíveis com os fundamentos.",
+        "Os pedidos são individualizados.",
+        "Quando houver obrigação de fazer ou não fazer, a conduta pretendida está claramente descrita.",
+        "Quando houver condenação pecuniária, o valor pretendido está indicado ou é juridicamente determinável."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 14, § 1º, III; CPC, arts. 322 e 324"
+    },
+    {
+      "id": "R08",
+      "categoria": "valor",
+      "nome": "Valor da causa",
+      "obrigatorio": true,
+      "descricao": "O valor da causa deve ser informado e compatível com a pretensão deduzida.",
+      "verificacao": [
+        "O valor da causa foi calculado.",
+        "O valor corresponde aos pedidos formulados.",
+        "O valor respeita o limite de competência do JEC.",
+        "Eventual valor de obrigação de trato continuado foi considerado conforme as regras aplicáveis."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 14, § 1º, III; CPC, arts. 291 e seguintes"
+    },
+    {
+      "id": "R09",
+      "categoria": "provas",
+      "nome": "Indicação das provas",
+      "obrigatorio": true,
+      "descricao": "Devem ser indicadas as provas que o autor pretende produzir.",
+      "verificacao": [
+        "Os documentos disponíveis foram identificados.",
+        "Os documentos relevantes foram relacionados à narrativa dos fatos.",
+        "Foram identificadas outras provas eventualmente necessárias.",
+        "Foi considerada a possibilidade de prova documental, testemunhal ou técnica quando pertinente."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 14, § 1º, III; CPC, art. 319, VI"
+    },
+    {
+      "id": "R10",
+      "categoria": "documentacao",
+      "nome": "Documentos indispensáveis",
+      "obrigatorio": true,
+      "descricao": "A inicial deve ser acompanhada dos documentos indispensáveis à demonstração da pretensão.",
+      "verificacao": [
+        "Documentos pessoais do autor, quando necessários.",
+        "Documentos relacionados à relação jurídica.",
+        "Contratos ou instrumentos equivalentes, quando existentes.",
+        "Comprovantes de pagamento, cobrança, contratação ou prejuízo, quando pertinentes.",
+        "Protocolos, reclamações ou comunicações relevantes, quando existentes.",
+        "Documentos especificamente indispensáveis à demonstração do direito alegado."
+      ],
+      "fundamento": "CPC, art. 320"
+    },
+    {
+      "id": "R11",
+      "categoria": "pretensao_resistida",
+      "nome": "Resistência à pretensão",
+      "obrigatorio": false,
+      "descricao": "Quando existente, a resistência do réu deve ser demonstrada por fatos ou documentos.",
+      "verificacao": [
+        "Foi realizada tentativa administrativa, quando existente.",
+        "Foi identificada resposta negativa ou insuficiente.",
+        "Foram identificados protocolos ou registros.",
+        "Não foi inventada tentativa administrativa inexistente."
+      ]
+    },
+    {
+      "id": "R12",
+      "categoria": "consumidor",
+      "nome": "Aplicabilidade do CDC",
+      "obrigatorio": false,
+      "descricao": "O Código de Defesa do Consumidor somente deve ser utilizado quando os fatos permitirem caracterizar relação de consumo.",
+      "verificacao": [
+        "Existe consumidor nos termos do CDC.",
+        "Existe fornecedor nos termos do CDC.",
+        "Existe produto ou serviço relacionado à controvérsia.",
+        "A tese escolhida é compatível com a relação de consumo."
+      ],
+      "fundamento": "CDC, arts. 2º e 3º"
+    },
+    {
+      "id": "R13",
+      "categoria": "dano_material",
+      "nome": "Dano material",
+      "obrigatorio": false,
+      "descricao": "Quando houver pedido de reparação material, o prejuízo deve ser individualizado e, sempre que possível, comprovado.",
+      "verificacao": [
+        "O prejuízo patrimonial foi identificado.",
+        "Existe relação causal com os fatos.",
+        "O valor foi calculado ou pode ser determinado.",
+        "Há documento ou outro meio de prova compatível."
+      ]
+    },
+    {
+      "id": "R14",
+      "categoria": "dano_moral",
+      "nome": "Dano moral",
+      "obrigatorio": false,
+      "descricao": "O pedido de dano moral depende de circunstâncias concretas que permitam sustentar lesão extrapatrimonial juridicamente relevante.",
+      "verificacao": [
+        "Existe fato concreto que ultrapasse mero aborrecimento ou inadimplemento ordinário, quando essa distinção for juridicamente relevante.",
+        "A lesão extrapatrimonial foi individualizada.",
+        "As consequências concretas foram descritas.",
+        "O valor pretendido possui coerência com a situação narrada."
+      ],
+      "fundamento": "Constituição Federal, art. 5º, V e X; Código Civil, arts. 186 e 927"
+    },
+    {
+      "id": "R15",
+      "categoria": "tutela",
+      "nome": "Tutela provisória",
+      "obrigatorio": false,
+      "descricao": "Quando requerida, deve existir fundamento concreto para a medida provisória pretendida.",
+      "verificacao": [
+        "Foi identificada situação de urgência ou hipótese legal de tutela da evidência.",
+        "Os requisitos jurídicos aplicáveis foram demonstrados.",
+        "A medida pretendida é concreta e executável.",
+        "Existe correspondência entre a tutela requerida e o pedido principal."
+      ],
+      "fundamento": "CPC, arts. 294 e seguintes"
+    },
+    {
+      "id": "R16",
+      "categoria": "onus_prova",
+      "nome": "Ônus da prova",
+      "obrigatorio": false,
+      "descricao": "Quando houver pedido de inversão ou distribuição diferenciada do ônus da prova, devem existir fundamentos concretos.",
+      "verificacao": [
+        "Foi identificado o regime jurídico aplicável.",
+        "Foram identificados os fatos cuja prova é controvertida.",
+        "Foi identificada eventual dificuldade probatória.",
+        "O pedido possui fundamento legal específico.",
+        "A inversão não foi solicitada de forma automática."
+      ],
+      "fundamento": "CPC, art. 373; CDC, art. 6º, VIII, quando aplicável"
+    },
+    {
+      "id": "R17",
+      "categoria": "requerimentos",
+      "nome": "Requerimentos processuais",
+      "obrigatorio": true,
+      "descricao": "A inicial deve conter os requerimentos necessários ao processamento da demanda.",
+      "verificacao": [
+        "Requerimento de citação do réu.",
+        "Requerimento de designação do ato conciliatório, conforme o fluxo processual aplicável.",
+        "Requerimento de procedência dos pedidos.",
+        "Requerimentos relacionados às provas.",
+        "Requerimentos específicos relativos a eventual tutela provisória."
+      ]
+    },
+    {
+      "id": "R18",
+      "categoria": "coerencia",
+      "nome": "Coerência interna",
+      "obrigatorio": true,
+      "descricao": "A peça deve apresentar correspondência lógica entre fatos, fundamentos, provas, pedidos e valor da causa.",
+      "verificacao": [
+        "Fatos sustentam a tese.",
+        "Tese sustenta os pedidos.",
+        "Documentos sustentam os fatos relevantes.",
+        "Valores correspondem aos pedidos.",
+        "Não existem pedidos sem fundamentação.",
+        "Não existem fundamentos sem relação com a causa."
+      ]
+    },
+    {
+      "id": "R19",
+      "categoria": "simplicidade",
+      "nome": "Adequação ao rito dos Juizados",
+      "obrigatorio": true,
+      "descricao": "A peça deve preservar simplicidade, objetividade e adequação ao microssistema dos Juizados Especiais.",
+      "verificacao": [
+        "A narrativa não contém fatos irrelevantes em excesso.",
+        "A fundamentação não é artificialmente extensa.",
+        "Não foram importadas estruturas desnecessárias do procedimento comum.",
+        "Os pedidos são claros.",
+        "A linguagem é objetiva.",
+        "A peça permite rápida compreensão da controvérsia."
+      ],
+      "fundamento": "Lei nº 9.099/1995, art. 2º"
+    },
+    {
+      "id": "R20",
+      "categoria": "integridade",
+      "nome": "Integridade das informações",
+      "obrigatorio": true,
+      "descricao": "A IA não pode preencher lacunas fáticas com informações inventadas.",
+      "verificacao": [
+        "Nenhuma data foi inventada.",
+        "Nenhum valor foi inventado.",
+        "Nenhum protocolo foi inventado.",
+        "Nenhum documento foi inventado.",
+        "Nenhuma conversa foi inventada.",
+        "Nenhuma circunstância pessoal foi inventada.",
+        "Nenhum precedente foi inventado.",
+        "Nenhum número de processo foi inventado.",
+        "Nenhuma jurisprudência foi apresentada como existente sem verificação."
+      ],
+      "tipo": "regra_de_seguranca"
+    }
+  ],
+  "regras_especificas": [
+    {
+      "id": "SEG01",
+      "regra": "A Inicial de JEC deve ser mais objetiva que uma petição inicial típica do procedimento comum, sem sacrificar a exposição dos fatos, a fundamentação e a clareza dos pedidos."
+    },
+    {
+      "id": "SEG02",
+      "regra": "O art. 14 da Lei nº 9.099/1995 deve ser tratado como referência central para a estrutura da inicial no JEC."
+    },
+    {
+      "id": "SEG03",
+      "regra": "Os requisitos do CPC devem ser utilizados de forma subsidiária e compatível com o microssistema dos Juizados Especiais."
+    },
+    {
+      "id": "SEG04",
+      "regra": "A ausência de informação essencial deve ser sinalizada ao usuário em vez de ser preenchida por inferência apresentada como fato."
+    },
+    {
+      "id": "SEG05",
+      "regra": "A existência de relação de consumo deve ser analisada antes da aplicação do CDC."
+    },
+    {
+      "id": "SEG06",
+      "regra": "Pedido de dano moral exige análise concreta dos fatos."
+    },
+    {
+      "id": "SEG07",
+      "regra": "Pedido de tutela provisória exige análise específica dos pressupostos jurídicos."
+    },
+    {
+      "id": "SEG08",
+      "regra": "Pedido de inversão do ônus da prova exige análise do regime jurídico e das circunstâncias probatórias."
+    },
+    {
+      "id": "SEG09",
+      "regra": "Pedidos devem ser derivados dos fatos e fundamentos efetivamente utilizados na peça."
+    },
+    {
+      "id": "SEG10",
+      "regra": "Mandado de Segurança não integra o conjunto de peças padrão do JEC e não deve ser sugerido como modalidade de inicial desta biblioteca."
+    }
+  ],
+  "resultado": {
+    "APTO": "Todos os requisitos obrigatórios foram satisfeitos.",
+    "APTO_COM_PENDENCIAS": "A peça pode ser preparada, mas existem informações ou pontos jurídicos que devem ser confirmados.",
+    "INAPTO": "Existe requisito essencial não satisfeito ou impedimento relacionado à competência ou ao rito."
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "area": "juizados",
+  "peca": "contestacao_pedido_contraposto",
+  "nome": "Contestação com Pedido Contraposto",
+  "requisitos": [
+    {
+      "id": "R01",
+      "titulo": "Identificação do processo",
+      "descricao": "Identificar corretamente número do processo, unidade jurisdicional e demais dados disponíveis nos autos.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R02",
+      "titulo": "Identificação das partes",
+      "descricao": "Identificar corretamente autor e réu conforme os autos.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R03",
+      "titulo": "Síntese objetiva da demanda",
+      "descricao": "Apresentar resumidamente a pretensão deduzida pelo autor, sem reproduzir desnecessariamente toda a narrativa inicial.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R04",
+      "titulo": "Delimitação dos fatos controvertidos",
+      "descricao": "Identificar quais fatos narrados pelo autor são admitidos, impugnados ou dependem de prova.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R05",
+      "titulo": "Impugnação dos fatos relevantes",
+      "descricao": "Enfrentar objetivamente os fatos relevantes alegados pelo autor.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R06",
+      "titulo": "Impugnação dos documentos relevantes",
+      "descricao": "Analisar os documentos apresentados pelo autor quando houver fundamento concreto para questionar autenticidade, conteúdo, eficácia, pertinência ou interpretação.",
+      "obrigatorio": false
+    },
+    {
+      "id": "R07",
+      "titulo": "Preliminares pertinentes",
+      "descricao": "Verificar a existência de questões preliminares ou processuais relevantes antes da análise do mérito.",
+      "obrigatorio": false
+    },
+    {
+      "id": "R08",
+      "titulo": "Teses de mérito",
+      "descricao": "Apresentar as teses jurídicas defensivas efetivamente relacionadas aos fatos controvertidos.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R09",
+      "titulo": "Correspondência entre fato e fundamento",
+      "descricao": "Relacionar cada tese defensiva aos fatos que a sustentam.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R10",
+      "titulo": "Correspondência entre fundamento e prova",
+      "descricao": "Indicar os documentos ou demais elementos probatórios que dão suporte às teses defensivas, quando existentes.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R11",
+      "titulo": "Análise da necessidade de prova",
+      "descricao": "Verificar se existem fatos controvertidos que exigem produção probatória.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R12",
+      "titulo": "Verificação do cabimento do pedido contraposto",
+      "descricao": "Antes de formular o pedido contraposto, verificar se a pretensão do réu é juridicamente cabível no procedimento dos Juizados.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R13",
+      "titulo": "Identificação dos mesmos fatos da controvérsia",
+      "descricao": "Demonstrar que o pedido contraposto decorre dos mesmos fatos que constituem objeto da demanda.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R14",
+      "titulo": "Verificação da competência do Juizado",
+      "descricao": "Confirmar que o pedido contraposto está abrangido pela competência dos Juizados Especiais.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R15",
+      "titulo": "Verificação do limite econômico",
+      "descricao": "Quando houver conteúdo econômico, verificar compatibilidade com o limite de competência dos Juizados.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R16",
+      "titulo": "Individualização do pedido contraposto",
+      "descricao": "Indicar de forma clara e determinada a providência jurisdicional pretendida pelo réu.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R17",
+      "titulo": "Fundamentação específica do pedido contraposto",
+      "descricao": "Apresentar os fundamentos jurídicos que sustentam a pretensão própria do réu.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R18",
+      "titulo": "Suporte fático do pedido contraposto",
+      "descricao": "Relacionar o pedido contraposto aos fatos concretamente demonstrados ou alegados nos autos.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R19",
+      "titulo": "Suporte probatório do pedido contraposto",
+      "descricao": "Identificar os elementos de prova que sustentam a pretensão contraposta, quando disponíveis.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R20",
+      "titulo": "Ausência de pretensão estranha à controvérsia",
+      "descricao": "Verificar se o pedido contraposto não introduz pretensão autônoma sem relação com os fatos discutidos na ação.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R21",
+      "titulo": "Ausência de reconvenção indevida",
+      "descricao": "Verificar se a estrutura da peça apresenta pedido contraposto nos moldes do art. 31 da Lei 9.099/1995, e não reconvenção.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R22",
+      "titulo": "Separação entre defesa e pedido contraposto",
+      "descricao": "Distinguir claramente os fundamentos destinados à improcedência do pedido do autor daqueles destinados à procedência da pretensão própria do réu.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R23",
+      "titulo": "Pedidos defensivos",
+      "descricao": "Formular pedido de acolhimento das preliminares, quando cabíveis, e/ou de improcedência dos pedidos do autor.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R24",
+      "titulo": "Pedidos relativos ao pedido contraposto",
+      "descricao": "Formular expressamente a procedência do pedido contraposto quando houver pretensão própria juridicamente cabível.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R25",
+      "titulo": "Pedidos probatórios",
+      "descricao": "Requerer a produção das provas pertinentes aos fatos controvertidos, observadas as características do rito.",
+      "obrigatorio": false
+    },
+    {
+      "id": "R26",
+      "titulo": "Valor do pedido contraposto",
+      "descricao": "Quando necessário, indicar o valor econômico da pretensão contraposta ou os elementos necessários à sua determinação.",
+      "obrigatorio": false
+    },
+    {
+      "id": "R27",
+      "titulo": "Indicação dos documentos utilizados",
+      "descricao": "Conferir se os documentos mencionados na peça efetivamente integram os autos ou foram fornecidos para elaboração.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R28",
+      "titulo": "Integridade factual",
+      "descricao": "Não criar fatos, datas, valores, contratos, comunicações, documentos ou acontecimentos não fornecidos.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R29",
+      "titulo": "Integridade probatória",
+      "descricao": "Não afirmar a existência ou conteúdo de prova que não tenha sido disponibilizada.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R30",
+      "titulo": "Adequação da jurisprudência",
+      "descricao": "Utilizar jurisprudência somente quando pertinente ao caso e compatível com a tese efetivamente sustentada.",
+      "obrigatorio": false
+    },
+    {
+      "id": "R31",
+      "titulo": "Atualidade normativa",
+      "descricao": "Conferir a vigência dos dispositivos legais utilizados antes da versão final.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R32",
+      "titulo": "Compatibilidade com o rito dos Juizados",
+      "descricao": "Verificar se a extensão, linguagem, pedidos e requerimentos são compatíveis com a simplicidade, informalidade e celeridade do procedimento.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R33",
+      "titulo": "Objetividade da redação",
+      "descricao": "Eliminar repetições, argumentações genéricas e fundamentos sem utilidade concreta para a controvérsia.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R34",
+      "titulo": "Coerência interna",
+      "descricao": "Verificar se fatos, fundamentos, provas e pedidos são logicamente compatíveis entre si.",
+      "obrigatorio": true
+    },
+    {
+      "id": "R35",
+      "titulo": "Auditoria final",
+      "descricao": "Revisar a peça integralmente antes da geração final, verificando defesa, pedido contraposto, provas, competência, pedidos e integridade factual.",
+      "obrigatorio": true
+    }
+  ]
+}

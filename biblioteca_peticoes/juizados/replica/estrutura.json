@@ -1,0 +1,101 @@
+{
+  "peca": "replica",
+  "area": "juizados",
+  "nome": "Réplica",
+  "descricao": "Estrutura de manifestação do autor em resposta à contestação no âmbito do Juizado Especial Cível.",
+  "principio": "A Réplica deve responder objetivamente às matérias relevantes efetivamente apresentadas pelo réu, sem criar controvérsias inexistentes ou repetir integralmente a petição inicial.",
+  "secoes": [
+    {
+      "id": "1",
+      "titulo": "Identificação do processo",
+      "obrigatoria": true
+    },
+    {
+      "id": "2",
+      "titulo": "Síntese da contestação",
+      "obrigatoria": true
+    },
+    {
+      "id": "3",
+      "titulo": "Delimitação das questões controvertidas",
+      "obrigatoria": true
+    },
+    {
+      "id": "4",
+      "titulo": "Das preliminares suscitadas",
+      "obrigatoria": false,
+      "condicao": "somente se houver preliminar efetivamente apresentada"
+    },
+    {
+      "id": "5",
+      "titulo": "Dos fatos alegados pelo réu",
+      "obrigatoria": false,
+      "condicao": "somente quando houver alegações fáticas relevantes"
+    },
+    {
+      "id": "6",
+      "titulo": "Dos fatos admitidos",
+      "obrigatoria": false,
+      "condicao": "somente quando houver fatos expressamente admitidos ou não controvertidos relevantes"
+    },
+    {
+      "id": "7",
+      "titulo": "Dos fatos impugnados",
+      "obrigatoria": false,
+      "condicao": "somente quando houver fatos relevantes que demandem impugnação"
+    },
+    {
+      "id": "8",
+      "titulo": "Dos fatos impeditivos, modificativos ou extintivos",
+      "obrigatoria": false,
+      "condicao": "somente se efetivamente alegados pelo réu"
+    },
+    {
+      "id": "9",
+      "titulo": "Da impugnação das teses de mérito",
+      "obrigatoria": false,
+      "condicao": "somente quando houver tese de mérito relevante a enfrentar"
+    },
+    {
+      "id": "10",
+      "titulo": "Da impugnação dos documentos",
+      "obrigatoria": false,
+      "condicao": "somente quando houver documento apresentado pelo réu cuja impugnação seja juridicamente pertinente"
+    },
+    {
+      "id": "11",
+      "titulo": "Da análise das provas",
+      "obrigatoria": false,
+      "condicao": "somente quando a contestação ou os documentos exigirem enfrentamento probatório"
+    },
+    {
+      "id": "12",
+      "titulo": "Da manutenção dos fundamentos da inicial",
+      "obrigatoria": true
+    },
+    {
+      "id": "13",
+      "titulo": "Da necessidade de produção probatória",
+      "obrigatoria": false,
+      "condicao": "somente quando houver necessidade concreta de prova"
+    },
+    {
+      "id": "14",
+      "titulo": "Da distribuição do ônus da prova",
+      "obrigatoria": false,
+      "condicao": "somente quando houver questão concreta relacionada ao ônus da prova"
+    },
+    {
+      "id": "15",
+      "titulo": "Das consequências jurídicas da impugnação",
+      "obrigatoria": false,
+      "condicao": "somente quando necessário para demonstrar a consequência das impugnações realizadas"
+    },
+    {
+      "id": "16",
+      "titulo": "Dos pedidos",
+      "obrigatoria": true
+    }
+  ],
+  "regra_de_adaptacao": "A IA deve incluir somente as seções compatíveis com o conteúdo efetivamente apresentado na contestação e com os elementos existentes nos autos. É vedada a criação de capítulos apenas para completar a estrutura."
+}

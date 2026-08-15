@@ -1,0 +1,217 @@
+{
+  "area": "juizados",
+  "peca": "contestacao_pedido_contraposto",
+  "nome": "Contestação com Pedido Contraposto",
+  "fundamentos": [
+    {
+      "id": "F01",
+      "titulo": "Princípios orientadores dos Juizados Especiais",
+      "fundamento": "Lei 9.099/1995, art. 2º",
+      "aplicacao": "A redação deve observar oralidade, simplicidade, informalidade, economia processual e celeridade."
+    },
+    {
+      "id": "F02",
+      "titulo": "Adequação ao procedimento dos Juizados",
+      "fundamento": "Lei 9.099/1995",
+      "aplicacao": "A manifestação deve ser construída de forma compatível com a natureza simplificada do procedimento."
+    },
+    {
+      "id": "F03",
+      "titulo": "Contestação como instrumento de concentração da defesa",
+      "fundamento": "Lei 9.099/1995, art. 30",
+      "aplicacao": "A contestação deve concentrar a matéria defensiva pertinente à pretensão do autor."
+    },
+    {
+      "id": "F04",
+      "titulo": "Impugnação objetiva dos fatos",
+      "fundamento": "Lei 9.099/1995, art. 30",
+      "aplicacao": "Os fatos relevantes alegados pelo autor devem ser enfrentados de maneira clara, identificando o que é admitido, controvertido ou não comprovado."
+    },
+    {
+      "id": "F05",
+      "titulo": "Defesa fundada nos fatos efetivamente demonstrados",
+      "fundamento": "Lei 9.099/1995, arts. 30 e 32",
+      "aplicacao": "As teses defensivas devem guardar correspondência com os fatos e elementos probatórios disponíveis."
+    },
+    {
+      "id": "F06",
+      "titulo": "Vedação à reconvenção",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "A pretensão própria do réu deve ser formulada como pedido contraposto, e não como reconvenção."
+    },
+    {
+      "id": "F07",
+      "titulo": "Cabimento do pedido contraposto",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "O réu pode formular pedido em seu favor dentro dos limites de competência dos Juizados, desde que fundado nos mesmos fatos que constituem objeto da controvérsia."
+    },
+    {
+      "id": "F08",
+      "titulo": "Conexão fática do pedido contraposto",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "A pretensão do réu deve decorrer dos mesmos fatos submetidos à apreciação judicial."
+    },
+    {
+      "id": "F09",
+      "titulo": "Limites objetivos do pedido contraposto",
+      "fundamento": "Lei 9.099/1995, arts. 3º e 31",
+      "aplicacao": "O pedido contraposto deve permanecer dentro dos limites de competência material e econômica dos Juizados Especiais."
+    },
+    {
+      "id": "F10",
+      "titulo": "Autonomia lógica entre defesa e pedido contraposto",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "A improcedência do pedido do autor e a procedência do pedido contraposto são pretensões juridicamente distintas e devem ser identificadas separadamente."
+    },
+    {
+      "id": "F11",
+      "titulo": "Possibilidade de resposta do autor ao pedido contraposto",
+      "fundamento": "Lei 9.099/1995, art. 31, parágrafo único",
+      "aplicacao": "A formulação do pedido contraposto deve preservar a possibilidade de manifestação do autor na forma prevista no rito."
+    },
+    {
+      "id": "F12",
+      "titulo": "Apreciação conjunta da controvérsia",
+      "fundamento": "Lei 9.099/1995, art. 17, parágrafo único",
+      "aplicacao": "Pedidos contrapostos relacionados à mesma controvérsia podem ser apreciados conjuntamente."
+    },
+    {
+      "id": "F13",
+      "titulo": "Competência material do Juizado",
+      "fundamento": "Lei 9.099/1995, art. 3º",
+      "aplicacao": "O pedido contraposto somente deve ser formulado quando a pretensão estiver abrangida pela competência do Juizado."
+    },
+    {
+      "id": "F14",
+      "titulo": "Competência econômica",
+      "fundamento": "Lei 9.099/1995, art. 3º",
+      "aplicacao": "A pretensão contraposta deve respeitar o limite econômico aplicável ao procedimento."
+    },
+    {
+      "id": "F15",
+      "titulo": "Prova dos fatos controvertidos",
+      "fundamento": "Lei 9.099/1995, art. 32",
+      "aplicacao": "Os fatos relevantes para a defesa e para o pedido contraposto devem ser sustentados pelos meios de prova juridicamente admissíveis."
+    },
+    {
+      "id": "F16",
+      "titulo": "Liberdade dos meios de prova",
+      "fundamento": "Lei 9.099/1995, art. 32",
+      "aplicacao": "Podem ser utilizados meios de prova moralmente legítimos, ainda que não especificados em lei."
+    },
+    {
+      "id": "F17",
+      "titulo": "Necessidade de pertinência probatória",
+      "fundamento": "Lei 9.099/1995, arts. 32 e 33",
+      "aplicacao": "A prova requerida deve guardar pertinência com os fatos controvertidos."
+    },
+    {
+      "id": "F18",
+      "titulo": "Ônus da prova",
+      "fundamento": "CPC, art. 373, aplicado quando compatível",
+      "aplicacao": "A distribuição do ônus probatório deve ser analisada conforme a natureza dos fatos alegados e as regras aplicáveis ao caso concreto."
+    },
+    {
+      "id": "F19",
+      "titulo": "Impugnação específica",
+      "fundamento": "CPC, art. 341, aplicado subsidiariamente quando compatível",
+      "aplicacao": "A defesa deve enfrentar especificamente os fatos relevantes alegados pelo autor, evitando impugnações genéricas."
+    },
+    {
+      "id": "F20",
+      "titulo": "Direito à prova",
+      "fundamento": "CPC, art. 369, aplicado quando compatível",
+      "aplicacao": "As partes podem utilizar os meios legais e moralmente legítimos necessários à demonstração de suas alegações."
+    },
+    {
+      "id": "F21",
+      "titulo": "Poder instrutório judicial",
+      "fundamento": "CPC, art. 370, aplicado quando compatível",
+      "aplicacao": "A necessidade das provas deve ser examinada segundo sua utilidade para o esclarecimento dos fatos controvertidos."
+    },
+    {
+      "id": "F22",
+      "titulo": "Valoração da prova",
+      "fundamento": "CPC, art. 371, aplicado quando compatível",
+      "aplicacao": "Os elementos probatórios devem ser analisados conjuntamente e de forma fundamentada."
+    },
+    {
+      "id": "F23",
+      "titulo": "Boa-fé processual",
+      "fundamento": "CPC, art. 5º, aplicado quando compatível",
+      "aplicacao": "A defesa e o pedido contraposto devem ser formulados de acordo com a boa-fé processual."
+    },
+    {
+      "id": "F24",
+      "titulo": "Cooperação processual",
+      "fundamento": "CPC, art. 6º, aplicado quando compatível",
+      "aplicacao": "A atuação processual deve contribuir para solução adequada da controvérsia."
+    },
+    {
+      "id": "F25",
+      "titulo": "Vedação de alegações desconectadas da controvérsia",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "Não devem ser introduzidas pretensões autônomas estranhas aos fatos que constituem objeto da demanda."
+    },
+    {
+      "id": "F26",
+      "titulo": "Necessidade de individualização da pretensão contraposta",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "O pedido contraposto deve identificar claramente a providência jurisdicional pretendida pelo réu."
+    },
+    {
+      "id": "F27",
+      "titulo": "Correspondência entre fatos, fundamentos e pedido",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "A pretensão contraposta deve possuir encadeamento lógico entre os fatos narrados, a fundamentação jurídica e a providência requerida."
+    },
+    {
+      "id": "F28",
+      "titulo": "Quantificação da pretensão econômica",
+      "fundamento": "Lei 9.099/1995, arts. 3º e 31",
+      "aplicacao": "Quando o pedido contraposto possuir conteúdo econômico, o valor pretendido deve ser determinado ou determinável segundo os dados disponíveis."
+    },
+    {
+      "id": "F29",
+      "titulo": "Proibição de criação de fatos",
+      "fundamento": "Regra de integridade da elaboração",
+      "aplicacao": "A peça não deve criar fatos, documentos, valores, contratos, comunicações ou circunstâncias não presentes nos autos ou nas informações fornecidas."
+    },
+    {
+      "id": "F30",
+      "titulo": "Proibição de criação de prova",
+      "fundamento": "Regra de integridade probatória",
+      "aplicacao": "A IA não deve afirmar a existência de documento ou elemento probatório que não tenha sido disponibilizado."
+    },
+    {
+      "id": "F31",
+      "titulo": "Adequação da tese ao caso concreto",
+      "fundamento": "Lei 9.099/1995, art. 30",
+      "aplicacao": "Os fundamentos jurídicos devem ser selecionados conforme os fatos efetivamente controvertidos, evitando teses padronizadas sem pertinência."
+    },
+    {
+      "id": "F32",
+      "titulo": "Objetividade dos pedidos",
+      "fundamento": "Lei 9.099/1995, art. 2º",
+      "aplicacao": "Os pedidos devem ser formulados de modo claro, direto e compatível com a simplicidade do rito."
+    },
+    {
+      "id": "F33",
+      "titulo": "Separação dos pedidos defensivos e contrapostos",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "A improcedência da demanda principal deve ser distinguida da pretensão própria formulada pelo réu."
+    },
+    {
+      "id": "F34",
+      "titulo": "Análise de cabimento antes da formulação",
+      "fundamento": "Lei 9.099/1995, art. 31",
+      "aplicacao": "A existência de pedido contraposto deve ser verificada antes da redação final, considerando conexão fática, competência e suporte probatório."
+    },
+    {
+      "id": "F35",
+      "titulo": "Auditoria final da peça",
+      "fundamento": "Lei 9.099/1995, arts. 30 e 31",
+      "aplicacao": "Antes da versão final, conferir se cada tese defensiva possui suporte fático e se cada pedido contraposto possui correspondente fundamentação e suporte probatório."
+    }
+  ]
+}

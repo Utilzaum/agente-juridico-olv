@@ -1,0 +1,554 @@
+{
+  "peca": "replica",
+  "area": "juizados",
+  "nome": "Checklist de Auditoria — Réplica JEC",
+  "status_possiveis": [
+    "pendente",
+    "em_analise",
+    "concluido",
+    "nao_aplicavel",
+    "bloqueado"
+  ],
+  "etapas": [
+    {
+      "id": "E01",
+      "ordem": 1,
+      "titulo": "IDENTIFICAÇÃO PROCESSUAL",
+      "objetivo": "Confirmar os dados básicos do processo e das manifestações relevantes.",
+      "itens": [
+        {
+          "id": "C01",
+          "descricao": "Número do processo conferido.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C02",
+          "descricao": "Partes corretamente identificadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C03",
+          "descricao": "Juízo competente identificado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C04",
+          "descricao": "Petição inicial disponível ou suficientemente identificada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C05",
+          "descricao": "Contestação disponível para análise.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "ordem": 2,
+      "titulo": "LEITURA DA CONTESTAÇÃO",
+      "objetivo": "Compreender integralmente a defesa antes de elaborar a resposta.",
+      "itens": [
+        {
+          "id": "C06",
+          "descricao": "Contestação analisada integralmente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C07",
+          "descricao": "Preliminares identificadas.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C08",
+          "descricao": "Teses de mérito identificadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C09",
+          "descricao": "Fatos alegados pelo réu identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C10",
+          "descricao": "Documentos apresentados pelo réu identificados.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C11",
+          "descricao": "Eventual pedido formulado pelo réu identificado.",
+          "obrigatorio": false
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "ordem": 3,
+      "titulo": "COMPARAÇÃO COM A INICIAL",
+      "objetivo": "Determinar o que efetivamente mudou ou permaneceu controvertido após a contestação.",
+      "itens": [
+        {
+          "id": "C12",
+          "descricao": "Fundamentos principais da inicial identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C13",
+          "descricao": "Pedidos formulados na inicial identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C14",
+          "descricao": "Argumentos da contestação confrontados com a inicial.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C15",
+          "descricao": "Matérias efetivamente novas identificadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C16",
+          "descricao": "Matérias apenas repetitivas identificadas.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "ordem": 4,
+      "titulo": "DELIMITAÇÃO DA CONTROVÉRSIA",
+      "objetivo": "Separar fatos admitidos, controvertidos e juridicamente relevantes.",
+      "itens": [
+        {
+          "id": "C17",
+          "descricao": "Fatos incontroversos identificados.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C18",
+          "descricao": "Fatos controvertidos identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C19",
+          "descricao": "Fatos impeditivos identificados quando alegados.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C20",
+          "descricao": "Fatos modificativos identificados quando alegados.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C21",
+          "descricao": "Fatos extintivos identificados quando alegados.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "ordem": 5,
+      "titulo": "PRELIMINARES",
+      "objetivo": "Verificar a existência e a necessidade de resposta às matérias preliminares.",
+      "itens": [
+        {
+          "id": "C22",
+          "descricao": "Preliminares efetivamente suscitadas foram identificadas.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C23",
+          "descricao": "Cada preliminar relevante possui resposta específica.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C24",
+          "descricao": "A resposta à preliminar está vinculada aos fatos e documentos dos autos.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C25",
+          "descricao": "Não foram criadas preliminares inexistentes.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "ordem": 6,
+      "titulo": "TESES DE MÉRITO",
+      "objetivo": "Garantir enfrentamento objetivo das teses defensivas relevantes.",
+      "itens": [
+        {
+          "id": "C26",
+          "descricao": "Cada tese de mérito relevante foi identificada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C27",
+          "descricao": "Cada tese relevante possui resposta correspondente.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C28",
+          "descricao": "A resposta está relacionada diretamente à alegação defensiva.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C29",
+          "descricao": "A resposta utiliza fatos e provas efetivamente existentes.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C30",
+          "descricao": "Não houve repetição integral e desnecessária da inicial.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "ordem": 7,
+      "titulo": "FATOS IMPEDITIVOS, MODIFICATIVOS OU EXTINTIVOS",
+      "objetivo": "Auditar eventual matéria defensiva capaz de alterar ou extinguir o direito alegado.",
+      "itens": [
+        {
+          "id": "C31",
+          "descricao": "Foi verificado se o réu alegou fato impeditivo.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C32",
+          "descricao": "Foi verificado se o réu alegou fato modificativo.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C33",
+          "descricao": "Foi verificado se o réu alegou fato extintivo.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C34",
+          "descricao": "Quando existente, cada alegação foi individualmente enfrentada.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C35",
+          "descricao": "A prova relacionada à alegação defensiva foi analisada.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "ordem": 8,
+      "titulo": "DOCUMENTOS",
+      "objetivo": "Verificar a necessidade de manifestação sobre documentos apresentados pelo réu.",
+      "itens": [
+        {
+          "id": "C36",
+          "descricao": "Documentos apresentados com a contestação foram identificados.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C37",
+          "descricao": "Pertinência dos documentos foi analisada.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C38",
+          "descricao": "Necessidade de impugnação documental foi avaliada.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C39",
+          "descricao": "Eventual impugnação possui fundamento concreto.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C40",
+          "descricao": "Não foi presumida invalidade de documento apenas por ser unilateral.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E09",
+      "ordem": 9,
+      "titulo": "PROVAS",
+      "objetivo": "Determinar a situação probatória após a contestação.",
+      "itens": [
+        {
+          "id": "C41",
+          "descricao": "Provas já existentes foram identificadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C42",
+          "descricao": "Fatos ainda dependentes de prova foram identificados.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C43",
+          "descricao": "Necessidade de produção probatória foi avaliada.",
+          "obrigatorio": false
+        },
+        {
+          "id": "C44",
+          "descricao": "Meio de prova pertinente foi identificado quando necessário.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "ordem": 10,
+      "titulo": "ÔNUS DA PROVA",
+      "objetivo": "Avaliar questões concretas relacionadas ao ônus probatório.",
+      "itens": [
+        {
+          "id": "C45",
+          "descricao": "Foi verificado se existe controvérsia concreta sobre ônus da prova.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C46",
+          "descricao": "Regra de distribuição aplicável foi identificada quando necessária.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C47",
+          "descricao": "Eventual inversão ou redistribuição foi fundamentada concretamente.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "ordem": 11,
+      "titulo": "PEDIDO DO RÉU",
+      "objetivo": "Verificar eventual pretensão formulada pela defesa.",
+      "itens": [
+        {
+          "id": "C48",
+          "descricao": "Foi verificado se existe pedido formulado pelo réu.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C49",
+          "descricao": "Pedido defensivo relevante foi identificado.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C50",
+          "descricao": "Pedido defensivo relevante possui resposta específica.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E12",
+      "ordem": 12,
+      "titulo": "MANUTENÇÃO DA INICIAL",
+      "objetivo": "Preservar os fundamentos e pedidos que permanecem íntegros.",
+      "itens": [
+        {
+          "id": "C51",
+          "descricao": "Fundamentos da inicial que permanecem válidos foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C52",
+          "descricao": "Pedidos da inicial foram preservados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C53",
+          "descricao": "A réplica não criou pedido novo sem fundamento processual.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E13",
+      "ordem": 13,
+      "titulo": "NECESSIDADE E EXTENSÃO DA RÉPLICA",
+      "objetivo": "Classificar a intensidade necessária da manifestação.",
+      "itens": [
+        {
+          "id": "C54",
+          "descricao": "Foi avaliado se existe matéria nova relevante.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C55",
+          "descricao": "Foi avaliada a necessidade efetiva de manifestação.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C56",
+          "descricao": "A manifestação foi classificada como necessária, objetiva ou simples.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C57",
+          "descricao": "A extensão da peça é proporcional à complexidade da contestação.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E14",
+      "ordem": 14,
+      "titulo": "INTEGRIDADE DA INFORMAÇÃO",
+      "objetivo": "Impedir fabricação de fatos, provas ou alegações.",
+      "itens": [
+        {
+          "id": "C58",
+          "descricao": "Nenhum fato foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C59",
+          "descricao": "Nenhuma alegação da contestação foi inventada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C60",
+          "descricao": "Nenhum documento foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C61",
+          "descricao": "Nenhuma prova foi inventada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C62",
+          "descricao": "Nenhuma jurisprudência foi inventada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C63",
+          "descricao": "Informações ausentes foram identificadas como pendências.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E15",
+      "ordem": 15,
+      "titulo": "AUDITORIA FINAL",
+      "objetivo": "Determinar se a manifestação está pronta para redação.",
+      "itens": [
+        {
+          "id": "C64",
+          "descricao": "Todas as matérias relevantes da contestação foram classificadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C65",
+          "descricao": "As matérias que exigem resposta possuem impugnação correspondente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C66",
+          "descricao": "Os fundamentos utilizados são compatíveis com as alegações defensivas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C67",
+          "descricao": "Os pedidos correspondem às impugnações realizadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C68",
+          "descricao": "A peça está adequada ao rito dos Juizados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C69",
+          "descricao": "A peça não constitui mera repetição da inicial.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C70",
+          "descricao": "A classificação final da manifestação foi definida.",
+          "obrigatorio": true
+        }
+      ]
+    }
+  ],
+  "regras_de_bloqueio": [
+    {
+      "id": "B01",
+      "regra": "Se a contestação não estiver disponível ou não puder ser analisada adequadamente, bloquear a redação definitiva.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B02",
+      "regra": "Se a IA não conseguir identificar quais matérias foram efetivamente alegadas pelo réu, exigir análise adicional antes da redação.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B03",
+      "regra": "Não criar preliminar que não tenha sido apresentada pelo réu.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B04",
+      "regra": "Não criar fato impeditivo, modificativo ou extintivo inexistente na contestação.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B05",
+      "regra": "Não criar documento ou prova para responder à contestação.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B06",
+      "regra": "Se não houver matéria nova ou relevante que exija resposta, não produzir réplica artificialmente extensa.",
+      "acao": "classificar"
+    },
+    {
+      "id": "B07",
+      "regra": "Se a manifestação consistir apenas na repetição da inicial, exigir redução e adaptação ao conteúdo da contestação.",
+      "acao": "corrigir"
+    },
+    {
+      "id": "B08",
+      "regra": "Se os pedidos finais não corresponderem às matérias efetivamente enfrentadas, bloquear.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B09",
+      "regra": "Se houver informação essencial ausente, classificar como pendente em vez de preencher por inferência.",
+      "acao": "bloquear"
+    }
+  ],
+  "resultado_final": {
+    "replica_necessaria": "A contestação apresenta matéria relevante que exige enfrentamento específico.",
+    "replica_objetiva": "Há matéria relevante, mas a resposta pode ser desenvolvida de maneira concisa.",
+    "manifestacao_simples": "Não há matéria nova relevante ou a resposta necessária é pontual.",
+    "pendente": "Faltam elementos necessários para analisar adequadamente a contestação.",
+    "inapta": "A manifestação pretendida não possui base concreta nos autos ou depende de fabricação de informações."
+  }
+}

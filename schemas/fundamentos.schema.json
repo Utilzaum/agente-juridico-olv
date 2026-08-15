@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://olv.local/schemas/fundamentos.schema.json",
+  "title": "Schema de Fundamentos Jurídicos Estruturais OLV",
+  "description": "Contrato estrutural para os fundamentos jurídicos que orientam a construção de uma peça processual.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "codigo_peca",
+    "nome_peca",
+    "fundamentos",
+    "versao",
+    "status"
+  ],
+
+  "properties": {
+    "codigo_peca": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+
+    "nome_peca": {
+      "type": "string"
+    },
+
+    "fundamentos": {
+      "type": "array",
+      "minItems": 1,
+
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+
+        "required": [
+          "codigo",
+          "tema",
+          "natureza",
+          "finalidade",
+          "fontes_normativas",
+          "orientacao"
+        ],
+
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+          },
+
+          "tema": {
+            "type": "string"
+          },
+
+          "natureza": {
+            "type": "string",
+            "enum": [
+              "admissibilidade",
+              "processual",
+              "formal",
+              "efeito_recursal",
+              "merito_recursal",
+              "estrategico"
+            ]
+          },
+
+          "finalidade": {
+            "type": "string"
+          },
+
+          "fontes_normativas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+
+          "aplicabilidade": {
+            "type": "string",
+            "enum": [
+              "obrigatoria",
+              "condicional",
+              "dinamica"
+            ]
+          },
+
+          "condicao": {
+            "type": "string"
+          },
+
+          "orientacao": {
+            "type": "string"
+          },
+
+          "dados_necessarios": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+
+          "observacoes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+
+    "versao": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+
+    "status": {
+      "type": "string",
+      "enum": [
+        "rascunho",
+        "ativo",
+        "inativo",
+        "obsoleto"
+      ]
+    }
+  }
+}

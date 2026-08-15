@@ -1,0 +1,135 @@
+{
+  "codigo": "recurso_inominado",
+  "nome": "Recurso Inominado",
+  "area": "juizados",
+  "secoes": [
+    {
+      "ordem": 1,
+      "titulo": "FOLHA DE ROSTO",
+      "tipo": "fixa",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Preparar a folha de rosto do recurso com a identificação adequada da parte recorrente, da parte recorrida, do processo e da decisão impugnada.",
+      "dados_necessarios": [
+        "recorrente",
+        "recorrido",
+        "numero_processo",
+        "juizo_origem",
+        "tipo_decisao"
+      ]
+    },
+    {
+      "ordem": 2,
+      "titulo": "DAS RAZÕES DO RECURSO",
+      "tipo": "fixa",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Estruturar a peça como razões recursais, mantendo separação clara entre os elementos formais do recurso e a fundamentação destinada à reforma ou anulação da decisão.",
+      "dados_necessarios": [
+        "sentenca_impugnada",
+        "objetivo_recursal"
+      ]
+    },
+    {
+      "ordem": 3,
+      "titulo": "HOMENAGENS E ENDEREÇAMENTO À TURMA RECURSAL",
+      "tipo": "fixa",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Realizar o endereçamento à Turma Recursal competente e identificar adequadamente o processo, preservando o padrão formal adotado pelo escritório.",
+      "dados_necessarios": [
+        "turma_recursal",
+        "numero_processo",
+        "recorrente",
+        "recorrido"
+      ]
+    },
+    {
+      "ordem": 4,
+      "titulo": "DO CABIMENTO",
+      "tipo": "fixa",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Demonstrar o cabimento do Recurso Inominado em relação à decisão impugnada e ao procedimento dos Juizados Especiais.",
+      "dados_necessarios": [
+        "tipo_decisao",
+        "fundamento_cabimento"
+      ]
+    },
+    {
+      "ordem": 5,
+      "titulo": "DA TEMPESTIVIDADE",
+      "tipo": "fixa",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Demonstrar a tempestividade mediante as datas efetivamente fornecidas e verificadas. Nunca presumir a data de ciência ou a data de interposição.",
+      "dados_necessarios": [
+        "data_ciencia",
+        "data_interposicao"
+      ]
+    },
+    {
+      "ordem": 6,
+      "titulo": "DO RECOLHIMENTO DE CUSTAS OU DA GRATUIDADE DA JUSTIÇA",
+      "tipo": "fixa",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Registrar a situação relativa ao preparo ou à gratuidade da justiça conforme os dados do processo. Não presumir recolhimento, isenção ou concessão de gratuidade.",
+      "dados_necessarios": [
+        "situacao_preparo",
+        "gratuidade_justica",
+        "comprovante_preparo"
+      ]
+    },
+    {
+      "ordem": 7,
+      "titulo": "DO RESUMO DA LIDE E DO OBJETO DO RECURSO",
+      "tipo": "fixa",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Apresentar síntese objetiva da demanda, destacando os fatos relevantes, a controvérsia, o conteúdo da sentença e aquilo que efetivamente é objeto de impugnação.",
+      "dados_necessarios": [
+        "fatos_relevantes",
+        "pedidos_iniciais",
+        "defesa",
+        "sentenca",
+        "capitulos_impugnados",
+        "objetivo_recursal"
+      ]
+    },
+    {
+      "ordem": 8,
+      "titulo": "DO DIREITO",
+      "tipo": "dinamica",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Desenvolver os fundamentos jurídicos do recurso em divisões individualizadas, relacionando cada tese aos fatos relevantes, às provas existentes, às normas aplicáveis e à conclusão pretendida.",
+      "dados_necessarios": [
+        "teses_recursais",
+        "fatos_relacionados",
+        "provas_relacionadas",
+        "fundamentos_juridicos",
+        "conclusoes_pretendidas"
+      ]
+    },
+    {
+      "ordem": 9,
+      "titulo": "DO PREQUESTIONAMENTO",
+      "tipo": "fixa",
+      "aplicabilidade": "condicional",
+      "condicao": "Incluir quando houver finalidade processual concreta para o prequestionamento, conforme a estratégia recursal adotada.",
+      "instrucao_ia": "Identificar os dispositivos legais ou constitucionais efetivamente relacionados às questões jurídicas suscitadas e formular o prequestionamento de modo coerente com a matéria discutida, sem inserir dispositivos artificialmente.",
+      "dados_necessarios": [
+        "dispositivos_pretendidos",
+        "questoes_juridicas_relacionadas"
+      ]
+    },
+    {
+      "ordem": 10,
+      "titulo": "DOS PEDIDOS",
+      "tipo": "fixa",
+      "aplicabilidade": "obrigatoria",
+      "instrucao_ia": "Formular pedidos claros e individualizados, diretamente correspondentes às teses desenvolvidas e ao resultado recursal pretendido.",
+      "dados_necessarios": [
+        "pedido_principal",
+        "pedidos_sucessivos",
+        "pedido_prequestionamento",
+        "pedido_efeito_suspensivo"
+      ]
+    }
+  ],
+  "status": "rascunho",
+  "versao": "1.0.0"
+}

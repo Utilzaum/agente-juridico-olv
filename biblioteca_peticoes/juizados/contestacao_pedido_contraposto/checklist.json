@@ -1,0 +1,613 @@
+{
+  "area": "juizados",
+  "peca": "contestacao_pedido_contraposto",
+  "nome": "Checklist de Auditoria — Contestação com Pedido Contraposto",
+  "status_possiveis": [
+    "pendente",
+    "em_analise",
+    "concluido",
+    "nao_aplicavel",
+    "bloqueado"
+  ],
+  "etapas": [
+    {
+      "id": "E01",
+      "ordem": 1,
+      "titulo": "IDENTIFICAÇÃO PROCESSUAL",
+      "objetivo": "Confirmar os dados básicos do processo.",
+      "itens": [
+        {
+          "id": "C01",
+          "descricao": "Número do processo conferido com os autos.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C02",
+          "descricao": "Autor corretamente identificado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C03",
+          "descricao": "Réu corretamente identificado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C04",
+          "descricao": "Juizado e comarca conferidos.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C05",
+          "descricao": "Objeto principal da demanda identificado.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E02",
+      "ordem": 2,
+      "titulo": "MAPEAMENTO DA DEMANDA PRINCIPAL",
+      "objetivo": "Compreender integralmente a pretensão formulada pelo autor.",
+      "itens": [
+        {
+          "id": "C06",
+          "descricao": "Causa de pedir identificada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C07",
+          "descricao": "Todos os pedidos do autor foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C08",
+          "descricao": "Fundamentos jurídicos utilizados pelo autor foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C09",
+          "descricao": "Documentos apresentados pelo autor foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C10",
+          "descricao": "Eventual tutela provisória foi identificada.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E03",
+      "ordem": 3,
+      "titulo": "VERSÃO DEFENSIVA",
+      "objetivo": "Estabelecer a narrativa do réu sem criação de fatos.",
+      "itens": [
+        {
+          "id": "C11",
+          "descricao": "Versão dos fatos apresentada pelo réu foi identificada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C12",
+          "descricao": "Fatos admitidos foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C13",
+          "descricao": "Fatos impugnados foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C14",
+          "descricao": "Fatos que dependem de prova foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C15",
+          "descricao": "Contradições entre narrativa defensiva e documentos foram verificadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C16",
+          "descricao": "Nenhum fato defensivo foi criado sem origem nos dados disponíveis.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E04",
+      "ordem": 4,
+      "titulo": "PRELIMINARES",
+      "objetivo": "Verificar matérias processuais antes do mérito.",
+      "itens": [
+        {
+          "id": "C17",
+          "descricao": "Competência foi analisada quando pertinente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C18",
+          "descricao": "Legitimidade foi analisada quando pertinente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C19",
+          "descricao": "Interesse processual foi analisado quando pertinente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C20",
+          "descricao": "Litispendência foi analisada quando houver elementos concretos.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C21",
+          "descricao": "Coisa julgada foi analisada quando houver elementos concretos.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C22",
+          "descricao": "Prescrição foi analisada quando houver dados temporais suficientes.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C23",
+          "descricao": "Decadência foi analisada quando houver dados temporais suficientes.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C24",
+          "descricao": "Nenhuma preliminar foi incluída apenas por padrão.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E05",
+      "ordem": 5,
+      "titulo": "IMPUGNAÇÃO ESPECÍFICA",
+      "objetivo": "Garantir que os fatos relevantes da inicial sejam efetivamente enfrentados.",
+      "itens": [
+        {
+          "id": "C25",
+          "descricao": "Todos os fatos juridicamente relevantes da inicial foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C26",
+          "descricao": "Cada fato relevante recebeu resposta defensiva.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C27",
+          "descricao": "Fatos incontroversos não foram artificialmente controvertidos.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C28",
+          "descricao": "Fatos controvertidos foram claramente delimitados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C29",
+          "descricao": "A defesa não se limita a negativa genérica.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E06",
+      "ordem": 6,
+      "titulo": "TESES DE MÉRITO",
+      "objetivo": "Construir a defesa jurídica contra a pretensão do autor.",
+      "itens": [
+        {
+          "id": "C30",
+          "descricao": "Tese defensiva principal identificada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C31",
+          "descricao": "Teses complementares identificadas quando necessárias.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C32",
+          "descricao": "Teses subsidiárias foram identificadas quando necessárias.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C33",
+          "descricao": "Cada tese possui correspondência com fatos concretos.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C34",
+          "descricao": "Cada tese possui fundamento jurídico pertinente.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C35",
+          "descricao": "Cada tese possui suporte probatório ou indicação de prova necessária.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E07",
+      "ordem": 7,
+      "titulo": "ANÁLISE DO CABIMENTO DO PEDIDO CONTRAPOSTO",
+      "objetivo": "Determinar se existe efetivamente uma pretensão própria do réu que possa ser formulada no mesmo processo.",
+      "itens": [
+        {
+          "id": "C36",
+          "descricao": "Existe pretensão própria do réu além da simples improcedência do pedido do autor.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C37",
+          "descricao": "A pretensão própria foi claramente identificada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C38",
+          "descricao": "A pretensão contraposta decorre dos mesmos fatos objeto da controvérsia.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C39",
+          "descricao": "Foi verificada a competência do Juizado para apreciar a pretensão contraposta.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C40",
+          "descricao": "Foi verificado o limite econômico aplicável.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C41",
+          "descricao": "A pretensão contraposta não constitui matéria estranha à demanda.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C42",
+          "descricao": "Foi afastada a utilização indevida de reconvenção.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E08",
+      "ordem": 8,
+      "titulo": "CONSTRUÇÃO DO PEDIDO CONTRAPOSTO",
+      "objetivo": "Estruturar a pretensão própria do réu de forma autônoma e coerente.",
+      "itens": [
+        {
+          "id": "C43",
+          "descricao": "Fatos que fundamentam o pedido contraposto foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C44",
+          "descricao": "Os fatos do pedido contraposto estão comprovados ou possuem indicação de prova.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C45",
+          "descricao": "Fundamento jurídico específico foi identificado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C46",
+          "descricao": "Pretensão jurisdicional desejada pelo réu está claramente definida.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C47",
+          "descricao": "Valor pretendido foi identificado quando economicamente quantificável.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C48",
+          "descricao": "Não foram inventados fatos para justificar o pedido contraposto.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C49",
+          "descricao": "Não foram inventados documentos para justificar o pedido contraposto.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E09",
+      "ordem": 9,
+      "titulo": "PROVAS",
+      "objetivo": "Relacionar as provas aos fatos controvertidos da defesa e do pedido contraposto.",
+      "itens": [
+        {
+          "id": "C50",
+          "descricao": "Documentos do réu foram identificados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C51",
+          "descricao": "Documentos relevantes do autor foram analisados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C52",
+          "descricao": "Eventual impugnação documental possui fundamento concreto.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C53",
+          "descricao": "Necessidade de prova testemunhal foi analisada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C54",
+          "descricao": "Necessidade de outras provas foi analisada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C55",
+          "descricao": "Cada prova relevante está vinculada a fato específico.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E10",
+      "ordem": 10,
+      "titulo": "ANÁLISE DOS PEDIDOS DO AUTOR",
+      "objetivo": "Garantir que todos os pedidos da demanda principal tenham resposta.",
+      "itens": [
+        {
+          "id": "C56",
+          "descricao": "Cada pedido do autor foi individualmente identificado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C57",
+          "descricao": "Cada pedido recebeu fundamento defensivo específico.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C58",
+          "descricao": "Pedidos de obrigação de fazer foram enfrentados quando existentes.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C59",
+          "descricao": "Pedidos de obrigação de não fazer foram enfrentados quando existentes.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C60",
+          "descricao": "Pedidos de restituição foram enfrentados quando existentes.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C61",
+          "descricao": "Pedidos de dano material foram enfrentados quando existentes.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C62",
+          "descricao": "Pedidos de dano moral foram enfrentados quando existentes.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C63",
+          "descricao": "Pedidos de tutela provisória foram enfrentados quando existentes.",
+          "obrigatorio": false,
+          "condicional": true
+        }
+      ]
+    },
+    {
+      "id": "E11",
+      "ordem": 11,
+      "titulo": "PEDIDOS FINAIS",
+      "objetivo": "Garantir correspondência entre fundamentação e pedidos.",
+      "itens": [
+        {
+          "id": "C64",
+          "descricao": "Pedidos defensivos correspondem às teses desenvolvidas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C65",
+          "descricao": "Pedido de improcedência foi formulado quando cabível.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C66",
+          "descricao": "Pedido de acolhimento das preliminares foi formulado quando cabível.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C67",
+          "descricao": "Pedido de procedência do pedido contraposto foi formulado de maneira clara.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C68",
+          "descricao": "Pedidos do pedido contraposto correspondem aos fundamentos apresentados.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C69",
+          "descricao": "Pedidos probatórios foram formulados quando necessários.",
+          "obrigatorio": false,
+          "condicional": true
+        },
+        {
+          "id": "C70",
+          "descricao": "Não foram incluídos pedidos estranhos à controvérsia.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E12",
+      "ordem": 12,
+      "titulo": "INTEGRIDADE DA PEÇA",
+      "objetivo": "Impedir fabricação de informações ou fundamentos.",
+      "itens": [
+        {
+          "id": "C71",
+          "descricao": "Nenhum fato foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C72",
+          "descricao": "Nenhuma data foi inventada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C73",
+          "descricao": "Nenhum valor foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C74",
+          "descricao": "Nenhum documento foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C75",
+          "descricao": "Nenhuma testemunha foi inventada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C76",
+          "descricao": "Nenhuma jurisprudência foi inventada.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C77",
+          "descricao": "Nenhum precedente ou número de processo foi inventado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C78",
+          "descricao": "Informações ausentes foram identificadas como pendências.",
+          "obrigatorio": true
+        }
+      ]
+    },
+    {
+      "id": "E13",
+      "ordem": 13,
+      "titulo": "AUDITORIA FINAL",
+      "objetivo": "Classificar a peça antes da geração definitiva.",
+      "itens": [
+        {
+          "id": "C79",
+          "descricao": "Defesa principal está completa.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C80",
+          "descricao": "Pedido contraposto está completo.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C81",
+          "descricao": "Existe correspondência entre fatos, fundamentos, provas e pedidos.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C82",
+          "descricao": "A peça está adequada ao rito do JEC.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C83",
+          "descricao": "A pretensão contraposta está dentro da competência do Juizado.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C84",
+          "descricao": "A pretensão contraposta está relacionada aos mesmos fatos da controvérsia.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C85",
+          "descricao": "A peça não contém reconvenção indevida.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C86",
+          "descricao": "Não existem informações inventadas.",
+          "obrigatorio": true
+        },
+        {
+          "id": "C87",
+          "descricao": "A peça foi classificada como apta, apta com pendências ou inapta.",
+          "obrigatorio": true
+        }
+      ]
+    }
+  ],
+  "regras_de_bloqueio": [
+    {
+      "id": "B01",
+      "regra": "Se não existir pretensão própria do réu, não utilizar o fluxo de pedido contraposto.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B02",
+      "regra": "Se o pedido do réu não estiver relacionado aos mesmos fatos da controvérsia, não formular pedido contraposto.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B03",
+      "regra": "Se o pedido contraposto estiver fora da competência do Juizado, não formular o pedido.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B04",
+      "regra": "Se houver risco de confundir pedido contraposto com reconvenção, revisar a estrutura.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B05",
+      "regra": "Se faltar suporte fático essencial ao pedido contraposto, solicitar informação antes da versão definitiva.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B06",
+      "regra": "Se faltar suporte probatório essencial, classificar a peça como pendente ou inapta conforme a relevância.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B07",
+      "regra": "Se houver pedido final sem fundamento correspondente, exigir correção.",
+      "acao": "bloquear"
+    },
+    {
+      "id": "B08",
+      "regra": "Se houver fato, documento, valor ou jurisprudência inventado, bloquear a versão final.",
+      "acao": "bloquear"
+    }
+  ],
+  "resultado_final": {
+    "apto": "Defesa e pedido contraposto estão completos, fundamentados, comprováveis e juridicamente compatíveis com o procedimento.",
+    "apto_com_pendencias": "A estrutura pode ser elaborada, mas existem informações ou provas que precisam de confirmação.",
+    "inapto": "Existe impedimento jurídico, processual ou informacional que impede a formulação segura do pedido contraposto."
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "codigo": "contestacao",
+  "nome": "Contestação",
+  "area": "juizados",
+  "procedimento": "Juizado Especial Cível",
+  "status": "em_validacao",
+  "versao": "1.0",
+  "fundamento_estrutural": [
+    "Lei 9.099/1995, especialmente arts. 30 e 31",
+    "CPC, especialmente arts. 335 a 342, quando aplicável subsidiariamente"
+  ],
+  "finalidade": "Apresentar a defesa do réu de forma concentrada, enfrentando os fatos, fundamentos e pedidos formulados pela parte autora, com indicação das matérias processuais, teses de mérito, provas e pedidos defensivos pertinentes ao caso concreto.",
+  "regras_gerais": [
+    "Não presumir fatos favoráveis ao réu que não estejam comprovados.",
+    "Não inserir preliminares que não sejam pertinentes ao caso concreto.",
+    "Impugnar especificamente os fatos relevantes alegados pela parte autora.",
+    "Relacionar cada tese defensiva aos fatos e documentos que a sustentam.",
+    "Distinguir questões processuais de questões de mérito.",
+    "Evitar teses defensivas incompatíveis entre si sem explicitar eventual caráter subsidiário.",
+    "Indicar as provas relacionadas a cada ponto controvertido.",
+    "Não formular pedido contraposto nesta peça quando o fluxo estiver utilizando a peça específica de contestação com pedido contraposto.",
+    "Não inventar documentos, fatos, jurisprudência ou circunstâncias processuais.",
+    "Sinalizar informações necessárias que não tenham sido fornecidas."
+  ],
+  "secoes": [
+    {
+      "ordem": 1,
+      "titulo": "DO ENDEREÇAMENTO",
+      "obrigatoria": true,
+      "instrucao_ia": "Identificar corretamente o Juizado Especial Cível competente e realizar o endereçamento conforme os dados processuais disponíveis.",
+      "dados_necessarios": [
+        "juizado",
+        "comarca",
+        "unidade_judiciaria"
+      ]
+    },
+    {
+      "ordem": 2,
+      "titulo": "DA IDENTIFICAÇÃO DO PROCESSO E DAS PARTES",
+      "obrigatoria": true,
+      "instrucao_ia": "Identificar o número do processo e as partes conforme os autos, sem alterar ou presumir informações.",
+      "dados_necessarios": [
+        "numero_processo",
+        "nome_autor",
+        "nome_reu"
+      ]
+    },
+    {
+      "ordem": 3,
+      "titulo": "DA APRESENTAÇÃO DA CONTESTAÇÃO",
+      "obrigatoria": true,
+      "instrucao_ia": "Apresentar a manifestação defensiva do réu, indicando que a peça contém a matéria de defesa pertinente à demanda.",
+      "dados_necessarios": [
+        "qualificacao_reu",
+        "representacao_processual"
+      ]
+    },
+    {
+      "ordem": 4,
+      "titulo": "DA SÍNTESE DA DEMANDA",
+      "obrigatoria": true,
+      "instrucao_ia": "Resumir objetivamente a pretensão da parte autora e os principais fatos narrados na inicial, sem reproduzir desnecessariamente toda a petição inicial.",
+      "dados_necessarios": [
+        "pedido_autor",
+        "causa_de_pedir",
+        "principais_fatos_alegados"
+      ]
+    },
+    {
+      "ordem": 5,
+      "titulo": "DA VERSÃO DOS FATOS SOB A ÓTICA DA DEFESA",
+      "obrigatoria": true,
+      "instrucao_ia": "Apresentar a narrativa defensiva dos fatos relevantes, distinguindo fatos incontroversos, fatos controvertidos e fatos não comprovados pela parte autora.",
+      "dados_necessarios": [
+        "versao_dos_fatos",
+        "documentos_do_reu",
+        "fatos_controvertidos"
+      ]
+    },
+    {
+      "ordem": 6,
+      "titulo": "DAS PRELIMINARES",
+      "obrigatoria": false,
+      "condicional": true,
+      "instrucao_ia": "Verificar a existência de matérias processuais preliminares efetivamente aplicáveis ao caso. Não criar preliminares apenas para preencher a estrutura.",
+      "dados_necessarios": [
+        "questoes_processuais",
+        "documentos_processuais",
+        "dados_de_competencia",
+        "dados_de_legitimidade",
+        "dados_de_interesse_processual"
+      ]
+    },
+    {
+      "ordem": 7,
+      "titulo": "DA IMPUGNAÇÃO ESPECÍFICA DOS FATOS",
+      "obrigatoria": true,
+      "instrucao_ia": "Enfrentar individualmente os fatos relevantes alegados pela parte autora, indicando quais são admitidos, negados ou dependem de prova, sempre de acordo com os elementos disponíveis nos autos.",
+      "dados_necessarios": [
+        "fatos_alegados_na_inicial",
+        "provas_do_autor",
+        "provas_do_reu",
+        "pontos_controvertidos"
+      ]
+    },
+    {
+      "ordem": 8,
+      "titulo": "DO MÉRITO",
+      "obrigatoria": true,
+      "instrucao_ia": "Desenvolver as teses jurídicas de mérito adequadas ao caso concreto, relacionando fatos, provas e fundamentos jurídicos.",
+      "dados_necessarios": [
+        "teses_defensivas",
+        "fatos_relevantes",
+        "documentos",
+        "fundamentos_juridicos"
+      ]
+    },
+    {
+      "ordem": 9,
+      "titulo": "DA ANÁLISE INDIVIDUAL DOS PEDIDOS DA PARTE AUTORA",
+      "obrigatoria": true,
+      "instrucao_ia": "Enfrentar individualmente os pedidos formulados na inicial, demonstrando, conforme o caso, sua improcedência, inadequação, ausência de pressupostos ou necessidade de limitação.",
+      "dados_necessarios": [
+        "pedidos_autor",
+        "fundamentos_de_cada_pedido",
+        "provas_relacionadas"
+      ]
+    },
+    {
+      "ordem": 10,
+      "titulo": "DOS DANOS MATERIAIS",
+      "obrigatoria": false,
+      "condicional": true,
+      "instrucao_ia": "Utilizar somente quando houver pedido de reparação material ou discussão relacionada a prejuízo patrimonial. Verificar existência, extensão e comprovação do alegado dano.",
+      "dados_necessarios": [
+        "pedido_dano_material",
+        "documentos_comprobatorios",
+        "valor_reclamado",
+        "nexo_com_os_fatos"
+      ]
+    },
+    {
+      "ordem": 11,
+      "titulo": "DOS DANOS EXTRAPATRIMONIAIS",
+      "obrigatoria": false,
+      "condicional": true,
+      "instrucao_ia": "Utilizar somente quando houver pedido de indenização por dano extrapatrimonial. Enfrentar os pressupostos jurídicos e a existência de elementos concretos relacionados ao caso.",
+      "dados_necessarios": [
+        "pedido_dano_moral",
+        "fatos_alegados",
+        "provas",
+        "circunstancias_do_caso"
+      ]
+    },
+    {
+      "ordem": 12,
+      "titulo": "DA IMPUGNAÇÃO AO VALOR PRETENDIDO",
+      "obrigatoria": false,
+      "condicional": true,
+      "instrucao_ia": "Utilizar quando houver fundamento concreto para questionar o valor pretendido pela parte autora, indicando objetivamente a razão da insurgência.",
+      "dados_necessarios": [
+        "valor_pedido",
+        "criterio_de_calculo",
+        "fundamento_da_impugnacao"
+      ]
+    },
+    {
+      "ordem": 13,
+      "titulo": "DAS PROVAS",
+      "obrigatoria": true,
+      "instrucao_ia": "Indicar as provas pertinentes aos pontos controvertidos, considerando os documentos já apresentados e os meios de prova necessários à defesa.",
+      "dados_necessarios": [
+        "documentos_do_reu",
+        "prova_testemunhal",
+        "prova_documental",
+        "outras_provas_pertinentes"
+      ]
+    },
+    {
+      "ordem": 14,
+      "titulo": "DOS PEDIDOS",
+      "obrigatoria": true,
+      "instrucao_ia": "Formular pedidos defensivos coerentes com as teses desenvolvidas, incluindo o acolhimento das preliminares quando existentes e, no mérito, a improcedência dos pedidos pertinentes.",
+      "dados_necessarios": [
+        "preliminares_aplicaveis",
+        "teses_de_merito",
+        "pedidos_autor",
+        "provas_requeridas"
+      ]
+    },
+    {
+      "ordem": 15,
+      "titulo": "DO FECHO",
+      "obrigatoria": true,
+      "instrucao_ia": "Encerrar a manifestação com local, data, identificação do advogado e número de inscrição profissional, conforme os dados disponíveis.",
+      "dados_necessarios": [
+        "local",
+        "data",
+        "nome_advogado",
+        "oab"
+      ]
+    }
+  ]
+}

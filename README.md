@@ -1,15 +1,5 @@
 # ⚖️ Agente Jurídico OLV
 
-┌──────────────────────────────────────────────────────────────────────┐
-│                                                                      │
-│                     ⚖️ AGENTE JURÍDICO OLV                           │
-│                                                                      │
-│        Plataforma Modular de Inteligência Artificial                 │
-│                 para Automação da Advocacia                          │
-│                                                                      │
-│      OCR • IA Local • RAG • DJEN • Controladoria • Telegram          │
-│                                                                      │
-└──────────────────────────────────────────────────────────────────────┘
 
 > **Status do Projeto**
 >
@@ -31,7 +21,7 @@
 
 O **Agente Jurídico OLV** é uma plataforma de automação jurídica desenvolvida para auxiliar escritórios de advocacia na execução de atividades repetitivas, utilizando Inteligência Artificial Local, OCR, recuperação semântica de conhecimento jurídico (RAG), monitoramento de publicações e geração automatizada de documentos.
 
-Ao contrário de soluções dependentes de serviços em nuvem, o projeto foi concebido para operar prioritariamente em ambiente local, preservando a confidencialidade das informações processuais e reduzindo custos operacionais.
+O projeto foi concebido para priorizar o processamento local sempre que tecnicamente possível, preservando a confidencialidade das informações processuais e reduzindo custos operacionais.
 
 O sistema foi projetado seguindo uma arquitetura modular, permitindo a expansão para novos agentes especializados sem necessidade de reestruturação do núcleo da aplicação.
 
@@ -51,9 +41,9 @@ Responsável pelo gerenciamento dos agentes do sistema.
 
 ---
 
-## 📄 Documentarista Cível
+## 📄 Documentarista Petições
 
-Responsável pela geração automatizada de documentos jurídicos.
+Responsável pela preparação estruturada de peças e documentos jurídicos, fornecendo uma base padronizada para o desenvolvimento da atividade jurídica.
 
 Fluxo de processamento:
 
@@ -83,13 +73,28 @@ Template DOCX
 
 Documento Final
 
-Atualmente gera automaticamente:
+Atualmente contempla fluxos para:
 
 - Procuração
 - Contrato de Honorários
 - Declaração de Hipossuficiência
 - Petições
 - Juntadas
+
+### 📚 Biblioteca de Petições
+
+A Biblioteca de Petições constitui a base estruturada utilizada pelo Documentarista para orientar a preparação das peças.
+
+A primeira frente implementada é o Juizado Especial Cível, contemplando estruturas para:
+
+- Petição Inicial
+- Contestação
+- Contestação com Pedido Contraposto
+- Réplica
+- Embargos de Declaração
+- Recurso Inominado
+
+A biblioteca foi concebida para expansão progressiva para outros ritos e procedimentos, preservando a separação entre a infraestrutura pública do projeto e as estratégias intelectuais internas utilizadas pelo escritório.
 
 ---
 
@@ -190,7 +195,7 @@ Compatível com:
 - Phi
 - Outros modelos suportados pelo Ollama
 
-Todo o processamento ocorre localmente.
+O projeto prioriza o processamento local dos modelos de IA e dos dados sensíveis, reduzindo a dependência de serviços externos.
 
 ---
 
@@ -226,7 +231,7 @@ Recursos:
 
 ## 📱 Interface Telegram
 
-Toda a operação diária do sistema é realizada diretamente pelo Telegram.
+O Telegram constitui uma das principais interfaces operacionais do sistema.
 
 O usuário pode:
 
@@ -267,7 +272,7 @@ O usuário pode:
 ```
 core/
 │
-├── Documentarista Cível
+├── peticionamento/
 ├── previdenciario/
 │   ├── bot_prev.py
 │   ├── engine_prev.py
@@ -292,6 +297,15 @@ infra/
 ├── Cliente LLM
 ├── RAG
 └── Persistência
+
+biblioteca_peticoes/
+└── juizados/
+    ├── inicial/
+    ├── contestacao/
+    ├── contestacao_pedido_contraposto/
+    ├── replica/
+    ├── embargos_declaracao/
+    └── recurso_inominado/
 
 services/
 │
@@ -342,11 +356,11 @@ legado/
 
 # 🎯 Filosofia do Projeto
 
-O Agente Jurídico OLV foi concebido com três princípios fundamentais:
+O Agente Jurídico OLV foi concebido com cinco princípios fundamentais:
 
 ### Privacidade
 
-Todo o processamento ocorre localmente, reduzindo a dependência de serviços externos e preservando o sigilo profissional.
+O projeto prioriza o processamento local de dados e a separação entre infraestrutura pública e dados operacionais do escritório, reduzindo a exposição de informações processuais e documentais.
 
 ### Modularidade
 
@@ -356,6 +370,16 @@ Cada componente possui responsabilidades bem definidas, permitindo manutenção 
 
 Automatizar tarefas repetitivas para que o profissional concentre seus esforços na atividade intelectual e estratégica.
 
+### Responsabilidade profissional
+
+A automação tem função de apoio à atividade jurídica. A análise dos fatos, definição da estratégia, interpretação jurídica e decisão sobre o conteúdo das peças permanecem sob responsabilidade do profissional.
+
+### Separação entre infraestrutura e estratégia
+
+O repositório público contém componentes técnicos, estruturas documentais e bases destinadas à automação jurídica.
+
+Metodologias proprietárias, estratégias internas de trabalho e camadas privadas de produção do escritório não fazem parte deste repositório.
+
 ---
 
 # 📈 Roadmap
@@ -363,7 +387,8 @@ Automatizar tarefas repetitivas para que o profissional concentre seus esforços
 ## Implementado
 
 - Orquestrador Jurídico
-- Documentarista Cível
+- Documentarista Petições
+- Biblioteca de Petições — Juizado Especial Cível
 - Documentarista de Audiências
 - Documentarista Previdenciário — MVP
 - OCR Jurídico
@@ -374,6 +399,12 @@ Automatizar tarefas repetitivas para que o profissional concentre seus esforços
 - Templates DOCX
 - Integração Telegram
 - Agenda de Audiências
+
+## Próximas expansões
+
+- CPC
+- CLT
+- Juizado Especial Federal
 
 ## Em desenvolvimento
 

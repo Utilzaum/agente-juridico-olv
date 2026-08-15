@@ -93,3 +93,69 @@ kit_completo.patch
 
 # Modelos locais de IA
 models/
+
+# ============================================================
+# DADOS OPERACIONAIS / DOCUMENTOS DE CLIENTES
+# ============================================================
+
+core/temp/
+core/processed_docs/
+core/data/
+files/
+exports/
+temp/
+temp_prev/
+logs/
+models/
+db_vetorial/
+
+# Dados locais de bots
+bots/**/data/
+bots/**/temp/
+
+# Bancos e arquivos de execução
+*.db
+*.sqlite
+*.sqlite3
+*.jsonl
+
+# Backups e arquivos temporários
+*.bak
+*.backup
+*.tmp
+*.swp
+__pycache__/
+*.py[cod]
+
+# ============================================================
+# DADOS OPERACIONAIS / DOCUMENTOS DE CLIENTES
+# ============================================================
+
+core/temp/
+core/processed_docs/
+core/data/
+files/
+exports/
+temp/
+temp_prev/
+logs/
+models/
+db_vetorial/
+
+# Dados locais de bots
+bots/**/data/
+bots/**/temp/
+
+# Bancos e arquivos de execução
+*.db
+*.sqlite
+*.sqlite3
+*.jsonl
+
+# Backups e arquivos temporários
+*.bak
+*.backup
+*.tmp
+*.swp
+__pycache__/
+*.py[cod]

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://olv.local/schemas/peticao.schema.json",
+  "title": "Schema de Peça Processual OLV",
+  "description": "Contrato estrutural para peças processuais da Biblioteca de Petições OLV.",
+  "type": "object",
+  "additionalProperties": false,
+
+  "required": [
+    "codigo",
+    "nome",
+    "area",
+    "secoes",
+    "status",
+    "versao"
+  ],
+
+  "properties": {
+    "codigo": {
+      "type": "string",
+      "description": "Identificador técnico único da peça.",
+      "pattern": "^[a-z0-9]+(?:_[a-z0-9]+)*$"
+    },
+
+    "nome": {
+      "type": "string",
+      "description": "Nome jurídico da peça."
+    },
+
+    "area": {
+      "type": "string",
+      "description": "Área jurídica principal da peça.",
+      "enum": [
+        "civel",
+        "consumidor",
+        "juizados",
+        "trabalhista",
+        "previdenciario",
+        "familia",
+        "processual"
+      ]
+    },
+
+    "secoes": {
+      "type": "array",
+      "description": "Lista de seções estruturais da peça.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+
+        "required": [
+          "ordem",
+          "titulo",
+          "tipo",
+          "aplicabilidade"
+        ],
+
+        "properties": {
+          "ordem": {
+            "type": "integer",
+            "minimum": 1
+          },
+
+          "titulo": {
+            "type": "string"
+          },
+
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "fixa",
+              "dinamica"
+            ]
+          },
+
+          "aplicabilidade": {
+            "type": "string",
+            "enum": [
+              "obrigatoria",
+              "condicional",
+              "opcional"
+            ]
+          },
+
+          "condicao": {
+            "type": "string"
+          },
+
+          "instrucao_ia": {
+            "type": "string"
+          },
+
+          "dados_necessarios": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+
+    "status": {
+      "type": "string",
+      "description": "Status atual da peça no sistema.",
+      "enum": [
+        "rascunho",
+        "ativo",
+        "inativo",
+        "obsoleto"
+      ]
+    },
+
+    "versao": {
+      "type": "string",
+      "description": "Versão da estrutura da peça.",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    }
+  }
+}

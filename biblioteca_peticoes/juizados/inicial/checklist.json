@@ -1,0 +1,579 @@
+{
+  "area": "juizados",
+  "peca": "inicial",
+  "nome": "Checklist — Petição Inicial JEC",
+  "descricao": "Checklist de conferência prévia e auditoria da petição inicial destinada ao Juizado Especial Cível.",
+  "objetivo": "Verificar se existem elementos fáticos, processuais, documentais e jurídicos suficientes para elaboração de uma petição inicial coerente e adequada ao rito dos Juizados Especiais.",
+  "status": {
+    "PENDENTE": "Informação ainda não fornecida ou verificada.",
+    "OK": "Item confirmado e suficiente.",
+    "ATENCAO": "Há informação, mas existe ponto que exige análise.",
+    "ERRO": "Existe impedimento, inconsistência ou ausência relevante que deve ser corrigida antes da elaboração."
+  },
+  "etapas": [
+    {
+      "id": "01",
+      "nome": "Identificação do caso",
+      "itens": [
+        {
+          "id": "01.01",
+          "descricao": "Identificar quem será o autor da demanda.",
+          "obrigatorio": true,
+          "tipo": "informacao"
+        },
+        {
+          "id": "01.02",
+          "descricao": "Identificar quem será o réu da demanda.",
+          "obrigatorio": true,
+          "tipo": "informacao"
+        },
+        {
+          "id": "01.03",
+          "descricao": "Identificar a relação jurídica existente entre as partes.",
+          "obrigatorio": true,
+          "tipo": "analise"
+        },
+        {
+          "id": "01.04",
+          "descricao": "Identificar qual é a pretensão concreta do autor.",
+          "obrigatorio": true,
+          "tipo": "informacao"
+        },
+        {
+          "id": "01.05",
+          "descricao": "Identificar contra qual conduta, omissão, cobrança, negativa, descumprimento ou acontecimento a demanda será dirigida.",
+          "obrigatorio": true,
+          "tipo": "fato"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "nome": "Competência do JEC",
+      "itens": [
+        {
+          "id": "02.01",
+          "descricao": "Verificar se a causa é compatível com a competência material do Juizado Especial Cível.",
+          "obrigatorio": true,
+          "tipo": "analise",
+          "fundamento": "Lei nº 9.099/1995, art. 3º"
+        },
+        {
+          "id": "02.02",
+          "descricao": "Verificar se o valor da causa está dentro do limite legal de competência do JEC.",
+          "obrigatorio": true,
+          "tipo": "analise",
+          "fundamento": "Lei nº 9.099/1995, art. 3º"
+        },
+        {
+          "id": "02.03",
+          "descricao": "Verificar se não existe matéria expressamente excluída da competência dos Juizados Especiais.",
+          "obrigatorio": true,
+          "tipo": "analise",
+          "fundamento": "Lei nº 9.099/1995, art. 3º, § 2º"
+        },
+        {
+          "id": "02.04",
+          "descricao": "Verificar se as partes possuem capacidade e legitimidade compatíveis com o procedimento.",
+          "obrigatorio": true,
+          "tipo": "analise",
+          "fundamento": "Lei nº 9.099/1995, art. 8º"
+        },
+        {
+          "id": "02.05",
+          "descricao": "Verificar a competência territorial do Juizado escolhido.",
+          "obrigatorio": true,
+          "tipo": "analise",
+          "fundamento": "Lei nº 9.099/1995, art. 4º"
+        },
+        {
+          "id": "02.06",
+          "descricao": "Se houver dúvida relevante sobre competência, impedir a geração definitiva da inicial até a questão ser analisada.",
+          "obrigatorio": true,
+          "tipo": "regra_de_seguranca"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "nome": "Qualificação das partes",
+      "itens": [
+        {
+          "id": "03.01",
+          "descricao": "Nome completo do autor.",
+          "obrigatorio": true,
+          "tipo": "identificacao"
+        },
+        {
+          "id": "03.02",
+          "descricao": "CPF ou CNPJ do autor, quando disponível e pertinente.",
+          "obrigatorio": false,
+          "tipo": "identificacao"
+        },
+        {
+          "id": "03.03",
+          "descricao": "Endereço do autor.",
+          "obrigatorio": true,
+          "tipo": "identificacao"
+        },
+        {
+          "id": "03.04",
+          "descricao": "Nome ou razão social do réu.",
+          "obrigatorio": true,
+          "tipo": "identificacao"
+        },
+        {
+          "id": "03.05",
+          "descricao": "CPF ou CNPJ do réu, quando disponível.",
+          "obrigatorio": false,
+          "tipo": "identificacao"
+        },
+        {
+          "id": "03.06",
+          "descricao": "Endereço do réu para fins de citação, quando disponível.",
+          "obrigatorio": true,
+          "tipo": "identificacao"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "nome": "Narrativa dos fatos",
+      "itens": [
+        {
+          "id": "04.01",
+          "descricao": "Estabelecer uma sequência cronológica dos acontecimentos relevantes.",
+          "obrigatorio": true,
+          "tipo": "fato"
+        },
+        {
+          "id": "04.02",
+          "descricao": "Identificar datas relevantes.",
+          "obrigatorio": true,
+          "tipo": "fato"
+        },
+        {
+          "id": "04.03",
+          "descricao": "Identificar valores relevantes.",
+          "obrigatorio": false,
+          "tipo": "fato"
+        },
+        {
+          "id": "04.04",
+          "descricao": "Identificar contratos, protocolos, pedidos, reclamações, comunicações ou documentos relacionados aos fatos.",
+          "obrigatorio": false,
+          "tipo": "fato"
+        },
+        {
+          "id": "04.05",
+          "descricao": "Identificar a conduta do réu que originou ou agravou a controvérsia.",
+          "obrigatorio": true,
+          "tipo": "fato"
+        },
+        {
+          "id": "04.06",
+          "descricao": "Identificar as consequências concretas suportadas pelo autor.",
+          "obrigatorio": true,
+          "tipo": "fato"
+        },
+        {
+          "id": "04.07",
+          "descricao": "Verificar se todos os fatos relevantes possuem suporte documental ou outra fonte probatória disponível.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "nome": "Pretensão resistida",
+      "itens": [
+        {
+          "id": "05.01",
+          "descricao": "Identificar se o réu foi previamente procurado para solucionar a questão, quando isso tiver ocorrido.",
+          "obrigatorio": false,
+          "tipo": "fato"
+        },
+        {
+          "id": "05.02",
+          "descricao": "Identificar protocolos, reclamações, notificações, mensagens ou outros registros de tentativa de solução.",
+          "obrigatorio": false,
+          "tipo": "prova"
+        },
+        {
+          "id": "05.03",
+          "descricao": "Identificar a resposta ou ausência de resposta do réu.",
+          "obrigatorio": false,
+          "tipo": "fato"
+        },
+        {
+          "id": "05.04",
+          "descricao": "Não afirmar existência de pretensão resistida sem suporte nos fatos fornecidos.",
+          "obrigatorio": true,
+          "tipo": "regra_de_seguranca"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "nome": "Fundamentação jurídica",
+      "itens": [
+        {
+          "id": "06.01",
+          "descricao": "Definir a tese jurídica principal.",
+          "obrigatorio": true,
+          "tipo": "analise"
+        },
+        {
+          "id": "06.02",
+          "descricao": "Relacionar cada fundamento jurídico aos fatos correspondentes.",
+          "obrigatorio": true,
+          "tipo": "analise"
+        },
+        {
+          "id": "06.03",
+          "descricao": "Verificar se há legislação especial aplicável ao caso.",
+          "obrigatorio": true,
+          "tipo": "analise"
+        },
+        {
+          "id": "06.04",
+          "descricao": "Verificar se existe relação de consumo antes de utilizar fundamentos do CDC.",
+          "obrigatorio": true,
+          "tipo": "regra_de_seguranca"
+        },
+        {
+          "id": "06.05",
+          "descricao": "Verificar se existe fundamento concreto para dano moral.",
+          "obrigatorio": false,
+          "tipo": "analise"
+        },
+        {
+          "id": "06.06",
+          "descricao": "Verificar se existe fundamento concreto para dano material.",
+          "obrigatorio": false,
+          "tipo": "analise"
+        },
+        {
+          "id": "06.07",
+          "descricao": "Verificar se existe fundamento para restituição simples ou em dobro.",
+          "obrigatorio": false,
+          "tipo": "analise"
+        },
+        {
+          "id": "06.08",
+          "descricao": "Verificar se existe fundamento para obrigação de fazer ou não fazer.",
+          "obrigatorio": false,
+          "tipo": "analise"
+        },
+        {
+          "id": "06.09",
+          "descricao": "Verificar se existe fundamento para tutela provisória.",
+          "obrigatorio": false,
+          "tipo": "analise"
+        },
+        {
+          "id": "06.10",
+          "descricao": "Verificar se existe fundamento para inversão ou distribuição diferenciada do ônus da prova.",
+          "obrigatorio": false,
+          "tipo": "analise"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "nome": "Provas e documentos",
+      "itens": [
+        {
+          "id": "07.01",
+          "descricao": "Relacionar todos os documentos disponíveis.",
+          "obrigatorio": true,
+          "tipo": "documentacao"
+        },
+        {
+          "id": "07.02",
+          "descricao": "Identificar quais documentos comprovam cada fato relevante.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "07.03",
+          "descricao": "Identificar documentos indispensáveis à propositura da ação.",
+          "obrigatorio": true,
+          "tipo": "auditoria",
+          "fundamento": "CPC, art. 320"
+        },
+        {
+          "id": "07.04",
+          "descricao": "Identificar eventual documento que esteja em poder exclusivo do réu ou de terceiro.",
+          "obrigatorio": false,
+          "tipo": "prova"
+        },
+        {
+          "id": "07.05",
+          "descricao": "Identificar eventual necessidade de requerimento específico de produção ou exibição de prova.",
+          "obrigatorio": false,
+          "tipo": "analise"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "nome": "Danos e valores",
+      "itens": [
+        {
+          "id": "08.01",
+          "descricao": "Apurar o dano material efetivamente demonstrável.",
+          "obrigatorio": false,
+          "tipo": "calculo"
+        },
+        {
+          "id": "08.02",
+          "descricao": "Identificar despesas, pagamentos ou prejuízos patrimoniais relacionados aos fatos.",
+          "obrigatorio": false,
+          "tipo": "calculo"
+        },
+        {
+          "id": "08.03",
+          "descricao": "Definir o valor pretendido a título de dano moral quando juridicamente cabível.",
+          "obrigatorio": false,
+          "tipo": "calculo"
+        },
+        {
+          "id": "08.04",
+          "descricao": "Verificar se os valores pedidos possuem correspondência com os fatos e documentos.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "08.05",
+          "descricao": "Verificar se o valor total da pretensão permanece dentro da competência econômica do JEC.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "nome": "Tutela provisória",
+      "itens": [
+        {
+          "id": "09.01",
+          "descricao": "Verificar se existe situação que demande intervenção jurisdicional imediata.",
+          "obrigatorio": false,
+          "tipo": "analise"
+        },
+        {
+          "id": "09.02",
+          "descricao": "Demonstrar a probabilidade do direito, quando requerida tutela de urgência.",
+          "obrigatorio": false,
+          "tipo": "analise",
+          "fundamento": "CPC, art. 300"
+        },
+        {
+          "id": "09.03",
+          "descricao": "Demonstrar perigo de dano ou risco ao resultado útil do processo, quando exigível.",
+          "obrigatorio": false,
+          "tipo": "analise",
+          "fundamento": "CPC, art. 300"
+        },
+        {
+          "id": "09.04",
+          "descricao": "Identificar medida concreta que deve ser determinada pelo juízo.",
+          "obrigatorio": false,
+          "tipo": "pedido"
+        },
+        {
+          "id": "09.05",
+          "descricao": "Não incluir tutela provisória quando inexistir situação concreta que a justifique.",
+          "obrigatorio": true,
+          "tipo": "regra_de_seguranca"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "nome": "Pedidos",
+      "itens": [
+        {
+          "id": "10.01",
+          "descricao": "Pedido de citação do réu.",
+          "obrigatorio": true,
+          "tipo": "processual"
+        },
+        {
+          "id": "10.02",
+          "descricao": "Pedido de procedência compatível com a causa de pedir.",
+          "obrigatorio": true,
+          "tipo": "processual"
+        },
+        {
+          "id": "10.03",
+          "descricao": "Individualizar cada obrigação pretendida.",
+          "obrigatorio": true,
+          "tipo": "pedido"
+        },
+        {
+          "id": "10.04",
+          "descricao": "Individualizar valores quando a pretensão for economicamente quantificável.",
+          "obrigatorio": true,
+          "tipo": "pedido"
+        },
+        {
+          "id": "10.05",
+          "descricao": "Verificar se existe pedido de tutela provisória e se ele corresponde à fundamentação.",
+          "obrigatorio": false,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "10.06",
+          "descricao": "Verificar se os pedidos possuem correspondência com os fundamentos jurídicos desenvolvidos.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "10.07",
+          "descricao": "Verificar se os pedidos possuem suporte nos fatos narrados.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "10.08",
+          "descricao": "Não inserir pedido sem fundamento jurídico ou suporte fático.",
+          "obrigatorio": true,
+          "tipo": "regra_de_seguranca"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "nome": "Valor da causa",
+      "itens": [
+        {
+          "id": "11.01",
+          "descricao": "Definir o valor da causa.",
+          "obrigatorio": true,
+          "tipo": "calculo"
+        },
+        {
+          "id": "11.02",
+          "descricao": "Verificar correspondência entre o valor da causa e os pedidos formulados.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "11.03",
+          "descricao": "Verificar se o valor respeita a competência econômica do JEC.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "nome": "Revisão final",
+      "itens": [
+        {
+          "id": "12.01",
+          "descricao": "Verificar se todos os fatos relevantes foram narrados.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "12.02",
+          "descricao": "Verificar se os fundamentos jurídicos correspondem aos fatos.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "12.03",
+          "descricao": "Verificar se os pedidos correspondem aos fundamentos.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "12.04",
+          "descricao": "Verificar se os documentos sustentam os fatos relevantes.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "12.05",
+          "descricao": "Verificar competência do JEC.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "12.06",
+          "descricao": "Verificar ausência de fatos, documentos, valores ou jurisprudência inventados.",
+          "obrigatorio": true,
+          "tipo": "regra_de_seguranca"
+        },
+        {
+          "id": "12.07",
+          "descricao": "Verificar coerência entre narrativa, fundamentação, pedidos e valor da causa.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        },
+        {
+          "id": "12.08",
+          "descricao": "Verificar se a redação permanece compatível com a simplicidade e objetividade esperadas no JEC.",
+          "obrigatorio": true,
+          "tipo": "auditoria"
+        }
+      ]
+    }
+  ],
+  "regras_de_bloqueio": [
+    {
+      "condicao": "competencia_jec_nao_confirmada",
+      "acao": "BLOQUEAR_GERACAO",
+      "mensagem": "Não é possível concluir a inicial sem verificar a competência do Juizado Especial Cível."
+    },
+    {
+      "condicao": "materia_excluida_jec",
+      "acao": "BLOQUEAR_GERACAO",
+      "mensagem": "A matéria informada pode estar excluída da competência do Juizado Especial Cível."
+    },
+    {
+      "condicao": "valor_acima_limite",
+      "acao": "BLOQUEAR_GERACAO",
+      "mensagem": "O valor da pretensão pode ultrapassar o limite de competência econômica do JEC."
+    },
+    {
+      "condicao": "pedido_sem_fundamento",
+      "acao": "ALERTA",
+      "mensagem": "Foi identificado pedido sem fundamento jurídico correspondente."
+    },
+    {
+      "condicao": "fundamento_sem_fato",
+      "acao": "ALERTA",
+      "mensagem": "Foi identificado fundamento jurídico sem suporte nos fatos fornecidos."
+    },
+    {
+      "condicao": "dano_moral_sem_fato",
+      "acao": "ALERTA",
+      "mensagem": "Não foram identificados fatos suficientes para sustentar, de forma concreta, o pedido de dano moral."
+    },
+    {
+      "condicao": "tutela_sem_urgencia",
+      "acao": "ALERTA",
+      "mensagem": "Não foram identificados elementos concretos que justifiquem tutela provisória de urgência."
+    },
+    {
+      "condicao": "inversao_onus_sem_fundamento",
+      "acao": "ALERTA",
+      "mensagem": "A inversão ou distribuição diferenciada do ônus da prova exige fundamento jurídico e circunstâncias concretas."
+    },
+    {
+      "condicao": "documentacao_insuficiente",
+      "acao": "ALERTA",
+      "mensagem": "Existem fatos relevantes sem documentação ou outro meio de prova identificado."
+    }
+  ],
+  "resultado_final": {
+    "APTO": "Todos os itens obrigatórios foram verificados e não existem bloqueios.",
+    "APTO_COM_ALERTAS": "Os requisitos essenciais foram atendidos, mas existem pontos que exigem revisão jurídica.",
+    "INAPTO": "Existe impedimento relevante que deve ser solucionado antes da elaboração definitiva da inicial."
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "area": "juizados",
+  "peca": "contestacao_pedido_contraposto",
+  "nome": "Contestação com Pedido Contraposto",
+  "descricao": "Peça defensiva apresentada pelo réu no procedimento dos Juizados Especiais Cíveis, contendo contestação da pretensão do autor e, quando juridicamente cabível, pedido contraposto fundado nos mesmos fatos que constituem objeto da controvérsia.",
+  "principios": [
+    "A contestação deve enfrentar objetivamente a pretensão deduzida pelo autor.",
+    "O pedido contraposto deve ser tratado como pretensão própria do réu, e não como simples argumento defensivo.",
+    "O pedido contraposto somente deve ser formulado quando houver pertinência com os fatos que constituem objeto da controvérsia.",
+    "A peça deve observar a simplicidade, informalidade, economia processual e celeridade próprias dos Juizados Especiais.",
+    "Não devem ser criados fatos, documentos, valores, pedidos ou fundamentos jurídicos não sustentados pelos autos ou pelas informações fornecidas.",
+    "A existência de pedido contraposto deve ser analisada antes da redação final da peça."
+  ],
+  "secoes": [
+    {
+      "ordem": 1,
+      "id": "enderecamento",
+      "titulo": "Endereçamento",
+      "objetivo": "Identificar corretamente o Juizado Especial Cível competente."
+    },
+    {
+      "ordem": 2,
+      "id": "identificacao_processo",
+      "titulo": "Identificação do processo",
+      "objetivo": "Indicar número do processo e identificação das partes conforme os autos."
+    },
+    {
+      "ordem": 3,
+      "id": "sintese_demanda",
+      "titulo": "Síntese da demanda",
+      "objetivo": "Apresentar de forma objetiva a pretensão formulada pelo autor e o contexto necessário à defesa."
+    },
+    {
+      "ordem": 4,
+      "id": "preliminares",
+      "titulo": "Preliminares",
+      "objetivo": "Examinar e, somente quando cabível, apresentar matérias preliminares relevantes ao julgamento da demanda."
+    },
+    {
+      "ordem": 5,
+      "id": "impugnacao_fatos",
+      "titulo": "Impugnação dos fatos",
+      "objetivo": "Enfrentar os fatos alegados pelo autor, distinguindo fatos admitidos, controvertidos e não comprovados."
+    },
+    {
+      "ordem": 6,
+      "id": "impugnacao_documentos",
+      "titulo": "Impugnação dos documentos",
+      "objetivo": "Analisar os documentos apresentados pelo autor e impugná-los quando houver fundamento concreto para tanto."
+    },
+    {
+      "ordem": 7,
+      "id": "merito",
+      "titulo": "Mérito da contestação",
+      "objetivo": "Demonstrar, com base nos fatos comprovados e no direito aplicável, as razões pelas quais a pretensão do autor deve ser rejeitada total ou parcialmente."
+    },
+    {
+      "ordem": 8,
+      "id": "teses_defensivas",
+      "titulo": "Teses defensivas específicas",
+      "objetivo": "Desenvolver as teses jurídicas pertinentes ao caso concreto, sem inserção automática de fundamentos genéricos."
+    },
+    {
+      "ordem": 9,
+      "id": "analise_pedido_contraposto",
+      "titulo": "Cabimento do pedido contraposto",
+      "objetivo": "Verificar se existe pretensão própria do réu juridicamente cabível, relacionada aos mesmos fatos objeto da controvérsia."
+    },
+    {
+      "ordem": 10,
+      "id": "fatos_pedido_contraposto",
+      "titulo": "Fatos que fundamentam o pedido contraposto",
+      "objetivo": "Expor os fatos que sustentam a pretensão do réu, mantendo conexão direta com a controvérsia submetida ao Juizado."
+    },
+    {
+      "ordem": 11,
+      "id": "fundamentacao_pedido_contraposto",
+      "titulo": "Fundamentação jurídica do pedido contraposto",
+      "objetivo": "Apresentar os fundamentos jurídicos específicos que sustentam a pretensão contraposta."
+    },
+    {
+      "ordem": 12,
+      "id": "quantificacao_pedido_contraposto",
+      "titulo": "Quantificação do pedido contraposto",
+      "objetivo": "Indicar o valor pretendido quando houver pretensão economicamente quantificável, utilizando somente dados comprovados ou fornecidos."
+    },
+    {
+      "ordem": 13,
+      "id": "pedidos_defensivos",
+      "titulo": "Pedidos da contestação",
+      "objetivo": "Formular os pedidos decorrentes da defesa apresentada, inclusive improcedência total ou parcial, quando cabível."
+    },
+    {
+      "ordem": 14,
+      "id": "pedidos_contrapostos",
+      "titulo": "Pedidos contrapostos",
+      "objetivo": "Formular de maneira clara e individualizada a pretensão própria do réu, quando houver pedido contraposto juridicamente cabível."
+    },
+    {
+      "ordem": 15,
+      "id": "provas",
+      "titulo": "Provas",
+      "objetivo": "Indicar as provas pertinentes aos fatos controvertidos e à pretensão contraposta, evitando pedidos probatórios genéricos ou desnecessários."
+    },
+    {
+      "ordem": 16,
+      "id": "fechamento",
+      "titulo": "Fechamento",
+      "objetivo": "Encerrar a manifestação com local, data e identificação do advogado, conforme os dados disponíveis."
+    }
+  ],
+  "regras_especificas": [
+    {
+      "id": "r01",
+      "regra": "Não criar pedido contraposto automaticamente.",
+      "aplicacao": "O pedido contraposto somente deve aparecer quando os fatos e informações disponíveis sustentarem pretensão própria do réu."
+    },
+    {
+      "id": "r02",
+      "regra": "Distinguir defesa de pedido contraposto.",
+      "aplicacao": "Argumentos destinados exclusivamente à rejeição do pedido do autor não devem ser apresentados como pedido contraposto."
+    },
+    {
+      "id": "r03",
+      "regra": "Preservar a conexão fática.",
+      "aplicacao": "A pretensão contraposta deve guardar relação com os fatos que constituem objeto da controvérsia."
+    },
+    {
+      "id": "r04",
+      "regra": "Individualizar os pedidos.",
+      "aplicacao": "Os pedidos defensivos e os pedidos contrapostos devem ser apresentados separadamente e de forma objetiva."
+    },
+    {
+      "id": "r05",
+      "regra": "Não inventar quantificação.",
+      "aplicacao": "Valores somente podem ser inseridos quando decorrerem dos documentos, dos autos ou de informações expressamente fornecidas."
+    },
+    {
+      "id": "r06",
+      "regra": "Manter adequação ao rito.",
+      "aplicacao": "A redação deve permanecer compatível com a simplicidade e objetividade esperadas no Juizado Especial Cível."
+    },
+    {
+      "id": "r07",
+      "regra": "Auditar o pedido contraposto antes da versão final.",
+      "aplicacao": "Antes de concluir a peça, verificar fatos, provas, fundamento jurídico, conexão com a demanda principal e correspondência entre fundamentação e pedido."
+    }
+  ]
+}
